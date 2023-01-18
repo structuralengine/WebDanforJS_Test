@@ -361,31 +361,27 @@ export class SetPostDataService {
 
     let result: string = null;
 
-    if (member.shape.indexOf('円') >= 0) {
-
-      if (member.shape.indexOf('円形') >= 0) {
+    if (member.shape.indexOf('円形') >= 0) {
+      let b: number = this.helper.toNumber(member.B);
+      let h: number = this.helper.toNumber(member.H);
+      if (h === null || h === 0) {
         result = 'Circle';
-
-      } else if (member.shape.indexOf('円環') >= 0) {
-        let b: number = this.helper.toNumber(member.B);
-        if (b === null || b === 0) {
-          result = 'Circle';
-        }
+      } else if (!(b === null || b === 0)){
         result = 'Ring';
-
       }
 
     } else if (member.shape.indexOf('矩形') >= 0) {
       result = 'Rectangle';
 
-    } else if (member.shape.indexOf('T') >= 0) {
-
+    } else if (member.shape.indexOf('T形') >= 0) {
+      let t: number = this.helper.toNumber(member.t);
       // Ｔ形に関する 設計条件を確認する
       let condition = this.basic.conditions_list.find(e =>
         e.id === 'JR-002');
       if (condition == null) { condition = { selected: false }; }
 
-      if (member.shape.indexOf('T形') >= 0) {
+      // tが負の数であれば逆T形とする
+      if (t > 0) {
         if (condition.selected === true && side === '上側引張') {
           // T形 断面の上側引張は 矩形
           result = 'Rectangle';
@@ -393,27 +389,29 @@ export class SetPostDataService {
         } else {
           result = 'Tsection';
 
+
           const b: number = this.helper.toNumber(member.B);
           if (b === null) { return null; }
           let bf: number = this.helper.toNumber(member.Bt);
           if (bf === b) { bf = null; }
-          const hf: number = this.helper.toNumber(member.t);
+          const hf: number = this.helper.toNumber(t);
           if (bf === null && hf == null) {
             result = 'Rectangle';
           }
 
         }
-      } else if (member.shape.indexOf('逆T形') >= 0) {
+      } else {
         if (condition.selected === true && side === '下側引張') {
           // 逆T形 断面の下側引張は 矩形
           result = 'Rectangle';
 
         } else {
+          t = Math.abs(t);
           const b: number = this.helper.toNumber(member.B);
           if (b === null) { return null; }
           let bf: number = this.helper.toNumber(member.Bt);
           if (bf === b) { bf = null; }
-          const hf: number = this.helper.toNumber(member.t);
+          const hf: number = t;
           if (bf === null && hf == null) {
             result = 'Rectangle';
           }
