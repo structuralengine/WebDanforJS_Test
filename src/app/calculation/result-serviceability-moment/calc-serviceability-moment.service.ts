@@ -240,9 +240,9 @@ export class CalcServiceabilityMomentService {
     if(!JRTT05){
       result['Sigmas'] = Sigmas;
       result['sigmal1'] = sigmal1;
-      if (Sigmab < Sigmabl) {
+      if (Sigmas < sigmal1) {
         if ((speci2Info_TT && pt < 0.0050) || !speci2Info_TT){
-            const ratio: number = ri * Sigmab / Sigmabl;
+            const ratio: number = ri * Sigmas / sigmal1;
             result['ratio'] = ratio;
             return result;
         }
