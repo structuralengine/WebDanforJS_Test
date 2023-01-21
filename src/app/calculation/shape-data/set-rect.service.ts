@@ -192,7 +192,7 @@ export class SetRectService {
     const result = this.getSection(member, target, index);
 
     let bf = this.helper.toNumber(member.Bt);
-    let hf = this.helper.toNumber(member.t);
+    let hf = Math.abs(this.helper.toNumber(member.t));
     if (bf === null) { bf = result.B; }
     if (hf === null) { hf = result.H; }
     result['Bt'] = bf;
@@ -452,7 +452,7 @@ export class SetRectService {
     const result = this.getRectangleShape(member, target, index, side, safety, option);
 
     let bf = this.helper.toNumber(member.Bt);
-    let hf = this.helper.toNumber(member.t);
+    let hf = Math.abs(this.helper.toNumber(member.t));
     if (bf === null) { bf = result.B; }
     if (hf === null) { hf = result.H; }
     result['Bt'] = bf;
