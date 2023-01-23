@@ -20,9 +20,11 @@ export class SheetComponent implements AfterViewInit, OnChanges {
     this.options.beforeCellKeyDown = (evt, ui) => {
       // Shiftを押したら左へ移動
       let mov = 1;
+      /*
       if (evt.shiftKey === true) {
         mov = -1;
       }
+      */
       if (evt.key === 'Enter') {
         const $cell = this.grid.getCell({
           rowIndx: ui.rowIndx,
