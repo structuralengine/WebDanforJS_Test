@@ -237,7 +237,7 @@ export class CalcServiceabilityMomentService {
     if('JRTT05' in crackInfo)
       JRTT05 = crackInfo.JRTT05;
 
-    if(!JRTT05){
+    if(!JRTT05 && Sigmab<Sigmabl){
       result['Sigmas'] = Sigmas;
       result['sigmal1'] = sigmal1;
       if (Sigmas < sigmal1) {

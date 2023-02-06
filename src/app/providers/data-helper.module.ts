@@ -152,7 +152,7 @@ export class DataHelperModule {
     if ("fck" in safety.material_concrete) {
       const fck = safety.material_concrete.fck;
       result.fck = fck * result.rfck;
-      const Ec = this.getEc(result.fck);
+      const Ec = this.getEc(fck);
       result.Ec = Ec * result.rEc;
       result.fcd = result.rfck * fck / result.rc;
     }
