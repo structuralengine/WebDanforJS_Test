@@ -19,7 +19,7 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
-  private columnHeaders: object[]= new Array();
+  private columnHeaders: object[] = new Array();
 
   public table_datas: any[];
   // タブのヘッダ名
@@ -31,7 +31,7 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
     public helper: DataHelperModule,
     private translate: TranslateService,
     private basic: InputBasicInformationService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -41,7 +41,7 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
 
     // グリッドの設定
     this.options = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
+    for (let i = 0; i < this.table_datas.length; i++) {
       const op = {
         showTop: false,
         reactive: true,
@@ -59,93 +59,108 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
 
     // タブのタイトルとなる
     this.groupe_name = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
-      this.groupe_name.push( this.crack.getGroupeName(i));
+    for (let i = 0; i < this.table_datas.length; i++) {
+      this.groupe_name.push(this.crack.getGroupeName(i));
     }
 
   }
 
-  ngAfterViewInit(){
-    this.activeButtons(0);  
+  ngAfterViewInit() {
+    this.activeButtons(0);
   }
 
-  private setTitle(isManual: boolean): void{
+  private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
       ];
     } else {
       this.columnHeaders = [
-        { 
+        {
           title: this.translate.instant("crack-settings.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-        { 
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+        {
           title: this.translate.instant("crack-settings.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      ];    
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+      ];
     }
 
     // 共通する項目
     this.columnHeaders.push(
-      { 
+      {
         title: this.translate.instant("crack-settings.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+      },
       {
         title: this.translate.instant("crack-settings.env"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("crack-settings.top"),
-            dataType: 'integer', dataIndx: 'con_u', sortable: false, width: 60 },
-          { 
+            dataType: 'integer', dataIndx: 'con_u', sortable: false, width: 60, nodrag: true,
+          },
+          {
             title: this.translate.instant("crack-settings.under"),
-            dataType: 'integer', dataIndx: 'con_l', sortable: false, width: 60 },
-          { 
+            dataType: 'integer', dataIndx: 'con_l', sortable: false, width: 60, nodrag: true,
+          },
+          {
             title: this.translate.instant("crack-settings.shear"),
-            dataType: 'integer', dataIndx: 'con_s', sortable: false, width: 60 }
-        ]
+            dataType: 'integer', dataIndx: 'con_s', sortable: false, width: 60, nodrag: true,
+          }
+        ],
+        nodrag: true,
       },
       {
         title: this.translate.instant("crack-settings.crack"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("crack-settings.top"),
-            align: 'center', dataType: 'integer', dataIndx: 'ecsd_u', sortable: false, width: 70 },
-          { 
+            align: 'center', dataType: 'integer', dataIndx: 'ecsd_u', sortable: false, width: 70, nodrag: true,
+          },
+          {
             title: this.translate.instant("crack-settings.under"),
-            align: 'center', dataType: 'integer', dataIndx: 'ecsd_l', sortable: false, width: 70 }
-        ]
+            align: 'center', dataType: 'integer', dataIndx: 'ecsd_l', sortable: false, width: 70, nodrag: true,
+          }
+        ],
+        nodrag: true,
       },
-      { 
+      {
         title: this.translate.instant("crack-settings.shear_kr"),
-        dataType: 'float', format: '#.0', dataIndx: 'kr', sortable: false, width: 70 },
-      { 
-        title: 'k4', align: 'center', dataType: 'float', format: '#.00', dataIndx: 'k4', sortable: false, width: 70 },
+        dataType: 'float', format: '#.0', dataIndx: 'kr', sortable: false, width: 70, nodrag: true,
+      },
+      {
+        title: 'k4', align: 'center', dataType: 'float', format: '#.00', dataIndx: 'k4', sortable: false, width: 70, nodrag: true,
+      },
       {
         title: this.translate.instant("crack-settings.exterior"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("crack-settings.top"),
-            align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox', sortable: false, width: 50 },
-          { 
+            align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox', sortable: false, width: 50, nodrag: true,
+          },
+          {
             title: this.translate.instant("crack-settings.under"),
-            align: 'center', dataType: 'bool', dataIndx: 'vis_l', type: 'checkbox', sortable: false, width: 50 }
-        ]
+            align: 'center', dataType: 'bool', dataIndx: 'vis_l', type: 'checkbox', sortable: false, width: 50, nodrag: true,
+          }
+        ],
+        nodrag: true,
       },
     );
 
     // 鉄道運輸機構の場合
     const speci1 = this.basic.get_specification1();
     const speci2 = this.basic.get_specification2();
-    if(speci1==0 && speci2===1){
+    if (speci1 == 0 && speci2 === 1) {
       // 縁応力度が制限値以内の場合でもひび割れ幅を計算するフラグ
-      this.columnHeaders.push({ 
+      this.columnHeaders.push({
         title: this.translate.instant("crack-settings.JRTT05"),
-        align: 'center', dataType: 'bool', dataIndx: 'JRTT05', type: 'checkbox', sortable: false, width: 100
+        align: 'center', dataType: 'bool', dataIndx: 'JRTT05', type: 'checkbox', sortable: false, width: 100, nodrag: true,
       });
     }
   }
- 
+
   public getGroupeName(i: number): string {
     return this.groupe_name[i];
   }
@@ -156,8 +171,8 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
 
   public saveData(): void {
     const a = [];
-    for(const g of this.table_datas){
-      for(const e of g){
+    for (const g of this.table_datas) {
+      for (const e of g) {
         a.push(e);
       }
     }
@@ -170,11 +185,11 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
     containerHeight -= 230;
     return containerHeight;
   }
-  
+
 
   public activePageChenge(id: number): void {
     this.activeButtons(id);
- 
+
     this.options = this.option_list[id];
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
@@ -185,10 +200,10 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
     for (let i = 0; i <= this.table_datas.length; i++) {
       const data = document.getElementById("crk" + i);
       if (data != null) {
-        if(i === id){
+        if (i === id) {
           data.classList.add("is-active");
         } else if (data.classList.contains("is-active")) {
-            data.classList.remove("is-active");
+          data.classList.remove("is-active");
         }
       }
     }
