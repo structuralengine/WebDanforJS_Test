@@ -34,7 +34,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
     private save: SaveDataService,
     private app: AppComponent,
     private translate: TranslateService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.setTitle(this.save.isManual());
@@ -115,6 +115,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           editable: false,
           style: { background: "#f5f5f5" },
           styleHead: { background: "#f5f5f5" },
+          nodrag: true,
         },
         {
           title: this.translate.instant("design-points.p_name"),
@@ -123,6 +124,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           frozen: true,
           sortable: false,
           width: 250,
+          nodrag: true,
         },
         // {
         //   title: this.translate.instant("design-points.s_len"),
@@ -146,6 +148,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           editable: false,
           style: { background: "#f5f5f5" },
           styleHead: { background: "#f5f5f5" },
+          nodrag: true,
         },
         {
           title: this.translate.instant("design-points.p_id"),
@@ -157,6 +160,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           editable: false,
           style: { background: "#f5f5f5" },
           styleHead: { background: "#f5f5f5" },
+          nodrag: true,
         },
         {
           title: this.translate.instant("design-points.position"),
@@ -169,6 +173,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           editable: false,
           style: { background: "#f5f5f5" },
           styleHead: { background: "#f5f5f5" },
+          nodrag: true,
         },
         {
           title: this.translate.instant("design-points.p_name"),
@@ -177,14 +182,15 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           frozen: true,
           sortable: false,
           width: 250,
+          nodrag: true,
         },
       ];
       if (this.save.is3DPickUp()) {
         // 3次元ピックアップファイルの場合
         this.columnHeaders.push(
           {
-          title: this.translate.instant("design-points.b_check"),
-          align: "center",
+            title: this.translate.instant("design-points.b_check"),
+            align: "center",
             colModel: [
               {
                 title: this.translate.instant("design-points.y_around"),
@@ -194,6 +200,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
                 type: "checkbox",
                 sortable: false,
                 width: 120,
+                nodrag: true,
               },
               {
                 title: this.translate.instant("design-points.z_around"),
@@ -203,8 +210,10 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
                 type: "checkbox",
                 sortable: false,
                 width: 120,
+                nodrag: true,
               },
             ],
+            nodrag: true,
           },
           {
             title: this.translate.instant("design-points.s_check"),
@@ -218,6 +227,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
                 type: "checkbox",
                 sortable: false,
                 width: 120,
+                nodrag: true,
               },
               {
                 title: this.translate.instant("design-points.z_direction"),
@@ -227,8 +237,10 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
                 type: "checkbox",
                 sortable: false,
                 width: 120,
+                nodrag: true,
               },
             ],
+            nodrag: true,
           },
           {
             title: this.translate.instant("design-points.t_check"),
@@ -238,6 +250,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
             type: "checkbox",
             sortable: false,
             width: 120,
+            nodrag: true,
           }
         );
       } else {
@@ -251,6 +264,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
             type: "checkbox",
             sortable: false,
             width: 120,
+            nodrag: true,
           },
           {
             title: this.translate.instant("design-points.s_check"),
@@ -260,6 +274,7 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
             type: "checkbox",
             sortable: false,
             width: 120,
+            nodrag: true,
           }
         );
       }

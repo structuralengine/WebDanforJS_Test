@@ -27,7 +27,7 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
     private steel: InputSteelsService,
     private save: SaveDataService,
     private translate: TranslateService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -37,7 +37,7 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // グリッドの設定
     this.options = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
+    for (let i = 0; i < this.table_datas.length; i++) {
       const op = {
         showTop: false,
         reactive: true,
@@ -55,98 +55,114 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // タブのタイトルとなる
     this.groupe_name = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
-      this.groupe_name.push( this.steel.getGroupeName(i));
+    for (let i = 0; i < this.table_datas.length; i++) {
+      this.groupe_name.push(this.steel.getGroupeName(i));
     }
 
 
   }
 
-  ngAfterViewInit(){
-    this.activeButtons(0);  
+  ngAfterViewInit() {
+    this.activeButtons(0);
   }
 
-  private setTitle(isManual: boolean): void{
+  private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
       ];
     } else {
       this.columnHeaders = [
-        { 
+        {
           title: this.translate.instant("steels.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-        { 
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+        {
           title: this.translate.instant("steels.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      ];    
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+      ];
     }
 
     // 共通する項目
     this.columnHeaders.push(
-      { 
+      {
         title: this.translate.instant("steels.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { 
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+      },
+      {
         title: this.translate.instant("steels.bh"),
-        align: 'center', dataType: 'float', dataIndx: 'bh', frozen: true, editable: false, sortable: false, width: 85, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { 
+        align: 'center', dataType: 'float', dataIndx: 'bh', frozen: true, editable: false, sortable: false, width: 85, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+      },
+      {
         title: this.translate.instant("steels.position"),
-        align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { 
+        align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+      },
+      {
         title: this.translate.instant("steels.dis_above"),
-        dataType: 'float', dataIndx: 'upper_left_cover', sortable: false, width: 70 },
+        dataType: 'float', dataIndx: 'upper_left_cover', sortable: false, width: 70, nodrag: true,
+      },
       {
         title: this.translate.instant("steels.top_left"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("steels.F_width"),
-            dataType: 'float', dataIndx: 'upper_left_width', sortable: false, width: 80 },
-          { 
+            dataType: 'float', dataIndx: 'upper_left_width', sortable: false, width: 80, nodrag: true,
+          },
+          {
             title: this.translate.instant("steels.F_thickness"),
-            dataType: 'float', dataIndx: 'upper_left_thickness', sortable: false, width: 80 },
-        ]
+            dataType: 'float', dataIndx: 'upper_left_thickness', sortable: false, width: 80, nodrag: true,
+          },
+        ],
+        nodrag: true,
       },
       {
         title: this.translate.instant("steels.web"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("steels.w_thickness"),
-            dataType: 'float', dataIndx: 'web_thickness', sortable: false, width: 80 },
-          { 
+            dataType: 'float', dataIndx: 'web_thickness', sortable: false, width: 80, nodrag: true,
+          },
+          {
             title: this.translate.instant("steels.w_height"),
-            dataType: 'float', dataIndx: 'web_height', sortable: false, width: 80 },
-        ]
+            dataType: 'float', dataIndx: 'web_height', sortable: false, width: 80, nodrag: true,
+          },
+        ],
+        nodrag: true,
       },
       {
         title: this.translate.instant("steels.low_right"),
         align: 'center', colModel: [
-          { 
+          {
             title: this.translate.instant("steels.F_width"),
-            dataType: 'float', dataIndx: 'lower_right_width', sortable: false, width: 80 },
-          { 
+            dataType: 'float', dataIndx: 'lower_right_width', sortable: false, width: 80, nodrag: true,
+          },
+          {
             title: this.translate.instant("steels.F_thickness"),
-            dataType: 'float', dataIndx: 'lower_right_thickness', sortable: false, width: 80 },
-        ]
+            dataType: 'float', dataIndx: 'lower_right_thickness', sortable: false, width: 80, nodrag: true,
+          },
+        ],
+        nodrag: true,
       },
-      { 
+      {
         title: this.translate.instant("steels.process"),
-        align: 'center', dataType: 'bool', dataIndx: 'enable', type: 'checkbox', sortable: false, width: 40 },
+        align: 'center', dataType: 'bool', dataIndx: 'enable', type: 'checkbox', sortable: false, width: 40, nodrag: true,
+      },
     );
   }
 
   public getGroupeName(i: number): string {
     return this.groupe_name[i];
   }
- 
+
   ngOnDestroy() {
     this.saveData();
   }
   public saveData(): void {
     const a = [];
-    for(const g of this.table_datas){
-      for(const e of g){
+    for (const g of this.table_datas) {
+      for (const e of g) {
         a.push(e);
       }
     }
@@ -163,7 +179,7 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public activePageChenge(id: number): void {
     this.activeButtons(id);
- 
+
     this.options = this.option_list[id];
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
@@ -174,10 +190,10 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
     for (let i = 0; i <= this.table_datas.length; i++) {
       const data = document.getElementById("stl" + i);
       if (data != null) {
-        if(i === id){
+        if (i === id) {
           data.classList.add("is-active");
         } else if (data.classList.contains("is-active")) {
-            data.classList.remove("is-active");
+          data.classList.remove("is-active");
         }
       }
     }

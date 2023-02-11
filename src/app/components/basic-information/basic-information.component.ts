@@ -15,7 +15,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
   private columnHeaders: object[] = [];
   public specification1_select_id: number;
   public specification2_select_id: number;
-  
+
   @ViewChild('grid1') grid1: SheetComponent;
   private table1_datas: any[] = [];
   public options1: pq.gridT.options;
@@ -41,20 +41,20 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     private basic: InputBasicInformationService,
     private save: SaveDataService,
     private translate: TranslateService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
     const basic = this.basic.getSaveData();
 
     // 適用
-    this.specification1_list = basic.specification1_list; 
-    this.specification1_select_id = this.basic.get_specification1(); 
+    this.specification1_list = basic.specification1_list;
+    this.specification1_select_id = this.basic.get_specification1();
     // 仕様
-    this.specification2_list = basic.specification2_list; 
-    this.specification2_select_id = this.basic.get_specification2(); 
+    this.specification2_list = basic.specification2_list;
+    this.specification2_select_id = this.basic.get_specification2();
     //  設計条件
-    this.conditions_list = basic.conditions_list;         
+    this.conditions_list = basic.conditions_list;
 
     // pickUp テーブル の初期化
     this.setTitle(this.save.isManual());
@@ -105,17 +105,18 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     } else {
       // ピックアップファイルを使う場合の項目
       this.columnHeaders = [
-          { 
-            title: this.translate.instant("basic-information.sre_cross"),
-            dataType: 'string',  dataIndx: 'title', editable: false, sortable: false, width: 270, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-          { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 148 },
-        ];
+        {
+          title: this.translate.instant("basic-information.sre_cross"),
+          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 148, nodrag: true, },
+      ];
     }
 
   }
 
 
-  public isManual(): boolean{
+  public isManual(): boolean {
     return this.save.isManual();
   }
 
@@ -152,11 +153,11 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     this.table2_datas = basic.pickup_shear_force;
     this.table3_datas = basic.pickup_torsional_moment;
 
-    if(!(this.grid1 == null))
+    if (!(this.grid1 == null))
       this.grid1.refreshDataAndView();
-    if(!(this.grid2 == null))
+    if (!(this.grid2 == null))
       this.grid2.refreshDataAndView();
-    if(!(this.grid3 == null))
+    if (!(this.grid3 == null))
       this.grid3.refreshDataAndView();
 
     this.specification1_select_id = i;
