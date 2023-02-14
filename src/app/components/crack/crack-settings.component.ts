@@ -152,7 +152,8 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
     // 鉄道運輸機構の場合
     const speci1 = this.basic.get_specification1();
     const speci2 = this.basic.get_specification2();
-    if (speci1 == 0 && speci2 === 1) {
+      //( 鉄道    &&  運輸機構 ) or フィリピン の場合
+    if ((speci1 == 0 && speci2 === 1) || speci1 == 1 ) {
       // 縁応力度が制限値以内の場合でもひび割れ幅を計算するフラグ
       this.columnHeaders.push({
         title: this.translate.instant("crack-settings.JRTT05"),

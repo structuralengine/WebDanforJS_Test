@@ -116,6 +116,11 @@ export class ResultServiceabilityMomentComponent implements OnInit {
           this.limit100 = true;
         }
       }
+    } 
+    else if(speci1==1){
+      // フィリピン = 運輸機構
+      this.isJRTT = true;
+      this.limit100 = true;
     }
 
     let page: any;
