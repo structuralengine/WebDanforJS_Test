@@ -541,6 +541,7 @@ export class DsdDataService {
             let mbk1k2 = mbk1[k2];
             if (Kyodo > 0) {
               mbk1k2 = Kyodo;
+              material_bar[j][k1][k2] = mbk1k2;
             }
           }
         }
