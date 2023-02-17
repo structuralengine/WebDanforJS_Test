@@ -84,6 +84,15 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           }
           this.app.designPointChange(flg);
         },
+        scrollStop: (evt, ui) => {
+          const collection = document.getElementsByClassName('pq-cont-inner pq-cont-left') as HTMLCollectionOf<HTMLElement>;
+
+          if (collection.length > 0) {
+            for (let i = 0; i < collection.length; i++) {
+              collection[i].style.pointerEvents = null;
+            }
+          }
+        },
       };
       this.option_list.push(op);
     }
