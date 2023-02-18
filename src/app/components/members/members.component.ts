@@ -13,7 +13,6 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./members.component.scss']
 })
 
-
 export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // データグリッドの設定変数
@@ -105,7 +104,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
               let value = property.newRow[key];
               const row = property.rowIndx;
               if (value === null) { continue; }         // 初期値は対象にしない
-              this.table_datas[row].shape = this.members.changeLanguageShape(value);
+              this.table_datas[row].shape = this.members.getShapeIDFromUserInput(value);
             }
 
           }
@@ -143,7 +142,6 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.options['dataModel'] = { data: this.table_datas };
   }
 
-
   private setTitle(isManual: boolean): void {
 
     if (isManual) {
@@ -175,6 +173,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         title: this.translate.instant("members.section_sh"),
         dataType: 'string', dataIndx: 'shape', sortable: false, width: 80, nodrag: true,
+        format: this.members.getLangShapeFormatter()
       },
       {
         title: this.translate.instant("members.section"),
@@ -202,7 +201,6 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
         align: 'center', dataType: 'float', dataIndx: 'n', sortable: false, width: 80, nodrag: true,
       },
     );
-
   }
 
 

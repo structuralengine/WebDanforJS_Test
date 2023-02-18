@@ -12,6 +12,8 @@ import { InputCrackSettingsService } from "../components/crack/crack-settings.se
 import { InputSteelsService } from "../components/steels/steels.service";
 import { ShearStrengthService } from "../components/shear/shear-strength.service";
 
+import packageJson from '../../../package.json';
+
 @Injectable({
   providedIn: "root",
 })
@@ -259,6 +261,8 @@ export class SaveDataService {
 
   public getInputJson(): any {
     return {
+      ver: packageJson.version,
+
       // ピックアップ断面力
       pickup_filename: this.pickup_filename,
       pickup_data: this.pickup_data,
@@ -373,6 +377,39 @@ export class SaveDataService {
     } else {
       this.calc.clear();
     }
+
+    this.updateOldData(jsonData);
+  }
+
+  /// ファイルのバージョンによってはデータに手を加える必要がある
+  private updateOldData(jsonData: object): void {
+
+    const programVer: string = packageJson.version;
+    let filetVer: string = '0.0.0';
+    if('ver' in jsonData)
+      filetVer = jsonData['ver'];
+
+    if(this.isOlder('1.13.7', filetVer)) {
+
+      console.log("translate!!");
+
+      // 各国語の形状名を形状名キーに直す
+      this.members.translateData_old_to_1_13_7();
+      return;
+    }
+  }
+
+  // バージョン文字列比較処理
+  private isOlder(a: string, b: string): boolean {
+    if (a === b) return false;
+    const aUnits = a.split(".");
+    const bUnits = b.split(".");
+    // 探索幅に従ってユニット毎に比較していく
+    for (var i = 0; i < Math.min(aUnits.length, bUnits.length); i++) {
+      if (parseInt(aUnits[i]) > parseInt(bUnits[i])) return true; // A > B
+      if (parseInt(aUnits[i]) < parseInt(bUnits[i])) return false;  // A < B
+    }
+    return false;
   }
 
   public getPickUpData(): Object {
