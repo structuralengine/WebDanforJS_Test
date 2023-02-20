@@ -18,6 +18,7 @@ export class ConfigService {
   }
 
   public saveActiveComponentData(): void {
+
     if (this.activeComponentRef === null) {
       return;
     }

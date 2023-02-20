@@ -19,7 +19,7 @@ export class InputMembersService  {
     ];
 
   private lang_shape_names:any = {};
-  private lang_shape_formatters:any = {};
+  //private lang_shape_formatters:any = {};
 
   constructor(private translate: TranslateService) {
     this.clear();
@@ -41,7 +41,8 @@ export class InputMembersService  {
 
         // pqGrid.colModel.formatに直接セットするとthisが参照できないみたいなので
         // すごい面倒くさいがthisを使わないようにするためにlangごとにfunctionを
-        // 予め作っている
+        // 予め作っている.
+        /*
         this.lang_shape_formatters[lang] = function(val) {
 
           const shape_id = Number(val);
@@ -57,14 +58,16 @@ export class InputMembersService  {
             return " ";
 
           return names[shape_id];
-        };
+          };
+        */
       });
     }
   }
 
-  public getLangShapeFormatter(){
-    return this.lang_shape_formatters["ja"];
-  }
+  // 使えないかも
+  //public getLangShapeFormatter(){
+  //  return this.lang_shape_formatters[this.translate.currentLang];
+  //}
 
   public clear(): void {
     this.member_list = new Array();
@@ -93,18 +96,23 @@ export class InputMembersService  {
   // member_list から 指定行 のデータを返す関数
   public getTableColumns(m_no: number): any {
 
-    let result = this.getData(m_no);
+    let result = this.default_member(m_no);
+    let member = this.getData(m_no);
 
     // 対象データが無かった時に処理
-    if (result !== undefined) {
+    if (member !== undefined) {
       if(result.g_no === null){
         result.g_id = '';
       }
 
-    } else {
-      result = this.default_member(m_no);
+      for(const k of Object.keys(result)){
+        if(k in member)
+          result[k] = member[k];
+      }
+    } else
       this.member_list.push(result);
-    }
+
+    result.shape = this.getShapeDispFromShapeID(result.shape);
     return result;
   }
 
@@ -114,10 +122,10 @@ export class InputMembersService  {
       JSON.stringify({
         temp: result
       })
-    ).temp; 
+    ).temp;
   }
 
-  public getData(m_no: number){
+  private getData(m_no: number){
     return this.member_list.find( (item) => item.m_no === m_no );
   }
 
@@ -135,38 +143,58 @@ export class InputMembersService  {
 
   public setTableColumns(table_datas: any, isManual: boolean = false) {
 
+    // 本来データと表示データが違うので行はコピーする必要がある
+    // もうちょっと効率良くできる可能性もあるがとりあえず完全二重管理
+
     // 断面力手入力モードの場合に適用する
     this.member_list = new Array();
-
     if (!isManual) {
       // 断面力手入力モードじゃない場合
       for (const column of table_datas) {
+
+        const def = this.default_member(column.m_no);
+
         if (this.isEnable(column)) {
           if (column.g_no === null) {
             column.g_id = '';
           }
-          this.member_list.push(column)
-        } else {
-          const def = this.default_member(column.m_no);
+
+          for(const k of Object.keys(def)){
+            if(k in column)
+              def[k] = column[k];
+          }
+        } else
           def.m_len = column.m_len;
-          this.member_list.push(def);
-        }
+
+        def.shape = this.getShapeIDFromUserInput(def.shape);
+
+        this.member_list.push(def);
       }
     } else {
       for (const column of table_datas) {
+
         if (this.isEnable(column)) {
           // グループNo の入力がない入力行には、仮のグループid をつける
           if (column.g_no === null) {
             column.g_id = 'blank'; //'row' + column.m_no; //仮のグループid
           }
-          this.member_list.push(column)
+
+          const def = this.default_member(column.m_no);
+          for(const k of Object.keys(def)){
+            if(k in column)
+              def[k] = column[k];
+          }
+
+          def.shape = this.getShapeIDFromUserInput(def.shape);
+
+          this.member_list.push(def)
         }
       }
     }
   }
 
-  
   // 各国の言語で表現した形状から形状情報をIDの数値に変換する
+  /*
   public getShapeIDFromDisp(value: string): number {
 
     let result:number = 0;
@@ -192,12 +220,19 @@ export class InputMembersService  {
     }
 
     return result;
-  }
+    }
+    */
 
   public translateData_old_to_1_13_7() {
 
     for(let member of this.member_list)
       member.shape = this.getShapeIDFromUserInput(member.shape);
+  }
+
+  public getShapeDispFromShapeID(shape_id: number) {
+    if(this.lang_shape_names.length <= shape_id)
+      return 0;
+    return this.lang_shape_names[this.translate.currentLang][shape_id];
   }
 
   // 入力された文字列から形状IDを返す
@@ -362,6 +397,7 @@ export class InputMembersService  {
     return result;
   }
 
+  // 内部保持用のデータに変換
   public setSaveData(members: any) {
 
     this.clear();
@@ -375,5 +411,4 @@ export class InputMembersService  {
       this.member_list.push(def)
     }
   }
-
 }

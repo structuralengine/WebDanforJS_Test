@@ -104,7 +104,9 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
               let value = property.newRow[key];
               const row = property.rowIndx;
               if (value === null) { continue; }         // 初期値は対象にしない
-              this.table_datas[row].shape = this.members.getShapeIDFromUserInput(value);
+
+              this.table_datas[row].shape
+                = this.members.getShapeDispFromShapeID(this.members.getShapeIDFromUserInput(value));
             }
 
           }
@@ -136,6 +138,9 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       // ピックアップファイルを使う場合
       this.table_datas = this.members.getSaveData();
+
+      for (let row of this.table_datas)
+        row.shape = this.members.getShapeDispFromShapeID(Number(row.shape));
     }
 
     // データを登録する
@@ -173,7 +178,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         title: this.translate.instant("members.section_sh"),
         dataType: 'string', dataIndx: 'shape', sortable: false, width: 80, nodrag: true,
-        format: this.members.getLangShapeFormatter()
+        //format: this.members.getLangShapeFormatter()
       },
       {
         title: this.translate.instant("members.section"),
@@ -222,6 +227,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public saveData(): void {
     this.members.setTableColumns(this.table_datas, this.save.isManual());
+
     if (this.save.isManual()) {
       // 断面力手入力モードの時 部材・断面の入力があったら
       // 算出点データも同時に生成されなければならない

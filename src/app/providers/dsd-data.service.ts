@@ -87,7 +87,6 @@ export class DsdDataService {
       this.save.setInputData(old);
       throw (e);
     }
-
   }
 
   // ピックアップファイルを読み込む
