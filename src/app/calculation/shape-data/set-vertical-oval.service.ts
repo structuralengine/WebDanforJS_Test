@@ -95,9 +95,11 @@ export class SetVerticalOvalService {
         compress = this.helper.rebarInfo(bar.rebar1);
         break;
     }
+
     if(tension === null){
       throw("引張鉄筋情報がありません");
     }
+
     if(tension.rebar_ss === null){
       const D = result.H - tension.dsc * 2;
       tension.rebar_ss = D / tension.line;
@@ -119,7 +121,13 @@ export class SetVerticalOvalService {
     );
     if (fsyt.fsy === 235)  tension.mark = "R"; // 鉄筋強度が 235 なら 丸鋼
     tension['fsy'] = fsyt;
-    
+
+    if('M_rs' in safety.safety_factor){
+      tension['rs'] = safety.safety_factor.M_rs;
+    } else if('V_rs' in safety.safety_factor){
+      tension['rs'] = safety.safety_factor.V_rs;
+    }
+
     // 登録
     result['tension'] = tension;
 
@@ -133,6 +141,13 @@ export class SetVerticalOvalService {
       );
       if (fsyc.fsy === 235) compress.mark = "R"; // 鉄筋強度が 235 なら 丸鋼
       compress['fsy'] = fsyc;
+
+      if('M_rs' in safety.safety_factor){
+        compress['rs'] = safety.safety_factor.M_rs;
+      } else if('V_rs' in safety.safety_factor){
+        compress['rs'] = safety.safety_factor.V_rs;
+      }
+
       result['compress'] = compress;
       }
     }
@@ -349,38 +364,24 @@ export class SetVerticalOvalService {
 
     const h: number = section.H;
     const b: number = section.B;
-    const tension: any = section.tension;
-
-    // 鉄筋強度の入力
-    const rs = safety.safety_factor.rs;
-
-    // 鉄筋強度
-    const fsy1 = tension.fsy;
-    const id1 = "s" + fsy1.id;
-    result.SteelElastic.push({
-      fsk: fsy1.fsy / rs,
-      Es: 200,
-      ElasticID: id1,
-    });
-
-    // 鉄筋径
-    const dia1: string = tension.mark + tension.rebar_dia;
 
     // 圧縮（上側）鉄筋配置
     const compresBarList: any[] = new Array();
     if ('compress' in section) {
       const compress: any = section.compress;
+      const rs2 = compress.rs;
       const fsy2 = compress.fsy;
-      const dia2: string = compress.mark + compress.rebar_dia;
-
       const id2 = "s" + fsy2.id;
+
       if (result.SteelElastic.find((e) => e.ElasticID === id2) == null) {
         result.SteelElastic.push({
-          fsk: fsy2.fsy / rs,
+          fsk: fsy2.fsy / rs2,
           Es: 200,
           ElasticID: id2,
         });
       }
+
+      const dia2: string = compress.mark + compress.rebar_dia;
 
       for (let i = 0; i < compress.n; i++) {
         const Depth = compress.dsc + i * compress.space;
@@ -399,7 +400,6 @@ export class SetVerticalOvalService {
           compresBarList.push(Steel1);
         }
       }
-
     }
 
     // 側方鉄筋 をセットする
@@ -411,11 +411,24 @@ export class SetVerticalOvalService {
       for (const elastic of rebar.SteelElastic) {
         result.SteelElastic.push(elastic);
       }
-
     }
 
     // 引張（下側）鉄筋配置
     const tensionBarList: any[] = new Array();
+    const tension: any = section.tension;
+    const rs1 = tension.rs;
+    const fsy1 = tension.fsy;
+    const id1 = "s" + fsy1.id;
+    if (result.SteelElastic.find((e) => e.ElasticID === id1) == null) {
+      result.SteelElastic.push({
+        fsk: fsy1.fsy / rs1,
+        Es: 200,
+        ElasticID: id1,
+      });
+    }
+
+    // 鉄筋径
+    const dia1: string = tension.mark + tension.rebar_dia;
 
     for (let i = 0; i < tension.n; i++) {
       const Depth = tension.dsc + i * tension.space;

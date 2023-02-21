@@ -46,8 +46,10 @@ export class ResultEarthquakesMomentComponent implements OnInit {
     }
 
     // postする
-    console.log(this.title, postData);
     const inputJson: string = this.post.getInputJsonString(postData);
+
+    console.log(this.title + ": 計算前", inputJson);
+
     this.post.http_post(inputJson).then(
       (response) => {
         this.isFulfilled = this.setPages(response["OutputData"]);
