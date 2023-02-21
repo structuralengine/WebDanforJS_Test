@@ -361,7 +361,7 @@ export class SetPostDataService {
 
     let result: string = null;
 
-    if (member.shape.indexOf('円形') >= 0) {
+    if (3 == member.shape) { // 円形
       let b: number = this.helper.toNumber(member.B);
       let h: number = this.helper.toNumber(member.H);
       if (h === null || h === 0) {
@@ -370,10 +370,10 @@ export class SetPostDataService {
         result = 'Ring';
       }
 
-    } else if (member.shape.indexOf('矩形') >= 0) {
+    } else if (1 == member.shape) { // 矩形
       result = 'Rectangle';
 
-    } else if (member.shape.indexOf('T形') >= 0) {
+    } else if (2 == member.shape) { // T形
       let t: number = this.helper.toNumber(member.t);
       // Ｔ形に関する 設計条件を確認する
       let condition = this.basic.conditions_list.find(e =>
@@ -420,7 +420,7 @@ export class SetPostDataService {
         }
       }
 
-    } else if (member.shape.indexOf('小判') >= 0) {
+    } else if (4 == member.shape) { // 小判
 
       if (member.B > member.H) {
         result = 'HorizontalOval';
