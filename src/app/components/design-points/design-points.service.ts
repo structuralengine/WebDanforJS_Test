@@ -81,12 +81,31 @@ export class InputDesignPointsService {
     }
   }
 
+  // グループNoでソートする
+  public getSortedGroupeList(isManual = false): any[] {
+    // 一時リスト
+    const temp_list = [];
+    for (const groupe of this.getGroupeList(isManual)) {
+      temp_list[groupe[0].g_no * 10000] = groupe;
+    }
+
+    const sorted_list = temp_list.filter(x => Array.isArray(x)).map(x => x);
+
+    // console.log('sorted_list', sorted_list);
+    // for (const groupe of sorted_list) {
+    //   console.log(groupe[0].g_no, groupe[0].g_name);
+    // }
+
+    return sorted_list;
+  }
+
   public getTableColumns(isManual = false): any[] {
+    const sorted_list = this.getSortedGroupeList(isManual);
 
     const table_datas: any[] = new Array();
 
     // グリッド用データの作成
-    for (const groupe of this.getGroupeList(isManual)) {
+    for (const groupe of sorted_list) {
       const columns = [];
       for (const member of groupe) {
         const position = member.positions;
@@ -173,7 +192,8 @@ export class InputDesignPointsService {
   }
 
   public getGroupeName(i: number): string {
-    return this.members.getGroupeName(i);
+    const sorted_list = this.getSortedGroupeList();
+    return sorted_list[i][0].g_name;
   }
 
   // 着目点情報
