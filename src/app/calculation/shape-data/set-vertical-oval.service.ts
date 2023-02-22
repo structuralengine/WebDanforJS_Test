@@ -506,6 +506,8 @@ export class SetVerticalOvalService {
     // 鉄筋強度の入力
     const rs = safety.safety_factor.rs;
 
+    console.log("side_bar rs: ", rs);
+
     result.SteelElastic.push({
       fsk: fsy1.fsy / rs,
       Es: 200,
