@@ -49,7 +49,7 @@ export class ResultServiceabilityTorsionalMomentComponent implements OnInit {
     }
 
     // postする
-    console.log(this.title, postData);
+    //console.log(this.title, postData);
     const inputJson: string = this.post.getInputJsonString(postData);
     this.post
       .http_post(inputJson)

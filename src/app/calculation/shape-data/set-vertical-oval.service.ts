@@ -168,6 +168,13 @@ export class SetVerticalOvalService {
         );
         if (fsye.fsy === 235) sidebar.mark = "R"; // 鉄筋強度が 235 なら 丸鋼
         sidebar['fsy'] = fsye;
+
+        if('M_rs' in safety.safety_factor){
+          sidebar['rs'] = safety.safety_factor.M_rs;
+        } else if('V_rs' in safety.safety_factor){
+          sidebar['rs'] = safety.safety_factor.V_rs;
+        }
+
         result['sidebar'] = sidebar;
       }
     }
@@ -504,17 +511,16 @@ export class SetVerticalOvalService {
     }
 
     // 鉄筋強度の入力
-    const rs = safety.safety_factor.rs;
+    //console.log("side_bar rs: ", barInfo.rs);
 
-    console.log("side_bar rs: ", rs);
-
-    result.SteelElastic.push({
-      fsk: fsy1.fsy / rs,
-      Es: 200,
-      ElasticID: id,
-    });
-
+    if (result.SteelElastic.find((e) => e.ElasticID === id) == null) {
+      result.SteelElastic.push({
+        fsk: fsy1.fsy / barInfo.rs,
+        Es: 200,
+        ElasticID: id,
+      });
+    }
+    
     return result;
   }
-
 }

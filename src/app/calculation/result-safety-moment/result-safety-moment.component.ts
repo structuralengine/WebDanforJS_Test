@@ -51,7 +51,7 @@ export class ResultSafetyMomentComponent implements OnInit {
     // postする
     const inputJson: string = this.post.getInputJsonString(postData);
 
-    console.log(this.title + ": 計算前", inputJson);
+    //console.log(this.title + ": 計算前", inputJson);
 
     this.post.http_post(inputJson).then(
       (response) => {
