@@ -49,9 +49,11 @@ export class ResultRestorabilityMomentComponent implements OnInit {
       return;
     }
 
-    // postする
-    console.log(this.title, postData);
     const inputJson: string = this.post.getInputJsonString(postData);
+
+    // postする
+    //console.log(this.title, inputJson);
+
     this.post.http_post(inputJson).then(
       (response) => {
         this.isFulfilled = this.setPages(response["OutputData"]);
