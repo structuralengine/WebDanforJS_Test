@@ -41,14 +41,23 @@ export class SetPostDataService {
   public async http_post(inputJson: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(environment.calcURL, inputJson, this.options).subscribe(
-        (response) => {
+        (resp) => {
+          // Amazon LambdaからAzure Functionsに移行するときparseのステップが必要。
+          // Azure Functions側の設定で直接オブジェクトを返すようにもできるのだろうか？？
+          const response = resp;
+          //const response = JSON.parse(resp.toString());
+
           if (response["ErrorException"] !== null) {
+            console.log("ErrorException: ", response["ErrorException"]);
             reject({error: response["ErrorException"] });
+            return;
           }
+          console.log("RES:",response);
           this.user.setUserPoint(response["deduct_points"], response["new_points"]);
           resolve(response);
         },
         (error) => {
+          console.log("ERR:",error)
           let err: string = "";
           let e: any = error;
           if('message' in e){ err += e.message + '\n'; }
