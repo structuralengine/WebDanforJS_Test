@@ -19,7 +19,7 @@ export class ShearComponent implements OnInit {
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
-  private columnHeaders: object[]= new Array();
+  private columnHeaders: object[] = new Array();
 
   public table_datas: any[];
   // タブのヘッダ名
@@ -31,7 +31,7 @@ export class ShearComponent implements OnInit {
     public helper: DataHelperModule,
     private basic: InputBasicInformationService,
     private translate: TranslateService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -41,7 +41,7 @@ export class ShearComponent implements OnInit {
 
     // グリッドの設定
     this.options = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
+    for (let i = 0; i < this.table_datas.length; i++) {
       const op = {
         showTop: false,
         reactive: true,
@@ -59,30 +59,32 @@ export class ShearComponent implements OnInit {
 
     // タブのタイトルとなる
     this.groupe_name = new Array();
-    for( let i =0; i < this.table_datas.length; i++){
-      this.groupe_name.push( this.shear.getGroupeName(i));
+    for (let i = 0; i < this.table_datas.length; i++) {
+      this.groupe_name.push(this.shear.getGroupeName(i));
     }
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.activeButtons(0);
   }
 
-  private setTitle(isManual: boolean): void{
+  private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
       ];
     } else {
       this.columnHeaders = [
         {
           title: this.translate.instant("shear-strength.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
         {
           title: this.translate.instant("shear-strength.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
       ];
     }
 
@@ -90,11 +92,11 @@ export class ShearComponent implements OnInit {
     this.columnHeaders.push(
       {
         title: this.translate.instant("shear-strength.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } 
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
       },
       {
         title: this.translate.instant("shear-strength.s_len"),
-        dataType: "float",  dataIndx: "La", sortable: false,  width: 200
+        dataType: "float", dataIndx: "La", sortable: false, width: 200, nodrag: true,
       }
     );
 
@@ -103,14 +105,14 @@ export class ShearComponent implements OnInit {
     const speci2 = this.basic.get_specification2();
     if (speci1 === 0 && (speci2 === 3 || speci2 === 4)) {
       this.columnHeaders.push(
-      {
-        title: this.translate.instant("shear-strength.fixed_end"),
-        align: 'center', dataType: 'bool', dataIndx: 'fixed_end', type: 'checkbox', sortable: false, width: 100
-      },
-      {
-        title: this.translate.instant("shear-strength.m_len"),
-        dataType: "float",  dataIndx: "L", sortable: false,  width: 150
-      }
+        {
+          title: this.translate.instant("shear-strength.fixed_end"),
+          align: 'center', dataType: 'bool', dataIndx: 'fixed_end', type: 'checkbox', sortable: false, width: 100, nodrag: true,
+        },
+        {
+          title: this.translate.instant("shear-strength.m_len"),
+          dataType: "float", dataIndx: "L", sortable: false, width: 150, nodrag: true,
+        }
       );
     }
 
@@ -126,8 +128,8 @@ export class ShearComponent implements OnInit {
 
   public saveData(): void {
     const a = [];
-    for(const g of this.table_datas){
-      for(const e of g){
+    for (const g of this.table_datas) {
+      for (const e of g) {
         a.push(e);
       }
     }
@@ -155,10 +157,10 @@ export class ShearComponent implements OnInit {
     for (let i = 0; i <= this.table_datas.length; i++) {
       const data = document.getElementById("shr" + i);
       if (data != null) {
-        if(i === id){
+        if (i === id) {
           data.classList.add("is-active");
         } else if (data.classList.contains("is-active")) {
-            data.classList.remove("is-active");
+          data.classList.remove("is-active");
         }
       }
     }

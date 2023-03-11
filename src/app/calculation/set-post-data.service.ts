@@ -41,14 +41,23 @@ export class SetPostDataService {
   public async http_post(inputJson: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(environment.calcURL, inputJson, this.options).subscribe(
-        (response) => {
+        (resp) => {
+          // Amazon LambdaからAzure Functionsに移行するときparseのステップが必要。
+          // Azure Functions側の設定で直接オブジェクトを返すようにもできるのだろうか？？
+          const response = resp;
+          //const response = JSON.parse(resp.toString());
+
           if (response["ErrorException"] !== null) {
+            console.log("ErrorException: ", response["ErrorException"]);
             reject({error: response["ErrorException"] });
+            return;
           }
+          console.log("RES:",response);
           this.user.setUserPoint(response["deduct_points"], response["new_points"]);
           resolve(response);
         },
         (error) => {
+          console.log("ERR:",error)
           let err: string = "";
           let e: any = error;
           if('message' in e){ err += e.message + '\n'; }
@@ -361,7 +370,7 @@ export class SetPostDataService {
 
     let result: string = null;
 
-    if (member.shape.indexOf('円形') >= 0) {
+    if (3 == member.shape) { // 円形
       let b: number = this.helper.toNumber(member.B);
       let h: number = this.helper.toNumber(member.H);
       if (h === null || h === 0) {
@@ -370,10 +379,10 @@ export class SetPostDataService {
         result = 'Ring';
       }
 
-    } else if (member.shape.indexOf('矩形') >= 0) {
+    } else if (1 == member.shape) { // 矩形
       result = 'Rectangle';
 
-    } else if (member.shape.indexOf('T形') >= 0) {
+    } else if (2 == member.shape) { // T形
       let t: number = this.helper.toNumber(member.t);
       // Ｔ形に関する 設計条件を確認する
       let condition = this.basic.conditions_list.find(e =>
@@ -420,7 +429,7 @@ export class SetPostDataService {
         }
       }
 
-    } else if (member.shape.indexOf('小判') >= 0) {
+    } else if (4 == member.shape) { // 小判
 
       if (member.B > member.H) {
         result = 'HorizontalOval';

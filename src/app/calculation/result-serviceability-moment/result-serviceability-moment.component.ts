@@ -54,9 +54,11 @@ export class ResultServiceabilityMomentComponent implements OnInit {
       return;
     }
 
-    // postする
-    console.log(this.title, postData);
     const inputJson: string = this.post.getInputJsonString(postData);
+
+    // postする
+    //console.log(this.title + "計算前", inputJson);
+
     this.post.http_post(inputJson).then(
       (response) => {
         this.isFulfilled = this.setPages(response["OutputData"]);
@@ -116,6 +118,11 @@ export class ResultServiceabilityMomentComponent implements OnInit {
           this.limit100 = true;
         }
       }
+    } 
+    else if(speci1==1){
+      // フィリピン = 運輸機構
+      this.isJRTT = true;
+      this.limit100 = true;
     }
 
     let page: any;

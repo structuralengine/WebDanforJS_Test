@@ -13,7 +13,6 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./members.component.scss']
 })
 
-
 export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // データグリッドの設定変数
@@ -30,7 +29,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     private save: SaveDataService,
     private app: AppComponent,
     private translate: TranslateService
-    ) { }
+  ) { }
 
 
   ngOnInit() {
@@ -56,7 +55,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
             if (key === 'g_no') {
               // 他の共通断面
-              if (value == null || value === null ) {
+              if (value == null || value === null) {
                 this.table_datas[i].g_id = '';
                 continue;
               }
@@ -105,7 +104,9 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
               let value = property.newRow[key];
               const row = property.rowIndx;
               if (value === null) { continue; }         // 初期値は対象にしない
-              this.table_datas[row].shape = this.members.changeLanguageShape(value);
+
+              this.table_datas[row].shape
+                = this.members.getShapeDispFromShapeID(this.members.getShapeIDFromUserInput(value));
             }
 
           }
@@ -137,12 +138,14 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       // ピックアップファイルを使う場合
       this.table_datas = this.members.getSaveData();
+
+      for (let row of this.table_datas)
+        row.shape = this.members.getShapeDispFromShapeID(Number(row.shape));
     }
 
     // データを登録する
     this.options['dataModel'] = { data: this.table_datas };
   }
-
 
   private setTitle(isManual: boolean): void {
 
@@ -152,47 +155,57 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       // ピックアップファイルを使う場合の項目
       this.columnHeaders = [
-        { 
+        {
           title: this.translate.instant("members.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-        { 
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
+        {
           title: this.translate.instant("members.m_len"),
-          dataType: 'float', format: '#.000', dataIndx: 'm_len', editable: false, sortable: false, width: 90, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
+          dataType: 'float', format: '#.000', dataIndx: 'm_len', editable: false, sortable: false, width: 90, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        },
       ];
     }
 
     this.columnHeaders.push(
-      { 
+      {
         title: this.translate.instant("members.g_no"),
-        align: 'center', dataType: 'float', dataIndx: 'g_no', sortable: false, width: 85 },
-      { 
+        align: 'center', dataType: 'float', dataIndx: 'g_no', sortable: false, width: 85, nodrag: true,
+      },
+      {
         title: this.translate.instant("members.g_name"),
-        align: 'center', dataType: 'string', dataIndx: 'g_name', sortable: false, width: 110 },
-      { 
+        align: 'center', dataType: 'string', dataIndx: 'g_name', sortable: false, width: 110, nodrag: true,
+      },
+      {
         title: this.translate.instant("members.section_sh"),
-        dataType: 'string', dataIndx: 'shape', sortable: false, width: 80 },
+        dataType: 'string', dataIndx: 'shape', sortable: false, width: 80, nodrag: true,
+        //format: this.members.getLangShapeFormatter()
+      },
       {
         title: this.translate.instant("members.section"),
         align: 'center', colModel: [
-          { 
-            title: 'B', 
-            dataType: 'float', dataIndx: 'B', width: 70 },
-          { 
-            title: 'H', 
-            dataType: 'float', dataIndx: 'H', width: 70 },
-          { 
-            title: 'Bt', 
-            dataType: 'float', dataIndx: 'Bt', width: 70 },
-          { 
-            title: 't', 
-            dataType: 'float', dataIndx: 't', width: 70 }
-        ]
+          {
+            title: 'B',
+            dataType: 'float', dataIndx: 'B', width: 70, nodrag: true,
+          },
+          {
+            title: 'H',
+            dataType: 'float', dataIndx: 'H', width: 70, nodrag: true,
+          },
+          {
+            title: 'Bt',
+            dataType: 'float', dataIndx: 'Bt', width: 70, nodrag: true,
+          },
+          {
+            title: 't',
+            dataType: 'float', dataIndx: 't', width: 70, nodrag: true,
+          }
+        ], nodrag: true,
       },
-      { 
+      {
         title: this.translate.instant("members.part_n"),
-        align: 'center', dataType: 'float', dataIndx: 'n', sortable: false, width: 80 },
+        align: 'center', dataType: 'float', dataIndx: 'n', sortable: false, width: 80, nodrag: true,
+      },
     );
-
   }
 
 
@@ -204,7 +217,7 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.grid.refreshDataAndView();
   }
 
@@ -214,7 +227,8 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public saveData(): void {
     this.members.setTableColumns(this.table_datas, this.save.isManual());
-    if(this.save.isManual()){
+
+    if (this.save.isManual()) {
       // 断面力手入力モードの時 部材・断面の入力があったら
       // 算出点データも同時に生成されなければならない
       this.points.setManualData();

@@ -63,7 +63,7 @@ export class SafetyFactorsMaterialStrengthsComponent
     private safety: InputSafetyFactorsMaterialStrengthsService,
     private members: InputMembersService,
     private translate: TranslateService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -83,15 +83,15 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.pile_factor_list = new Array();  // 杭の施工条件
 
     // 入力項目を作成
-    for ( let i = 0; i < safety.groupe_list.length; i++){
+    for (let i = 0; i < safety.groupe_list.length; i++) {
       const groupe = safety.groupe_list[i];
       const first = groupe[0];
       const id = first.g_id;
       this.groupe_name.push(this.members.getGroupeName(i));
 
       // 安全係数
-      const bar = [], steel =[];
-      for(const col of safety.safety_factor[id]){
+      const bar = [], steel = [];
+      for (const col of safety.safety_factor[id]) {
 
         if (col.id === 8) continue; // 最小鉄筋量の安全係数は、編集しない
 
@@ -99,7 +99,7 @@ export class SafetyFactorsMaterialStrengthsComponent
           id: col.id, title: col.title,
           M_rc: col.M_rc, M_rs: col.M_rs, M_rbs: col.M_rbs,
           V_rc: col.V_rc, V_rs: col.V_rs, V_rbc: col.V_rbc, V_rbs: col.V_rbs, V_rbv: col.V_rbv,
-          T_rbt:col.T_rbt,
+          T_rbt: col.T_rbt,
           ri: col.ri, range: col.range
         });
         steel.push({
@@ -109,7 +109,7 @@ export class SafetyFactorsMaterialStrengthsComponent
       }
       this.table1_datas.push(bar);
       this.table4_datas.push(steel);
-      
+
       // 鉄筋材料1
       const fx = safety.material_bar[id];
       const key = ["tensionBar", "sidebar", "stirrup"];
@@ -119,20 +119,20 @@ export class SafetyFactorsMaterialStrengthsComponent
         this.translate.instant("safety-factors-material-strengths.stirrup")
       ];
       const table2 = [];
-      for(let j=0; j<key.length; j++){
+      for (let j = 0; j < key.length; j++) {
         const target = { title: title[j] };
         const k = key[j];
-        for(let i=0; i<fx.length; i++){
+        for (let i = 0; i < fx.length; i++) {
           const current = fx[i];
           const cur = current[k];
-          const k1 ="fsy" + (i+1);
-          const k2 ="fsu" + (i+1);
+          const k1 = "fsy" + (i + 1);
+          const k2 = "fsu" + (i + 1);
           target[k1] = cur.fsy;
           target[k2] = cur.fsu;
         }
         table2.push(target);
       }
-      this.table2_datas.push(table2);      
+      this.table2_datas.push(table2);
 
 
       // 鉄骨材料
@@ -140,23 +140,23 @@ export class SafetyFactorsMaterialStrengthsComponent
       const s2 = safety.material_steel[id][1]; // t40以下
       const s3 = safety.material_steel[id][2]; // t40以上
       this.table5_datas.push([
-        { 
+        {
           title: this.translate.instant("safety-factors-material-strengths.tys"),
-          SRCfsyk1: s1.fsyk,  
-          SRCfsyk2: s2.fsyk, 
-          SRCfsyk3: s3.fsyk  
+          SRCfsyk1: s1.fsyk,
+          SRCfsyk2: s2.fsyk,
+          SRCfsyk3: s3.fsyk
         },
-        { 
+        {
           title: this.translate.instant("safety-factors-material-strengths.sys"),
-          SRCfsyk1: s1.fsvyk, 
-          SRCfsyk2: s2.fsvyk, 
-          SRCfsyk3: s3.fsvyk 
+          SRCfsyk1: s1.fsvyk,
+          SRCfsyk2: s2.fsvyk,
+          SRCfsyk3: s3.fsvyk
         },
-        { 
+        {
           title: this.translate.instant("safety-factors-material-strengths.ts"),
-          SRCfsyk1: s1.fsuk,  
-          SRCfsyk2: s2.fsuk,  
-          SRCfsyk3: s3.fsuk  
+          SRCfsyk1: s1.fsuk,
+          SRCfsyk2: s2.fsuk,
+          SRCfsyk3: s3.fsuk
         }
       ]);
 
@@ -165,7 +165,7 @@ export class SafetyFactorsMaterialStrengthsComponent
       this.table3_datas.push([{
         title: this.translate.instant("safety-factors-material-strengths.fck"),
         value: concrete.fck
-      },{
+      }, {
         title: this.translate.instant("safety-factors-material-strengths.max_ca"),
         value: concrete.dmax
       }]);
@@ -247,86 +247,102 @@ export class SafetyFactorsMaterialStrengthsComponent
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.activeButtons(0);
   }
 
   private setTitle(): void {
     this.columnHeaders1 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { 
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+      {
         title: this.translate.instant("safety-factors-material-strengths.b_safe"),
         align: 'center', colModel: [
-        { title: 'γc',  dataType: 'float', 'format':'#.00', dataIndx: 'M_rc', sortable: false, width: 70 },
-        { title: 'γs',  dataType: 'float', 'format':'#.00', dataIndx: 'M_rs', sortable: false, width: 70 },
-        { title: 'γbs', dataType: 'float', 'format':'#.00', dataIndx: 'M_rbs', sortable: false, width: 70 }
-      ]},
-      { 
+          { title: 'γc', dataType: 'float', 'format': '#.00', dataIndx: 'M_rc', sortable: false, width: 70, nodrag: true, },
+          { title: 'γs', dataType: 'float', 'format': '#.00', dataIndx: 'M_rs', sortable: false, width: 70, nodrag: true, },
+          { title: 'γbs', dataType: 'float', 'format': '#.00', dataIndx: 'M_rbs', sortable: false, width: 70, nodrag: true, }
+        ],
+        nodrag: true,
+      },
+      {
         title: this.translate.instant("safety-factors-material-strengths.s_safe"),
         align: 'center', colModel: [
-        { title: 'γc',  dataType: 'float', 'format':'#.00', dataIndx: 'V_rc', sortable: false, width: 70 },
-        { title: 'γs',  dataType: 'float', 'format':'#.00', dataIndx: 'V_rs', sortable: false, width: 70 },
-        { title: 'γbc', dataType: 'float', 'format':'#.00', dataIndx: 'V_rbc', sortable: false, width: 70 },
-        { title: 'γbs', dataType: 'float', 'format':'#.00', dataIndx: 'V_rbs', sortable: false, width: 70 },
-        { title: 'γbd', dataType: 'float', 'format':'#.00', dataIndx: 'V_rbv', sortable: false, width: 70 }
-      ]},
+          { title: 'γc', dataType: 'float', 'format': '#.00', dataIndx: 'V_rc', sortable: false, width: 70, nodrag: true, },
+          { title: 'γs', dataType: 'float', 'format': '#.00', dataIndx: 'V_rs', sortable: false, width: 70, nodrag: true, },
+          { title: 'γbc', dataType: 'float', 'format': '#.00', dataIndx: 'V_rbc', sortable: false, width: 70, nodrag: true, },
+          { title: 'γbs', dataType: 'float', 'format': '#.00', dataIndx: 'V_rbs', sortable: false, width: 70, nodrag: true, },
+          { title: 'γbd', dataType: 'float', 'format': '#.00', dataIndx: 'V_rbv', sortable: false, width: 70, nodrag: true, }
+        ],
+        nodrag: true,
+      },
       {
         title: this.translate.instant("safety-factors-material-strengths.t_safe"),
-        align:'center',colModel:[
-        {title:'γbt',dataType:'float', 'format':'#.00', dataIndx: 'T_rbt', sortable: false, width: 70 }
-      ]},
-      { 
+        align: 'center', colModel: [
+          { title: 'γbt', dataType: 'float', 'format': '#.00', dataIndx: 'T_rbt', sortable: false, width: 70, nodrag: true, }
+        ],
+        nodrag: true,
+      },
+      {
         title: this.translate.instant("safety-factors-material-strengths.γi"),
-        dataType: 'float', 'format':'#.00', dataIndx: 'ri', sortable: false, width: 70 },
-      { 
+        dataType: 'float', 'format': '#.00', dataIndx: 'ri', sortable: false, width: 70, nodrag: true,
+      },
+      {
         title: this.translate.instant("safety-factors-material-strengths.rsb_arr"),
-        dataType: 'string' , dataIndx: 'range', sortable: false, width: 100 },
+        dataType: 'string', dataIndx: 'range', sortable: false, width: 100, nodrag: true,
+      },
     ];
 
     // 鉄筋材料強度
     this.columnHeaders2 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { 
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+      {
         title: this.translate.instant("safety-factors-material-strengths.ys"),
         align: 'center', colModel: [
-        { 
-          title: this.translate.instant("safety-factors-material-strengths.d25"),
-          dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 70 },
-        { 
-          title: this.translate.instant("safety-factors-material-strengths.d29"),
-          dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 70 }
-      ]},
-      { 
+          {
+            title: this.translate.instant("safety-factors-material-strengths.d25"),
+            dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("safety-factors-material-strengths.d29"),
+            dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 70, nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
+      {
         title: this.translate.instant("safety-factors-material-strengths.dts"),
         align: 'center', colModel: [
-        { 
-          title: this.translate.instant("safety-factors-material-strengths.d25"),
-          dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 70 },
-        { 
-          title: this.translate.instant("safety-factors-material-strengths.d29"),
-          dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 70 }
-      ]},
+          {
+            title: this.translate.instant("safety-factors-material-strengths.d25"),
+            dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("safety-factors-material-strengths.d29"),
+            dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 70, nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
     ];
 
     // コンクリート材料強度
     this.columnHeaders3 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390 },
-      { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140 },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390, nodrag: true, },
+      { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
     ];
 
     // 鉄骨 - 安全係数
     this.columnHeaders4 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { title: 'γs', dataType: 'float', 'format':'#.00', dataIndx: 'S_rs', sortable: false, width: 70 },
-      { title: 'γb', dataType: 'float', 'format':'#.00', dataIndx: 'S_rb', sortable: false, width: 70 }
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+      { title: 'γs', dataType: 'float', 'format': '#.00', dataIndx: 'S_rs', sortable: false, width: 70, nodrag: true, },
+      { title: 'γb', dataType: 'float', 'format': '#.00', dataIndx: 'S_rb', sortable: false, width: 70, nodrag: true, }
     ];
 
     // 鉄骨材料強度
     this.columnHeaders5 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' } },
-      { title: 't≦16',     dataType: 'float', dataIndx: 'SRCfsyk1', sortable: false, width: 100 },
-      { title: '16＜t≦40', dataType: 'float', dataIndx: 'SRCfsyk2', sortable: false, width: 100 },
-      { title: '40＜t≦75', dataType: 'float', dataIndx: 'SRCfsyk3', sortable: false, width: 100 }
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+      { title: 't≦16', dataType: 'float', dataIndx: 'SRCfsyk1', sortable: false, width: 100, nodrag: true, },
+      { title: '16＜t≦40', dataType: 'float', dataIndx: 'SRCfsyk2', sortable: false, width: 100, nodrag: true, },
+      { title: '40＜t≦75', dataType: 'float', dataIndx: 'SRCfsyk3', sortable: false, width: 100, nodrag: true, }
     ];
 
   }
@@ -350,13 +366,13 @@ export class SafetyFactorsMaterialStrengthsComponent
       const safety_bar = this.table1_datas[i];
       const safety_steel = this.table4_datas[i];
       const factor = [];
-      for(let j = 0; j < safety_bar.length; j++){
+      for (let j = 0; j < safety_bar.length; j++) {
         const bar = safety_bar[j], steel = safety_steel[j];
         factor.push({
           id: bar.id, title: bar.title,
           M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
           V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
-          T_rbt:bar.T_rbt,
+          T_rbt: bar.T_rbt,
           ri: bar.ri, range: bar.range,
           S_rs: steel.S_rs, S_rb: steel.S_rb
         })
@@ -366,23 +382,23 @@ export class SafetyFactorsMaterialStrengthsComponent
       // 鉄筋材料
       const bar = this.table2_datas[i];
       material_bar[id] = [{
-          tensionBar: { fsy:  bar[0].fsy1, fsu:  bar[0].fsu1 },
-          sidebar:    { fsy: bar[1].fsy1,    fsu: bar[1].fsu1 },
-          stirrup:    { fsy: bar[2].fsy1,    fsu: bar[2].fsu1 }
-        },
-        {
-          tensionBar: { fsy:  bar[0].fsy2, fsu:  bar[0].fsu2 },
-          sidebar:    { fsy: bar[1].fsy2,    fsu: bar[1].fsu2 },
-          stirrup:    { fsy: bar[2].fsy2,    fsu: bar[2].fsu2 }
+        tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
+        sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
+        stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
+      },
+      {
+        tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
+        sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
+        stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
       }];
 
       // 鉄骨材料
       const steel = this.table5_datas[i];
-      material_steel[id] =  [
+      material_steel[id] = [
         {
           fsyk: steel[0].SRCfsyk1,
           fsvyk: steel[1].SRCfsyk1,
-          fsuk:  steel[2].SRCfsyk1,
+          fsuk: steel[2].SRCfsyk1,
         },
         {
           fsyk: steel[0].SRCfsyk2,
@@ -398,7 +414,7 @@ export class SafetyFactorsMaterialStrengthsComponent
 
       // コンクリート材料
       const conc = this.table3_datas[i];
-      material_concrete[id] =  {
+      material_concrete[id] = {
         fck: conc[0].value,
         dmax: conc[1].value
       }
@@ -421,8 +437,8 @@ export class SafetyFactorsMaterialStrengthsComponent
   public setPileFactor(j: number): void {
     const i = this.current_index;
     const pile = this.pile_factor_list[i];
-    for(let k = 0; k < pile.length; k++){
-      pile[k].selected = (j===k) ? true: false;
+    for (let k = 0; k < pile.length; k++) {
+      pile[k].selected = (j === k) ? true : false;
     }
     this.pile_factor_select_id = this.getPileFactorSelectId();
   }
@@ -443,19 +459,19 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.options1 = this.option1_list[id];
     this.grid1.options = this.options1;
     this.grid1.refreshDataAndView();
- 
+
     this.options2 = this.option2_list[id];
     this.grid2.options = this.options2;
     this.grid2.refreshDataAndView();
- 
+
     this.options3 = this.option3_list[id];
     this.grid3.options = this.options3;
     this.grid3.refreshDataAndView();
- 
+
     this.options4 = this.option4_list[id];
     this.grid4.options = this.options4;
     this.grid4.refreshDataAndView();
- 
+
     this.options5 = this.option5_list[id];
     this.grid5.options = this.options5;
     this.grid5.refreshDataAndView();
@@ -470,10 +486,10 @@ export class SafetyFactorsMaterialStrengthsComponent
     for (let i = 0; i <= this.groupe_name.length; i++) {
       const data = document.getElementById("saf" + i);
       if (data != null) {
-        if(i === id){
+        if (i === id) {
           data.classList.add("is-active");
         } else if (data.classList.contains("is-active")) {
-            data.classList.remove("is-active");
+          data.classList.remove("is-active");
         }
       }
     }

@@ -5,14 +5,70 @@ import { TranslateService } from "@ngx-translate/core";
   providedIn: 'root'
 })
 export class InputMembersService  {
- 
 
   // 部材情報
   private member_list: any[];
+  private langs:string[] = ["en", "ja"];
+  private shape_names:any=
+    [
+      [],
+      ["1", 'RC-矩形'],
+      ["2", 'RC-T形'],
+      ["3", 'RC-円形'],
+      ["4", 'RC-小判']
+    ];
+
+  private lang_shape_names:any = {};
+  //private lang_shape_formatters:any = {};
 
   constructor(private translate: TranslateService) {
     this.clear();
+
+    for(const lang of this.langs)
+    {
+      this.translate.getTranslation(lang).subscribe((obj) => {
+        this.shape_names[1].push(obj.members.rectangle.trim());
+        this.shape_names[2].push(obj.members.t_shape.trim());
+        this.shape_names[3].push(obj.members.r_shape.trim());
+        this.shape_names[4].push(obj.members.oval.trim());
+
+        this.lang_shape_names[lang] = [];
+        this.lang_shape_names[lang].push("");
+        this.lang_shape_names[lang].push(obj.members.rectangle.trim());
+        this.lang_shape_names[lang].push(obj.members.t_shape.trim());
+        this.lang_shape_names[lang].push(obj.members.r_shape.trim());
+        this.lang_shape_names[lang].push(obj.members.oval.trim());
+
+        // pqGrid.colModel.formatに直接セットするとthisが参照できないみたいなので
+        // すごい面倒くさいがthisを使わないようにするためにlangごとにfunctionを
+        // 予め作っている.
+        /*
+        this.lang_shape_formatters[lang] = function(val) {
+
+          const shape_id = Number(val);
+          const names:string[] = [
+            " ",
+            obj.members.rectangle.trim(),
+            obj.members.t_shape.trim(),
+            obj.members.r_shape.trim(),
+            obj.members.oval.trim()
+          ];
+
+          if(names.length <= shape_id)
+            return " ";
+
+          return names[shape_id];
+          };
+        */
+      });
+    }
   }
+
+  // 使えないかも
+  //public getLangShapeFormatter(){
+  //  return this.lang_shape_formatters[this.translate.currentLang];
+  //}
+
   public clear(): void {
     this.member_list = new Array();
   }
@@ -28,7 +84,7 @@ export class InputMembersService  {
       g_no: null,
       g_id: '',
       g_name: '',
-      shape: '',
+      shape: 0,
       B: null,
       H: null,
       Bt: null,
@@ -40,17 +96,23 @@ export class InputMembersService  {
   // member_list から 指定行 のデータを返す関数
   public getTableColumns(m_no: number): any {
 
-    let result = this.getData(m_no);
+    let result = this.default_member(m_no);
+    let member = this.getData(m_no);
+
     // 対象データが無かった時に処理
-    if (result !== undefined) {
+    if (member !== undefined) {
       if(result.g_no === null){
         result.g_id = '';
       }
-      result.shape = this.changeLanguageShape(result.shape);
-    } else {
-      result = this.default_member(m_no);
+
+      for(const k of Object.keys(result)){
+        if(k in member)
+          result[k] = member[k];
+      }
+    } else
       this.member_list.push(result);
-    }
+
+    result.shape = this.getShapeDispFromShapeID(result.shape);
     return result;
   }
 
@@ -60,10 +122,10 @@ export class InputMembersService  {
       JSON.stringify({
         temp: result
       })
-    ).temp; 
+    ).temp;
   }
 
-  public getData(m_no: number){
+  private getData(m_no: number){
     return this.member_list.find( (item) => item.m_no === m_no );
   }
 
@@ -80,102 +142,114 @@ export class InputMembersService  {
   }
 
   public setTableColumns(table_datas: any, isManual: boolean = false) {
- 
+
+    // 本来データと表示データが違うので行はコピーする必要がある
+    // もうちょっと効率良くできる可能性もあるがとりあえず完全二重管理
+
     // 断面力手入力モードの場合に適用する
     this.member_list = new Array();
-
     if (!isManual) {
       // 断面力手入力モードじゃない場合
       for (const column of table_datas) {
+
+        const def = this.default_member(column.m_no);
+
         if (this.isEnable(column)) {
           if (column.g_no === null) {
             column.g_id = '';
           }
-          column.shape = this.changeShapeKey(column.shape);
-          this.member_list.push(column)
-        } else {
-          const def = this.default_member(column.m_no);
+
+          for(const k of Object.keys(def)){
+            if(k in column)
+              def[k] = column[k];
+          }
+        } else
           def.m_len = column.m_len;
-          this.member_list.push(def);
-        }
+
+        def.shape = this.getShapeIDFromUserInput(def.shape);
+
+        this.member_list.push(def);
       }
     } else {
       for (const column of table_datas) {
+
         if (this.isEnable(column)) {
           // グループNo の入力がない入力行には、仮のグループid をつける
           if (column.g_no === null) {
             column.g_id = 'blank'; //'row' + column.m_no; //仮のグループid
           }
-          column.shape = this.changeShapeKey(column.shape);
-          this.member_list.push(column)
+
+          const def = this.default_member(column.m_no);
+          for(const k of Object.keys(def)){
+            if(k in column)
+              def[k] = column[k];
+          }
+
+          def.shape = this.getShapeIDFromUserInput(def.shape);
+
+          this.member_list.push(def)
         }
       }
     }
   }
 
-  // 各国の言語で表現した形状から形状情報を一元化（日本語化）する
-  public changeShapeKey(value: string): string {
-    let result = '';
-    if (value === null)          
+  // 各国の言語で表現した形状から形状情報をIDの数値に変換する
+  /*
+  public getShapeIDFromDisp(value: string): number {
+
+    let result:number = 0;
+
+    if (value === null)
       return result;
 
-    const key = value.trim();
-    switch (key) {
+    switch (value.trim()) {
       case this.translate.instant("members.rectangle"):
-        result = '矩形';
+        result = 1 // '矩形';
         break;
       case this.translate.instant("members.t_shape"):
-        result = 'T形';
+        result = 2 // 'T形';
         break;
       case this.translate.instant("members.r_shape"):
-        result = '円形';
+        result = 3 // '円形';
         break;
       case this.translate.instant("members.oval"):
-        result = '小判';
+        result = 4 // '小判';
         break;
       default:
-        result = '';
+        result = 0; // 未入力であることを意味する
     }
+
     return result;
+    }
+    */
+
+  public translateData_old_to_1_13_7() {
+
+    for(let member of this.member_list)
+      member.shape = this.getShapeIDFromUserInput(member.shape);
   }
 
-  // 形状情報を各国の言語に変換する
-  public changeLanguageShape(key: string): string {
-    
-    let result = '';
-    if (key === null)          
-      return result;
+  public getShapeDispFromShapeID(shape_id: number) {
+    if(this.lang_shape_names.length <= shape_id)
+      return 0;
+    return this.lang_shape_names[this.translate.currentLang][shape_id];
+  }
 
-    const value = key.trim();
-    switch (value) {
-      case '1':
-      case 'RC-矩形':
-      case '矩形':
-      case this.translate.instant("members.rectangle"):
-        result = this.translate.instant("members.rectangle"); //'矩形';
-        break;
-      case '2':
-      case 'RC-T形':
-      case 'T形':
-      case this.translate.instant("members.t_shape"):        
-        result = this.translate.instant("members.t_shape"); //'T形';
-        break;
-      case '3':
-      case 'RC-円形':
-      case '円形':
-      case this.translate.instant("members.r_shape"):
-        result = this.translate.instant("members.r_shape"); //'円形';
-        break;
-      case '4':
-      case 'RC-小判':
-      case '小判':
-      case result = this.translate.instant("members.oval"):
-        result = this.translate.instant("members.oval"); //'小判';
-        break;
-      default:
-        result = '';
+  // 入力された文字列から形状IDを返す
+  public getShapeIDFromUserInput(key: string): number {
+
+    if (key === null)
+      return 0;
+
+    let key_ = key.trim();
+
+    for(let shape_id=1; 4>=shape_id; shape_id++)
+    {
+      if(-1 != this.shape_names[shape_id].indexOf(key_))
+        return shape_id;
     }
-    return result;
+
+    return 0;
   }
 
   /// pick up ファイルをセットする関数
@@ -234,9 +308,7 @@ export class InputMembersService  {
       }
     }
     if(columns.shape !== null && columns.shape !== undefined){
-      if(columns.shape.trim().length > 0){
-        return true;
-      }
+      return true;
     }
     if(columns.B !== null && columns.B !== undefined){
       return true;
@@ -317,20 +389,15 @@ export class InputMembersService  {
     for(const m of this.member_list){
       const def = this.default_member(m.m_no);
       for(const k of Object.keys(def)){
-        if(k in m){
-          if(k==='shape'){
-            def[k] = this.changeLanguageShape(m[k]);
-          }
-          else {
-            def[k] = m[k];
-          }
-        }
+        if(k in m)
+          def[k] = m[k];
       }
       result.push(def)
     }
     return result;
   }
 
+  // 内部保持用のデータに変換
   public setSaveData(members: any) {
 
     this.clear();
@@ -344,5 +411,4 @@ export class InputMembersService  {
       this.member_list.push(def)
     }
   }
-
 }

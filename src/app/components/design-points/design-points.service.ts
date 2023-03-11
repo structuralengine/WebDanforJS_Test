@@ -25,7 +25,7 @@ export class InputDesignPointsService {
   public getTableColumn(index: number): any {
     let result = this.getCalcData(index);
 
-    if(result == null){
+    if (result == null) {
       result = this.default_position(index);
       this.position_list.push(result);
     }
@@ -34,46 +34,46 @@ export class InputDesignPointsService {
   }
 
   public getCalcData(index: number): any {
-    return this.position_list.find((value)=> value.index === index);
+    return this.position_list.find((value) => value.index === index);
   }
 
   public getSaveData(): any[] {
     return this.position_list;
   }
 
-  public setSaveData(points: any): void{
+  public setSaveData(points: any): void {
 
     this.clear();
-    for(const data of points){
+    for (const data of points) {
       const tmp = this.default_position(data.index);
-      for(const key of Object.keys(tmp)){
-        if(key in data){
+      for (const key of Object.keys(tmp)) {
+        if (key in data) {
           tmp[key] = data[key];
         }
       }
       this.position_list.push(tmp);
     }
   }
-  
-  public setTableColumns(points: any): void{
 
-    for(const data of points){
+  public setTableColumns(points: any): void {
+
+    for (const data of points) {
       const tmp = this.default_position(data.index);
       const i = this.position_list.findIndex((value) => value.index === data.index);
-      if( i >= 0 ){
+      if (i >= 0) {
         const pos = this.position_list[i];
-        for(const key of Object.keys(tmp)){
-          if(key in pos){
+        for (const key of Object.keys(tmp)) {
+          if (key in pos) {
             tmp[key] = pos[key];
           }
         }
       }
-      for(const key of Object.keys(tmp)){
-        if(key in data){
+      for (const key of Object.keys(tmp)) {
+        if (key in data) {
           tmp[key] = data[key];
         }
       }
-      if( i >= 0 ){
+      if (i >= 0) {
         this.position_list[i] = tmp;
       } else {
         this.position_list.push(tmp);
@@ -81,14 +81,33 @@ export class InputDesignPointsService {
     }
   }
 
+  // グループNoでソートする
+  public getSortedGroupeList(isManual = false): any[] {
+    // 一時リスト
+    const temp_list = [];
+    for (const groupe of this.getGroupeList(isManual)) {
+      temp_list[groupe[0].g_no * 10000] = groupe;
+    }
+
+    const sorted_list = temp_list.filter(x => Array.isArray(x)).map(x => x);
+
+    // console.log('sorted_list', sorted_list);
+    // for (const groupe of sorted_list) {
+    //   console.log(groupe[0].g_no, groupe[0].g_name);
+    // }
+
+    return sorted_list;
+  }
+
   public getTableColumns(isManual = false): any[] {
+    const sorted_list = this.getSortedGroupeList(isManual);
 
     const table_datas: any[] = new Array();
 
     // グリッド用データの作成
-    for( const groupe of this.getGroupeList(isManual)){
+    for (const groupe of sorted_list) {
       const columns = [];
-      for ( const member of groupe) {
+      for (const member of groupe) {
         const position = member.positions;
         if (position.length === 0) {
           // マニュアルモードでしかここにこないハズ
@@ -99,7 +118,7 @@ export class InputDesignPointsService {
           columns.push(column);
         } else {
           // index を振りなおす
-          for (const column of member.positions){
+          for (const column of member.positions) {
             // column.index = index;
             columns.push(column);
           }
@@ -121,26 +140,26 @@ export class InputDesignPointsService {
 
     const groupe_list: any[] = this.members.getGroupeList();
 
-    for(const groupe of groupe_list) {
+    for (const groupe of groupe_list) {
 
-      for ( const member of groupe) {
+      for (const member of groupe) {
         member['positions'] = new Array();
 
         // 同じ要素番号のものを探す
         let position: any[] = this.position_list.filter(
-          item => item.m_no === member.m_no );
+          item => item.m_no === member.m_no);
 
         // マニュアルモードの場合 部材番号＝インデックス で見つかる場合がある
-        if(position.length === 0 && isManual){
+        if (position.length === 0 && isManual) {
           position = this.position_list.filter(
-            item => item.index === member.m_no );
-            for(const pos of position){
-              pos.m_no = member.m_no;
-              member.positions.push(pos);
-            }
+            item => item.index === member.m_no);
+          for (const pos of position) {
+            pos.m_no = member.m_no;
+            member.positions.push(pos);
+          }
         } else {
           // 対象データが無かった時に処理
-          for(const pos of position){
+          for (const pos of position) {
             member.positions.push(pos);
           }
         }
@@ -163,17 +182,18 @@ export class InputDesignPointsService {
     const result = []
 
     const target = this.getCalcData(index);
-    for(const m of this.members.getSameGroupeMembers(target.m_no)){
-      for(const p of this.position_list.filter(v=>v.m_no === m.m_no)){
+    for (const m of this.members.getSameGroupeMembers(target.m_no)) {
+      for (const p of this.position_list.filter(v => v.m_no === m.m_no)) {
         result.push(p)
       }
-  }
+    }
 
     return result;
   }
 
   public getGroupeName(i: number): string {
-    return this.members.getGroupeName(i);
+    const sorted_list = this.getSortedGroupeList();
+    return sorted_list[i][0].g_name;
   }
 
   // 着目点情報
@@ -202,19 +222,19 @@ export class InputDesignPointsService {
     const old_position_list = this.position_list.slice(0, this.position_list.length);
     this.position_list = new Array();
 
-    for(const pos of positions){
+    for (const pos of positions) {
       // 今の入力を踏襲
       const old_point = old_position_list.find((value) => value.index === pos.index);
       const new_point = this.default_position(pos.index);
       if (old_point !== undefined) {
-        for(const key of Object.keys(new_point)){
-          if(key in old_point){
+        for (const key of Object.keys(new_point)) {
+          if (key in old_point) {
             new_point[key] = old_point[key];
           }
         }
       }
-      for(const key of Object.keys(new_point)){
-        if(key in pos){
+      for (const key of Object.keys(new_point)) {
+        if (key in pos) {
           new_point[key] = pos[key];
         }
       }
@@ -226,9 +246,9 @@ export class InputDesignPointsService {
 
   // 算出点に何か入力されたタイミング
   // 1行でも計算する断面が存在したら true
-  public designPointChange(position_list: any = this.position_list): boolean{
-    for(const columns of position_list){
-      if ( this.isEnable(columns)){
+  public designPointChange(position_list: any = this.position_list): boolean {
+    for (const columns of position_list) {
+      if (this.isEnable(columns)) {
         return true;
       }
     }
@@ -236,12 +256,11 @@ export class InputDesignPointsService {
   }
 
   public isEnable(data: any): boolean {
-
-    for(const key of ['isMyCalc', 'isVyCalc', 'isMzCalc', 'isVzCalc', 'isMtCalc']){
-      if(key in data){
-        if(data[key] === true){
+    for (const key of ['isMyCalc', 'isVyCalc', 'isMzCalc', 'isVzCalc', 'isMtCalc']) {
+      if (key in data) {
+        if (data[key] === true) {
           return true;
-        }  
+        }
       }
     }
     return false;
@@ -249,14 +268,14 @@ export class InputDesignPointsService {
 
   // 断面力手入力モードの時 部材・断面の入力が変更になったら
   // 算出点データも同時に生成されなければならない
-  public setManualData():void {
+  public setManualData(): void {
     const data = [];
-    for(const g of this.getTableColumns(true)){
-      for(const p of g){
-          p.isMzCalc = true;
-          p.isVyCalc = true;
-          p.isMtCalc = true;
-          data.push(p);
+    for (const g of this.getTableColumns(true)) {
+      for (const p of g) {
+        p.isMzCalc = true;
+        p.isVyCalc = true;
+        p.isMtCalc = true;
+        data.push(p);
       }
     }
     this.setTableColumns(data);
