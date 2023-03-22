@@ -13,7 +13,8 @@ export class InputDesignPointsService {
   // { index, m_no, p_id, position, p_name, isMyCalc, isVyCalc, isMzCalc, isVzCalc, isMtCalc, La },
 
   constructor(
-    private members: InputMembersService) {
+    private members: InputMembersService,
+    private helper: DataHelperModule) {
     this.clear();
   }
 
@@ -86,7 +87,9 @@ export class InputDesignPointsService {
     // 一時リスト
     const temp_list = [];
     for (const groupe of this.getGroupeList(isManual)) {
-      temp_list[groupe[0].g_no * 10000] = groupe;
+      if (this.helper.toNumber(groupe[0].g_no) !== null){
+        temp_list[groupe[0].g_no * 10000] = groupe;
+      }
     }
 
     const sorted_list = temp_list.filter(x => Array.isArray(x)).map(x => x);
