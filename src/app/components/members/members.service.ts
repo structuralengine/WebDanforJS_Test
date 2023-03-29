@@ -363,7 +363,7 @@ export class InputMembersService  {
     const id_list: string[] =  this.getGroupes();
 
     // グループ番号順に並べる
-    //id_list.sort();
+    //  id_list.sort();
 
     // グループ番号を持つ部材のリストを返す
     const result = new Array();
@@ -382,17 +382,29 @@ export class InputMembersService  {
 
   // グループNoでソートする
   public getGroupes(): string[] {
-    const id_list: string[] =  new Array();
+    const temp_list = [];
     for (const m of this.member_list) {
       if (!('g_id' in m) || m.g_id === 'blank' || m.g_id == null || m.g_id === null || m.g_id.trim().length === 0) {
         continue;
       }
 
-      if (id_list.find((value)=>value===m.g_id) == null) {
-        id_list.push(m.g_id);
+      if (temp_list.find((value)=>value===m.g_no) == null) {
+        temp_list.push(m.g_no);
       }
     }
+
+    temp_list.sort(function(a, b) {
+      return a - b;
+    });
+
+    const id_list: string[] =  new Array();
+
+    for (const g_no of temp_list) {
+      id_list.push(g_no.toString());
+    }
+
     return id_list;
+
   }
 
   // 保存しているデータの取得
