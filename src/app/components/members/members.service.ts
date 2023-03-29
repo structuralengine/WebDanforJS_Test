@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
+import { DataHelperModule } from 'src/app/providers/data-helper.module';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class InputMembersService  {
   private lang_shape_names:any = {};
   //private lang_shape_formatters:any = {};
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService,
+              private helper: DataHelperModule) {
     this.clear();
 
     for(const lang of this.langs)
@@ -327,7 +329,16 @@ export class InputMembersService  {
   }
 
   public getGroupeName(i: number): string {
-    const groupe = this.getGroupeList();
+
+    // 一時リスト
+    const temp_list = [];
+    for (const groupe of this.getGroupeList()) {
+      if (this.helper.toNumber(groupe[0].g_no) !== null){
+        temp_list[groupe[0].g_no * 10000] = groupe;
+      }
+    }
+
+    const groupe = temp_list.filter(x => Array.isArray(x)).map(x => x);
 
     const target = groupe[i];
     const first = target[0];
@@ -352,7 +363,7 @@ export class InputMembersService  {
     const id_list: string[] =  this.getGroupes();
 
     // グループ番号順に並べる
-    id_list.sort();
+    //id_list.sort();
 
     // グループ番号を持つ部材のリストを返す
     const result = new Array();
@@ -369,6 +380,7 @@ export class InputMembersService  {
     ).temp;
   }
 
+  // グループNoでソートする
   public getGroupes(): string[] {
     const id_list: string[] =  new Array();
     for (const m of this.member_list) {
