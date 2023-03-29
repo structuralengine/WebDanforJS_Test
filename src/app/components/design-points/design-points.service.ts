@@ -139,7 +139,7 @@ export class InputDesignPointsService {
   //    { index, m_no, g_name, position, p_name, isMyCalc, isVyCalc, isMzCalc, isVzCalc, isMtCalc, La },
   //    ...
   //   }, ...
-  public getGroupeList(isManual = false): any[] {
+  private getGroupeList(isManual = false): any[] {
 
     const groupe_list: any[] = this.members.getGroupeList();
 
