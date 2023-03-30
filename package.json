@@ -1,9 +1,9 @@
 {
   "name": "web-dan-for-js",
-  "version": "1.13.9",
+  "version": "1.13.10",
   "scripts": {
     "ng": "ng",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve --host=127.0.0.1",
     "build": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --configuration production --base-href \"https://webdan.structuralengine.com/\" && angular-cli-ghpages",
     "test": "ng test",
     "lint": "ng lint",

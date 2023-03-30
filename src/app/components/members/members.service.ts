@@ -399,8 +399,11 @@ export class InputMembersService  {
 
     const id_list: string[] =  new Array();
 
-    for (const g_no of temp_list) {
-      id_list.push(g_no.toString());
+    for (const id of temp_list) {
+      const m = this.member_list.find((m)=>m.g_no===id);
+      if (m != null) {
+        id_list.push(m.g_id);
+      }
     }
 
     return id_list;
