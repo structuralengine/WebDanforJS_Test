@@ -8,6 +8,9 @@ import { UserInfoService } from 'src/app/providers/user-info.service';
 import { TranslateService } from "@ngx-translate/core";
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 
+import printJS from "print-js";
+import { ElectronService } from "ngx-electron";
+
 @Component({
   selector: 'app-calculation-print',
   templateUrl: './calculation-print.component.html',
@@ -32,9 +35,10 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     private router: Router,
     private user: UserInfoService,
     public auth: AngularFireAuth,
+    public electronService: ElectronService,
     private translate: TranslateService,
     private helper: DataHelperModule
-     ) { }
+  ) {}
 
   ngOnInit() {
 
@@ -55,7 +59,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     }
   }
 
- 
   ngOnDestroy() {
     this.saveData();
   }
@@ -80,14 +83,101 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         this.helper.alert(this.translate.instant("calculation-print.p_login"));
         return;
       }
+
       this.user.clear(user.uid);
-      
-      this.router.navigate(['/result-viewer']);
+
+      //this.router.navigate(['/result-viewer']); // 今やPDF作成機能はサーバの機能となった
+
+      this.saveData();
+      var ui_data: any = this.save.getInputJson();
+      ui_data["ver"] = packageJson.version;
+      ui_data["member_group_selection"] = this.table_datas;
+
+      const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
+
+      //console.log("base64EncodedをgetPostJsonしたところまで: " + this.check_ts() + " msec");
+
+      this.pdfPreView(base64Encoded);
     });
+  }
+
+  private pdfPreView(base64Encoded: string): void {
+    console.log('pdfPreView を実行中...');
+
+    this.http
+      .post(this.url, base64Encoded, this.options)
+      .subscribe(
+        (response) => {
+          console.log('pdfPreView が完了');
+
+          this.showPDF(response.toString());
+        },
+        (err) => {
+          try {
+            if ("error" in err) {
+              if ("text" in err.error) {
+                this.showPDF(err.error.text.toString());
+                return;
+              }
+            }
+          } catch (e) { }
+          this.loading_disable();
+          this.helper.alert(err['message']);
+        }
+      );
+  }
+
+  private showPDF(base64: string) {
+    this.loading_disable();
+
+    if (this.electronService.isElectronApp) {
+      // electron の場合
+      const byteCharacters = atob(base64);
+      let byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      let byteArray = new Uint8Array(byteNumbers);
+      let file = new Blob([byteArray], { type: 'application/pdf;base64' });
+      let fileURL = URL.createObjectURL(file);
+      window.open(fileURL, "_blank");
+
+    } else {
+      //Webアプリの場合
+      printJS({ printable: base64, type: "pdf", base64: true });
+    }
+  }
+
+  private getPostJson(json: any): string {
+    console.log('getPostJson を実行中...');
+
+    const jsonStr = JSON.stringify(json);
+    console.log(jsonStr);
+    // pako を使ってgzip圧縮する
+    const compressed = pako.gzip(jsonStr);
+    //btoa() を使ってBase64エンコードする
+    const base64Encoded = btoa(compressed);
+
+    console.log('getPostJson が完了');
+
+    return base64Encoded
+  }
+
+  private loading_enable(): void {
+    // loadingの表示
+    document.getElementById("print-loading").style.display = "block";
+    this.id.setAttribute("disabled", "true");
+    this.id.style.opacity = "0.7";
+  }
+
+  private loading_disable() {
+    document.getElementById("print-loading").style.display = "none";
+    const id = document.getElementById("printButton");
+    this.id.removeAttribute("disabled");
+    this.id.style.opacity = "";
   }
 
   public isManual(): boolean{
     return this.save.isManual();
   }
-
 }
