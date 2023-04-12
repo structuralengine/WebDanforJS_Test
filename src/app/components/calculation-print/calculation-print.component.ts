@@ -10,6 +10,8 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 
 import printJS from "print-js";
 import { ElectronService } from "ngx-electron";
+import packageJson from '../../../../package.json';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-calculation-print',
@@ -33,6 +35,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     private calc: InputCalclationPrintService,
     private save: SaveDataService,
     private router: Router,
+    private http: HttpClient,
     private user: UserInfoService,
     public auth: AngularFireAuth,
     public electronService: ElectronService,
@@ -88,43 +91,46 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       //this.router.navigate(['/result-viewer']); // 今やPDF作成機能はサーバの機能となった
 
+      console.log('印刷データ準備中...');
+
       this.saveData();
       var ui_data: any = this.save.getInputJson();
       ui_data["ver"] = packageJson.version;
       ui_data["member_group_selection"] = this.table_datas;
 
-      const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
+      //const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
 
-      //console.log("base64EncodedをgetPostJsonしたところまで: " + this.check_ts() + " msec");
+      const url = "http://localhost:7009/api/Function2";
+      const options = {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          responseType: 'text',
+          Accept: "*/*",
+        })};
 
-      this.pdfPreView(base64Encoded);
-    });
-  }
+      this.http
+        .post(url, JSON.stringify(ui_data), options)
+        .subscribe(
+          (response) => {
+            console.log('レスポンス受領');
 
-  private pdfPreView(base64Encoded: string): void {
-    console.log('pdfPreView を実行中...');
-
-    this.http
-      .post(this.url, base64Encoded, this.options)
-      .subscribe(
-        (response) => {
-          console.log('pdfPreView が完了');
-
-          this.showPDF(response.toString());
-        },
-        (err) => {
-          try {
-            if ("error" in err) {
-              if ("text" in err.error) {
-                this.showPDF(err.error.text.toString());
-                return;
+            this.showPDF(response.toString());
+          },
+          (err) => {
+            try {
+              console.log('レスポンスエラー: ', err);
+              if ("error" in err) {
+                if ("text" in err.error) {
+                  this.showPDF(err.error.text.toString());
+                  return;
+                }
               }
-            }
-          } catch (e) { }
-          this.loading_disable();
-          this.helper.alert(err['message']);
-        }
-      );
+            } catch (e) { }
+            this.loading_disable();
+            this.helper.alert(err['message']);
+          }
+        );
+    });
   }
 
   private showPDF(base64: string) {
@@ -148,33 +154,34 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getPostJson(json: any): string {
-    console.log('getPostJson を実行中...');
-
-    const jsonStr = JSON.stringify(json);
-    console.log(jsonStr);
-    // pako を使ってgzip圧縮する
-    const compressed = pako.gzip(jsonStr);
-    //btoa() を使ってBase64エンコードする
-    const base64Encoded = btoa(compressed);
-
-    console.log('getPostJson が完了');
-
-    return base64Encoded
-  }
+  //private getPostJson(json: any): string {
+  //  console.log('getPostJson を実行中...');
+  //
+  //  const jsonStr = JSON.stringify(json);
+  //  console.log(jsonStr);
+  //
+  //  // pako を使ってgzip圧縮する
+  //  const compressed = pako.gzip(jsonStr);
+  //  //btoa() を使ってBase64エンコードする
+  //  const base64Encoded = btoa(compressed);
+  //
+  //  console.log('getPostJson が完了');
+  //
+  //  return base64Encoded
+  //}
 
   private loading_enable(): void {
     // loadingの表示
-    document.getElementById("print-loading").style.display = "block";
-    this.id.setAttribute("disabled", "true");
-    this.id.style.opacity = "0.7";
+    //document.getElementById("print-loading").style.display = "block";
+    //this.id.setAttribute("disabled", "true");
+    //this.id.style.opacity = "0.7";
   }
 
   private loading_disable() {
-    document.getElementById("print-loading").style.display = "none";
-    const id = document.getElementById("printButton");
-    this.id.removeAttribute("disabled");
-    this.id.style.opacity = "";
+    //document.getElementById("print-loading").style.display = "none";
+    //const id = document.getElementById("printButton");
+    //this.id.removeAttribute("disabled");
+    //this.id.style.opacity = "";
   }
 
   public isManual(): boolean{
