@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UserInfoService } from 'src/app/providers/user-info.service';
 import { TranslateService } from "@ngx-translate/core";
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
+import { LanguagesService } from "../../providers/languages.service";
 
 import printJS from "print-js";
 import { ElectronService } from "ngx-electron";
@@ -40,6 +41,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     public auth: AngularFireAuth,
     public electronService: ElectronService,
     private translate: TranslateService,
+    public language: LanguagesService,
     private helper: DataHelperModule
   ) {}
 
@@ -96,7 +98,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       this.saveData();
       var ui_data: any = this.save.getInputJson();
       ui_data["ver"] = packageJson.version;
-      ui_data["member_group_selection"] = this.table_datas;
+      ui_data["lang"] = this.language.browserLang;
+
+      var column_data = new Array();
+      for(var i=0; this.table_datas.length>i; i++)
+        column_data.push({GroupName: this.table_datas[i].g_name,
+                          Checked: this.table_datas[i].calc_checked});
+
+      ui_data["member_group_selection"] = column_data;
 
       //const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
 
