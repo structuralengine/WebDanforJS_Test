@@ -13,6 +13,7 @@ import printJS from "print-js";
 import { ElectronService } from "ngx-electron";
 import packageJson from '../../../../package.json';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-calculation-print',
@@ -93,12 +94,15 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       //this.router.navigate(['/result-viewer']); // 今やPDF作成機能はサーバの機能となった
 
-      console.log('印刷データ準備中...');
+      //console.log('印刷データ準備中...');
+
+      this.loading_enable();
 
       this.saveData();
       var ui_data: any = this.save.getInputJson();
       ui_data["ver"] = packageJson.version;
       ui_data["lang"] = this.language.browserLang;
+      ui_data["uid"] = user.uid;
 
       var column_data = new Array();
       for(var i=0; this.table_datas.length>i; i++)
@@ -109,7 +113,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       //const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
 
-      const url = "http://localhost:7009/api/Function2";
+      const url = environment.calcURL2; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
       const options = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
@@ -181,16 +185,17 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
   private loading_enable(): void {
     // loadingの表示
-    //document.getElementById("print-loading").style.display = "block";
-    //this.id.setAttribute("disabled", "true");
-    //this.id.style.opacity = "0.7";
+    document.getElementById("print-loading").style.display = "block";
+    const print_button = document.getElementById("printButton");
+    print_button.setAttribute("disabled", "true");
+    print_button.style.opacity = "0.7";
   }
 
   private loading_disable() {
-    //document.getElementById("print-loading").style.display = "none";
-    //const id = document.getElementById("printButton");
-    //this.id.removeAttribute("disabled");
-    //this.id.style.opacity = "";
+    document.getElementById("print-loading").style.display = "none";
+    const print_button = document.getElementById("printButton");
+    print_button.removeAttribute("disabled");
+    print_button.style.opacity = "";
   }
 
   public isManual(): boolean{
