@@ -100,7 +100,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       this.saveData();
       var ui_data: any = this.save.getInputJson();
-      ui_data["ver"] = packageJson.version;
+      //ui_data["ver"] = packageJson.version;
       ui_data["lang"] = this.language.browserLang;
       ui_data["uid"] = user.uid;
 

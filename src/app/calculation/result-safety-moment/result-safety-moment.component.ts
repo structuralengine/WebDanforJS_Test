@@ -15,6 +15,7 @@ import { TranslateService } from "@ngx-translate/core";
   templateUrl: "./result-safety-moment.component.html",
   styleUrls: ["../result-viewer/result-viewer.component.scss"],
 })
+
 export class ResultSafetyMomentComponent implements OnInit {
   public isLoading = true;
   public isFulfilled = false;

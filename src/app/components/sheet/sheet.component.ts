@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleC
 import pq from 'pqgrid';
 
 //import few localization files for this demo.
-import 'pqgrid/localize/pq-localize-en.js';
-import 'pqgrid/localize/pq-localize-ja.js';
+//import 'pqgrid/localize/pq-localize-en.js';
+//import 'pqgrid/localize/pq-localize-ja.js';
 
 @Component({
   selector: 'app-sheet',
