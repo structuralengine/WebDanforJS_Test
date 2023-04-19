@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
+import { LanguagesService } from 'src/app/providers/languages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,11 @@ export class InputMembersService {
     ];
 
   private lang_shape_names: any = {};
-  //private lang_shape_formatters:any = {};
 
   constructor(private translate: TranslateService,
-    private helper: DataHelperModule) {
+              private helper: DataHelperModule,
+              private language: LanguagesService
+             ) {
     this.clear();
 
     for (const lang of this.langs) {
@@ -39,36 +41,9 @@ export class InputMembersService {
         this.lang_shape_names[lang].push(obj.members.t_shape.trim());
         this.lang_shape_names[lang].push(obj.members.r_shape.trim());
         this.lang_shape_names[lang].push(obj.members.oval.trim());
-
-        // pqGrid.colModel.formatに直接セットするとthisが参照できないみたいなので
-        // すごい面倒くさいがthisを使わないようにするためにlangごとにfunctionを
-        // 予め作っている.
-        /*
-        this.lang_shape_formatters[lang] = function(val) {
-
-          const shape_id = Number(val);
-          const names:string[] = [
-            " ",
-            obj.members.rectangle.trim(),
-            obj.members.t_shape.trim(),
-            obj.members.r_shape.trim(),
-            obj.members.oval.trim()
-          ];
-
-          if(names.length <= shape_id)
-            return " ";
-
-          return names[shape_id];
-          };
-        */
       });
     }
   }
-
-  // 使えないかも
-  //public getLangShapeFormatter(){
-  //  return this.lang_shape_formatters[this.translate.currentLang];
-  //}
 
   public clear(): void {
     this.member_list = new Array();
@@ -234,7 +209,9 @@ export class InputMembersService {
   public getShapeDispFromShapeID(shape_id: number) {
     if (this.lang_shape_names.length <= shape_id)
       return 0;
-    return this.lang_shape_names[this.translate.currentLang][shape_id];
+
+
+    return this.lang_shape_names[this.language.browserLang][shape_id];
   }
 
   // 入力された文字列から形状IDを返す
@@ -405,7 +382,6 @@ export class InputMembersService {
     }
 
     return id_list;
-
   }
 
   // 保存しているデータの取得
