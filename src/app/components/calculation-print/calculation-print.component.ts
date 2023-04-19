@@ -92,8 +92,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       this.user.clear(user.uid);
 
-      //this.router.navigate(['/result-viewer']); // 今やPDF作成機能はサーバの機能となった
-
       //console.log('印刷データ準備中...');
 
       this.loading_enable();
@@ -125,13 +123,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         .post(url, JSON.stringify(ui_data), options)
         .subscribe(
           (response) => {
-            console.log('レスポンス受領');
-
             this.showPDF(response.toString());
           },
           (err) => {
             try {
-              console.log('レスポンスエラー: ', err);
+              console.log('response error: ', err);
               if ("error" in err) {
                 if ("text" in err.error) {
                   this.showPDF(err.error.text.toString());
