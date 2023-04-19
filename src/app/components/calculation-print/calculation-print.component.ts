@@ -98,7 +98,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       this.saveData();
       var ui_data: any = this.save.getInputJson();
-      //ui_data["ver"] = packageJson.version;
       ui_data["lang"] = this.language.browserLang;
       ui_data["uid"] = user.uid;
 
@@ -109,41 +108,31 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       ui_data["member_group_selection"] = column_data;
 
-      //const base64Encoded = this.getPostJson(JSON.stringify(ui_data));
-
       const url = environment.calcURL2; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
-      const options = {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-          responseType: 'text',
-          Accept: "*/*",
-        })};
 
       this.http
-        .post(url, JSON.stringify(ui_data), options)
+        .post(url, ui_data, {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+          }),
+          responseType: "text"
+        })
         .subscribe(
           (response) => {
+            this.loading_disable();
             this.showPDF(response.toString());
           },
           (err) => {
-            try {
-              console.log('response error: ', err);
-              if ("error" in err) {
-                if ("text" in err.error) {
-                  this.showPDF(err.error.text.toString());
-                  return;
-                }
-              }
-            } catch (e) { }
             this.loading_disable();
-            this.helper.alert(err['message']);
+            console.log("Error response: ", err);
+            this.helper.alert(err['error']);
           }
         );
     });
   }
 
   private showPDF(base64: string) {
-    this.loading_disable();
 
     if (this.electronService.isElectronApp) {
       // electron の場合
@@ -162,22 +151,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       printJS({ printable: base64, type: "pdf", base64: true });
     }
   }
-
-  //private getPostJson(json: any): string {
-  //  console.log('getPostJson を実行中...');
-  //
-  //  const jsonStr = JSON.stringify(json);
-  //  console.log(jsonStr);
-  //
-  //  // pako を使ってgzip圧縮する
-  //  const compressed = pako.gzip(jsonStr);
-  //  //btoa() を使ってBase64エンコードする
-  //  const base64Encoded = btoa(compressed);
-  //
-  //  console.log('getPostJson が完了');
-  //
-  //  return base64Encoded
-  //}
 
   private loading_enable(): void {
     // loadingの表示
