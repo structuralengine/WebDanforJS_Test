@@ -108,7 +108,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
       ui_data["member_group_selection"] = column_data;
 
-      const url = environment.calcURL2; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
+      const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
 
       this.http
         .post(url, ui_data, {
