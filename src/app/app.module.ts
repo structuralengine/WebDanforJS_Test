@@ -61,77 +61,68 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    DragDropModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    NgxPrintModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    DataHelperModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: "ja",
-    }),
-    NgxElectronModule
-  ],
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    LoginDialogComponent,
-    WaitDialogComponent,
-    BasicInformationComponent,
-    MembersComponent,
-    DesignPointsComponent,
-    BarsComponent,
-    FatiguesComponent,
-    SafetyFactorsMaterialStrengthsComponent,
-    SectionForcesComponent,
-    CalculationPrintComponent,
-    BlankPageComponent,
-
-    SheetComponent,
-
-    SteelsComponent,
-    CrackSettingsComponent,
-    ChatComponent,
-    ShearComponent,
-  ],
-  entryComponents: [
-    LoginDialogComponent,
-    WaitDialogComponent,
-  ],
-  providers: [
-    UserInfoService,
-    ConfigService,
-
-    InputBasicInformationService,
-    InputMembersService,
-    InputDesignPointsService,
-    InputBarsService,
-    InputSteelsService,
-    InputFatiguesService,
-    InputSafetyFactorsMaterialStrengthsService,
-    InputSectionForcesService,
-    InputCalclationPrintService,
-    SaveDataService,
-
-    // 計算結果コンポーネントで他のコンポーネントから使いまわされるものは
-    // declarations だけではなくココ(providers) にも宣言して
-    // 他のコンポーネントから機能の一部を使えるようにする
-
-    ElectronService
-  ],
-  bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        DragDropModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        NgxPrintModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        DataHelperModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: httpLoaderFactory,
+                deps: [HttpClient],
+            },
+            defaultLanguage: "ja",
+        }),
+        NgxElectronModule
+    ],
+    declarations: [
+        AppComponent,
+        MenuComponent,
+        LoginDialogComponent,
+        WaitDialogComponent,
+        BasicInformationComponent,
+        MembersComponent,
+        DesignPointsComponent,
+        BarsComponent,
+        FatiguesComponent,
+        SafetyFactorsMaterialStrengthsComponent,
+        SectionForcesComponent,
+        CalculationPrintComponent,
+        BlankPageComponent,
+        SheetComponent,
+        SteelsComponent,
+        CrackSettingsComponent,
+        ChatComponent,
+        ShearComponent,
+    ],
+    providers: [
+        UserInfoService,
+        ConfigService,
+        InputBasicInformationService,
+        InputMembersService,
+        InputDesignPointsService,
+        InputBarsService,
+        InputSteelsService,
+        InputFatiguesService,
+        InputSafetyFactorsMaterialStrengthsService,
+        InputSectionForcesService,
+        InputCalclationPrintService,
+        SaveDataService,
+        // 計算結果コンポーネントで他のコンポーネントから使いまわされるものは
+        // declarations だけではなくココ(providers) にも宣言して
+        // 他のコンポーネントから機能の一部を使えるようにする
+        ElectronService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
 
