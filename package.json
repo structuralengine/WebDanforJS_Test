@@ -45,6 +45,7 @@
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@popperjs/core": "^2.11.7",
     "@types/encoding-japanese": "^2.0.1",
     "@types/file-saver": "^2.0.3",
     "@types/jquery": "^3.5.6",

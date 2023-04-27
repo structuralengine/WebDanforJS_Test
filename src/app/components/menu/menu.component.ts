@@ -20,7 +20,7 @@ import { DsdDataService } from "src/app/providers/dsd-data.service";
 import { DataHelperModule } from "src/app/providers/data-helper.module";
 import { InputMembersService } from "../members/members.service";
 import { InputDesignPointsService } from "../design-points/design-points.service";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Auth, getAuth } from "@angular/fire/auth";
 
 import { LanguagesService } from "../../providers/languages.service";
 import { ElectronService } from 'ngx-electron';
@@ -47,11 +47,12 @@ export class MenuComponent implements OnInit {
     private dsdData: DsdDataService,
     private router: Router,
     private config: ConfigService,
-    public auth: AngularFireAuth,
+    public auth: Auth,
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService
   ) {
+    this.auth = getAuth();
     this.fileName = "";
     this.pickup_file_name = "";
     this.version = packageJson.version;
@@ -241,7 +242,7 @@ export class MenuComponent implements OnInit {
 
   // ログイン関係
   logIn(): void {
-    this.modalService.open(LoginDialogComponent).result.then((result) => {});
+    this.modalService.open(LoginDialogComponent, {backdrop: false}).result.then((result) => {});
   }
 
   logOut(): void {

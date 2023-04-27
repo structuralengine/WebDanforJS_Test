@@ -10,7 +10,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
 
-import { AngularFireModule } from "@angular/fire";
+import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from "./app.component";
 
@@ -72,7 +74,9 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
         BrowserAnimationsModule,
         NgbModule,
         NgxPrintModule,
-        AngularFireModule.initializeApp(environment.firebase),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
         DataHelperModule,
         TranslateModule.forRoot({
             loader: {
