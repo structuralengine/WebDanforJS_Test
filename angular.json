@@ -134,7 +134,6 @@
       }
     }
   },
-  "defaultProject": "my-app",
   "cli": {
     "analytics": false
   }
