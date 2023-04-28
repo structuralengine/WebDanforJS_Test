@@ -149,6 +149,7 @@ export class CalcSafetyFatigueMomentService {
     // 運輸機構モードの場合 k=0.12を固定とする
     const speci1 = this.basic.get_specification1();
     const speci2 = this.basic.get_specification2();
+    option['k12'] = false;
     if(speci1==0 && speci2===1){
       option['k12'] = true; 
     }
