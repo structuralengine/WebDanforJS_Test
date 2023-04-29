@@ -57,7 +57,7 @@
     "firebase": "^9.20.0",
     "jquery": "^3.6.0",
     "jquery-ui-pack": "^1.12.3",
-    "jszip": "^2.5.0",
+    "jszip": "^3.10.1",
     "ngx-print": "~1.2.1",
     "pqgrid": "file:./paramquery-8.4.0/",
     "print-js": "^1.6.0",
