@@ -23,7 +23,7 @@ import { InputDesignPointsService } from "../design-points/design-points.service
 import { Auth, getAuth } from "@angular/fire/auth";
 
 import { LanguagesService } from "../../providers/languages.service";
-import { ElectronService } from 'ngx-electron';
+import { ElectronService } from "src/app/providers/electron.service";
 import packageJson from '../../../../package.json';
 import { TranslateService } from "@ngx-translate/core";
 
@@ -232,7 +232,7 @@ export class MenuComponent implements OnInit {
       this.fileName += ".wdj";
     }
     // 保存する
-    if(this.electronService.isElectronApp) {
+    if(this.electronService.isElectron) {
       this.fileName = this.electronService.ipcRenderer.sendSync('saveFile', this.fileName, inputJson);
     } else {
       const blob = new window.Blob([inputJson], { type: "text/plain" });

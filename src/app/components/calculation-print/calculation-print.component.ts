@@ -10,7 +10,7 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { LanguagesService } from "../../providers/languages.service";
 
 import printJS from "print-js";
-import { ElectronService } from "ngx-electron";
+import { ElectronService } from 'src/app/providers/electron.service';
 import packageJson from '../../../../package.json';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
@@ -135,7 +135,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
   private showPDF(base64: string) {
 
-    if (this.electronService.isElectronApp) {
+    if (this.electronService.isElectron) {
       // electron の場合
       const byteCharacters = atob(base64);
       let byteNumbers = new Array(byteCharacters.length);

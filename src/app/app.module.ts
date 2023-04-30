@@ -54,7 +54,7 @@ import { SheetComponent } from "./components/sheet/sheet.component";
 import { environment } from "src/environments/environment";
 
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { ElectronService, NgxElectronModule } from "ngx-electron";
+import { ElectronService } from "./providers/electron.service";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { ChatComponent } from './components/chat/chat.component';
 import { ShearComponent } from './components/shear/shear.component';
@@ -86,7 +86,6 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
             },
             defaultLanguage: "ja",
         }),
-        NgxElectronModule
     ],
     declarations: [
         AppComponent,
