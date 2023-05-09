@@ -1,16 +1,16 @@
 {
   "name": "web-dan-for-js",
-  "version": "1.13.10",
+  "version": "1.14.0",
   "scripts": {
     "ng": "ng",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve --host=127.0.0.1",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --configuration production --base-href \"https://webdan.structuralengine.com/\" && angular-cli-ghpages",
+    "start": "ng serve --host=127.0.0.1",
+    "build": "ng build --configuration production --base-href \"https://webdan.structuralengine.com/\" && angular-cli-ghpages",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:dev": "concurrently \"ng build --delete-output-path=false --watch\" \"webpack --config webpack.electron.dev.config.js --watch\"",
     "start:dev": "electron dist/shell.js",
-    "electron:windows": "set NODE_OPTIONS=--openssl-legacy-provider && npm run build:prod && npx electron-builder build --windows",
+    "electron:windows": "npm run build:prod && npx electron-builder build --windows",
     "build:prod": "ng build --configuration production --optimization --extract-licenses --build-optimizer && webpack --config webpack.electron.prod.config.js && npm run filecopy1 && npm run filecopy2",
     "start:prod": "electron dist/index.js",
     "filecopy1": "node -e \"require('fs').copyFileSync('dev-app-update.yml', 'dist/dev-app-update.yml')\"",
@@ -19,11 +19,11 @@
   "description": "WebDanforJS",
   "author": {
     "name": "MALME INC.",
-    "email": "info@malme.co.jp"
+    "email": "support@structuralengine.com"
   },
   "keywords": [
     "angular",
-    "angular 6",
+    "angular 15",
     "typescript",
     "sass"
   ],
