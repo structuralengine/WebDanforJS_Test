@@ -8,17 +8,17 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button ngbDropdownItem (click)="renew()"translate>menu.newEntry</button>
-            <ng-container  *ngIf="!electronService.isElectronApp">
+            <ng-container  *ngIf="!electronService.isElectron">
               <label style="width: 100%; margin: 0px">
                 <span ngbDropdownItem translate>menu.openFile
                   <input type="file" accept="application/text" (change)="open($event)" style="display: none" />
                 </span>
               </label>
             </ng-container>
-            <button *ngIf="electronService.isElectronApp" ngbDropdownItem (click)="open_electron()"translate>menu.openFile
+            <button *ngIf="electronService.isElectron" ngbDropdownItem (click)="open_electron()"translate>menu.openFile
             </button>
             <button ngbDropdownItem (click)="fileSave()"translate>menu.saveFile</button>
-            <button *ngIf="electronService.isElectronApp" ngbDropdownItem (click)="overWrite()"translate>menu.overwrite
+            <button *ngIf="electronService.isElectron" ngbDropdownItem (click)="overWrite()"translate>menu.overwrite
             </button>
             <label style="width: 100%; margin: 0px">
               <span ngbDropdownItem translate>menu.openPick
@@ -57,7 +57,7 @@
     </div>
 
     <div class="login-area">
-      <div *ngIf="auth.user | async as user; else showLogin" class="userInfo">
+      <div *ngIf="auth.currentUser as user; else showLogin" class="userInfo">
         <div ngbDropdown>
           <a class="icon file" id="dropdownBasic1" class="menu-btn" ngbDropdownToggle onfocus="this.blur();"><i
               class="far fa-user-circle"></i>{{ user.displayName }}</a>
