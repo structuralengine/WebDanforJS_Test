@@ -109,6 +109,10 @@
   </button>
 </div>
 
+<div class="button-container" *ngIf="printSummaryTable()">
+  <button (click)="summaryTableShow()" translate>result-viewer.summary</button>
+</div>
+
 <div id="print-loading" disabled="true" style="display: none;">
   <svg
     width="50px"
