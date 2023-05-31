@@ -109,8 +109,12 @@
   </button>
 </div>
 
-<div class="button-container" *ngIf="printSummaryTable()">
-  <button (click)="summaryTableShow()" translate>result-viewer.summary</button>
+<div class="button-container" *ngIf="hasSummary">
+  <button (click)="previewSummary()" translate>calculation-print.summary</button>
+</div>
+
+<div class="button-container" *ngIf="hasSummary">
+  <button (click)="downloadSummary()" translate>calculation-print.download</button>
 </div>
 
 <div id="print-loading" disabled="true" style="display: none;">
