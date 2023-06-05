@@ -130,8 +130,21 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       .subscribe(
         (response) => {
           this.loading_disable();
+
+          var resp = JSON.parse(response.toString());
+
+          //console.log("JSON!!!", response.toString());
+          //console.log("from JSON!!!", resp);
+
+          this.showPDF(resp.pdf_base64);
+
+          const byteCharacters = atob(resp.excel_base64);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+          this.summary_data = new Uint8Array(byteNumbers);
           this.hasSummary=true;
-          this.showPDF(response.toString());
         },
         (err) => {
           this.loading_disable();
@@ -149,23 +162,34 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   downloadSummary() {
 
     const filename = "dummy.xlsx";
+    this._save_summary(filename);
 
-    // TODO: retrieve xlsx from server
-    this.http.get('assets/' + filename, { responseType: 'arraybuffer' })
-      .subscribe((binaryData: ArrayBuffer) => {
-        this.summary_data = binaryData;
-        const out_filename = "out_" + filename;
+    //this.http.get('assets/' + filename, { responseType: 'arraybuffer' })
+    //  .subscribe((binaryData: ArrayBuffer) => {
+    //    this.summary_data = binaryData;
+    //    this._save_summary(filename);
+    //  });
+  }
 
-        // 保存する
-        if(this.electronService.isElectron)
-          this.electronService.ipcRenderer.sendSync('saveFile', filename, this.summary_data);
-        else {
-          const blob =
-            new window.Blob([this.summary_data],
-                            {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-          FileSaver.saveAs(blob, filename);
-        }
-      });
+  private _save_summary(filename: string)
+  {
+    let file = new Blob([this.summary_data],
+                        { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    let fileURL = URL.createObjectURL(file);
+    window.open(fileURL, "_blank");
+
+    //const out_filename = "out_" + filename;
+    //
+    //// 保存する
+    //if(this.electronService.isElectron)
+    //  this.electronService.ipcRenderer.sendSync('saveFile', filename, this.summary_data);
+    //else {
+    //  const blob =
+    //    new window.Blob([this.summary_data],
+    //                    {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+    //  FileSaver.saveAs(blob, filename);
+    //}
   }
 
   private showPDF(base64: string) {
