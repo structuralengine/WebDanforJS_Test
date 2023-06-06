@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild } from "@angular/core";
+﻿import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../../app.component";
 
@@ -68,6 +68,13 @@ export class MenuComponent implements OnInit {
     this.renew();
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload($event: BeforeUnloadEvent) {
+    if (!this.electronService.isElectron) {
+      $event.returnValue = "Your work will be lost. Do you want to leave this site?";
+    }
+  }
+  
   // 新規作成
   renew(): void {
     this.router.navigate(["/blank-page"]);
