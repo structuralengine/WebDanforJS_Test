@@ -15,6 +15,8 @@ import packageJson from '../../../../package.json';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
+import * as FileSaver from "file-saver";
+
 @Component({
   selector: 'app-calculation-print',
   templateUrl: './calculation-print.component.html',
@@ -32,6 +34,9 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   public calculate_torsional_moment_checked: boolean;
   // 部材
   public table_datas: any[];
+
+  public hasSummary:boolean=false;
+  private summary_data;
 
   constructor(
     private calc: InputCalclationPrintService,
@@ -65,6 +70,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         'g_name': data.g_name
       });
     }
+
+    
   }
 
   ngOnDestroy() {
@@ -86,8 +93,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   // 計算開始
   onClick() {
 
-    const user = this.auth.currentUser;
-    if(user === null){
+    const user = this.user.userProfile;
+    if(!user){
       this.helper.alert(this.translate.instant("calculation-print.p_login"));
       return;
     }
@@ -123,14 +130,66 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       .subscribe(
         (response) => {
           this.loading_disable();
-          this.showPDF(response.toString());
+
+          var resp = JSON.parse(response.toString());
+
+          //console.log("JSON!!!", response.toString());
+          //console.log("from JSON!!!", resp);
+
+          this.showPDF(resp.pdf_base64);
+
+          const byteCharacters = atob(resp.excel_base64);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+          this.summary_data = new Uint8Array(byteNumbers);
+          this.hasSummary=true;
         },
         (err) => {
           this.loading_disable();
+          this.hasSummary=false;
           console.log("Error response: ", err);
           this.helper.alert(err['error']);
         }
       );
+  }
+
+  previewSummary() {
+    window.alert("preview excel");
+  }
+
+  downloadSummary() {
+
+    const filename = "dummy.xlsx";
+    this._save_summary(filename);
+
+    //this.http.get('assets/' + filename, { responseType: 'arraybuffer' })
+    //  .subscribe((binaryData: ArrayBuffer) => {
+    //    this.summary_data = binaryData;
+    //    this._save_summary(filename);
+    //  });
+  }
+
+  private _save_summary(filename: string)
+  {
+    let file = new Blob([this.summary_data],
+                        { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    let fileURL = URL.createObjectURL(file);
+    window.open(fileURL, "_blank");
+
+    //const out_filename = "out_" + filename;
+    //
+    //// 保存する
+    //if(this.electronService.isElectron)
+    //  this.electronService.ipcRenderer.sendSync('saveFile', filename, this.summary_data);
+    //else {
+    //  const blob =
+    //    new window.Blob([this.summary_data],
+    //                    {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+    //  FileSaver.saveAs(blob, filename);
+    //}
   }
 
   private showPDF(base64: string) {
