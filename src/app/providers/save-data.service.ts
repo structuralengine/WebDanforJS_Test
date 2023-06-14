@@ -387,11 +387,11 @@ export class SaveDataService {
     const programVer: string = packageJson.version;
     let filetVer: string = '0.0.0';
     if('ver' in jsonData)
-      filetVer = jsonData['ver'];
+      filetVer = jsonData['ver'] as string;
 
     if(this.isOlder('1.13.7', filetVer)) {
 
-      console.log("translate!!");
+      //console.log("translate!!");
 
       // 各国語の形状名を形状名キーに直す
       this.members.translateData_old_to_1_13_7();
