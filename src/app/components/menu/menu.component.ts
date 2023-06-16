@@ -65,7 +65,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.renew();
+    this._renew();
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -78,6 +78,10 @@ export class MenuComponent implements OnInit {
   // 新規作成
   renew(): void {
     this.router.navigate(["/blank-page"]);
+    this._renew();
+  }
+
+  private _renew(): void {
     this.app.deactiveButtons();
 
     // this.fileName = "";
