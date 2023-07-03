@@ -62,6 +62,11 @@ import { ShearComponent } from './components/shear/shear.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ActivateSessionComponent } from './components/activate-session/activate-session.component';
 
+import { PreviewExcelComponent } from "./components/preview-excel/preview-excel.component";
+import { IgxExcelModule } from 'igniteui-angular-excel';
+import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 
@@ -104,6 +109,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
             },
             defaultLanguage: "ja",
         }),
+        IgxExcelModule,
+        IgxSpreadsheetModule
     ],
     declarations: [
         AppComponent,
@@ -125,6 +132,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         ChatComponent,
         ShearComponent,
         ActivateSessionComponent,
+        PreviewExcelComponent
     ],
     providers: [
         UserInfoService,
@@ -149,7 +157,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
             multi: true,
             deps: [KeycloakService]
         },
+        NgbActiveModal,
     ],
+    entryComponents: [PreviewExcelComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
