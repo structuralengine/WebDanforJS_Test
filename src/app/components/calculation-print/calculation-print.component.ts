@@ -181,12 +181,12 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
                         { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     let fileURL = URL.createObjectURL(file);
 
-    const modalRef = this.modalService.open(PreviewExcelComponent, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
-    modalRef.componentInstance.url = fileURL;
-    modalRef.componentInstance.file = file;
+    // const modalRef = this.modalService.open(PreviewExcelComponent, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
+    // modalRef.componentInstance.url = fileURL;
+    // modalRef.componentInstance.file = file;
 
     // this.modalService.open(this.modalPreviewExcel, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
-    // window.open(fileURL, "_blank");
+    window.open(fileURL, "_blank");
 
     //const out_filename = "out_" + filename;
     //
