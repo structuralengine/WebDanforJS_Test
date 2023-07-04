@@ -16,6 +16,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
 import * as FileSaver from "file-saver";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PreviewExcelComponent } from '../preview-excel/preview-excel.component';
 
 @Component({
   selector: 'app-calculation-print',
@@ -48,7 +50,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     public electronService: ElectronService,
     private translate: TranslateService,
     public language: LanguagesService,
-    private helper: DataHelperModule
+    private helper: DataHelperModule,
+    private modalService: NgbModal
   ) {
     this.auth = getAuth();
   }
@@ -171,12 +174,18 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     //  });
   }
 
+  @ViewChild('modalPreviewExcel') modalPreviewExcel : any;
   private _save_summary(filename: string)
   {
     let file = new Blob([this.summary_data],
                         { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
     let fileURL = URL.createObjectURL(file);
+
+    // const modalRef = this.modalService.open(PreviewExcelComponent, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
+    // modalRef.componentInstance.url = fileURL;
+    // modalRef.componentInstance.file = file;
+
+    // this.modalService.open(this.modalPreviewExcel, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
     window.open(fileURL, "_blank");
 
     //const out_filename = "out_" + filename;
@@ -191,7 +200,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     //  FileSaver.saveAs(blob, filename);
     //}
   }
-
+  
   private showPDF(base64: string) {
 
     if (this.electronService.isElectron) {
