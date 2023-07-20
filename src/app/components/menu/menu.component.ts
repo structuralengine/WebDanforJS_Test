@@ -191,22 +191,27 @@ export class MenuComponent implements OnInit {
   // ピックアップファイルを開く
   pickup(evt) {
     const file = evt.target.files[0];
-    const modalRef = this.modalService.open(WaitDialogComponent);
-    evt.target.value = "";
+    var ext = /^.+\.([^.]+)$/.exec(file.name);
+    if (ext != null && (ext[1] == 'pik' || ext[1] == "csv")) {
+      const modalRef = this.modalService.open(WaitDialogComponent);
+      evt.target.value = "";
 
-    this.router.navigate(["/blank-page"]);
-    this.app.deactiveButtons();
+      this.router.navigate(["/blank-page"]);
+      this.app.deactiveButtons();
 
-    this.fileToText(file)
-      .then((text) => {
-        this.save.readPickUpData(text, file.name); // データを読み込む
-        this.pickup_file_name = this.save.getPickupFilename();
-        modalRef.close();
-      })
-      .catch((err) => {
-        modalRef.close();
-        console.log(err);
-      });
+      this.fileToText(file)
+        .then((text) => {
+          this.save.readPickUpData(text, file.name); // データを読み込む
+          this.pickup_file_name = this.save.getPickupFilename();
+          modalRef.close();
+        })
+        .catch((err) => {
+          modalRef.close();
+          console.log(err);
+        });
+    } else {
+      this.helper.alert(this.translate.instant("menu.acceptedFile"));
+    }
   }
 
   // ファイルのテキストを読み込む
