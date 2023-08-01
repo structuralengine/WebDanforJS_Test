@@ -217,7 +217,7 @@ export class InputMembersService {
   // 入力された文字列から形状IDを返す
   public getShapeIDFromUserInput(key: string): number {
 
-    if (key === null)
+    if (key === undefined || key === null)
       return 0;
 
     let key_ = key.trim();
