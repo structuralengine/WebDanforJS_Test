@@ -164,8 +164,69 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
   downloadSummary() {
 
-    const filename = "dummy.xlsx";
-    this._save_summary(filename);
+    const user = this.user.userProfile;
+    if(!user){
+      this.helper.alert(this.translate.instant("calculation-print.p_login"));
+      return;
+    }
+
+    this.user.clear(user.uid);
+
+    //console.log('印刷データ準備中...');
+
+    this.loading_enable();
+
+    this.saveData();
+    var ui_data: any = this.save.getInputJson();
+    ui_data["lang"] = this.language.browserLang;
+    ui_data["uid"] = user.uid;
+
+    var column_data = new Array();
+    for(var i=0; this.table_datas.length>i; i++)
+      column_data.push({GroupName: this.table_datas[i].g_name,
+                        Checked: this.table_datas[i].calc_checked});
+
+    ui_data["member_group_selection"] = column_data;
+
+    const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
+
+    this.http
+      .post(url, ui_data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "*/*"
+        }),
+        responseType: "text"
+      })
+      .subscribe(
+        (response) => {
+          this.loading_disable();
+
+          var resp = JSON.parse(response.toString());
+
+          //console.log("JSON!!!", response.toString());
+          //console.log("from JSON!!!", resp);
+
+          //this.showPDF(resp.pdf_base64);
+
+          const byteCharacters = atob(resp.excel_base64);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+          this.summary_data = new Uint8Array(byteNumbers);
+          this.hasSummary=true;
+          const filename = "dummy.xlsx";
+          this._save_summary(filename);
+        },
+        (err) => {
+          this.loading_disable();
+          this.hasSummary=false;
+          console.log("Error response: ", err);
+          this.helper.alert(err['error']);
+        }
+      );     
+      
 
     //this.http.get('assets/' + filename, { responseType: 'arraybuffer' })
     //  .subscribe((binaryData: ArrayBuffer) => {
