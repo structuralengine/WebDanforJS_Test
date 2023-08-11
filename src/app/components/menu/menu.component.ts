@@ -39,7 +39,7 @@ export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
   public pickup_file_name: string;
-
+  public check_user_login: boolean = false;
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
@@ -65,7 +65,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();
+    this._renew();    
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -277,7 +277,7 @@ export class MenuComponent implements OnInit {
     } else {
       this.keycloak.logout(window.location.origin);
       this.user.setUserProfile(null);
-    }
+    }    
   }
   
   public goToLink() {
@@ -286,4 +286,5 @@ export class MenuComponent implements OnInit {
       "_blank"
     );
   }
+  
 }
