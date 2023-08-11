@@ -38,8 +38,7 @@ import { UserInfoService } from "src/app/providers/user-info.service";
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string;
-  public check_user_login: boolean = false;
+  public pickup_file_name: string; 
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
