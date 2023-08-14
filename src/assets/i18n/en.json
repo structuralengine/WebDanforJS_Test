@@ -259,6 +259,7 @@
         "member":"Member",
         "print":"Calculation printing",
         "preparing":"Printing...",
+        "downloading": "Downloading",
         "p_login":"Please login"
     },
     "section-force-list":{

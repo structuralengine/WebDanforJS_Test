@@ -267,37 +267,18 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     ui_data["member_group_selection"] = column_data;
 
     const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
-    const url_summary = environment.printURL;
-    merge(this.http
+
+  this.http
       .post(url, ui_data, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           "Accept": "*/*"
         }),
         responseType: "text"
-      }), this.http
-        .post(url_summary, ui_data, {
-          headers: new HttpHeaders({
-            "Content-Type": "application/json",
-            "Accept": "*/*"
-          }),
-          responseType: "text"
-        })).subscribe((response: any) => {
+      }).subscribe((response: any) => {
           this.loading_disable();
-          var resp = JSON.parse(response.toString());
-          if (resp.pdf_base64 === null) {
-            this.loading_disable();
-            const byteCharacters = atob(resp.excel_base64);
-            let byteNumbers = new Array(byteCharacters.length);
-            for (let i = 0; i < byteCharacters.length; i++)
-              byteNumbers[i] = byteCharacters.charCodeAt(i);
-            this.summary_data = new Uint8Array(byteNumbers);
-            this.hasSummary = true;
-            const filename = "dummy.xlsx";
-            this._save_summary(filename);
-           
-          }
-          if (resp.excel_base64 === null) {
+          var resp = JSON.parse(response.toString());         
+          if (resp.pdf_base64 !== null) {
             this.showPDF(resp.pdf_base64);
             this.hasSummary = true;
           }
@@ -316,11 +297,9 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       this.helper.alert(this.translate.instant("calculation-print.p_login"));
       return;
     }
-
+    this.loading_enable_download();
     this.user.clear(user.uid);
-
-    this.loading_enable();
-
+    
     this.saveData();
     var ui_data: any = this.save.getInputJson();
     ui_data["lang"] = this.language.browserLang;
@@ -344,9 +323,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         responseType: "text"
       })
       .subscribe(
-        (response) => {
-          this.loading_disable();
-
+        (response) => {      
+          this.loading_disable_dowload();
           var resp = JSON.parse(response.toString());
           const byteCharacters = atob(resp.excel_base64);
           let byteNumbers = new Array(byteCharacters.length);
@@ -359,7 +337,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
           this._save_summary(filename);
         },
         (err) => {
-          this.loading_disable();
+          this.loading_disable_dowload();
           this.hasSummary = false;
           console.log("Error response: ", err);
           this.helper.alert(err['error']);
@@ -420,6 +398,13 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     print_button.setAttribute("disabled", "true");
     print_button.style.opacity = "0.7";
   }
+  private loading_enable_download(): void {
+    // loadingの表示
+    document.getElementById("download-loading").style.display = "block";
+    const download_button = document.getElementById("downloadButton");
+    download_button.setAttribute("disabled", "true");
+    download_button.style.opacity = "0.7";
+  }
 
   private loading_disable() {
     document.getElementById("print-loading").style.display = "none";
@@ -427,7 +412,12 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     print_button.removeAttribute("disabled");
     print_button.style.opacity = "";
   }
-
+  private loading_disable_dowload() {
+    document.getElementById("download-loading").style.display = "none";
+    const download_button = document.getElementById("downloadButton");
+    download_button.removeAttribute("disabled");
+    download_button.style.opacity = "";
+  }
   public isManual(): boolean {
     return this.save.isManual();
   }
