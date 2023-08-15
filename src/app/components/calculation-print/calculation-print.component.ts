@@ -18,6 +18,7 @@ import { environment } from "src/environments/environment";
 import * as FileSaver from "file-saver";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PreviewExcelComponent } from '../preview-excel/preview-excel.component';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-calculation-print',
@@ -37,7 +38,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   // 部材
   public table_datas: any[];
 
-  public hasSummary:boolean=false;
+  public hasSummary: boolean = false;
   private summary_data;
 
   constructor(
@@ -67,14 +68,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.calculate_torsional_moment_checked = this.calc.print_selected.calculate_torsional_moment;
 
     this.table_datas = new Array();
-    for ( const data of this.calc.getColumnData()) {
+    for (const data of this.calc.getColumnData()) {
       this.table_datas.push({
         'calc_checked': data.checked,
         'g_name': data.g_name
       });
     }
 
-    
+
   }
 
   ngOnDestroy() {
@@ -97,7 +98,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   onClick() {
 
     const user = this.user.userProfile;
-    if(!user){
+    if (!user) {
       this.helper.alert(this.translate.instant("calculation-print.p_login"));
       return;
     }
@@ -114,9 +115,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     ui_data["uid"] = user.uid;
 
     var column_data = new Array();
-    for(var i=0; this.table_datas.length>i; i++)
-      column_data.push({GroupName: this.table_datas[i].g_name,
-                        Checked: this.table_datas[i].calc_checked});
+    for (var i = 0; this.table_datas.length > i; i++)
+      column_data.push({
+        GroupName: this.table_datas[i].g_name,
+        Checked: this.table_datas[i].calc_checked
+      });
 
     ui_data["member_group_selection"] = column_data;
 
@@ -147,11 +150,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
             byteNumbers[i] = byteCharacters.charCodeAt(i);
 
           this.summary_data = new Uint8Array(byteNumbers);
-          this.hasSummary=true;
+          this.hasSummary = true;
         },
         (err) => {
           this.loading_disable();
-          this.hasSummary=false;
+          this.hasSummary = false;
           console.log("Error response: ", err);
           this.helper.alert(err['error']);
         }
@@ -164,8 +167,71 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
   downloadSummary() {
 
-    const filename = "dummy.xlsx";
-    this._save_summary(filename);
+    const user = this.user.userProfile;
+    if (!user) {
+      this.helper.alert(this.translate.instant("calculation-print.p_login"));
+      return;
+    }
+
+    this.user.clear(user.uid);
+
+    //console.log('印刷データ準備中...');
+
+    this.loading_enable();
+
+    this.saveData();
+    var ui_data: any = this.save.getInputJson();
+    ui_data["lang"] = this.language.browserLang;
+    ui_data["uid"] = user.uid;
+
+    var column_data = new Array();
+    for (var i = 0; this.table_datas.length > i; i++)
+      column_data.push({
+        GroupName: this.table_datas[i].g_name,
+        Checked: this.table_datas[i].calc_checked
+      });
+
+    ui_data["member_group_selection"] = column_data;
+
+    const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
+    const url_summary = environment.printURL;
+    this.http
+      .post(url, ui_data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "*/*"
+        }),
+        responseType: "text"
+      })
+      .subscribe(
+        (response) => {
+          this.loading_disable();
+
+          var resp = JSON.parse(response.toString());
+
+          //console.log("JSON!!!", response.toString());
+          //console.log("from JSON!!!", resp);
+
+          //this.showPDF(resp.pdf_base64);
+
+          const byteCharacters = atob(resp.excel_base64);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+          this.summary_data = new Uint8Array(byteNumbers);
+          this.hasSummary = true;
+          const filename = "dummy.xlsx";
+          this._save_summary(filename);
+        },
+        (err) => {
+          this.loading_disable();
+          this.hasSummary = false;
+          console.log("Error response: ", err);
+          this.helper.alert(err['error']);
+        }
+      );
+
 
     //this.http.get('assets/' + filename, { responseType: 'arraybuffer' })
     //  .subscribe((binaryData: ArrayBuffer) => {
@@ -173,12 +239,116 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     //    this._save_summary(filename);
     //  });
   }
+  pdfSummary() {
+    const user = this.user.userProfile;
+    if (!user) {
+      this.helper.alert(this.translate.instant("calculation-print.p_login"));
+      return;
+    }
 
-  @ViewChild('modalPreviewExcel') modalPreviewExcel : any;
-  private _save_summary(filename: string)
-  {
+    this.user.clear(user.uid);
+
+    //console.log('印刷データ準備中...');
+
+    this.loading_enable();
+
+    this.saveData();
+    var ui_data: any = this.save.getInputJson();
+    ui_data["lang"] = this.language.browserLang;
+    ui_data["uid"] = user.uid;
+
+    var column_data = new Array();
+    for (var i = 0; this.table_datas.length > i; i++)
+      column_data.push({
+        GroupName: this.table_datas[i].g_name,
+        Checked: this.table_datas[i].calc_checked
+      });
+
+    ui_data["member_group_selection"] = column_data;
+
+    const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
+
+  this.http
+      .post(url, ui_data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "*/*"
+        }),
+        responseType: "text"
+      }).subscribe((response: any) => {
+          this.loading_disable();
+          var resp = JSON.parse(response.toString());         
+          if (resp.pdf_base64 !== null) {
+            this.showPDF(resp.pdf_base64);
+            this.hasSummary = true;
+          }
+        },
+          (err) => {
+            this.loading_disable();
+            this.hasSummary = false;
+            console.log("Error response: ", err);
+            this.helper.alert(err['error']);
+          })
+
+  }
+  downloadSummaryFun4(){
+    const user = this.user.userProfile;
+    if (!user) {
+      this.helper.alert(this.translate.instant("calculation-print.p_login"));
+      return;
+    }
+    this.loading_enable_download();
+    this.user.clear(user.uid);
+    
+    this.saveData();
+    var ui_data: any = this.save.getInputJson();
+    ui_data["lang"] = this.language.browserLang;
+    ui_data["uid"] = user.uid;
+
+    var column_data = new Array();
+    for (var i = 0; this.table_datas.length > i; i++)
+      column_data.push({
+        GroupName: this.table_datas[i].g_name,
+        Checked: this.table_datas[i].calc_checked
+      });
+
+    ui_data["member_group_selection"] = column_data;   
+    const url_summary = environment.printURL;
+    this.http
+      .post(url_summary, ui_data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "*/*"
+        }),
+        responseType: "text"
+      })
+      .subscribe(
+        (response) => {      
+          this.loading_disable_dowload();
+          var resp = JSON.parse(response.toString());
+          const byteCharacters = atob(resp.excel_base64);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+          this.summary_data = new Uint8Array(byteNumbers);
+          this.hasSummary = true;
+          const filename = "dummy.xlsx";
+          this._save_summary(filename);
+        },
+        (err) => {
+          this.loading_disable_dowload();
+          this.hasSummary = false;
+          console.log("Error response: ", err);
+          this.helper.alert(err['error']);
+        }
+      );
+
+  }
+  @ViewChild('modalPreviewExcel') modalPreviewExcel: any;
+  private _save_summary(filename: string) {
     let file = new Blob([this.summary_data],
-                        { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     let fileURL = URL.createObjectURL(file);
 
     // const modalRef = this.modalService.open(PreviewExcelComponent, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
@@ -200,7 +370,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     //  FileSaver.saveAs(blob, filename);
     //}
   }
-  
+
   private showPDF(base64: string) {
 
     if (this.electronService.isElectron) {
@@ -228,6 +398,13 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     print_button.setAttribute("disabled", "true");
     print_button.style.opacity = "0.7";
   }
+  private loading_enable_download(): void {
+    // loadingの表示
+    document.getElementById("download-loading").style.display = "block";
+    const download_button = document.getElementById("downloadButton");
+    download_button.setAttribute("disabled", "true");
+    download_button.style.opacity = "0.7";
+  }
 
   private loading_disable() {
     document.getElementById("print-loading").style.display = "none";
@@ -235,8 +412,13 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     print_button.removeAttribute("disabled");
     print_button.style.opacity = "";
   }
-
-  public isManual(): boolean{
+  private loading_disable_dowload() {
+    document.getElementById("download-loading").style.display = "none";
+    const download_button = document.getElementById("downloadButton");
+    download_button.removeAttribute("disabled");
+    download_button.style.opacity = "";
+  }
+  public isManual(): boolean {
     return this.save.isManual();
   }
 }
