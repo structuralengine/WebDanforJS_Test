@@ -870,14 +870,14 @@ export class DsdDataService {
       const SokuR0 = this.readByte(buff);
       if (SokuR0 > 0) {
         if (m.g_no < 3 && m.shape !== '円形') {
-          bar.sidebar.side_dia = SokuR0;
+          bar.sidebar1.side_dia = SokuR0;
         }
       }
       const SokuR1 = this.readByte(buff);
       const SokuHON0 = this.readByte(buff);
       if (SokuHON0 > 0) {
         if (m.g_no < 3 && m.shape !== '円形') {
-          bar.sidebar.side_n = SokuHON0;
+          bar.sidebar1.side_n = SokuHON0;
         }
       }
       const SokuHON1 = this.readByte(buff);
@@ -886,8 +886,8 @@ export class DsdDataService {
         if (m.g_no < 2 && m.shape !== '円形') {
           const s1 = Math.floor(SokuKABURI0);
           const s2 = Math.ceil((SokuKABURI0 - s1) * 10000);
-          if (s1 > 0) bar.sidebar.side_cover = s1;
-          if (s2 > 0) bar.sidebar.side_ss = s2;
+          if (s1 > 0) bar.sidebar1.side_cover = s1;
+          if (s2 > 0) bar.sidebar1.side_ss = s2;
         }
       }
       const SokuKABURI1 = this.readSingle(buff);
