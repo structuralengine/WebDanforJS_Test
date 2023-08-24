@@ -273,6 +273,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
     let url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
     if (isSafetyRatio.toLowerCase() === 'true') {
+      ui_data['calc']['print_calculate_checked'] = true;
       url = environment.prevURL;
     }
 
