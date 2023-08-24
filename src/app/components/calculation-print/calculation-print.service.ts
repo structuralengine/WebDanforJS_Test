@@ -17,6 +17,7 @@ export class InputCalclationPrintService {
     return {
       print_calculate_checked: false,
       print_section_force_checked: false,
+      print_safety_ratio_checked: false,
       print_summary_table_checked: false,
       calculate_moment_checked: false,
       calculate_shear_force: false,
