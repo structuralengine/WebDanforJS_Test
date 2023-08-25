@@ -11,6 +11,7 @@
             [value]="print_section_force"
             [(ngModel)]="print_section_force_checked"
             [checked]="print_section_force_checked"
+            (click)="changeButton($event)"
           />
           <p translate>calculation-print.s_table</p>
         </label>
@@ -24,6 +25,7 @@
             [value]="print_calculate_checked"
             [(ngModel)]="print_calculate_checked"
             [checked]="print_calculate_checked"
+            (click)="changeButton($event)"
           />
           <p translate>calculation-print.p_check</p>
         </label>
@@ -36,6 +38,7 @@
             id="print_safety_ratio"
             [(ngModel)]="print_safety_ratio_checked"
             [checked]="print_safety_ratio_checked"
+            (click)="changeButton($event)"
           />
           <p translate>calculation-print.safety_ratio</p>
         </label>

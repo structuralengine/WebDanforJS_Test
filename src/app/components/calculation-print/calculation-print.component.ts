@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { InputCalclationPrintService } from './calculation-print.service';
 import { SaveDataService } from '../../providers/save-data.service';
@@ -267,12 +267,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
-
     //check if get safety ratio list
-    const isSafetyRatio = document.getElementById('print_safety_ratio').getAttribute('ng-reflect-model');
-
+    //const isSafetyRatio = document.getElementById('print_safety_ratio').getAttribute('ng-reflect-model');
+    const isSR =this.print_safety_ratio_checked;
     let url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
-    if (isSafetyRatio.toLowerCase() === 'true') {
+    if (isSR) {
       ui_data['calc']['print_calculate_checked'] = true;
       url = environment.prevURL;
     }
@@ -299,6 +298,17 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
           this.helper.alert(err['error']);
         })
   }
+
+  changeButton(el:any){
+    if(el.target.checked && el.target.id !== "print_safety_ratio")
+      this.print_safety_ratio_checked= false;
+    else if(el.target.checked && el.target.id === "print_safety_ratio")
+    {
+      this.print_calculate_checked= false;
+      this.print_section_force_checked= false;
+    }
+  }
+
   downloadSummaryFun4() {
     const user = this.user.userProfile;
     if (!user) {
