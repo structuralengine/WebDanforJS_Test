@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { InputCalclationPrintService } from './calculation-print.service';
 import { SaveDataService } from '../../providers/save-data.service';
@@ -31,6 +31,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   public print_calculate_checked: boolean;
   public print_section_force_checked: boolean;
   public print_summary_table_checked: boolean;
+  public print_safety_ratio_checked: boolean;
   // 照査
   public calculate_moment_checked: boolean;
   public calculate_shear_force_checked: boolean;
@@ -62,6 +63,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.print_calculate_checked = this.calc.print_selected.print_calculate_checked;
     this.print_section_force_checked = this.calc.print_selected.print_section_force_checked;
     this.print_summary_table_checked = this.calc.print_selected.print_summary_table_checked;
+    this.print_safety_ratio_checked = this.calc.print_selected.print_safety_ratio_checked;
 
     this.calculate_moment_checked = this.calc.print_selected.calculate_moment_checked;
     this.calculate_shear_force_checked = this.calc.print_selected.calculate_shear_force;
@@ -265,10 +267,16 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
+    //check if get safety ratio list
+    //const isSafetyRatio = document.getElementById('print_safety_ratio').getAttribute('ng-reflect-model');
+    const isSR =this.print_safety_ratio_checked;
+    let url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
+    if (isSR) {
+      ui_data['calc']['print_calculate_checked'] = true;
+      url = environment.prevURL;
+    }
 
-    const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
-
-  this.http
+    this.http
       .post(url, ui_data, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
@@ -276,22 +284,32 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         }),
         responseType: "text"
       }).subscribe((response: any) => {
+        this.loading_disable();
+        var resp = JSON.parse(response.toString());
+        if (resp.pdf_base64 !== null) {
+          this.showPDF(resp.pdf_base64);
+          this.hasSummary = true;
+        }
+      },
+        (err) => {
           this.loading_disable();
-          var resp = JSON.parse(response.toString());         
-          if (resp.pdf_base64 !== null) {
-            this.showPDF(resp.pdf_base64);
-            this.hasSummary = true;
-          }
-        },
-          (err) => {
-            this.loading_disable();
-            this.hasSummary = false;
-            console.log("Error response: ", err);
-            this.helper.alert(err['error']);
-          })
-
+          this.hasSummary = false;
+          console.log("Error response: ", err);
+          this.helper.alert(err['error']);
+        })
   }
-  downloadSummaryFun4(){
+
+  changeButton(el:any){
+    if(el.target.checked && el.target.id !== "print_safety_ratio")
+      this.print_safety_ratio_checked= false;
+    else if(el.target.checked && el.target.id === "print_safety_ratio")
+    {
+      this.print_calculate_checked= false;
+      this.print_section_force_checked= false;
+    }
+  }
+
+  downloadSummaryFun4() {
     const user = this.user.userProfile;
     if (!user) {
       this.helper.alert(this.translate.instant("calculation-print.p_login"));
@@ -299,7 +317,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     }
     this.loading_enable_download();
     this.user.clear(user.uid);
-    
     this.saveData();
     var ui_data: any = this.save.getInputJson();
     ui_data["lang"] = this.language.browserLang;
@@ -312,7 +329,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         Checked: this.table_datas[i].calc_checked
       });
 
-    ui_data["member_group_selection"] = column_data;   
+    ui_data["member_group_selection"] = column_data;
     const url_summary = environment.printURL;
     this.http
       .post(url_summary, ui_data, {
@@ -323,7 +340,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         responseType: "text"
       })
       .subscribe(
-        (response) => {      
+        (response) => {
           this.loading_disable_dowload();
           var resp = JSON.parse(response.toString());
           const byteCharacters = atob(resp.excel_base64);

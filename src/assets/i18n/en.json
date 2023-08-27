@@ -252,6 +252,7 @@
         "dc":"Design condition",
         "s_table":"Summary table of section force",
         "p_check":"Performance check",
+        "safety_ratio":"Safety ratio list",
         "check":"Check",
         "bend":"Bending",
         "shear":"Shear",
