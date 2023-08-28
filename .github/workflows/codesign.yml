@@ -34,6 +34,8 @@ jobs:
         run: npm install -g @angular/cli@12.2.7 && npm install --legacy-peer-deps
 
       - name: Build Windows app
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
         uses: structuralengine/action-electron-builder@v1.6.1
         with:
           build_script_name: "electron:windows"
