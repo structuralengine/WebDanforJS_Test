@@ -140,7 +140,10 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.table_datas = this.members.getSaveData();
 
       for (let row of this.table_datas)
-        row.shape = this.members.getShapeDispFromShapeID(Number(row.shape));
+       if(typeof(row.shape) === 'number')
+        row.shape = this.members.getShapeDispFromShapeID(Number(row.shape)); 
+       else
+        row.shape = this.members.getShapeDispFromShapeID(this.members.getShapeIDFromUserInput(row.shape));
     }
 
     // データを登録する

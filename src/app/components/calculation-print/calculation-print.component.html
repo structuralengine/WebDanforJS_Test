@@ -11,6 +11,7 @@
             [value]="print_section_force"
             [(ngModel)]="print_section_force_checked"
             [checked]="print_section_force_checked"
+            (click)="changeButton($event)"
           />
           <p translate>calculation-print.s_table</p>
         </label>
@@ -24,11 +25,24 @@
             [value]="print_calculate_checked"
             [(ngModel)]="print_calculate_checked"
             [checked]="print_calculate_checked"
+            (click)="changeButton($event)"
           />
           <p translate>calculation-print.p_check</p>
         </label>
       </div>
-
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            name="print_safety_ratio"
+            id="print_safety_ratio"
+            [(ngModel)]="print_safety_ratio_checked"
+            [checked]="print_safety_ratio_checked"
+            (click)="changeButton($event)"
+          />
+          <p translate>calculation-print.safety_ratio</p>
+        </label>
+      </div>
     </fieldset>
   </div>
   <div class="calculate-item">
@@ -80,20 +94,21 @@
 <div class="table-container">
   <fieldset>
     <legend translate>calculation-print.member</legend>
-    <div class="hot" >
+    <div class="hot">
       <table>
         <tbody>
           <ng-container *ngFor="let item of table_datas; index as j">
             <tr>
               <td width="70px">
-                <input type="checkbox" 
-                [value]="item.calc_checked" 
-                [(ngModel)]="item.calc_checked"
-                [checked]="item.calc_checked" 
-              />
+                <input
+                  type="checkbox"
+                  [value]="item.calc_checked"
+                  [(ngModel)]="item.calc_checked"
+                  [checked]="item.calc_checked"
+                />
               </td>
               <td width="250px">
-                {{item.g_name}}
+                {{ item.g_name }}
               </td>
             </tr>
           </ng-container>
@@ -114,10 +129,12 @@
 </div> -->
 
 <div class="button-container">
-  <button (click)="downloadSummaryFun4()" id="downloadButton" translate>calculation-print.download</button>
+  <button (click)="downloadSummaryFun4()" id="downloadButton" translate>
+    calculation-print.download
+  </button>
 </div>
 
-<div id="print-loading" disabled="true" style="display: none;">
+<div id="print-loading" disabled="true" style="display: none">
   <svg
     width="50px"
     height="50px"
@@ -125,15 +142,8 @@
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
     class="uil-spin"
-    >
-    <rect
-      x="0"
-      y="0"
-      width="100"
-      height="100"
-      fill="none"
-      class="bk"
-      ></rect>
+  >
+    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
     <g transform="translate(50 50)">
       <g transform="rotate(0) translate(34 0)">
         <circle cx="0" cy="0" r="8" fill="#000">
@@ -144,7 +154,7 @@
             begin="0s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -153,7 +163,7 @@
             begin="0s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(45) translate(34 0)">
@@ -165,7 +175,7 @@
             begin="0.12s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -174,7 +184,7 @@
             begin="0.12s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(90) translate(34 0)">
@@ -186,7 +196,7 @@
             begin="0.25s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -195,7 +205,7 @@
             begin="0.25s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(135) translate(34 0)">
@@ -207,7 +217,7 @@
             begin="0.37s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -216,7 +226,7 @@
             begin="0.37s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(180) translate(34 0)">
@@ -228,7 +238,7 @@
             begin="0.5s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -237,7 +247,7 @@
             begin="0.5s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(225) translate(34 0)">
@@ -249,7 +259,7 @@
             begin="0.62s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -258,7 +268,7 @@
             begin="0.62s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(270) translate(34 0)">
@@ -270,7 +280,7 @@
             begin="0.75s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -279,7 +289,7 @@
             begin="0.75s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(315) translate(34 0)">
@@ -291,7 +301,7 @@
             begin="0.87s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -300,7 +310,7 @@
             begin="0.87s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
     </g>
@@ -308,7 +318,7 @@
   <p translate>calculation-print.preparing</p>
 </div>
 
-<div id="download-loading" disabled="true" style="display: none;">
+<div id="download-loading" disabled="true" style="display: none">
   <svg
     width="50px"
     height="50px"
@@ -316,15 +326,8 @@
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
     class="uil-spin"
-    >
-    <rect
-      x="0"
-      y="0"
-      width="100"
-      height="100"
-      fill="none"
-      class="bk"
-      ></rect>
+  >
+    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
     <g transform="translate(50 50)">
       <g transform="rotate(0) translate(34 0)">
         <circle cx="0" cy="0" r="8" fill="#000">
@@ -335,7 +338,7 @@
             begin="0s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -344,7 +347,7 @@
             begin="0s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(45) translate(34 0)">
@@ -356,7 +359,7 @@
             begin="0.12s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -365,7 +368,7 @@
             begin="0.12s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(90) translate(34 0)">
@@ -377,7 +380,7 @@
             begin="0.25s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -386,7 +389,7 @@
             begin="0.25s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(135) translate(34 0)">
@@ -398,7 +401,7 @@
             begin="0.37s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -407,7 +410,7 @@
             begin="0.37s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(180) translate(34 0)">
@@ -419,7 +422,7 @@
             begin="0.5s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -428,7 +431,7 @@
             begin="0.5s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(225) translate(34 0)">
@@ -440,7 +443,7 @@
             begin="0.62s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -449,7 +452,7 @@
             begin="0.62s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(270) translate(34 0)">
@@ -461,7 +464,7 @@
             begin="0.75s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -470,7 +473,7 @@
             begin="0.75s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
       <g transform="rotate(315) translate(34 0)">
@@ -482,7 +485,7 @@
             begin="0.87s"
             dur="1s"
             repeatCount="indefinite"
-            ></animate>
+          ></animate>
           <animateTransform
             attributeName="transform"
             type="scale"
@@ -491,7 +494,7 @@
             begin="0.87s"
             dur="1s"
             repeatCount="indefinite"
-            ></animateTransform>
+          ></animateTransform>
         </circle>
       </g>
     </g>

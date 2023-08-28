@@ -316,7 +316,7 @@ export class DsdDataService {
         const intKankyo1 = this.readInteger(buff);
         if (intKankyo1 > 0) c.con_u = intKankyo1;
         const intKankyo2 = this.readInteger(buff);
-        if (intKankyo2 > 0)    c.con_l = intKankyo2;
+        if (intKankyo2 > 0) c.con_l = intKankyo2;
 
         // 環境条件せん断 　since version 0.1.4
         if (!this.isOlder('0.1.4', buff.datVersID)) {
@@ -411,12 +411,12 @@ export class DsdDataService {
         } else if (this.isOlder("3.6.2", buff.datVersID)) {
           const sngNumBZI = this.readSingle(buff);
           if (sngNumBZI > 0) m.n = sngNumBZI;
-        } else if (!this.isOlder("4.0.0", buff.datVersID) 
-                  && this.isOlder("4.1.0", buff.datVersID)) {
+        } else if (!this.isOlder("4.0.0", buff.datVersID)
+          && this.isOlder("4.1.0", buff.datVersID)) {
           // フィリピン版
           const sngNumBZI = this.readSingle(buff);
           if (sngNumBZI > 0) m.n = sngNumBZI;
-          
+
         } else {
           const strNumBZI = this.helper.toNumber(this.readString(buff, 32));
           if (strNumBZI !== null && strNumBZI > 0) m.n = strNumBZI;
@@ -870,14 +870,22 @@ export class DsdDataService {
       const SokuR0 = this.readByte(buff);
       if (SokuR0 > 0) {
         if (m.g_no < 3 && m.shape !== '円形') {
-          bar.sidebar.side_dia = SokuR0;
+          if (bar.sidebar1 !== undefined) {
+            bar.sidebar1.side_dia = SokuR0;
+          } else {
+            bar.sidebar.side_dia = SokuR0;
+          }
         }
       }
       const SokuR1 = this.readByte(buff);
       const SokuHON0 = this.readByte(buff);
       if (SokuHON0 > 0) {
         if (m.g_no < 3 && m.shape !== '円形') {
-          bar.sidebar.side_n = SokuHON0;
+          if (bar.sidebar1 !== undefined) {
+            bar.sidebar1.side_n = SokuHON0;
+          } else {
+            bar.sidebar.side_n = SokuHON0;
+          }
         }
       }
       const SokuHON1 = this.readByte(buff);
@@ -886,8 +894,21 @@ export class DsdDataService {
         if (m.g_no < 2 && m.shape !== '円形') {
           const s1 = Math.floor(SokuKABURI0);
           const s2 = Math.ceil((SokuKABURI0 - s1) * 10000);
-          if (s1 > 0) bar.sidebar.side_cover = s1;
-          if (s2 > 0) bar.sidebar.side_ss = s2;
+          if (s1 > 0) {
+            if (bar.sidebar1 !== undefined) {
+              bar.sidebar1.side_cover = s1;
+            } else {
+              bar.sidebar.side_cover = s1;
+            }
+          }
+          if (s2 > 0) {
+            if (bar.sidebar1 !== undefined) {
+              bar.sidebar1.side_ss = s2;
+            } else {
+              bar.sidebar.side_ss = s2;
+            }
+          }
+
         }
       }
       const SokuKABURI1 = this.readSingle(buff);
