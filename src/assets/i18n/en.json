@@ -254,6 +254,8 @@
         "p_check":"Performance check",
         "safety_ratio":"Safety ratio list",
         "check":"Check",
+        "axis_maxmin":"Axis force max/min",
+        "consider":"consider",
         "bend":"Bending",
         "shear":"Shear",
         "twist":"Twist",
