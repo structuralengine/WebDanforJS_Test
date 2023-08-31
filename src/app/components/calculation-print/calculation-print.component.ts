@@ -36,6 +36,10 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   public calculate_moment_checked: boolean;
   public calculate_shear_force_checked: boolean;
   public calculate_torsional_moment_checked: boolean;
+
+  // 照査
+  public consider_moment_checked: boolean;
+
   // 部材
   public table_datas: any[];
 
@@ -68,6 +72,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.calculate_moment_checked = this.calc.print_selected.calculate_moment_checked;
     this.calculate_shear_force_checked = this.calc.print_selected.calculate_shear_force;
     this.calculate_torsional_moment_checked = this.calc.print_selected.calculate_torsional_moment;
+
+    this.consider_moment_checked = false;
 
     this.table_datas = new Array();
     for (const data of this.calc.getColumnData()) {
@@ -267,15 +273,17 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
+
+    //if check consider then get table max min for bending moment
+    ui_data["axis_max_min"] = this.consider_moment_checked;
+    console.log(this.consider_moment_checked)
     //check if get safety ratio list
-    //const isSafetyRatio = document.getElementById('print_safety_ratio').getAttribute('ng-reflect-model');
-    const isSR =this.print_safety_ratio_checked;
+    const isSR = this.print_safety_ratio_checked;
     let url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
     if (isSR) {
       ui_data['calc']['print_calculate_checked'] = true;
       url = environment.prevURL;
     }
-
     this.http
       .post(url, ui_data, {
         headers: new HttpHeaders({
@@ -299,13 +307,13 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         })
   }
 
-  changeButton(el:any){
-    if(el.target.checked && el.target.id !== "print_safety_ratio")
-      this.print_safety_ratio_checked= false;
-    else if(el.target.checked && el.target.id === "print_safety_ratio")
-    {
-      this.print_calculate_checked= false;
-      this.print_section_force_checked= false;
+  changeButton(el: any) {
+    if (el.target.checked && el.target.id !== "print_safety_ratio")
+      this.print_safety_ratio_checked = false;
+    else if (el.target.checked && el.target.id === "print_safety_ratio") {
+      this.print_calculate_checked = false;
+      this.print_section_force_checked = false;
+      this.consider_moment_checked = false;
     }
   }
 
