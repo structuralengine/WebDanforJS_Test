@@ -131,6 +131,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
     ui_data["member_group_selection"] = column_data;
 
+    console.log(JSON.stringify(ui_data));
+    
     const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
 
     this.http
@@ -200,6 +202,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
+
+    console.log(JSON.stringify(ui_data));
 
     const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
     const url_summary = environment.printURL;
@@ -274,6 +278,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
     ui_data["member_group_selection"] = column_data;
 
+    console.log(JSON.stringify(ui_data));
+
     //if check consider then get table max min for bending moment
     ui_data["axis_max_min"] = this.consider_moment_checked;
     console.log(this.consider_moment_checked)
@@ -338,6 +344,9 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
+
+    console.log(JSON.stringify(ui_data));
+
     const url_summary = environment.printURL;
     this.http
       .post(url_summary, ui_data, {
