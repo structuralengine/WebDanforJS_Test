@@ -501,6 +501,16 @@ export class InputBasicInformationService  {
       }
     }
     const sp1: number = this.get_specification1();
+
+    //Then get specification_list 2;
+    // this.specification2_list = basic.specification2_list;
+    this.specification2_list = this.default_specification2(sp1);
+    for(const sp2 of this.specification2_list){
+      const _sp2 = basic.specification2_list.find(v=> v.id===sp2.id)
+      if(_sp2 != null){
+        sp2.selected = _sp2.selected;
+      }
+    }
     const sp2: number = this.get_specification2();
 
     this.pickup_moment = this.default_pickup_moment(sp1, sp2);
@@ -541,17 +551,6 @@ export class InputBasicInformationService  {
         }
       }
     }
-
-    // this.specification2_list = basic.specification2_list;
-    this.specification2_list = this.default_specification2(sp1);
-    for(const sp2 of this.specification2_list){
-      const _sp2 = basic.specification2_list.find(v=> v.id===sp2.id)
-      if(_sp2 != null){
-        sp2.selected = _sp2.selected;
-      }
-    }
-
-
     this.conditions_list = basic.conditions_list;
   }
 
