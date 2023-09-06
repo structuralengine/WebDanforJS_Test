@@ -241,6 +241,7 @@
         "safe_ff":"Safety (fatigue fracture)",
         "safe_d":"Safety (destruction)",
         "r_ex":"Restorability (damage) Except during an earthquake",
+        "u_damage":"Usability (damage)",
         "r_at":"Restorability (damage) At the time of an earthquake",
         "min_rebar":"Minimum rebar amount",
         "dont_use":"Do not use",
