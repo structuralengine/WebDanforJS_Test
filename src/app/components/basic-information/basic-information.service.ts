@@ -400,6 +400,7 @@ export class InputBasicInformationService  {
     this.specification2_list.map(
       obj => obj.selected = (obj.id === id) ? true : false);
 
+    this.set_default_pickup();
   }
 
   // 設計条件の初期値

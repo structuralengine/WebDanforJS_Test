@@ -152,6 +152,38 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     this.table1_datas = basic.pickup_moment;
     this.table2_datas = basic.pickup_shear_force;
     this.table3_datas = basic.pickup_torsional_moment;
+    //set data to option.data
+    this.options1.dataModel.data = this.table1_datas;
+    this.options2.dataModel.data = this.table2_datas;
+    this.options3.dataModel.data = this.table3_datas;
+
+    if (!(this.grid1 == null))
+      this.grid1.refreshDataAndView();
+    if (!(this.grid2 == null))
+      this.grid2.refreshDataAndView();
+    if (!(this.grid3 == null))
+      this.grid3.refreshDataAndView();
+    this.specification1_select_id = i;
+  }
+
+  /// 仕様 変更時の処理
+  public setSpecification2(id: number): void {
+    this.specification2_list.map(
+      obj => obj.selected = (obj.id === id) ? true : false);
+    this.basic.set_specification2(id);
+    const basic = this.basic.getSaveData();
+
+    this.specification1_list = basic.specification1_list; // 適用
+    this.specification2_list = basic.specification2_list; // 仕様
+    this.conditions_list = basic.conditions_list;         //  設計条件
+
+    this.table1_datas = basic.pickup_moment;
+    this.table2_datas = basic.pickup_shear_force;
+    this.table3_datas = basic.pickup_torsional_moment;
+    //set data to option.data
+    this.options1.dataModel.data = this.table1_datas;
+    this.options2.dataModel.data = this.table2_datas;
+    this.options3.dataModel.data = this.table3_datas;
 
     if (!(this.grid1 == null))
       this.grid1.refreshDataAndView();
@@ -160,14 +192,6 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     if (!(this.grid3 == null))
       this.grid3.refreshDataAndView();
 
-    this.specification1_select_id = i;
-  }
-
-  /// 仕様 変更時の処理
-  public setSpecification2(id: number): void {
-    this.specification2_list.map(
-      obj => obj.selected = (obj.id === id) ? true : false);
     this.specification2_select_id = id;
-    
   }
 }
