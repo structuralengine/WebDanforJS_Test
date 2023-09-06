@@ -11,10 +11,28 @@
         padding: 0 8px !important;
     }
 }
+a:hover {
+    text-decoration: none;
+}
 
 a.disabled {
     pointer-events: none;
-    color: rgb(155, 155, 155);
+    color: var(--text_disabled);
+
+    svg {
+        circle[fill="white"] {
+            fill: var(--text_disabled);
+        }
+        path[stroke="white"] {
+            stroke: var(--text_disabled);
+        }
+        path[fill="white"] {
+            fill: var(--text_disabled);
+        }
+        rect[fill="white"] {
+            fill: var(--text_disabled);
+        }
+    }
 }
 
 // 左のメニュー画面
@@ -28,9 +46,9 @@ a.disabled {
 
 .c-mainNavArea {
     // padding-top: 0px;
-    width: 220px;
+    width: 212px;
     height: 100%;
-    background: #f3f4f6;
+    background: var(--base);
     border-right: 1px solid #d6d9e0;
     position: fixed;
     top: 64px;
@@ -40,40 +58,45 @@ a.disabled {
     transition: width 0.3s ease;
     ul {
         padding-left: 0;
+        margin: 40px 4px auto 4px;
     }
     &__nav {
         margin-bottom: 0;
         padding-left: 0;
     }
     &__navItem {
-        ul {
-            background: #fff;
-            color: #2f3f4e;
-            font-size: 14px;
+        margin-bottom: 4px;
+        &:nth-child(1) {
+            margin-bottom: 16px;
         }
-        a.is-active {
-            background: #2f3f4e;
-            color: #fff;
+        &:nth-child(10) {
+            margin-bottom: 16px;
         }
     }
     &__navItemTitle {
-        transform: translateX(0);
-        display: block;
-        border-bottom: 1px solid #000080;
-        padding: 10px 15px;
-        font-size: 16px;
-        color: #2f3f4e;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 8px;
+        width: 100%;
+        padding: 4px 0 4px 15px;
+        border-radius: 100px;
+        background: var(--base_dim);
+        font-size: 13px;
+        color: var(--text_main);
         cursor: pointer;
-        position: relative;
-        &:hover {
-            background: #2f3f4e0c;
-            text-decoration: none;
+        &:hover:not(.disabled):not(.is-active) {
+            opacity: 0.8;
+        }
+        &.is-active {
+            color: var(--text_main);
+            background: var(--primary);
         }
     }
 }
 
 // メインエリア
 .c-contentsArea {
-    margin-left: 220px;
+    margin-left: 212px;
     padding: 70px 10px 10px 10px;
 }
