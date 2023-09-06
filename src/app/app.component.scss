@@ -2,17 +2,14 @@
     position: fixed;
     width: 100%;
     display: flex;
-    color: #fff;
-    background-color: #2f3f4e;
+    color: var(--text_main);
+    background: var(--base);
     z-index: 1000;
     .container {
         position: relative;
         max-width: 100%;
         padding: 0 8px !important;
     }
-}
-a:hover {
-    text-decoration: none;
 }
 
 a.disabled {
@@ -51,7 +48,7 @@ a.disabled {
     background: var(--base);
     border-right: 1px solid #d6d9e0;
     position: fixed;
-    top: 64px;
+    top: 44px;
     left: 0;
     overflow-y: auto;
     z-index: 500;

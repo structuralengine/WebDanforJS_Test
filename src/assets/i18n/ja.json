@@ -1,11 +1,14 @@
 {
     "menu": {
         "softName": "断面性能照査プログラム",
+        "file":"ファイル",
         "newEntry":"新規作成",
         "openFile":"ファイルを開く",
         "saveFile":"ファイルを保存",
         "overwrite":"上書き保存",
         "openPick":"ピックアップファイルを開く",
+        "language": "言語",
+        "help": "ヘルプ",
         "logout":"ログアウト",
         "login":"ログイン",
         "fail":"ファイルを開くことに失敗しました, status:",

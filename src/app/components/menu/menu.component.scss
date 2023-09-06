@@ -9,23 +9,45 @@ $border-color: #42c1ca;
 
 .dropdownmenu {
     z-index: 1050;
-    .save-file{
-    pointer-events: none;
-    opacity: 0.4;  
+    .save-file {
+        pointer-events: none;
+        opacity: 0.4;
     }
-    .active-save{
-        pointer-events:all;
-        opacity: 1;  
+    .active-save {
+        pointer-events: all;
+        opacity: 1;
+    }
+    .dropdown-toggle {
+        &::after {
+            border: none;
+            top: 60%;
+            right: -4px;
+            transform: translateY(-50%) rotate(0);
+            background-image: url("./../../../assets/icons/icon-arrow.svg");
+            background-size: contain;
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background-repeat: no-repeat;
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    }
+    &.show {
+        .dropdown-toggle {
+            &::after {
+                top: 40%;
+                transform: translateY(-50%) rotate(180deg);
+            }
+        }
     }
 }
 
 .title-and-menu {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    // padding: 8px 0;
-    //flex: 1 0 auto;
+    height: 44px;
     font-weight: lighter;
     @media screen and (max-width: 767px) {
         display: block;
@@ -33,18 +55,29 @@ $border-color: #42c1ca;
     }
     .icon-area {
         display: flex;
-        font-size: 20px;
         a {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
             &:hover {
                 cursor: pointer;
                 opacity: 0.7;
             }
         }
         ul {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
             li {
                 list-style: none;
                 display: inline-block;
-                margin-right: 8px;
+                margin-right: 24px;
+                font-weight: 400;
+            }
+            li:first-child {
+                margin-left: 10px;
+                margin-right: 30px;
             }
         }
         span {
@@ -52,19 +85,17 @@ $border-color: #42c1ca;
                 cursor: pointer;
             }
         }
+        svg {
+            height: 16px;
+            width: 16px;
+            width: 100%;
+        }
         @media screen and (max-width: 767px) {
             justify-content: center;
         }
     }
     .icon {
         color: #fff;
-    }
-    li {
-        margin-top: 8px;
-        font-size: 24px;
-    }
-    .login-area {
-        font-size: 16px;
     }
 }
 
@@ -92,15 +123,27 @@ h1 {
     }
 }
 
+.title-filename {
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    svg {
+        margin-right: 4px;
+    }
+}
+
 .login-item {
     color: #fff;
 }
 
-.icon-area a:hover+.fukidashi {
+.icon-area a:hover + .fukidashi {
     display: block;
 }
 
-.icon-area a.file:checked+.fukidashi {
+.icon-area a.file:checked + .fukidashi {
     display: none;
 }
 
@@ -118,6 +161,14 @@ h1 {
         cursor: pointer;
         opacity: 0.7;
     }
+}
+
+.menu-item {
+    display: inline;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 4px;
+    padding-right: 12px;
 }
 
 .logOut {
@@ -144,11 +195,11 @@ $md-radio-ripple-size: 12px;
     }
     input[type="radio"] {
         display: none;
-        &:checked+label:before {
+        &:checked + label:before {
             border-color: $md-radio-checked-color;
             animation: ripple 0.2s linear forwards;
         }
-        &:checked+label:after {
+        &:checked + label:after {
             transform: scale(1);
         }
     }
@@ -186,19 +237,19 @@ $md-radio-ripple-size: 12px;
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .title-and-menu {
-        .icon-area {
-            ul {
-                li {
-                    font-size: 24px;
-                    margin-right: 12px;
-                    &:nth-child(3) {
-                        display: none;
-                        margin: 0;
-                    }
-                }
-            }
-        }
+#disTitle .dropdown-item {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px;
+    &:hover {
+        background-color: var(--base);
+        color: var(--primary);
+        opacity: 1;
     }
+}
+
+.dropdown-menu.show {
+    background: var(--base);
+    overflow: hidden;
 }

@@ -1,11 +1,14 @@
 {
     "menu": {
         "softName": "WebDanforJS",
+        "file": "file",
         "newEntry":"Create a new file",
         "openFile":"Open file",
         "saveFile":"Save a file",
         "overwrite":"overwrite save",
         "openPick":"Open the pickup file",
+        "language": "Language",
+        "help": "Help",
         "logout":"Logout",
         "login":"Login",
         "fail":"Failed to open the file. status:",
