@@ -13,16 +13,80 @@
 
 @import "variables";
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: "Noto Sans JP", sans-serif;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--base_bg);
 }
 
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-ngb-modal-backdrop{
-  z-index: 1039 !important;
+ngb-modal-backdrop {
+    z-index: 1039 !important;
+}
+
+//grid
+body {
+    .pq-grid-col,
+    .pq-grid-number-col {
+        color: var(--text_main);
+    }
+    div.pq-editor-outer {
+        background: transparent !important;
+    }
+    div.pq-theme {
+        color: var(--primary);
+        border-color: var(--table_border) !important;
+        background: none;
+    }
+    .pq-body-outer .pq-cont-left {
+        border-color: var(--table_border) !important;
+    }
+    .pq-header-outer {
+        background: var(--table_empty_bg);
+        border-bottom-color: var(--table_border) !important;
+    }
+
+    .pq-header-outer .pq-cont-inner {
+        background-image: none;
+    }
+
+    .pq-td-border-right > .pq-grid-row > .pq-grid-cell {
+        border-right-color: var(--table_border) !important;
+    }
+    .pq-td-border-top > .pq-grid-row > .pq-grid-cell,
+    .pq-cont-inner > .pq-td-border-top > .pq-grid-row {
+        border-bottom-color: var(--table_border) !important;
+    }
+    .pq-grid-row > .pq-grid-number-cell,
+    .pq-grid-number-col {
+        border-color: var(--table_border) !important;
+    }
+    .pq-body-outer .pq-grid-number-cell,
+    .pq-summary-outer .pq-grid-number-cell {
+        background: none !important;
+    }
+    .pq-grid-col {
+        border-color: var(--table_border) !important;
+    }
+    .pq-grid-col:hover {
+        background: none !important;
+    }
+    .pq-grid-row.pq-striped,
+    .pq-grid-row.pq-striped .pq-align-right {
+        background: var(--table_row_odd_bg) !important;
+        color: #fff;
+    }
+    .pq-grid-row,
+    .pq-grid-cell.pq-align-right {
+        background: var(--table_row_even_bg) !important;
+        color: #fff;
+    }
+    .cdk-virtual-scroll-viewport {
+        contain: none;
+    }
 }
