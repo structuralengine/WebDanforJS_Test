@@ -89,4 +89,13 @@ body {
     .cdk-virtual-scroll-viewport {
         contain: none;
     }
+    .pq-title-span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pq-col-sort-count,
+    .pq-col-sort-icon {
+        display: none;
+    }
 }

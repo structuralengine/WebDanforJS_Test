@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
+import { HostListener } from '@angular/core';
 import pq from 'pqgrid';
 
 //import few localization files for this demo.
@@ -15,6 +16,25 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   @ViewChild('pqgrid') div: ElementRef;
   @Input() options: any;
   grid: pq.gridT.instance = null;
+
+  isMemberQuestionActive = false;
+
+  @HostListener('document:mouseover', ['$event']) toggleActive(event: Event) {
+    const elQAIcon = window.document.querySelector('#member-question');
+    const elTable = window.document.querySelector('#member-table');
+    const grandEl = elQAIcon.parentElement.parentElement;
+
+    this.isMemberQuestionActive = grandEl?.classList.contains('active') || false;
+
+    if (grandEl.contains(event.target as Node)) {
+      grandEl.classList.add('active');
+    }
+    else if (elTable.contains(event.target as Node) && this.isMemberQuestionActive){
+    }
+    else {
+      grandEl.classList.remove('active');
+    }
+  }
 
   private createGrid() {
     this.options.beforeCellKeyDown = (evt, ui) => {
