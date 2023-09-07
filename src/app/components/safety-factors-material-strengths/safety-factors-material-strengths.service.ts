@@ -37,6 +37,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
 
     let result: any;
     const sp1 = this.basic.get_specification1();
+    const sp2 = this.basic.get_specification2();
     switch (sp1) {
       case 0: // 鉄道
       case 1: // 土木学会
@@ -71,7 +72,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
           },
           {
             id: 6, 
-            title: this.translate.instant("safety-factors-material-strengths.r_ex"),
+            title:  (sp2 !== 3 && sp2 !== 4) ? this.translate.instant("safety-factors-material-strengths.r_ex") : this.translate.instant("safety-factors-material-strengths.u_damage"),
             M_rc: 1.30, M_rs: 1.00, M_rbs: 1.0,
             V_rc: 1.30, V_rs: 1.00, V_rbc: 1.30, V_rbs: 1.10, V_rbv: 1.20,
             T_rbt:1.30,

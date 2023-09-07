@@ -56,9 +56,10 @@ export class InputBasicInformationService  {
   private set_default_pickup(): void {
 
     const sp1 = this.get_specification1();
+    const sp2 = this.get_specification2();
 
     // 曲げモーメントテーブル
-    const keys_moment = this.default_pickup_moment(sp1);
+    const keys_moment = this.default_pickup_moment(sp1, sp2);
     // 古い入力があれば no の入力を 保持
     const tmp_moment: any[] = new Array();
     for(const def of keys_moment){
@@ -71,7 +72,7 @@ export class InputBasicInformationService  {
     this.pickup_moment = tmp_moment;
 
     // せん断力テーブル
-    const keys_shear = this.default_pickup_shear(sp1);
+    const keys_shear = this.default_pickup_shear(sp1, sp2);
     // 古い入力があれば no の入力を 保持
     const tmp_shear: any[] = new Array();
     for(const def of keys_shear){
@@ -84,7 +85,7 @@ export class InputBasicInformationService  {
     this.pickup_shear_force = tmp_shear;
 
     // ねじりモーメントテーブル
-    const keys_torsional = this.default_pickup_torsional(sp1);
+    const keys_torsional = this.default_pickup_torsional(sp1, sp2);
     // 古い入力があれば no の入力を 保持
     const tmp_torsional: any[] = new Array();
     for(const def of keys_torsional){
@@ -105,12 +106,11 @@ export class InputBasicInformationService  {
   }
 
   // 曲げモーメントテーブルの初期値
-  private default_pickup_moment(specification1: number): any{
+  private default_pickup_moment(specification1: number, specification2? : number ): any{
     let result: any[] = new Array();
     switch (specification1) {
       case 0: // 鉄道
       case 1: // 土木学会
-
         result = [
           { 
             id: 0, 
@@ -138,7 +138,7 @@ export class InputBasicInformationService  {
             no: null},
           { 
             id: 6, 
-            title: this.translate.instant("basic-information.r_ex"),
+            title: ((specification2 != 3 && specification2 != 4) ? this.translate.instant("basic-information.r_ex") : this.translate.instant("basic-information.u_damage")),
             no: null},
           { 
             id: 7, 
@@ -195,7 +195,7 @@ export class InputBasicInformationService  {
     target.no = no;
   }
   // せん断テーブルの初期値
-  private default_pickup_shear(specification1: number): any{
+  private default_pickup_shear(specification1: number, specification2? : number): any{
     let result: any[] = new Array();
     switch (specification1) {
       case 0: // 鉄道
@@ -227,7 +227,7 @@ export class InputBasicInformationService  {
             no: null},
           { 
             id: 6, 
-            title: this.translate.instant("basic-information.r_ex"),
+            title: ((specification2 != 3 && specification2 != 4) ? this.translate.instant("basic-information.r_ex") : this.translate.instant("basic-information.u_damage")),
             no: null},
           { 
             id: 7, 
@@ -284,7 +284,7 @@ export class InputBasicInformationService  {
   }
 
   // ねじりモーメントテーブルの初期値
-  private default_pickup_torsional(specification1: number): any{
+  private default_pickup_torsional(specification1: number, specification2?: number): any{
     let result: any[] = new Array();
     switch (specification1) {
       case 0: // 鉄道
@@ -303,8 +303,8 @@ export class InputBasicInformationService  {
             title: this.translate.instant("basic-information.safe_d"),
             no: null},
           { 
-            id: 6, 
-            title: this.translate.instant("basic-information.r_ex"),
+            id: 6,
+            title: ((specification2 != 3 && specification2 != 4) ? this.translate.instant("basic-information.r_ex") : this.translate.instant("basic-information.u_damage")),
             no: null},
           { 
             id: 7, 
@@ -400,6 +400,7 @@ export class InputBasicInformationService  {
     this.specification2_list.map(
       obj => obj.selected = (obj.id === id) ? true : false);
 
+    this.set_default_pickup();
   }
 
   // 設計条件の初期値
@@ -502,7 +503,18 @@ export class InputBasicInformationService  {
     }
     const sp1: number = this.get_specification1();
 
-    this.pickup_moment = this.default_pickup_moment(sp1);
+    //Then get specification_list 2;
+    // this.specification2_list = basic.specification2_list;
+    this.specification2_list = this.default_specification2(sp1);
+    for(const sp2 of this.specification2_list){
+      const _sp2 = basic.specification2_list.find(v=> v.id===sp2.id)
+      if(_sp2 != null){
+        sp2.selected = _sp2.selected;
+      }
+    }
+    const sp2: number = this.get_specification2();
+
+    this.pickup_moment = this.default_pickup_moment(sp1, sp2);
     for(let i=0; i<basic.pickup_moment.length; i++){
       const e = this.pickup_moment[i];
       const t = basic.pickup_moment[i];
@@ -515,7 +527,7 @@ export class InputBasicInformationService  {
       }
     }
 
-    this.pickup_shear_force = this.default_pickup_shear(sp1);
+    this.pickup_shear_force = this.default_pickup_shear(sp1, sp2);
     for(let i=0; i<basic.pickup_shear_force.length; i++){
       const e = this.pickup_shear_force[i];
       const t = basic.pickup_shear_force[i];
@@ -527,7 +539,7 @@ export class InputBasicInformationService  {
       }
     }
 
-    this.pickup_torsional_moment = this.default_pickup_torsional(sp1);
+    this.pickup_torsional_moment = this.default_pickup_torsional(sp1, sp2);
     if('pickup_torsional_moment' in basic){
       for(let i=0; i<basic.pickup_torsional_moment.length; i++){
         const e = this.pickup_torsional_moment[i];
@@ -540,17 +552,6 @@ export class InputBasicInformationService  {
         }
       }
     }
-
-    // this.specification2_list = basic.specification2_list;
-    this.specification2_list = this.default_specification2(sp1);
-    for(const sp2 of this.specification2_list){
-      const _sp2 = basic.specification2_list.find(v=> v.id===sp2.id)
-      if(_sp2 != null){
-        sp2.selected = _sp2.selected;
-      }
-    }
-
-
     this.conditions_list = basic.conditions_list;
   }
 
