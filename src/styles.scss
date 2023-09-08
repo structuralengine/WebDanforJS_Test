@@ -21,7 +21,13 @@ body {
     background: var(--base_bg);
 }
 
+a {
+    color: var(--text_main);
+}
+
 a:hover {
+    color: var(--text_main);
+    opacity: 1;
     text-decoration: none;
 }
 

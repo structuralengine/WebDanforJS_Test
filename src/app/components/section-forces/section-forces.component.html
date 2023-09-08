@@ -14,14 +14,38 @@
       </li>
       <!-- ねじり -->
       <li class="c-subNavArea__navItem">
-        <a (click)="activePageChenge(2)" id="foc3" class="c-subNavArea__navItemTitle">
+        <a (click)="activePageChenge(2)" id="foc2" class="c-subNavArea__navItemTitle">
           <span translate>section-forces.t_check</span>
         </a>
       </li>
     </ul>
   </nav>
+  <div class="slider-section">
+    <div
+      class="slider-container"
+      *ngFor="let group of bendingColGroupKeys"
+      (click)="toggleDataLoad(group)"
+      [ngClass]="{ active: toggleStatus[group] }"
+    >
+      <div class="slider">
+        <div class="slider-icon"></div>
+      </div>
+      <div class="slider-label">
+        <ng-container [ngSwitch]="group">
+          <span *ngSwitchCase="'stress'">耐久性</span>
+          <span *ngSwitchCase="'safe-ff'">安全性（疲労破壊）</span>
+          <span *ngSwitchCase="'safe-destruct'">安全性（破壊）</span>
+          <span *ngSwitchCase="'recover-ex-earth'"
+            >復旧性（損傷）地震時以外</span
+          >
+          <span *ngSwitchCase="'recover-earth'">復旧性（損傷）地震時</span>
+          <span *ngSwitchCase="'rebar'">最小鉄筋量</span>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
+<div class="c-sheetArea">
   <app-sheet #grid [options]="options"></app-sheet>
 </div>

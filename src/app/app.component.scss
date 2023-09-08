@@ -35,18 +35,17 @@ a.disabled {
 // 左のメニュー画面
 .c-container {
     margin: 0 auto;
-    // margin-top: 0px;
     width: 100%;
     max-width: 2500px;
     min-width: 1024px;
+    padding-top: 44px;
 }
 
 .c-mainNavArea {
     // padding-top: 0px;
     width: 212px;
     height: 100%;
-    background: var(--base);
-    border-right: 1px solid #d6d9e0;
+    background: var(--base-950);
     position: fixed;
     top: 44px;
     left: 0;
@@ -95,5 +94,7 @@ a.disabled {
 // メインエリア
 .c-contentsArea {
     margin-left: 212px;
-    padding: 70px 10px 10px 10px;
+    background: var(--base-950);
+
+    // padding: 70px 10px 10px 10px;
 }

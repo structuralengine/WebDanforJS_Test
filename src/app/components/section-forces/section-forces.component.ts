@@ -15,6 +15,16 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public bendingColGroupKeys: string[];
+  public bendingColGroups = {
+    'stress': { start: 1, end: 4 }, //耐久性トグル
+    'safe-ff': { start: 5, end: 10 }, //安全性(疲労破壊)トグル
+    'safe-destruct': { start: 11, end: 12 }, //安全性(破壊)トグル
+    'recover-ex-earth': { start: 13, end: 14 }, //復旧性(地震以外)トグル
+    'recover-earth': { start: 15, end: 16 }, //復旧性(地震)トグル
+    'rebar': { start: 17, end: 18 } //最小鉄筋量トグル
+  };
+  public toggleStatus: { [key: string]: boolean } = {};
 
   private ROWS_COUNT = 0;
   private table_datas: any[] = [];
@@ -30,6 +40,11 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   ngOnInit() {
+    this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
+    for (const group of this.bendingColGroupKeys) {
+      this.toggleStatus[group] = true;
+    }
+
     // データを登録する
     this.ROWS_COUNT = this.rowsCount();
     this.loadData(this.ROWS_COUNT);
@@ -71,6 +86,18 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       rowIndx: 0,
       colIndx: 0,
     });
+  }
+
+  public toggleDataLoad(group: string): void {
+    this.toggleStatus[group] = !this.toggleStatus[group]; // 状態を反転
+  
+    const { start, end } = this.bendingColGroups[group];
+    this.grid.grid.getColModel().forEach((column, index) => {
+      if (index >= start && index <= end) {
+        column.hidden = !this.toggleStatus[group];
+      }
+    });
+    this.grid.refreshDataAndView();
   }
 
   // 指定行row まで、曲げモーメント入力データを読み取る

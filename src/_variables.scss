@@ -1,5 +1,11 @@
 $primary: #39b54a;
+$primary-800: #0a713c;
+$primary-500: #09de6d;
 $base_dark: #1e252c;
+$base_dark_950: #1e252c;
+$base_dark_900: #333d46;
+$base_dark_700: #3f515f;
+
 $base_dim: #333d46;
 $base_bg: #333d46;
 
@@ -17,9 +23,16 @@ $menu_bg_dark: #333333;
 $disabled_dark: #535353;
 $sepalater_dark: #888888;
 
+$checkbox_selected: #395b43;
+
 :root {
     --primary: #{$primary};
+    --primary-800: #{$primary-800};
+    --primary-500: #{$primary-500};
     --base: #{$base_dark};
+    --base-950: #{$base_dark_950};
+    --base-900: #{$base_dark_900};
+    --base-700: #{$base_dark_700};
     --base_dim: #{$base_dim};
     --base_bg: #{$base_bg};
     --text_main: #{$text_light};
@@ -33,4 +46,5 @@ $sepalater_dark: #888888;
     --menu_bg: #{$menu_bg_dark};
     --disabled: #{$disabled_dark};
     --sepalater: #{$sepalater_dark};
+    --checkbox_selected: #{$checkbox_selected};
 }
