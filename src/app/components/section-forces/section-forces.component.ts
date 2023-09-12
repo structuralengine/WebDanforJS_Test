@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular
 import { InputSectionForcesService } from './section-forces.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-section-forces',
@@ -11,7 +12,7 @@ import pq from 'pqgrid';
 export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
-    private force: InputSectionForcesService) { }
+    private force: InputSectionForcesService, private translate: TranslateService) { }
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
@@ -49,6 +50,39 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       colModel: this.columnHeaders1,
       dataModel: { data: this.table_datas },
       freezeCols: 1,
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
       beforeTableView: (evt, ui) => {
         const dataV = this.table_datas.length;
         if (ui.initV == null) {
