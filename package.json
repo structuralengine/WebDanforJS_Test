@@ -15,7 +15,9 @@
     "build:prod": "ng build --configuration production --optimization --extract-licenses --build-optimizer && webpack --config webpack.electron.prod.config.js && npm run filecopy1 && npm run filecopy2",
     "start:prod": "electron dist/index.js",
     "filecopy1": "node -e \"require('fs').copyFileSync('dev-app-update.yml', 'dist/dev-app-update.yml')\"",
-    "filecopy2": "node -e \"require('fs').copyFileSync('app-update.yml', 'dist/app-update.yml')\""
+    "filecopy2": "node -e \"require('fs').copyFileSync('app-update.yml', 'dist/app-update.yml')\"",
+    "electron:isas": "npm run build:isas && npx electron-builder build --windows",
+    "build:isas": "ng build --configuration production --optimization --extract-licenses --build-optimizer && webpack --config webpack.electron.isas.config.js && npm run filecopy1 && npm run filecopy2"
   },
   "description": "WebDanforJS",
   "author": {
