@@ -60,6 +60,39 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
         colModel: this.columnHeaders,
         dataModel: { data: this.table_datas[i] },
         freezeCols: (this.save.isManual()) ? 4 : 5,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       };
       this.option_list.push(op);
     }

@@ -62,6 +62,7 @@
         "safe_pv":"Safety (fatigue fracture) Permanent + variable",
         "safe_d":"Safety (destruction)",
         "r_ex":"Restorability (damage) Except during an earthquake",
+        "u_damage": "Usability (damage)",
         "r_at":"Restorability (damage) At the time of an earthquake",
         "min_rebar":"Minimum rebar amount",
         "u_stress":"Use limit For studying edge stress",
@@ -240,6 +241,7 @@
         "safe_ff":"Safety (fatigue fracture)",
         "safe_d":"Safety (destruction)",
         "r_ex":"Restorability (damage) Except during an earthquake",
+        "u_damage":"Usability (damage)",
         "r_at":"Restorability (damage) At the time of an earthquake",
         "min_rebar":"Minimum rebar amount",
         "dont_use":"Do not use",
@@ -254,6 +256,8 @@
         "p_check":"Performance check",
         "safety_ratio":"Safety ratio list",
         "check":"Check",
+        "axis_maxmin":"Axis force max/min",
+        "consider":"Consider",
         "bend":"Bending",
         "shear":"Shear",
         "twist":"Twist",
@@ -474,5 +478,11 @@
     "window": {
         "closeTitle": "Confirm",
         "closeMessage": "Changes may not to be saved. Are you sure you want to quit?"
+    },
+    "action_key":{
+        "copy": "Copy",
+        "paste": "Paste",
+        "undo": "Undo",
+        "cut": "Cut"
     }
 }

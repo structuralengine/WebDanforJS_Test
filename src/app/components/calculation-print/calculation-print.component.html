@@ -89,6 +89,25 @@
       </div>
     </fieldset>
   </div>
+  <div class="print-item-1">
+    <fieldset>
+      <legend translate>calculation-print.axis_maxmin</legend>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            name="calculate_moment"
+            id="consider_moment"
+            [value]="consider_moment_checked"
+            [(ngModel)]="consider_moment_checked"
+            [checked]="consider_moment_checked"
+            (click)="changeButton($event)"
+          />
+          <p translate>calculation-print.consider</p>
+        </label>
+      </div>
+    </fieldset>
+  </div>
 </div>
 
 <div class="table-container">
