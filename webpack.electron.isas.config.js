@@ -1,6 +1,8 @@
 const path = require('path');
 const baseConfig = require('./webpack.electron.config');
 
+const src = path.join(process.cwd(), 'src', 'electron');
+
 module.exports = {
   ...baseConfig,
   mode: 'production',
