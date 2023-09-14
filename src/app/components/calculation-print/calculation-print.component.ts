@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { InputCalclationPrintService } from './calculation-print.service';
 import { SaveDataService } from '../../providers/save-data.service';
 
-import { Auth, getAuth } from "@angular/fire/auth";
+// import { Auth, getAuth } from "@angular/fire/auth";
 import { UserInfoService } from 'src/app/providers/user-info.service';
 import { TranslateService } from "@ngx-translate/core";
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
@@ -52,14 +52,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     private router: Router,
     private http: HttpClient,
     private user: UserInfoService,
-    public auth: Auth,
+    // public auth: Auth,
     public electronService: ElectronService,
     private translate: TranslateService,
     public language: LanguagesService,
     private helper: DataHelperModule,
     private modalService: NgbModal
   ) {
-    this.auth = getAuth();
+    // this.auth = getAuth();
   }
 
   ngOnInit() {
