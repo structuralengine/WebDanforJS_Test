@@ -23,7 +23,7 @@
   <div class="slider-section">
     <div
       class="slider-container"
-      *ngFor="let group of bendingColGroupKeys"
+      *ngFor="let group of currentColGroupKeys"
       (click)="toggleDataLoad(group)"
       [ngClass]="{ active: toggleStatus[group] }"
     >

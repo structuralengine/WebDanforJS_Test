@@ -15,14 +15,29 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public currentColGroups: { [key: string]: { start: number; end: number } };
+  public currentColGroupKeys: string[];
   public bendingColGroupKeys: string[];
   public bendingColGroups = {
-    'stress': { start: 1, end: 4 }, //耐久性トグル
-    'safe-ff': { start: 5, end: 10 }, //安全性(疲労破壊)トグル
-    'safe-destruct': { start: 11, end: 12 }, //安全性(破壊)トグル
-    'recover-ex-earth': { start: 13, end: 14 }, //復旧性(地震以外)トグル
-    'recover-earth': { start: 15, end: 16 }, //復旧性(地震)トグル
-    'rebar': { start: 17, end: 18 } //最小鉄筋量トグル
+    stress: { start: 1, end: 4 }, //耐久性トグル
+    "safe-ff": { start: 5, end: 10 }, //安全性(疲労破壊)トグル
+    "safe-destruct": { start: 11, end: 12 }, //安全性(破壊)トグル
+    "recover-ex-earth": { start: 13, end: 14 }, //復旧性(地震以外)トグル
+    "recover-earth": { start: 15, end: 16 }, //復旧性(地震)トグル
+    rebar: { start: 17, end: 18 }, //最小鉄筋量トグル
+  };
+  public shearColGroups = {
+    stress: { start: 1, end: 9 }, //耐久性トグル
+    "safe-ff": { start: 10, end: 15 }, //安全性(疲労破壊)トグル
+    "safe-destruct": { start: 16, end: 18 }, //安全性(破壊)トグル
+    "recover-ex-earth": { start: 19, end: 21 }, //復旧性(地震以外)トグル
+    "recover-earth": { start: 22, end: 24 }, //復旧性(地震)トグル
+  };
+  public torsionalColGroups = {
+    stress: { start: 1, end: 8 }, //耐久性トグル
+    "safe-destruct": { start: 9, end: 12 }, //安全性(破壊)トグル
+    "recover-ex-earth": { start: 13, end: 16 }, //復旧性(地震以外)トグル
+    "recover-earth": { start: 17, end: 20 }, //復旧性(地震)トグル
   };
   public toggleStatus: { [key: string]: boolean } = {};
 
@@ -40,6 +55,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   ngOnInit() {
+    this.setColGroupsAndKeys(0);
     this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
     for (const group of this.bendingColGroupKeys) {
       this.toggleStatus[group] = true;
@@ -73,10 +89,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
           this.loadData(dataV + this.ROWS_COUNT);
           this.grid.refreshDataAndView();
         }
-      }
+      },
     };
-
-
   }
 
   ngAfterViewInit() {
@@ -88,10 +102,26 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     });
   }
 
+  private setColGroupsAndKeys(id: number): void {
+    if (id === 0) {
+      this.currentColGroups = this.bendingColGroups;
+    } else if (id === 1) {
+      this.currentColGroups = this.shearColGroups;
+    } else if (id === 2) {
+      this.currentColGroups = this.torsionalColGroups;
+    }
+    this.currentColGroupKeys = Object.keys(this.currentColGroups);
+
+    for (const group of this.currentColGroupKeys) {
+      if (this.toggleStatus[group] === undefined) {
+        this.toggleStatus[group] = true;
+      }
+    }
+  }
+
   public toggleDataLoad(group: string): void {
-    this.toggleStatus[group] = !this.toggleStatus[group]; // 状態を反転
-  
-    const { start, end } = this.bendingColGroups[group];
+    this.toggleStatus[group] = !this.toggleStatus[group];
+    const { start, end } = this.currentColGroups[group];
     this.grid.grid.getColModel().forEach((column, index) => {
       if (index >= start && index <= end) {
         column.hidden = !this.toggleStatus[group];
@@ -131,6 +161,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   public activePageChenge(id: number): void {
+    this.setColGroupsAndKeys(id);
 
     if (id === 0) {
       this.options.colModel = this.columnHeaders1;
@@ -141,6 +172,17 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     } else {
       return;
     }
+
+    this.grid.grid.getColModel().forEach((column, index) => {
+      for (const [group, { start, end }] of Object.entries(
+        this.currentColGroups
+      )) {
+        if (index >= start && index <= end) {
+          column.hidden = !this.toggleStatus[group];
+        }
+      }
+    });
+
     this.activeButtons(id);
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
@@ -159,5 +201,5 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       }
     }
   }
-
+  
 }
