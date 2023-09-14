@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+// import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -29,7 +29,7 @@ export class LoginDialogComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    public auth: Auth,
+    // public auth: Auth,
     private fb: UntypedFormBuilder,
     private translate: TranslateService,
     private helper: DataHelperModule,

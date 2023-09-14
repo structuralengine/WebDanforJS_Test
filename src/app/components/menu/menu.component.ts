@@ -20,7 +20,7 @@ import { DsdDataService } from "src/app/providers/dsd-data.service";
 import { DataHelperModule } from "src/app/providers/data-helper.module";
 import { InputMembersService } from "../members/members.service";
 import { InputDesignPointsService } from "../design-points/design-points.service";
-import { Auth, getAuth } from "@angular/fire/auth";
+// import { Auth, getAuth } from "@angular/fire/auth";
 
 import { LanguagesService } from "../../providers/languages.service";
 import { ElectronService } from "src/app/providers/electron.service";
@@ -50,14 +50,14 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private config: ConfigService,
     public user: UserInfoService,
-    public auth: Auth,
+    // public auth: Auth,
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService,
 
     private readonly keycloak: KeycloakService
   ) {
-    this.auth = getAuth();
+    // this.auth = getAuth();
     this.fileName = "";
     this.pickup_file_name = "";
     this.version = packageJson.version;
