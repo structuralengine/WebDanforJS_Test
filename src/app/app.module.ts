@@ -66,6 +66,7 @@ import { PreviewExcelComponent } from "./components/preview-excel/preview-excel.
 import { IgxExcelModule } from 'igniteui-angular-excel';
 import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.component";
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -114,6 +115,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ],
     declarations: [
         AppComponent,
+        AlertDialogComponent,
         MenuComponent,
         LoginDialogComponent,
         WaitDialogComponent,

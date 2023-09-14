@@ -38,7 +38,7 @@ import { UserInfoService } from "src/app/providers/user-info.service";
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string; 
+  public pickup_file_name: string;
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
@@ -64,7 +64,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();    
+    this._renew();
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -73,11 +73,13 @@ export class MenuComponent implements OnInit {
       $event.returnValue = "Your work will be lost. Do you want to leave this site?";
     }
   }
-  
   // 新規作成
-  renew(): void {
-    this.router.navigate(["/blank-page"]);
-    this._renew();
+  async renew(): Promise<void> {
+    const isConfirm = await this.helper.confirm(this.translate.instant("window.confirm"));
+    if (isConfirm) {
+      this.router.navigate(["/blank-page"]);
+      this._renew();
+    }
   }
 
   private _renew(): void {
@@ -94,11 +96,11 @@ export class MenuComponent implements OnInit {
   }
 
   // Electron でファイルを開く
-  open_electron(){
+  open_electron() {
 
     const response = this.electronService.ipcRenderer.sendSync('open');
 
-    if(response.status!==true){
+    if (response.status !== true) {
       this.helper.alert(this.translate.instant("menu.fail") + response.status);
       return;
     }
@@ -178,7 +180,7 @@ export class MenuComponent implements OnInit {
   // 上書き保存
   // 上書き保存のメニューが表示されるのは electron のときだけ
   public overWrite(): void {
-    if (this.fileName === ""){
+    if (this.fileName === "") {
       this.fileSave();
       return;
     }
@@ -253,7 +255,7 @@ export class MenuComponent implements OnInit {
       this.fileName += ".wdj";
     }
     // 保存する
-    if(this.electronService.isElectron) {
+    if (this.electronService.isElectron) {
       this.fileName = this.electronService.ipcRenderer.sendSync('saveFile', this.fileName, inputJson);
     } else {
       const blob = new window.Blob([inputJson], { type: "text/plain" });
@@ -264,7 +266,7 @@ export class MenuComponent implements OnInit {
   // ログイン関係
   async logIn() {
     if (this.electronService.isElectron) {
-      this.modalService.open(LoginDialogComponent, {backdrop: false}).result.then((result) => {});
+      this.modalService.open(LoginDialogComponent, { backdrop: false }).result.then((result) => { });
     } else {
       this.keycloak.login();
     }
@@ -276,14 +278,14 @@ export class MenuComponent implements OnInit {
     } else {
       this.keycloak.logout(window.location.origin);
       this.user.setUserProfile(null);
-    }    
+    }
   }
-  
+
   public goToLink() {
     window.open(
       "https://fresh-tachometer-148.notion.site/WebDan-5a22f8541cb14d27b56389fec84b580f?pvs=4",
       "_blank"
     );
   }
-  
+
 }
