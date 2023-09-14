@@ -127,8 +127,6 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           sortable: false,
           width: 70,
           editable: false,
-          style: { background: "#f5f5f5" },
-          styleHead: { background: "#f5f5f5" },
           nodrag: true,
         },
         {
@@ -160,8 +158,6 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           sortable: false,
           width: 70,
           editable: false,
-          style: { background: "#f5f5f5" },
-          styleHead: { background: "#f5f5f5" },
           nodrag: true,
         },
         {
@@ -172,8 +168,6 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           sortable: false,
           width: 85,
           editable: false,
-          style: { background: "#f5f5f5" },
-          styleHead: { background: "#f5f5f5" },
           nodrag: true,
         },
         {
@@ -185,8 +179,6 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           sortable: false,
           width: 110,
           editable: false,
-          style: { background: "#f5f5f5" },
-          styleHead: { background: "#f5f5f5" },
           nodrag: true,
         },
         {
