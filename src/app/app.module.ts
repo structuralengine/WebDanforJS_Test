@@ -66,10 +66,11 @@ import { PreviewExcelComponent } from "./components/preview-excel/preview-excel.
 import { IgxExcelModule } from 'igniteui-angular-excel';
 import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-
+const config: MultiWindowConfig = {windowSaveStrategy: WindowSaveStrategy.SAVE_WHEN_EMPTY};
 function initializeKeycloak(keycloak: KeycloakService) {
     console.log("initializaing keycloak");
     return () => keycloak.init({
@@ -110,7 +111,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
             defaultLanguage: "ja",
         }),
         IgxExcelModule,
-        IgxSpreadsheetModule
+        IgxSpreadsheetModule,
+        MultiWindowModule.forRoot(config),
     ],
     declarations: [
         AppComponent,

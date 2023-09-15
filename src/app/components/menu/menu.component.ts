@@ -29,7 +29,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
-
+import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 @Component({
   selector: "app-menu",
   templateUrl: "./menu.component.html",
@@ -39,6 +39,8 @@ export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
   public pickup_file_name: string; 
+  public windows: KnownAppWindow[] = [];
+  public logs: string[] = [];
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
@@ -54,8 +56,8 @@ export class MenuComponent implements OnInit {
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService,
-
-    private readonly keycloak: KeycloakService
+    private readonly keycloak: KeycloakService,
+    private multiWindowService: MultiWindowService
   ) {
     this.auth = getAuth();
     this.fileName = "";
@@ -65,6 +67,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this._renew();    
+    this.windows = this.multiWindowService.getKnownWindows();
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -73,7 +76,24 @@ export class MenuComponent implements OnInit {
       $event.returnValue = "Your work will be lost. Do you want to leave this site?";
     }
   }
-  
+  @HostListener('window:unload')
+  unloadHandler() {
+    this.multiWindowService.saveWindow();
+  }
+
+  public newWindow() {
+    const newWindowData = this.multiWindowService.newWindow();
+    newWindowData.created.subscribe(() => {
+      },
+      (err) => {
+        this.logs.unshift('An error occured while waiting for the new window to start consuming messages');
+      },
+      () => {
+        this.logs.unshift('The new window with id ' + newWindowData.windowId + ' got created and starts consuming messages');
+      }
+    );
+    window.open('?' + newWindowData.urlString);
+  }
   // 新規作成
   renew(): void {
     this.router.navigate(["/blank-page"]);
