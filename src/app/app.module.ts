@@ -10,9 +10,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
 
-import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+// import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+// import { getAuth, provideAuth } from '@angular/fire/auth';
+// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from "./app.component";
 
@@ -98,9 +98,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
         NgbModule,
         NgxPrintModule,
         KeycloakAngularModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideAuth(() => getAuth()),
-        provideFirestore(() => getFirestore()),
+        // provideFirebaseApp(() => initializeApp(environment.firebase)),
+        // provideAuth(() => getAuth()),
+        // provideFirestore(() => getFirestore()),
         DataHelperModule,
         TranslateModule.forRoot({
             loader: {
