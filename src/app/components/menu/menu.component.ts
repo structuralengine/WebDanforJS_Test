@@ -82,17 +82,8 @@ export class MenuComponent implements OnInit {
   }
 
   public newWindow() {
-    const newWindowData = this.multiWindowService.newWindow();
-    newWindowData.created.subscribe(() => {
-      },
-      (err) => {
-        this.logs.unshift('An error occured while waiting for the new window to start consuming messages');
-      },
-      () => {
-        this.logs.unshift('The new window with id ' + newWindowData.windowId + ' got created and starts consuming messages');
-      }
-    );
-    window.open('?' + newWindowData.urlString);
+    //window.open('index.html');     
+    this.electronService.ipcRenderer.send("newWindow");
   }
   // 新規作成
   renew(): void {
@@ -286,7 +277,7 @@ export class MenuComponent implements OnInit {
     if (this.electronService.isElectron) {
       this.modalService.open(LoginDialogComponent, {backdrop: false}).result.then((result) => {});
     } else {
-      this.keycloak.login();
+      this.keycloak.login();      
     }
   }
 
