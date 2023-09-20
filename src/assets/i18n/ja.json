@@ -476,8 +476,20 @@
         "check_crack":"ひび割れデータを確認してください。",
         "changing_error":"this.crack_listのデータが変化しているエラーと思われます。"
     },
+    "modal": {
+        "close": "閉じる",
+        "cancel": "キャンセル",
+        "ok": "OK"
+    },
     "window": {
         "closeTitle": "確認",
-        "closeMessage": "変更内容が保存されません。本当に終了しますか？"
+        "closeMessage": "変更内容が保存されません。本当に終了しますか？",
+        "confirm": "入力中のデータは<br/>破棄されてしまいます<br/>よろしいですか？"
+    },
+    "action_key":{
+        "copy": "コピー",
+        "paste": "貼り付け",
+        "undo": "元に戻す",
+        "cut": "切り取り"
     }
 }

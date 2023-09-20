@@ -46,6 +46,39 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
       width: 'auto',
       numberCell: { show: this.save.isManual() }, // 行番号
       colModel: this.columnHeaders,
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
       change: (evt, ui) => {
         for (const property of ui.updateList) {
           for (const key of Object.keys(property.newRow)) {
