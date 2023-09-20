@@ -4,13 +4,14 @@
         "newEntry":"Create a new file",
         "openFile":"Open file",
         "saveFile":"Save a file",
-        "overwrite":"overwrite save",
+        "overwrite":"Overwrite save",
         "openPick":"Open the pickup file",
         "logout":"Logout",
         "login":"Login",
         "fail":"Failed to open the file. status:",
         "open":"Please open",
-        "acceptedFile":"Please choose pik or csv file format"
+        "acceptedFile":"Please choose pik or csv file format",
+        "NewWindow":"New window"
     },
     "login-dialog":{
         "createAccount":"Creat account",

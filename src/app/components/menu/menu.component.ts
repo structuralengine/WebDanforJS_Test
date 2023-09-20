@@ -29,7 +29,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
-
+import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 @Component({
   selector: "app-menu",
   templateUrl: "./menu.component.html",
@@ -38,7 +38,10 @@ import { UserInfoService } from "src/app/providers/user-info.service";
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string;
+  public pickup_file_name: string; 
+  public windows: KnownAppWindow[] = [];
+  public logs: string[] = [];
+
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
@@ -54,8 +57,8 @@ export class MenuComponent implements OnInit {
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService,
-
-    private readonly keycloak: KeycloakService
+    private readonly keycloak: KeycloakService,
+    private multiWindowService: MultiWindowService
   ) {
     // this.auth = getAuth();
     this.fileName = "";
@@ -64,8 +67,9 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();
-  }
+    this._renew();    
+    this.windows = this.multiWindowService.getKnownWindows();
+
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload($event: BeforeUnloadEvent) {
@@ -73,7 +77,16 @@ export class MenuComponent implements OnInit {
       $event.returnValue = "Your work will be lost. Do you want to leave this site?";
     }
   }
-  @HostListener('document:keydown', ['$event'])
+  @HostListener('window:unload')
+  unloadHandler() {
+    this.multiWindowService.saveWindow();
+  }
+
+  public newWindow() {
+    //window.open('index.html');     
+    this.electronService.ipcRenderer.send("newWindow");
+  }
+
   onKeyDown(event: KeyboardEvent): void {
     //Check if Ctrl and S key are both pressed
     if (event.ctrlKey && (event.key === 'S' || event.key === 's')) {
@@ -278,7 +291,7 @@ export class MenuComponent implements OnInit {
     if (this.electronService.isElectron) {
       this.modalService.open(LoginDialogComponent, { backdrop: false }).result.then((result) => { });
     } else {
-      this.keycloak.login();
+      this.keycloak.login();      
     }
   }
 
