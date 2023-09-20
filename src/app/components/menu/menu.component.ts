@@ -30,6 +30,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
 import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
+
 @Component({
   selector: "app-menu",
   templateUrl: "./menu.component.html",
@@ -69,7 +70,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this._renew();    
     this.windows = this.multiWindowService.getKnownWindows();
-
+  }
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload($event: BeforeUnloadEvent) {
