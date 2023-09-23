@@ -64,34 +64,35 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     this.table3_datas = basic.pickup_torsional_moment;
 
     this.options1 = {
-      height: 340,
+      height: 360,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: true }, // 行番号
+      numberCell: { show: false }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table1_datas },
+      
     };
 
     this.options2 = {
-      height: 310,
+      height: 360,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: true }, // 行番号
+      numberCell: { show: false }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table2_datas },
     };
 
     this.options3 = {
-      height: 210,
+      height: 360,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: true }, // 行番号
+      numberCell: { show: false }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table3_datas },
     };

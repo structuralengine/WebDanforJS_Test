@@ -1,5 +1,6 @@
 $primary: #39b54a;
 $primary-800: #0a713c;
+$primary-600: #00c95f;
 $primary-500: #09de6d;
 $base_dark: #070f17;
 $base_dark_950: #1e252c;
@@ -28,6 +29,7 @@ $checkbox_selected: #395b43;
 :root {
     --primary: #{$primary};
     --primary-800: #{$primary-800};
+    --primary-600: #{$primary-600};
     --primary-500: #{$primary-500};
     --base: #{$base_dark};
     --base-950: #{$base_dark_950};

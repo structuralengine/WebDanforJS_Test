@@ -18,54 +18,43 @@
   </ul>
 
   <div class="tab-inner">
-    <div class="item-container" [ngClass]="{'hidden': activeTab !== 'rsb_con'}">
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
       <div class="safety-factors">
         <h5 translate>safety-factors-material-strengths.safe</h5>
         <div class="table-container">
           <app-sheet #grid1 [options]="options1"></app-sheet>
-        </div>
-    
-        <div class="range-fieldset">
-          <fieldset>
-            <legend translate>safety-factors-material-strengths.rsb_arr</legend>
-            <ol>
-              <li translate>safety-factors-material-strengths.rsb_ten</li>
-              <li translate>safety-factors-material-strengths.ten_com</li>
-              <li translate>safety-factors-material-strengths.all</li>
-            </ol>
-          </fieldset>
         </div>
       </div>
   
       <div class="material-strength">
         <h5 translate>safety-factors-material-strengths.r_mta</h5>
         <div class="table-container">
-          <app-sheet #grid2 [options]="options2"></app-sheet>
-          <div class="concrete-strength">
-            <h5 translate>safety-factors-material-strengths.c_mta</h5>
-            <app-sheet #grid3 [options]="options3"></app-sheet>
-          </div>
+          <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet>
         </div>
+      </div>
+      <div class="concrete-strength">
+        <h5 translate>safety-factors-material-strengths.c_mta</h5>
+        <app-sheet #grid3 [options]="options3" class="no-table"></app-sheet>
       </div>
     </div>
   
-    <div class="item-container" [ngClass]="{'hidden': activeTab !== 'steel'}">
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'steel'}">
       <div class="safety-factors">
         <h5 translate>safety-factors-material-strengths.safe</h5>
         <div class="table-container">
-          <app-sheet #grid4 [options]="options4"></app-sheet>
+          <app-sheet #grid4 [options]="options4" class="no-table"></app-sheet>
         </div>
       </div>
     
       <div class="material-strength">
         <h5 translate>safety-factors-material-strengths.s_mta</h5>
         <div class="table-container">
-          <app-sheet #grid5 [options]="options5"></app-sheet>
+          <app-sheet #grid5 [options]="options5" class="no-table"></app-sheet>
         </div>
       </div>
     </div>
   
-    <div class="item-container" [ngClass]="{'hidden': activeTab !== 'pile'}">
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'pile'}">
       <div class="pile-factors">
         <h5 translate>safety-factors-material-strengths.pile</h5>
         <table>

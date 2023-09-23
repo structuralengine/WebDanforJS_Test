@@ -1,7 +1,8 @@
 <div class="datasheet">
-  <div #pqgrid></div>
+  <div #pqgrid class="sheet-layout"></div>
   <div
     id="member-table"
+    class="description-table"
     [ngStyle]="{ display: isMemberQuestionActive ? 'block' : 'none' }"
   >
     <div class="container">
@@ -38,6 +39,54 @@
             <td>4</td>
             <td>RC</td>
             <td translate>members.oval</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    id="crack-table"
+    class="description-table"
+    [ngStyle]="{ display: isCrackQuestionActive ? 'block' : 'none' }"
+  >
+    <div class="container">
+      <table>
+        <tbody>
+          <tr>
+            <th width="30">1</th>
+            <td translate>crack-settings.normal</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td translate>crack-settings.cor</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td translate>crack-settings.es_cor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    id="safety-table"
+    class="description-table"
+    [ngStyle]="{ display: isSafetyQuestionActive ? 'block' : 'none' }"
+  >
+    <div class="container">
+      <table>
+        <tbody>
+          <tr>
+            <th width="30">1</th>
+            <td translate>safety-factors-material-strengths.rsb_ten</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td translate>safety-factors-material-strengths.ten_com</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td translate>safety-factors-material-strengths.all</td>
           </tr>
         </tbody>
       </table>

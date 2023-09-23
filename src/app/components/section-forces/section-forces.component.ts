@@ -24,7 +24,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     "safe-destruct": { start: 11, end: 12 }, //安全性(破壊)トグル
     "recover-ex-earth": { start: 13, end: 14 }, //復旧性(地震以外)トグル
     "recover-earth": { start: 15, end: 16 }, //復旧性(地震)トグル
-    rebar: { start: 17, end: 18 }, //最小鉄筋量トグル
+    "rebar": { start: 17, end: 18 }, //最小鉄筋量トグル
   };
   public shearColGroups = {
     stress: { start: 1, end: 9 }, //耐久性トグル

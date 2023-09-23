@@ -14,6 +14,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public activeTab: string = 'rebar_ax';
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
@@ -49,7 +50,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         numberCell: { show: false }, // 行番号
         colModel: this.beamHeaders,
         dataModel: { data: this.table_datas[i] },
-        freezeCols: (this.save.isManual()) ? 3 : 4,
+        freezeCols: (this.save.isManual()) ? 5 : 2,
         change: (evt, ui) => {
           for (const property of ui.updateList) {
             for (const key of Object.keys(property.newRow)) {
@@ -78,12 +79,11 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     for (let i = 0; i < this.table_datas.length; i++) {
       this.groupe_name.push(this.bars.getGroupeName(i));
     }
-
-
   }
 
   ngAfterViewInit() {
     this.activeButtons(0);
+    this.setActiveTab(this.activeTab);
   }
 
   private setTitle(isManual: boolean): void {
@@ -294,4 +294,31 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+
+    const FIXED_CELLS_COUNT = 4;
+    const CHECK_CELL_INDEX = 24;
+    
+    let startCellIndex: number;
+    let endCellIndex: number;
+
+    if (tab === 'rebar_ax') {
+        startCellIndex = 5;
+        endCellIndex = 14;
+    } else {
+        startCellIndex = 15;
+        endCellIndex = 23;
+    }
+
+    this.grid.grid.getColModel().forEach((column, index) => {
+      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
+      const isFixedCell = index <= FIXED_CELLS_COUNT;
+      const isCheckCell = index === CHECK_CELL_INDEX;
+
+      column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+    });
+
+    this.grid.refreshDataAndView();
+  }
 }

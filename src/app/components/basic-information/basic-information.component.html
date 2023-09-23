@@ -1,4 +1,31 @@
 <ng-container *ngIf="!isManual()">
+  <div class="basic-layout">
+    <div class="container-fluid mt-16">
+      <div class="row left-contents w-100">
+        <div class="col">
+          <section class="pickup-table">
+            <h5 class="title" translate>basic-information.pick_bs</h5>
+            <app-sheet #grid1 [options]="options1"></app-sheet>
+          </section>
+        </div>
+        <div class="col">
+          <section class="pickup-table">
+            <h5 class="title" translate>basic-information.pick_sv</h5>
+            <app-sheet #grid2 [options]="options2"></app-sheet>
+          </section>
+        </div>
+        <div class="col">
+          <section class="pickup-table">
+            <h5 class="title" translate>basic-information.pick_tv</h5>
+            <app-sheet #grid3 [options]="options3"></app-sheet>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- <ng-container *ngIf="!isManual()">
   <div class="left-contents">
     <section class="pickup-table">
       <h5 translate>basic-information.pick_bs</h5>
@@ -9,19 +36,15 @@
       <h5 translate>basic-information.pick_sv</h5>
       <app-sheet #grid2 [options]="options2"></app-sheet>
     </section>
-    <!-- ねじり -->
     <section class="pickup-table">
       <h5 translate>basic-information.pick_tv</h5>
       <app-sheet #grid3 [options]="options3"></app-sheet>
     </section>
+  </div> 
+</ng-container>  -->
 
-  </div>
-</ng-container>
-
-<div class="right-contents">
-
+<!-- <div class="right-contents">
   <div class="right-left-contents">
-
     <div class="specification1-fieldset">
       <fieldset>
         <legend translate>basic-information.apply</legend>
@@ -83,4 +106,4 @@
     </ng-container>
   </div>
 
-</div>
+</div> -->

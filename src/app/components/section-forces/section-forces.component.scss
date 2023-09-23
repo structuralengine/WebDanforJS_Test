@@ -32,14 +32,14 @@
         background: var(--base-700);
         border-radius: 4px 4px 0px 0px;
     }
-    .slider-section {
+    .tobble-section {
       display: flex;
       align-items: center;
       column-gap: 8px;
       padding: 16px 16px 0;
       background: var(--base-900);
 
-      .slider {
+      .tobble {
           width: 26px;
           height: 14px;
           background-color: #9fb6c1;
@@ -49,7 +49,7 @@
           transition: opacity 0.2s;
       }
 
-      .slider-icon {
+      .tobble-icon {
           position: absolute;
           top: 1px;
           left: 2px;
@@ -70,13 +70,13 @@
           line-height: 150%;
           letter-spacing: 0.025rem;
       }
-      .slider-label {
+      .tobble-label {
           font-size: 13px;
           color: var(--text_main);
           margin-left: 8px;
       }
 
-      .slider-container {
+      .tobble-container {
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -89,15 +89,15 @@
               border: 1px solid var(--primary-800);
               background: var(--checkbox_selected);
 
-              .slider {
+              .tobble {
                   background: var(--primary-500);
               }
 
-              .slider-icon {
+              .tobble-icon {
                   transform: translateX(11px);
               }
 
-              .slider-label {
+              .tobble-label {
                   color: var(--primary);
               }
           }

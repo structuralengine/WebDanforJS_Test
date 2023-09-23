@@ -20,17 +20,17 @@
       </li>
     </ul>
   </nav>
-  <div class="slider-section">
+  <div class="tobble-section">
     <div
-      class="slider-container"
+      class="tobble-container"
       *ngFor="let group of currentColGroupKeys"
       (click)="toggleDataLoad(group)"
       [ngClass]="{ active: toggleStatus[group] }"
     >
-      <div class="slider">
-        <div class="slider-icon"></div>
+      <div class="tobble">
+        <div class="tobble-icon"></div>
       </div>
-      <div class="slider-label">
+      <div class="tobble-label">
         <ng-container [ngSwitch]="group">
           <span *ngSwitchCase="'stress'">耐久性</span>
           <span *ngSwitchCase="'safe-ff'">安全性（疲労破壊）</span>

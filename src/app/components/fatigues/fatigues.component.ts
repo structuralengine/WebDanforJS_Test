@@ -20,6 +20,7 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public activeTab: string = 'for_b';
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
@@ -75,6 +76,7 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.activeButtons(0);
+    this.setActiveTab(this.activeTab);
   }
 
   private setTitle(isManual: boolean): void {
@@ -257,4 +259,29 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+
+    const FIXED_CELLS_COUNT = 3;
+    
+    let startCellIndex: number;
+    let endCellIndex: number;
+
+    if (tab === 'for_b') {
+        startCellIndex = 4;
+        endCellIndex = 14;
+    } else {
+        startCellIndex = 15;
+        endCellIndex = 24;
+    }
+
+    this.grid.grid.getColModel().forEach((column, index) => {
+      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
+      const isFixedCell = index <= FIXED_CELLS_COUNT;
+
+      column.hidden = !(isInTargetRange || isFixedCell);
+    });
+
+    this.grid.refreshDataAndView();
+  }
 }

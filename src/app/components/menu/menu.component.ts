@@ -1,6 +1,10 @@
 ﻿import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../../app.component";
+import { InputBasicInformationService } from '../basic-information/basic-information.service';
+import { InputFatiguesService } from '../fatigues/fatigues.service';
+import { SheetComponent } from '../sheet/sheet.component';
+import pq from 'pqgrid';
 
 import {
   Router,
@@ -39,6 +43,36 @@ export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
   public pickup_file_name: string; 
+  public showMenu: boolean = false;
+  public specification1_select_id: number;
+  public specification2_select_id: number;
+  public train_A_count: number;
+  public train_B_count: number;
+  public service_life: number;
+
+
+  @ViewChild('grid1') grid1: SheetComponent;
+  private table1_datas: any[] = [];
+  public options1: pq.gridT.options;
+
+  @ViewChild('grid2') grid2: SheetComponent;
+  private table2_datas: any[] = [];
+  public options2: pq.gridT.options;
+
+  @ViewChild('grid3') grid3: SheetComponent;
+  private table3_datas: any[] = [];
+  public options3: pq.gridT.options;
+
+
+  // 適用 に関する変数
+  public specification1_list: any[];
+
+  // 仕様 に関する変数
+  public specification2_list: any[];
+
+  // 設計条件
+  public conditions_list: any[];
+
   constructor(
     private modalService: NgbModal,
     private app: AppComponent,
@@ -50,6 +84,8 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private config: ConfigService,
     public user: UserInfoService,
+    private basic: InputBasicInformationService,
+    private fatigues: InputFatiguesService,
     // public auth: Auth,
     public language: LanguagesService,
     public electronService: ElectronService,
@@ -65,6 +101,20 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this._renew();    
+    const basic = this.basic.getSaveData();
+
+    // 適用
+    this.specification1_list = basic.specification1_list;
+    this.specification1_select_id = this.basic.get_specification1();
+    // 仕様
+    this.specification2_list = basic.specification2_list;
+    this.specification2_select_id = this.basic.get_specification2();
+    //  設計条件
+    this.conditions_list = basic.conditions_list;
+
+    this.table1_datas = basic.pickup_moment;
+    this.table2_datas = basic.pickup_shear_force;
+    this.table3_datas = basic.pickup_torsional_moment;
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -91,11 +141,11 @@ export class MenuComponent implements OnInit {
       this.save.clear();
       this.app.memberChange(false); // 左側のボタンを無効にする。
     }, 10);
+    this.showMenu = false;
   }
 
   // Electron でファイルを開く
   open_electron(){
-
     const response = this.electronService.ipcRenderer.sendSync('open');
 
     if(response.status!==true){
@@ -122,7 +172,7 @@ export class MenuComponent implements OnInit {
           this.open_done(modalRef);
       }
     }, 10);
-
+    this.showMenu = false;
   }
 
   // ファイルを開く
@@ -159,7 +209,7 @@ export class MenuComponent implements OnInit {
             this.open_done(modalRef, err);
           });
     }
-
+    this.showMenu = false;
   }
 
   private open_done(modalRef, error = null) {
@@ -211,6 +261,7 @@ export class MenuComponent implements OnInit {
     } else {
       this.helper.alert(this.translate.instant("menu.acceptedFile"));
     }
+    this.showMenu = false;
   }
 
   // ファイルのテキストを読み込む
@@ -285,5 +336,57 @@ export class MenuComponent implements OnInit {
       "_blank"
     );
   }
-  
+
+  public setSpecification1(i: number): void {
+
+    const basic = this.basic.set_specification1(i);
+
+    this.specification1_list = basic.specification1_list; // 適用
+    this.specification2_list = basic.specification2_list; // 仕様
+    this.conditions_list = basic.conditions_list;         //  設計条件
+
+    this.table1_datas = basic.pickup_moment;
+    this.table2_datas = basic.pickup_shear_force;
+    this.table3_datas = basic.pickup_torsional_moment;
+
+    if (!(this.grid1 == null))
+      this.grid1.refreshDataAndView();
+    if (!(this.grid2 == null))
+      this.grid2.refreshDataAndView();
+    if (!(this.grid3 == null))
+      this.grid3.refreshDataAndView();
+
+    this.specification1_select_id = i;
+  }
+
+  /// 仕様 変更時の処理
+  public setSpecification2(id: number): void {
+    this.specification2_list.map(
+      obj => obj.selected = (obj.id === id) ? true : false);
+    this.specification2_select_id = id;
+  }
+
+  // 耐用年数, jA, jB
+  public openShiyoJoken() {
+    const fatigues = this.fatigues.getSaveData();
+    this.train_A_count = fatigues.train_A_count;
+    this.train_B_count = fatigues.train_B_count;
+    this.service_life = fatigues.service_life;
+  }
+
+  ngOnDestroy() {
+    this.saveData();
+  }
+
+  public saveData(): void {
+    this.basic.setSaveData({
+      pickup_moment: this.table1_datas,
+      pickup_shear_force: this.table2_datas,
+      pickup_torsional_moment: this.table3_datas,
+
+      specification1_list: this.specification1_list, // 適用
+      specification2_list: this.specification2_list, // 仕様
+      conditions_list: this.conditions_list         // 設計条件
+    });
+  }
 }

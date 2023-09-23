@@ -1,340 +1,337 @@
-<div class="condition-container">
-  <div class="print-item">
-    <fieldset>
-      <legend translate>calculation-print.dc</legend>
-      <div *ngIf="isManual() == false">
-        <label>
-          <input
-            type="checkbox"
-            name="print_section_force"
-            id="print_section_force"
-            [value]="print_section_force"
-            [(ngModel)]="print_section_force_checked"
-            [checked]="print_section_force_checked"
-            (click)="changeButton($event)"
-          />
-          <p translate>calculation-print.s_table</p>
-        </label>
+<div class="calculate-container">
+  <div class="download-container">
+    <div class="download-items">
+      <div class="download-item">
+        <legend translate>calculation-print.check</legend>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="calculate_moment"
+              id="calculate_moment"
+              class="checkbox-input"
+              [value]="calculate_moment_checked"
+              [(ngModel)]="calculate_moment_checked"
+              [checked]="calculate_moment_checked"
+            />
+            <span translate class="checkbox-parts">calculation-print.bend</span>
+          </label>
+        </div>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="calculate_shear_force"
+              id="calculate_shear_force"
+              class="checkbox-input"
+              [value]="calculate_shear_force_checked"
+              [(ngModel)]="calculate_shear_force_checked"
+              [checked]="calculate_shear_force_checked"
+            />
+            <span translate class="checkbox-parts">calculation-print.shear</span>
+          </label>
+        </div>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="calculate_torsional_moment"
+              id="calculate_torsional_moment"
+              class="checkbox-input"
+              [value]="calculate_torsional_moment_checked"
+              [(ngModel)]="calculate_torsional_moment_checked"
+              [checked]="calculate_torsional_moment_checked"
+            />
+            <span translate class="checkbox-parts">calculation-print.twist</span>
+          </label>
+        </div>
       </div>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="print_calculate"
-            id="print_calculate"
-            [value]="print_calculate_checked"
-            [(ngModel)]="print_calculate_checked"
-            [checked]="print_calculate_checked"
-            (click)="changeButton($event)"
-          />
-          <p translate>calculation-print.p_check</p>
-        </label>
+      <div class="download-item">
+        <legend translate>calculation-print.axis_maxmin</legend>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="calculate_moment"
+              id="consider_moment"
+              class="checkbox-input"
+              [value]="consider_moment_checked"
+              [(ngModel)]="consider_moment_checked"
+              [checked]="consider_moment_checked"
+              (click)="changeButton($event)"
+            />
+            <span translate class="checkbox-parts">calculation-print.consider</span>
+          </label>
+        </div>
       </div>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="print_safety_ratio"
-            id="print_safety_ratio"
-            [(ngModel)]="print_safety_ratio_checked"
-            [checked]="print_safety_ratio_checked"
-            (click)="changeButton($event)"
-          />
-          <p translate>calculation-print.safety_ratio</p>
-        </label>
-      </div>
-    </fieldset>
-  </div>
-  <div class="calculate-item">
-    <fieldset>
-      <legend translate>calculation-print.check</legend>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="calculate_moment"
-            id="calculate_moment"
-            [value]="calculate_moment_checked"
-            [(ngModel)]="calculate_moment_checked"
-            [checked]="calculate_moment_checked"
-          />
-          <p translate>calculation-print.bend</p>
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="calculate_shear_force"
-            id="calculate_shear_force"
-            [value]="calculate_shear_force_checked"
-            [(ngModel)]="calculate_shear_force_checked"
-            [checked]="calculate_shear_force_checked"
-          />
-          <p translate>calculation-print.shear</p>
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="calculate_torsional_moment"
-            id="calculate_torsional_moment"
-            [value]="calculate_torsional_moment_checked"
-            [(ngModel)]="calculate_torsional_moment_checked"
-            [checked]="calculate_torsional_moment_checked"
-          />
-          <p translate>calculation-print.twist</p>
-        </label>
-      </div>
-    </fieldset>
-  </div>
-  <div class="print-item-1">
-    <fieldset>
-      <legend translate>calculation-print.axis_maxmin</legend>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="calculate_moment"
-            id="consider_moment"
-            [value]="consider_moment_checked"
-            [(ngModel)]="consider_moment_checked"
-            [checked]="consider_moment_checked"
-            (click)="changeButton($event)"
-          />
-          <p translate>calculation-print.consider</p>
-        </label>
-      </div>
-    </fieldset>
-  </div>
-</div>
-
-<div class="table-container">
-  <fieldset>
-    <legend translate>calculation-print.member</legend>
-    <div class="hot">
-      <table>
-        <tbody>
+      <div class="download-item">
+        <legend translate>calculation-print.member</legend>
+        <div class="hot">
           <ng-container *ngFor="let item of table_datas; index as j">
-            <tr>
-              <td width="70px">
-                <input
-                  type="checkbox"
-                  [value]="item.calc_checked"
-                  [(ngModel)]="item.calc_checked"
-                  [checked]="item.calc_checked"
-                />
-              </td>
-              <td width="250px">
-                {{ item.g_name }}
-              </td>
-            </tr>
+            <label class="checkbox-container">
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                [value]="item.calc_checked"
+                [(ngModel)]="item.calc_checked"
+                [checked]="item.calc_checked"
+              />
+              <span class="checkbox-parts">{{ item.g_name }}</span>
+            </label>
           </ng-container>
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
-  </fieldset>
-</div>
+    <div class="button-container">
+      <button (click)="downloadSummaryFun4()" id="downloadButton" translate>
+        calculation-print.download
+      </button>
+    </div>
+  </div>
 
-<div class="button-container">
-  <button (click)="pdfSummary()" id="printButton">
-    <p translate>calculation-print.print</p>
-  </button>
-</div>
+  <!-- <div class="button-container">
+    <button (click)="previewSummary()" translate>calculation-print.summary</button>
+  </div> -->
+  <div class="print-container">
+    <div class="print-item">
+      <fieldset>
+        <legend translate>calculation-print.dc</legend>
+        <div *ngIf="isManual() == false">
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="print_section_force"
+              id="print_section_force"
+              class="checkbox-input"
+              [value]="print_section_force"
+              [(ngModel)]="print_section_force_checked"
+              [checked]="print_section_force_checked"
+              (click)="changeButton($event)"
+            />
+            <span translate class="checkbox-parts">calculation-print.s_table</span>
+          </label>
+        </div>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="print_calculate"
+              id="print_calculate"
+              class="checkbox-input"
+              [value]="print_calculate_checked"
+              [(ngModel)]="print_calculate_checked"
+              [checked]="print_calculate_checked"
+              (click)="changeButton($event)"
+            />
+            <span translate class="checkbox-parts">calculation-print.p_check</span>
+          </label>
+        </div>
+        <div>
+          <label class="checkbox-container">
+            <input
+              type="checkbox"
+              name="print_safety_ratio"
+              id="print_safety_ratio"
+              class="checkbox-input"
+              [(ngModel)]="print_safety_ratio_checked"
+              [checked]="print_safety_ratio_checked"
+              (click)="changeButton($event)"
+            />
+            <span translate class="checkbox-parts">calculation-print.safety_ratio</span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="button-container">
+      <button (click)="pdfSummary()" id="printButton">
+        <span translate>calculation-print.print</span>
+      </button>
+    </div>
+  </div>
 
-<!-- <div class="button-container">
-  <button (click)="previewSummary()" translate>calculation-print.summary</button>
-</div> -->
-
-<div class="button-container">
-  <button (click)="downloadSummaryFun4()" id="downloadButton" translate>
-    calculation-print.download
-  </button>
-</div>
-
-<div id="print-loading" disabled="true" style="display: none">
-  <svg
-    width="50px"
-    height="50px"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    preserveAspectRatio="xMidYMid"
-    class="uil-spin"
-  >
-    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-    <g transform="translate(50 50)">
-      <g transform="rotate(0) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
+  <div id="print-loading" disabled="true" style="display: none">
+    <svg
+      width="50px"
+      height="50px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+      class="uil-spin"
+    >
+      <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+      <g transform="translate(50 50)">
+        <g transform="rotate(0) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(45) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.12s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.12s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(90) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.25s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.25s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(135) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.37s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.37s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(180) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.5s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.5s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(225) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.62s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.62s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(270) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.75s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.75s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
+        <g transform="rotate(315) translate(34 0)">
+          <circle cx="0" cy="0" r="8" fill="#000">
+            <animate
+              attributeName="opacity"
+              from="1"
+              to="0.1"
+              begin="0.87s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animate>
+            <animateTransform
+              attributeName="transform"
+              type="scale"
+              from="1.5"
+              to="1"
+              begin="0.87s"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </circle>
+        </g>
       </g>
-      <g transform="rotate(45) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.12s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.12s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(90) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.25s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.25s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(135) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.37s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.37s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(180) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.5s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.5s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(225) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.62s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.62s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(270) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.75s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.75s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-      <g transform="rotate(315) translate(34 0)">
-        <circle cx="0" cy="0" r="8" fill="#000">
-          <animate
-            attributeName="opacity"
-            from="1"
-            to="0.1"
-            begin="0.87s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-          <animateTransform
-            attributeName="transform"
-            type="scale"
-            from="1.5"
-            to="1"
-            begin="0.87s"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animateTransform>
-        </circle>
-      </g>
-    </g>
-  </svg>
-  <p translate>calculation-print.preparing</p>
+    </svg>
+    <span translate class="checkbox-parts">calculation-print.preparing</span>
+  </div>
 </div>
 
 <div id="download-loading" disabled="true" style="display: none">
