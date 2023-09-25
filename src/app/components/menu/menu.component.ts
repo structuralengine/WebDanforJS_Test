@@ -111,6 +111,7 @@ export class MenuComponent implements OnInit {
     this.specification2_select_id = this.basic.get_specification2();
     //  設計条件
     this.conditions_list = basic.conditions_list;
+    debugger;
 
     this.table1_datas = basic.pickup_moment;
     this.table2_datas = basic.pickup_shear_force;
@@ -344,6 +345,7 @@ export class MenuComponent implements OnInit {
     this.specification1_list = basic.specification1_list; // 適用
     this.specification2_list = basic.specification2_list; // 仕様
     this.conditions_list = basic.conditions_list;         //  設計条件
+    debugger;
 
     this.table1_datas = basic.pickup_moment;
     this.table2_datas = basic.pickup_shear_force;
@@ -388,5 +390,6 @@ export class MenuComponent implements OnInit {
       specification2_list: this.specification2_list, // 仕様
       conditions_list: this.conditions_list         // 設計条件
     });
+    debugger;
   }
 }

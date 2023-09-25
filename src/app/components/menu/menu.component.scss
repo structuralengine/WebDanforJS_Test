@@ -154,6 +154,8 @@ h1 {
     width: 100%;
     color: #fff;
     text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
     &:hover {
         cursor: pointer;
         opacity: 0.7;
@@ -171,7 +173,6 @@ h1 {
 .logOut {
     padding: 4px;
     text-align: center;
-    color: #333;
 }
 
 @media screen and (max-width: 767px) {
@@ -283,6 +284,7 @@ p {
 }
 
 .topic {
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
@@ -302,17 +304,20 @@ p {
 
 .mega-menu {
     width: 673px;
-    background-color: #1E252C;
+    background: var(--base-950);
     position: absolute;
     z-index: 11;
-    top: 36px;
-    border: 1px solid var(--base-800, #394651);
+    top: 38px;
+    border: 1px solid var(--base-800);
     border-radius: 4px;
     color: white;
     font-size: 12px;
     gap: 57px;
     display: flex;
-    right: 108px;
+    right: 118px;
+    label {
+        margin: 0;
+    }
 }
 
 .mega-menu1 {
@@ -324,9 +329,17 @@ p {
 .mega-menu2 {
     margin-top: 18px;
     padding-bottom: 18px;
+
+    .checkbox-parts {
+        font-size: 12px;
+        margin: 0;
+        min-height: 24px;
+        height: fit-content;
+    }
 }
 
 .specification {
+    font-weight: 700;
     margin-top: 10px;
     margin-bottom: 8px;
 }
@@ -335,11 +348,11 @@ p {
     width: 220px;
     border-radius: 3px;
     background: var(--checkbox-selected, #395B43);
-    gap: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     align-items: center;
     color: var(--primary-600, #00C95F);
     cursor: pointer;
+    font-weight: 700;
 }
 
 .spec-rdo-active input {
@@ -351,6 +364,8 @@ p {
 }
 
 .spec-rdo-active input[type=radio] {
+    width: 12px;
+    height: 12px;
     accent-color: #00C95F;
 }
 
@@ -358,10 +373,10 @@ p {
     width: 220px;
     border-radius: 3px;
     background: var(--base-900, #333D46);
-    gap: 6px;
     margin-bottom: 6px;
     align-items: center;
     cursor: pointer;
+    font-weight: 700;
 }
 
 .spec-rdo input {
@@ -400,6 +415,7 @@ p {
     margin-bottom: 6px;
     align-items: center;
     color: var(--primary-600, #00C95F);
+    font-weight: 700;
 }
 
 .cond-chk-active input {
@@ -421,6 +437,7 @@ p {
     gap: 6px;
     margin-bottom: 6px;
     align-items: center;
+    font-weight: 700;
 }
 
 .cond-chk input {
@@ -439,6 +456,7 @@ p {
     margin-top: 16px;
     gap: 6px;
     align-items: center;
+    font-weight: 700;
 }
 
 .service-life input {
@@ -451,4 +469,5 @@ p {
 
 .jA-jB {
     gap: 21px;
+    font-weight: 700;
 }
