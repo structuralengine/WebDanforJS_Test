@@ -52,6 +52,7 @@ ngb-modal-backdrop {
     height: 30px;
     position: relative;
     width: 100%;
+    padding-right: 10px;
     font-size: 14px;
     background: #475059;
     border-radius: 3px;
@@ -120,10 +121,9 @@ ngb-modal-backdrop {
     border-right: 2px solid var(--primary-600);
 }
 
-
 #member-table {
     top: 60px;
-    left : 34.8%;
+    left: 34.8%;
 }
 
 .isManual #member-table {
@@ -199,5 +199,8 @@ body {
     .pq-col-sort-count,
     .pq-col-sort-icon {
         display: none;
+    }
+    .pq-grid-cell input[type="checkbox"] {
+        accent-color: #00C95F;
     }
 }

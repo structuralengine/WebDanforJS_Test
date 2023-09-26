@@ -304,6 +304,7 @@ p {
 
 .mega-menu {
     width: 673px;
+    padding: 18px 24px;
     background: var(--base-950);
     position: absolute;
     z-index: 11;
@@ -314,22 +315,18 @@ p {
     font-size: 12px;
     gap: 57px;
     display: flex;
-    right: 118px;
+    right: 106px;
     label {
         margin: 0;
     }
 }
 
 .mega-menu1 {
-    margin-left: 24px;
-    margin-top: 18px;
-    padding-bottom: 18px;
+    width: 35%;
 }
 
 .mega-menu2 {
-    margin-top: 18px;
-    padding-bottom: 18px;
-
+    width: 65%;
     .checkbox-parts {
         font-size: 12px;
         margin: 0;
@@ -345,7 +342,6 @@ p {
 }
 
 .spec-rdo-active {
-    width: 220px;
     border-radius: 3px;
     background: var(--checkbox-selected, #395B43);
     margin-bottom: 4px;
@@ -370,7 +366,6 @@ p {
 }
 
 .spec-rdo {
-    width: 220px;
     border-radius: 3px;
     background: var(--base-900, #333D46);
     margin-bottom: 4px;
@@ -413,7 +408,6 @@ p {
 }
 
 .cond-chk-active {
-    width: 348px;
     position: relative;
     border-radius: 3px;
     background: var(--checkbox-selected, #395B43);
@@ -437,7 +431,6 @@ p {
 }
 
 .cond-chk {
-    width: 348px;
     border-radius: 3px;
     background: var(--base-900, #333D46);
     gap: 6px;
@@ -471,6 +464,7 @@ p {
     border: none;
     height: 28px;
     outline: none;
+    width: 60%;
 }
 
 .jA-jB {
