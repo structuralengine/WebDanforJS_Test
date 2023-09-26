@@ -262,18 +262,25 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
   public setActiveTab(tab: string) {
     this.activeTab = tab;
 
-    const FIXED_CELLS_COUNT = 3;
-    
-    let startCellIndex: number;
-    let endCellIndex: number;
+    let FIXED_CELLS_COUNT = this.save.isManual() ? 3 : 4;
 
-    if (tab === 'for_b') {
-        startCellIndex = 4;
-        endCellIndex = 14;
-    } else {
-        startCellIndex = 15;
-        endCellIndex = 24;
-    }
+    const cellIndexMap = {
+      'for_b': {
+        default: { start: 5, end: 15 },
+        manual: { start: 4, end: 14 }
+      },
+      'default': {
+        default: { start: 16, end: 25 },
+        manual: { start: 15, end: 24 }
+      }
+    };
+    
+    const mode = this.save.isManual() ? 'manual' : 'default';
+    const tabType = cellIndexMap[tab] || cellIndexMap['default'];
+    const { start, end } = tabType[mode];
+    
+    let startCellIndex = start;
+    let endCellIndex = end;
 
     this.grid.grid.getColModel().forEach((column, index) => {
       const isInTargetRange = index >= startCellIndex && index <= endCellIndex;

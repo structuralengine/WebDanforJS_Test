@@ -120,6 +120,17 @@ ngb-modal-backdrop {
     border-right: 2px solid var(--primary-600);
 }
 
+
+#member-table {
+    top: 60px;
+    left : 34.8%;
+}
+
+.isManual #member-table {
+    top: 60px;
+    left: 17%;
+}
+
 //grid
 body {
     .pq-grid-col,

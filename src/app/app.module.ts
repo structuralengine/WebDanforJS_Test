@@ -37,6 +37,7 @@ import { ConfigService } from ".//providers/config.service";
 import { MenuComponent } from "./components/menu/menu.component";
 import { LoginDialogComponent } from "./components/login-dialog/login-dialog.component";
 import { WaitDialogComponent } from "./components/wait-dialog/wait-dialog.component";
+import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.component";
 
 import { BlankPageComponent } from "./components/blank-page/blank-page.component";
 import { BasicInformationComponent } from "./components/basic-information/basic-information.component";
@@ -117,6 +118,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         MenuComponent,
         LoginDialogComponent,
         WaitDialogComponent,
+        AlertDialogComponent,
         BasicInformationComponent,
         MembersComponent,
         DesignPointsComponent,

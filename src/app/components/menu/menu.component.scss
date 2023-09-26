@@ -373,7 +373,7 @@ p {
     width: 220px;
     border-radius: 3px;
     background: var(--base-900, #333D46);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     align-items: center;
     cursor: pointer;
     font-weight: 700;
@@ -404,6 +404,12 @@ p {
 .spec-rdo input[type=radio]:checked {
     background-color: #00C95F;
     border: 3px solid #070F17;
+}
+
+.form-check-label,
+.checkbox-container {
+    width: 100%;
+    cursor: pointer;
 }
 
 .cond-chk-active {

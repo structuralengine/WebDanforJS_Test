@@ -9,6 +9,7 @@
         "openPick":"ピックアップファイルを開く",
         "language": "言語",
         "help": "ヘルプ",
+        "control": "仕様・条件",
         "logout":"ログアウト",
         "login":"ログイン",
         "fail":"ファイルを開くことに失敗しました, status:",
@@ -477,6 +478,11 @@
     "calc-durability-moment":{
         "check_crack":"ひび割れデータを確認してください。",
         "changing_error":"this.crack_listのデータが変化しているエラーと思われます。"
+    },
+    "modal": {
+        "close": "閉じる",
+        "cancel": "キャンセル",
+        "ok": "OK"
     },
     "window": {
         "closeTitle": "確認",

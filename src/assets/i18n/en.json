@@ -9,6 +9,7 @@
         "openPick":"Open the pickup file",
         "language": "Language",
         "help": "Help",
+        "control": "Control",
         "logout":"Logout",
         "login":"Login",
         "fail":"Failed to open the file. status:",
@@ -477,6 +478,11 @@
     "calc-durability-moment":{
         "check_crack":"Check the crack data.",
         "changing_error":"It seems that the data in this.crack_list is changing."
+    },
+    "modal": {
+        "close": "Close",
+        "cancel": "Cancel",
+        "ok": "OK"
     },
     "window": {
         "closeTitle": "Confirm",

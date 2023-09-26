@@ -313,6 +313,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         })
   }
 
+  isAnyPrintCheckboxChecked(): boolean {
+    return this.print_section_force_checked || this.print_calculate_checked || this.print_safety_ratio_checked;
+  }
+
+  isAnyDownloadCheckboxChecked(): boolean {
+    return this.calculate_moment_checked || this.calculate_shear_force_checked || this.calculate_torsional_moment_checked;
+  }
+
   changeButton(el: any) {
     if (el.target.checked && el.target.id !== "print_safety_ratio")
       this.print_safety_ratio_checked = false;

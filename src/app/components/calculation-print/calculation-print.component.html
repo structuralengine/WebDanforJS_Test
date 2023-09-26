@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="button-container">
-      <button (click)="downloadSummaryFun4()" id="downloadButton" translate>
+      <button  [disabled]="!isAnyDownloadCheckboxChecked()" (click)="downloadSummaryFun4()" id="downloadButton" translate>
         calculation-print.download
       </button>
     </div>
@@ -143,7 +143,7 @@
       </fieldset>
     </div>
     <div class="button-container">
-      <button (click)="pdfSummary()" id="printButton">
+      <button [disabled]="!isAnyPrintCheckboxChecked()" (click)="pdfSummary()" id="printButton">
         <span translate>calculation-print.print</span>
       </button>
     </div>
@@ -330,7 +330,7 @@
         </g>
       </g>
     </svg>
-    <span translate class="checkbox-parts">calculation-print.preparing</span>
+    <span translate>calculation-print.preparing</span>
   </div>
 </div>
 

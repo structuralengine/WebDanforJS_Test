@@ -1,4 +1,4 @@
-﻿import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
+﻿import { Component, HostListener, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../../app.component";
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
@@ -90,6 +90,7 @@ export class MenuComponent implements OnInit {
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService,
+    private elementRef: ElementRef,
 
     private readonly keycloak: KeycloakService
   ) {
@@ -100,28 +101,30 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();    
-    const basic = this.basic.getSaveData();
-
-    // 適用
-    this.specification1_list = basic.specification1_list;
-    this.specification1_select_id = this.basic.get_specification1();
-    // 仕様
-    this.specification2_list = basic.specification2_list;
-    this.specification2_select_id = this.basic.get_specification2();
-    //  設計条件
-    this.conditions_list = basic.conditions_list;
-    debugger;
-
-    this.table1_datas = basic.pickup_moment;
-    this.table2_datas = basic.pickup_shear_force;
-    this.table3_datas = basic.pickup_torsional_moment;
+    this._renew();
   }
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload($event: BeforeUnloadEvent) {
     if (!this.electronService.isElectron) {
       $event.returnValue = "Your work will be lost. Do you want to leave this site?";
+    }
+  }
+
+  @HostListener("document:click", ["$event"])
+  public documentClick(event: MouseEvent): void {
+    const megaMenuElement = this.elementRef.nativeElement.querySelector(
+      ".mega-menu"
+    );
+    const controlBtnElement = this.elementRef.nativeElement.querySelector(
+      ".control-btn"
+    );
+
+    if (
+      (megaMenuElement && !megaMenuElement.contains(event.target)) &&
+      (controlBtnElement && !controlBtnElement.contains(event.target))
+    ) {
+      this.showMenu = false;
     }
   }
   
@@ -345,7 +348,6 @@ export class MenuComponent implements OnInit {
     this.specification1_list = basic.specification1_list; // 適用
     this.specification2_list = basic.specification2_list; // 仕様
     this.conditions_list = basic.conditions_list;         //  設計条件
-    debugger;
 
     this.table1_datas = basic.pickup_moment;
     this.table2_datas = basic.pickup_shear_force;
@@ -370,6 +372,21 @@ export class MenuComponent implements OnInit {
 
   // 耐用年数, jA, jB
   public openShiyoJoken() {
+    const basic = this.basic.getSaveData();
+
+    // 適用
+    this.specification1_list = basic.specification1_list;
+    this.specification1_select_id = this.basic.get_specification1();
+    // 仕様
+    this.specification2_list = basic.specification2_list;
+    this.specification2_select_id = this.basic.get_specification2();
+    //  設計条件
+    this.conditions_list = basic.conditions_list;
+
+    this.table1_datas = basic.pickup_moment;
+    this.table2_datas = basic.pickup_shear_force;
+    this.table3_datas = basic.pickup_torsional_moment;
+
     const fatigues = this.fatigues.getSaveData();
     this.train_A_count = fatigues.train_A_count;
     this.train_B_count = fatigues.train_B_count;
@@ -390,6 +407,5 @@ export class MenuComponent implements OnInit {
       specification2_list: this.specification2_list, // 仕様
       conditions_list: this.conditions_list         // 設計条件
     });
-    debugger;
   }
 }

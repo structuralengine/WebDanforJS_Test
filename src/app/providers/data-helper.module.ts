@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
-import { InputBasicInformationService } from "../components/basic-information/basic-information.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ElectronService } from "./electron.service";
+import { AlertDialogComponent } from "../components/alert-dialog/alert-dialog.component";
 
 @NgModule({
   imports: [],
@@ -9,7 +10,8 @@ import { ElectronService } from "./electron.service";
 export class DataHelperModule {
 
   constructor(
-    public electronService: ElectronService
+    public electronService: ElectronService,
+    private modalService: NgbModal
   ) {}
 
   // アラートを表示する
@@ -17,7 +19,14 @@ export class DataHelperModule {
     if(this.electronService.isElectron) {
       this.electronService.ipcRenderer.sendSync('alert', message);
     }else{
-      alert(message);
+      const modalRef = this.modalService.open(AlertDialogComponent, {
+        centered: true,
+        backdrop: true,
+        keyboard: true,
+        size: "sm",
+        windowClass: "alert-modal",
+      });
+      modalRef.componentInstance.message = message;
     }
   }
 
