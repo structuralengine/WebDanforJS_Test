@@ -61,6 +61,9 @@ a.disabled {
         padding-left: 0;
     }
     &__navItem {
+        &.hidden {
+            display: none;
+        }
         margin-bottom: 4px;
         &:nth-child(1) {
             margin-bottom: 16px;

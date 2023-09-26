@@ -60,7 +60,7 @@
             <span translate>app.members</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem">
+        <li class="c-mainNavArea__navItem" [class.hidden]="!isManual()">
           <a
             routerLink="./section-forces"
             routerLinkActive="selected-item"
@@ -115,7 +115,7 @@
             <span translate>app.section_force</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem">
+        <li class="c-mainNavArea__navItem" [class.hidden]="isManual()">
           <a
             routerLink="./design-points"
             routerLinkActive="selected-item"
