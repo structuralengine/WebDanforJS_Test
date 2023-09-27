@@ -96,6 +96,7 @@
         "t_shape":"T shape",
         "r_shape":"Round",
         "oval":"oval",
+        "circle":"Round/Circle",
         "m_no":"Member\nNo",
         "m_len":"Distance",
         "g_no":"Group No",
