@@ -180,14 +180,16 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
             ],
             nodrag: true,
           },
-          {
-            title: this.translate.instant("fatigues.s_grade"),
-            align: 'center', dataType: 'string', dataIndx: 'M_Class', sortable: false, width: 50, nodrag: true,
-          },
-          {
-            title: this.translate.instant("fatigues.weld"),
-            align: 'center', dataType: 'bool', dataIndx: 'M_weld', type: 'checkbox', sortable: false, width: 40, nodrag: true,
-          },
+
+          // Hidden when finish WebDan の SRC構造の対応 #27
+          // {
+          //   title: this.translate.instant("fatigues.s_grade"),
+          //   align: 'center', dataType: 'string', dataIndx: 'M_Class', sortable: false, width: 50, nodrag: true,
+          // },
+          // {
+          //   title: this.translate.instant("fatigues.weld"),
+          //   align: 'center', dataType: 'bool', dataIndx: 'M_weld', type: 'checkbox', sortable: false, width: 40, nodrag: true,
+          // },
         ],
         nodrag: true,
       },
