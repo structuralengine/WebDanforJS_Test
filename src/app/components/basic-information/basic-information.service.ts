@@ -46,10 +46,11 @@ export class InputBasicInformationService  {
         id: 0, 
         title: this.translate.instant("basic-information.rail"),
         selected: true },
-      { 
+        // 一時的にフィリピン版を非表示
+      /*{ 
         id: 1, 
         title: this.translate.instant("basic-information.Pilipinas"),
-        selected: false }
+        selected: false }*/
     ];
   }
   /// get_specification1 によって変わる項目の設定
