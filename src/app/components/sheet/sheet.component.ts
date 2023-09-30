@@ -19,15 +19,28 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   private createGrid() {
     this.options.beforeCellKeyDown = (evt, ui) => {
       const mov = 1;
-
+      // Enterで下に移動
       if (evt.key === 'Enter') {
+        const $cell = this.grid.getCell({
+          rowIndx: ui.rowIndx + mov,
+          colIndx: ui.colIndx,
+        });
+        this.grid.setSelection({
+          rowIndx: ui.rowIndx + mov,
+          colIndx: ui.colIndx,
+          focus: true,
+        });
+        return false;
+      }
+
+      if (evt.key === 'Tab') {
         const $cell = this.grid.getCell({
           rowIndx: ui.rowIndx,
           colIndx: ui.colIndx + mov,
         });
 
         if (evt.shiftKey) {
-          // 「Shift」 と「Enter」を同時に押した際に左へセルを進める
+          // 「Shift」 と「Tab」を同時に押した際に左へセルを進める
           if (ui.colIndx > 0) {
             // 左に移動
             const countCols = this.grid.getColModel().length - 1;
