@@ -108,9 +108,9 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
       this.columnHeaders = [
         {
           title: this.translate.instant("basic-information.sre_cross"),
-          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true,
+          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
-        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 148, nodrag: true, },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, },
       ];
     }
 

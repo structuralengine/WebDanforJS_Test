@@ -255,7 +255,7 @@ export class SafetyFactorsMaterialStrengthsComponent
 
   private setTitle(): void {
     this.columnHeaders1 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       {
         title: this.translate.instant("safety-factors-material-strengths.b_safe"),
         align: 'center', colModel: [
@@ -298,7 +298,7 @@ export class SafetyFactorsMaterialStrengthsComponent
 
     // 鉄筋材料強度
     this.columnHeaders2 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       {
         title: this.translate.instant("safety-factors-material-strengths.ys"),
         align: 'center', colModel: [
@@ -331,20 +331,20 @@ export class SafetyFactorsMaterialStrengthsComponent
 
     // コンクリート材料強度
     this.columnHeaders3 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390, nodrag: true, },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
     ];
 
     // 鉄骨 - 安全係数
     this.columnHeaders4 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 250, nodrag: true, },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       { title: 'γs', dataType: 'float', 'format': '#.00', dataIndx: 'S_rs', sortable: false, width: 70, nodrag: true, },
       { title: 'γb', dataType: 'float', 'format': '#.00', dataIndx: 'S_rb', sortable: false, width: 70, nodrag: true, }
     ];
 
     // 鉄骨材料強度
     this.columnHeaders5 = [
-      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, },
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       { title: 't≦16', dataType: 'float', dataIndx: 'SRCfsyk1', sortable: false, width: 100, nodrag: true, },
       { title: '16＜t≦40', dataType: 'float', dataIndx: 'SRCfsyk2', sortable: false, width: 100, nodrag: true, },
       { title: '40＜t≦75', dataType: 'float', dataIndx: 'SRCfsyk3', sortable: false, width: 100, nodrag: true, }

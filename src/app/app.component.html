@@ -60,7 +60,7 @@
             <span translate>app.members</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem" [class.hidden]="!isManual()">
+        <li class="c-mainNavArea__navItem" [class.disabled]="!isManual()">
           <a
             routerLink="./section-forces"
             routerLinkActive="selected-item"
@@ -115,13 +115,14 @@
             <span translate>app.section_force</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem" [class.hidden]="isManual()">
+        <li class="c-mainNavArea__navItem" [class.disabled]="isManual()">
           <a
             routerLink="./design-points"
             routerLinkActive="selected-item"
             (click)="activePageChenge(2)"
             id="2"
-            class="c-mainNavArea__navItemTitle disabled"
+            class="c-mainNavArea__navItemTitle"
+            [class.disabled]="isManual()"
           >
             <svg
               width="24"

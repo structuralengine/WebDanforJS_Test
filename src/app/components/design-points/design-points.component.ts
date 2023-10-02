@@ -128,6 +128,8 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           width: 70,
           editable: false,
           nodrag: true,
+          style: { 'background': '#373e45' },
+          styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("design-points.p_name"),
@@ -159,6 +161,8 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           width: 70,
           editable: false,
           nodrag: true,
+          style: { 'background': '#373e45' },
+          styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("design-points.p_id"),
@@ -169,6 +173,8 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           width: 85,
           editable: false,
           nodrag: true,
+          style: { 'background': '#373e45' },
+          styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("design-points.position"),
@@ -180,6 +186,8 @@ export class DesignPointsComponent implements OnInit, OnDestroy, AfterViewInit {
           width: 110,
           editable: false,
           nodrag: true,
+          style: { 'background': '#373e45' },
+          styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("design-points.p_name"),

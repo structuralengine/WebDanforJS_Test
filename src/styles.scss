@@ -20,6 +20,7 @@ body {
     font-family: "Noto Sans JP", sans-serif;
     background: var(--base_bg);
     color: var(--text_main);
+    overflow: hidden;
 }
 
 a,
@@ -176,16 +177,16 @@ body {
         border-color: var(--table_border) !important;
     }
     .pq-grid-col:hover {
-        background: none !important;
+        background: none;
     }
     .pq-grid-row.pq-striped,
     .pq-grid-row.pq-striped .pq-align-right {
-        background: var(--table_row_odd_bg) !important;
+        background: var(--table_row_odd_bg);
         color: #fff;
     }
     .pq-grid-row,
     .pq-grid-cell.pq-align-right {
-        background: var(--table_row_even_bg) !important;
+        background: var(--table_row_even_bg);
         color: #fff;
     }
     .cdk-virtual-scroll-viewport {

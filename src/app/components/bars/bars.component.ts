@@ -90,17 +90,17 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (isManual) {
       // 断面力手入力モードの場合
       this.beamHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true, },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       ];
     } else {
       this.beamHeaders = [
         {
           title: this.translate.instant("bars.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true,
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("bars.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true,
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }
@@ -116,11 +116,11 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.beamHeaders.push(
       {
         title: this.translate.instant("bars.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true,
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("bars.bh"),
-        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, nodrag: true,
+        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("bars.haunch"),

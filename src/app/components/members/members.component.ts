@@ -164,11 +164,11 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.columnHeaders = [
         {
           title: this.translate.instant("members.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 70, nodrag: true,
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 70, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("members.m_len"),
-          dataType: 'float', format: '#.000', dataIndx: 'm_len', editable: false, sortable: false, width: 90, nodrag: true,
+          dataType: 'float', format: '#.000', dataIndx: 'm_len', editable: false, sortable: false, width: 90, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }

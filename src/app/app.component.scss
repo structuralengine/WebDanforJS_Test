@@ -12,26 +12,6 @@
     }
 }
 
-a.disabled {
-    pointer-events: none;
-    color: var(--text_disabled);
-
-    svg {
-        circle[fill="white"] {
-            fill: var(--text_disabled);
-        }
-        path[stroke="white"] {
-            stroke: var(--text_disabled);
-        }
-        path[fill="white"] {
-            fill: var(--text_disabled);
-        }
-        rect[fill="white"] {
-            fill: var(--text_disabled);
-        }
-    }
-}
-
 // 左のメニュー画面
 .c-container {
     margin: 0 auto;
@@ -61,9 +41,6 @@ a.disabled {
         padding-left: 0;
     }
     &__navItem {
-        &.hidden {
-            display: none;
-        }
         margin-bottom: 4px;
         &:nth-child(1) {
             margin-bottom: 16px;
@@ -90,6 +67,34 @@ a.disabled {
         &.is-active {
             color: var(--text_main);
             background: var(--primary);
+        }
+    }
+}
+
+.c-mainNavArea {
+    &__navItem {
+        &.disabled {
+            pointer-events: none;
+            color: var(--text_disabled);
+        
+            svg {
+                circle[fill="white"] {
+                    fill: var(--text_disabled);
+                }
+                path[stroke="white"] {
+                    stroke: var(--text_disabled);
+                }
+                path[fill="white"] {
+                    fill: var(--text_disabled);
+                }
+                rect[fill="white"] {
+                    fill: var(--text_disabled);
+                }
+            }
+            a {
+                pointer-events: none;
+                color: var(--text_disabled);
+            }
         }
     }
 }

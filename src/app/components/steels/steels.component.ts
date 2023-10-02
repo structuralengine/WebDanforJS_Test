@@ -70,17 +70,17 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }},
       ];
     } else {
       this.columnHeaders = [
         {
           title: this.translate.instant("steels.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true,
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("steels.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true,
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }
@@ -89,11 +89,11 @@ export class SteelsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.columnHeaders.push(
       {
         title: this.translate.instant("steels.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true,
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("steels.bh"),
-        align: 'center', dataType: 'float', dataIndx: 'bh', frozen: true, editable: false, sortable: false, width: 85, nodrag: true,
+        align: 'center', dataType: 'float', dataIndx: 'bh', frozen: true, editable: false, sortable: false, width: 85, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("steels.position"),
