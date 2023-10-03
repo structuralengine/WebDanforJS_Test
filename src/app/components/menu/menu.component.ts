@@ -307,7 +307,7 @@ export class MenuComponent implements OnInit {
 
   public goToLink() {
     window.open(
-      "https://fresh-tachometer-148.notion.site/WebDan-5a22f8541cb14d27b56389fec84b580f?pvs=4",
+      "https://help-webdan.malme.app/",
       "_blank"
     );
   }
