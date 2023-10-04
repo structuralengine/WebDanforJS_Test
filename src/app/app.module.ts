@@ -84,7 +84,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         initOptions: {
             onLoad: 'check-sso',
         }
-    });
+    }).catch(error => window.alert("自動ログインに失敗しました。"));
 }
 
 @NgModule({
