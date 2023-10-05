@@ -67,10 +67,13 @@ import { PreviewExcelComponent } from "./components/preview-excel/preview-excel.
 import { IgxExcelModule } from 'igniteui-angular-excel';
 import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
+import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.component";
+
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-
+const config: MultiWindowConfig = {windowSaveStrategy: WindowSaveStrategy.SAVE_WHEN_EMPTY};
 function initializeKeycloak(keycloak: KeycloakService) {
     console.log("initializaing keycloak");
     return () => keycloak.init({
@@ -82,7 +85,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         initOptions: {
             onLoad: 'check-sso',
         }
-    });
+    }).catch(error => window.alert("自動ログインに失敗しました。"));
 }
 
 @NgModule({
@@ -111,10 +114,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
             defaultLanguage: "ja",
         }),
         IgxExcelModule,
-        IgxSpreadsheetModule
+        IgxSpreadsheetModule,
+        MultiWindowModule.forRoot(config),
     ],
     declarations: [
         AppComponent,
+        AlertDialogComponent,
         MenuComponent,
         LoginDialogComponent,
         WaitDialogComponent,

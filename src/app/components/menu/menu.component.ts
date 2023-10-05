@@ -1,10 +1,6 @@
-﻿import { Component, HostListener, OnInit, ViewChild, ElementRef } from "@angular/core";
+﻿import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../../app.component";
-import { InputBasicInformationService } from '../basic-information/basic-information.service';
-import { InputFatiguesService } from '../fatigues/fatigues.service';
-import { SheetComponent } from '../sheet/sheet.component';
-import pq from 'pqgrid';
 
 import {
   Router,
@@ -33,6 +29,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
+import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 
 @Component({
   selector: "app-menu",
@@ -43,35 +40,8 @@ export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
   public pickup_file_name: string; 
-  public showMenu: boolean = false;
-  public specification1_select_id: number;
-  public specification2_select_id: number;
-  public train_A_count: number;
-  public train_B_count: number;
-  public service_life: number;
-
-
-  @ViewChild('grid1') grid1: SheetComponent;
-  private table1_datas: any[] = [];
-  public options1: pq.gridT.options;
-
-  @ViewChild('grid2') grid2: SheetComponent;
-  private table2_datas: any[] = [];
-  public options2: pq.gridT.options;
-
-  @ViewChild('grid3') grid3: SheetComponent;
-  private table3_datas: any[] = [];
-  public options3: pq.gridT.options;
-
-
-  // 適用 に関する変数
-  public specification1_list: any[];
-
-  // 仕様 に関する変数
-  public specification2_list: any[];
-
-  // 設計条件
-  public conditions_list: any[];
+  public windows: KnownAppWindow[] = [];
+  public logs: string[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -84,15 +54,12 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private config: ConfigService,
     public user: UserInfoService,
-    private basic: InputBasicInformationService,
-    private fatigues: InputFatiguesService,
     // public auth: Auth,
     public language: LanguagesService,
     public electronService: ElectronService,
     private translate: TranslateService,
-    private elementRef: ElementRef,
-
-    private readonly keycloak: KeycloakService
+    private readonly keycloak: KeycloakService,
+    private multiWindowService: MultiWindowService
   ) {
     // this.auth = getAuth();
     this.fileName = "";
@@ -101,7 +68,8 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();
+    this._renew();    
+    this.windows = this.multiWindowService.getKnownWindows();
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -110,28 +78,32 @@ export class MenuComponent implements OnInit {
       $event.returnValue = "Your work will be lost. Do you want to leave this site?";
     }
   }
+  @HostListener('window:unload')
+  unloadHandler() {
+    this.multiWindowService.saveWindow();
+  }
 
-  @HostListener("document:click", ["$event"])
-  public documentClick(event: MouseEvent): void {
-    const megaMenuElement = this.elementRef.nativeElement.querySelector(
-      ".mega-menu"
-    );
-    const controlBtnElement = this.elementRef.nativeElement.querySelector(
-      ".control-btn"
-    );
+  public newWindow() {
+    //window.open('index.html');     
+    this.electronService.ipcRenderer.send("newWindow");
+  }
 
-    if (
-      (megaMenuElement && !megaMenuElement.contains(event.target)) &&
-      (controlBtnElement && !controlBtnElement.contains(event.target))
-    ) {
-      this.showMenu = false;
+  onKeyDown(event: KeyboardEvent): void {
+    //Check if Ctrl and S key are both pressed
+    if (event.ctrlKey && (event.key === 'S' || event.key === 's')) {
+      event.preventDefault(); // Prevent default behavior of Ctrl + S
+      // Perform your action here
+      this.overWrite();
     }
   }
-  
+
   // 新規作成
-  renew(): void {
-    this.router.navigate(["/blank-page"]);
-    this._renew();
+  async renew(): Promise<void> {
+    const isConfirm = await this.helper.confirm(this.translate.instant("window.confirm"));
+    if (isConfirm) {
+      this.router.navigate(["/blank-page"]);
+      this._renew();
+    }
   }
 
   private _renew(): void {
@@ -145,14 +117,14 @@ export class MenuComponent implements OnInit {
       this.save.clear();
       this.app.memberChange(false); // 左側のボタンを無効にする。
     }, 10);
-    this.showMenu = false;
   }
 
   // Electron でファイルを開く
-  open_electron(){
+  open_electron() {
+
     const response = this.electronService.ipcRenderer.sendSync('open');
 
-    if(response.status!==true){
+    if (response.status !== true) {
       this.helper.alert(this.translate.instant("menu.fail") + response.status);
       return;
     }
@@ -176,7 +148,7 @@ export class MenuComponent implements OnInit {
           this.open_done(modalRef);
       }
     }, 10);
-    this.showMenu = false;
+
   }
 
   // ファイルを開く
@@ -213,7 +185,7 @@ export class MenuComponent implements OnInit {
             this.open_done(modalRef, err);
           });
     }
-    this.showMenu = false;
+
   }
 
   private open_done(modalRef, error = null) {
@@ -232,7 +204,7 @@ export class MenuComponent implements OnInit {
   // 上書き保存
   // 上書き保存のメニューが表示されるのは electron のときだけ
   public overWrite(): void {
-    if (this.fileName === ""){
+    if (this.fileName === "") {
       this.fileSave();
       return;
     }
@@ -265,7 +237,6 @@ export class MenuComponent implements OnInit {
     } else {
       this.helper.alert(this.translate.instant("menu.acceptedFile"));
     }
-    this.showMenu = false;
   }
 
   // ファイルのテキストを読み込む
@@ -308,7 +279,7 @@ export class MenuComponent implements OnInit {
       this.fileName += ".wdj";
     }
     // 保存する
-    if(this.electronService.isElectron) {
+    if (this.electronService.isElectron) {
       this.fileName = this.electronService.ipcRenderer.sendSync('saveFile', this.fileName, inputJson);
     } else {
       const blob = new window.Blob([inputJson], { type: "text/plain" });
@@ -319,9 +290,9 @@ export class MenuComponent implements OnInit {
   // ログイン関係
   async logIn() {
     if (this.electronService.isElectron) {
-      this.modalService.open(LoginDialogComponent, {backdrop: false}).result.then((result) => {});
+      this.modalService.open(LoginDialogComponent, { backdrop: false }).result.then((result) => { });
     } else {
-      this.keycloak.login();
+      this.keycloak.login();      
     }
   }
 
@@ -331,81 +302,14 @@ export class MenuComponent implements OnInit {
     } else {
       this.keycloak.logout(window.location.origin);
       this.user.setUserProfile(null);
-    }    
+    }
   }
-  
+
   public goToLink() {
     window.open(
-      "https://liberating-rodent-f3f.notion.site/697a045460394d03a8dc859f15bf97ea",
+      "https://help-webdan.malme.app/",
       "_blank"
     );
   }
 
-  public setSpecification1(i: number): void {
-
-    const basic = this.basic.set_specification1(i);
-
-    this.specification1_list = basic.specification1_list; // 適用
-    this.specification2_list = basic.specification2_list; // 仕様
-    this.conditions_list = basic.conditions_list;         //  設計条件
-
-    this.table1_datas = basic.pickup_moment;
-    this.table2_datas = basic.pickup_shear_force;
-    this.table3_datas = basic.pickup_torsional_moment;
-
-    if (!(this.grid1 == null))
-      this.grid1.refreshDataAndView();
-    if (!(this.grid2 == null))
-      this.grid2.refreshDataAndView();
-    if (!(this.grid3 == null))
-      this.grid3.refreshDataAndView();
-
-    this.specification1_select_id = i;
-  }
-
-  /// 仕様 変更時の処理
-  public setSpecification2(id: number): void {
-    this.specification2_list.map(
-      obj => obj.selected = (obj.id === id) ? true : false);
-    this.specification2_select_id = id;
-  }
-
-  // 耐用年数, jA, jB
-  public openShiyoJoken() {
-    const basic = this.basic.getSaveData();
-
-    // 適用
-    this.specification1_list = basic.specification1_list;
-    this.specification1_select_id = this.basic.get_specification1();
-    // 仕様
-    this.specification2_list = basic.specification2_list;
-    this.specification2_select_id = this.basic.get_specification2();
-    //  設計条件
-    this.conditions_list = basic.conditions_list;
-
-    this.table1_datas = basic.pickup_moment;
-    this.table2_datas = basic.pickup_shear_force;
-    this.table3_datas = basic.pickup_torsional_moment;
-
-    const fatigues = this.fatigues.getSaveData();
-    this.train_A_count = fatigues.train_A_count;
-    this.train_B_count = fatigues.train_B_count;
-    this.service_life = fatigues.service_life;
-  }
-
-  ngOnDestroy() {
-    this.saveData();
-  }
-
-  public saveData(): void {
-    this.basic.setSaveData({
-      pickup_moment: this.table1_datas,
-      pickup_shear_force: this.table2_datas,
-      pickup_torsional_moment: this.table3_datas,
-
-      specification1_list: this.specification1_list, // 適用
-      specification2_list: this.specification2_list, // 仕様
-      conditions_list: this.conditions_list         // 設計条件
-    });
-  }
 }

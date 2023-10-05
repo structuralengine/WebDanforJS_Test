@@ -31,6 +31,7 @@
                 <input type="file" accept="application/text" (change)="pickup($event)" style="display: none" accept=".pik, .csv"/>
               </span>
             </label>
+            <button *ngIf="electronService.isElectron" ngbDropdownItem (click)="newWindow()" translate>menu.NewWindow</button>
           </div>
         </div>
       </li>

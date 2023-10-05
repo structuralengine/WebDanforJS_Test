@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as fs from 'fs';
 import log from 'electron-log';
@@ -16,8 +16,12 @@ async function createWindow() {
     },
   });
   mainWindow.maximize();
-  mainWindow.setMenuBarVisibility(false);
-  // mainWindow.webContents.openDevTools();
+
+  // 通常版と違う箇所 -----
+  mainWindow.setMenuBarVisibility(true);
+  mainWindow.webContents.openDevTools();
+  // --------------------
+
   mainWindow.on('close', function (e) {
     let langText = require(`../assets/i18n/${locale}.json`)
     let choice = dialog.showMessageBoxSync(this,
@@ -49,7 +53,6 @@ app.whenReady().then(async () => {
 autoUpdater.checkForUpdatesAndNotify();
 
 // Angular -> Electron --------------------------------------------------
-ipcMain.on("newWindow", async() => await createWindow())
 // ファイルを開く
 ipcMain.on('open', (event: Electron.IpcMainEvent) => {
   // ファイルを選択

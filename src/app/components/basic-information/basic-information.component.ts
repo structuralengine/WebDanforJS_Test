@@ -64,37 +64,135 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     this.table3_datas = basic.pickup_torsional_moment;
 
     this.options1 = {
-      height: 360,
+      height: 340,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: false }, // 行番号
+      numberCell: { show: true }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table1_datas },
-      
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
     };
 
     this.options2 = {
-      height: 360,
+      height: 310,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: false }, // 行番号
+      numberCell: { show: true }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table2_datas },
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
     };
 
     this.options3 = {
-      height: 360,
+      height: 210,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
-      numberCell: { show: false }, // 行番号
+      numberCell: { show: true }, // 行番号
       colModel: this.columnHeaders,
       dataModel: { data: this.table3_datas },
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
     };
   }
 
@@ -108,9 +206,9 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
       this.columnHeaders = [
         {
           title: this.translate.instant("basic-information.sre_cross"),
-          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
+          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
         },
-        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 148, nodrag: true, },
       ];
     }
 
@@ -154,6 +252,36 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     this.table2_datas = basic.pickup_shear_force;
     this.table3_datas = basic.pickup_torsional_moment;
 
+    //set data to option.data
+    this.options1.dataModel.data = this.table1_datas;
+    this.options2.dataModel.data = this.table2_datas;
+    this.options3.dataModel.data = this.table3_datas;
+
+    if (!(this.grid1 == null))
+      this.grid1.refreshDataAndView();
+    if (!(this.grid2 == null))
+      this.grid2.refreshDataAndView();
+    if (!(this.grid3 == null))
+      this.grid3.refreshDataAndView();
+    this.specification1_select_id = i;
+  }
+
+  /// 仕様 変更時の処理
+  public setSpecification2(id: number): void {
+    // this.specification2_list.map(
+    //   obj => obj.selected = (obj.id === id) ? true : false);
+    this.basic.set_specification2(id);
+    const basic = this.basic.getSaveData();
+
+    this.table1_datas = basic.pickup_moment;
+    this.table2_datas = basic.pickup_shear_force;
+    this.table3_datas = basic.pickup_torsional_moment;
+    
+    //set data to option.data
+    this.options1.dataModel.data = this.table1_datas;
+    this.options2.dataModel.data = this.table2_datas;
+    this.options3.dataModel.data = this.table3_datas;
+
     if (!(this.grid1 == null))
       this.grid1.refreshDataAndView();
     if (!(this.grid2 == null))
@@ -161,13 +289,6 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     if (!(this.grid3 == null))
       this.grid3.refreshDataAndView();
 
-    this.specification1_select_id = i;
-  }
-
-  /// 仕様 変更時の処理
-  public setSpecification2(id: number): void {
-    this.specification2_list.map(
-      obj => obj.selected = (obj.id === id) ? true : false);
     this.specification2_select_id = id;
   }
 }

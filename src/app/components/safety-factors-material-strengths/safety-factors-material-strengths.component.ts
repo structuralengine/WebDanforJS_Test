@@ -186,6 +186,39 @@ export class SafetyFactorsMaterialStrengthsComponent
         colModel: this.columnHeaders1,
         dataModel: { data: this.table1_datas[i] },
         freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       });
       this.option2_list.push({
         width: 550,
@@ -198,6 +231,39 @@ export class SafetyFactorsMaterialStrengthsComponent
         colModel: this.columnHeaders2,
         dataModel: { data: this.table2_datas[i] },
         freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       });
       this.option3_list.push({
         width: 550,
@@ -210,6 +276,39 @@ export class SafetyFactorsMaterialStrengthsComponent
         colModel: this.columnHeaders3,
         dataModel: { data: this.table3_datas[i] },
         freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       });
       this.option4_list.push({
         width: 410,
@@ -222,6 +321,39 @@ export class SafetyFactorsMaterialStrengthsComponent
         colModel: this.columnHeaders4,
         dataModel: { data: this.table4_datas[i] },
         freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       });
       this.option5_list.push({
         width: 570,
@@ -234,6 +366,39 @@ export class SafetyFactorsMaterialStrengthsComponent
         colModel: this.columnHeaders5,
         dataModel: { data: this.table5_datas[i] },
         freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
       });
     }
 

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { InputBasicInformationService } from "../components/basic-information/basic-information.service";
 import { ElectronService } from "./electron.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AlertDialogComponent } from "../components/alert-dialog/alert-dialog.component";
 
 @NgModule({
@@ -12,23 +13,38 @@ export class DataHelperModule {
   constructor(
     public electronService: ElectronService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   // アラートを表示する
-  public alert(message: string): void{
-    if(this.electronService.isElectron) {
+  public alert(message: string): void {
+    if (this.electronService.isElectron) {
       this.electronService.ipcRenderer.sendSync('alert', message);
-    }else{
+    } else {
+      alert(message);
+    }
+  }
+
+  //Yes/Noのダイアログを表示する
+  public async confirm(message: string): Promise<boolean> {
+    debugger
+    if (this.electronService.isElectron) {
+      return window.confirm(message);
+    } else {
       const modalRef = this.modalService.open(AlertDialogComponent, {
         centered: true,
         backdrop: true,
         keyboard: true,
         size: "sm",
-        windowClass: "alert-modal",
+        windowClass: "confirm-modal",
       });
       modalRef.componentInstance.message = message;
+      modalRef.componentInstance.dialogMode = "confirm";
+
+      const result = await modalRef.result;
+      return result === "yes";
     }
   }
+
 
   // ファイル名から拡張子を取得する関数
   public getExt(filename: string): string {
@@ -64,7 +80,7 @@ export class DataHelperModule {
   }
 
   // 鉄筋強度の情報を返す
-  public getFsyk( rebar_dia: number, material_bar: any, key: string = "tensionBar"): any {
+  public getFsyk(rebar_dia: number, material_bar: any, key: string = "tensionBar"): any {
 
     const result = {
       fsy: null,
@@ -73,7 +89,7 @@ export class DataHelperModule {
     };
 
     let bar = material_bar[0];
-    if('separate' in bar){
+    if ('separate' in bar) {
       if (rebar_dia <= bar.separate) {
         result.fsy = this.toNumber(bar[key].fsy);
         result.fsu = this.toNumber(bar[key].fsu);
@@ -91,9 +107,9 @@ export class DataHelperModule {
     }
     return result;
   }
-  
+
   // 鉄骨強度の情報を返す
-  public getFsyk2( thickness: number, material_steel: any, key: string = 'fsy'): any {
+  public getFsyk2(thickness: number, material_steel: any, key: string = 'fsy'): any {
 
     const result = {
       id: "",
@@ -102,18 +118,18 @@ export class DataHelperModule {
     if (thickness !== null) {
       if (thickness <= material_steel[0].separate) {
         result[key] = (key === 'fsy') ? this.toNumber(material_steel[0].fsyk) :
-                      (key === 'fvy') ? this.toNumber(material_steel[0].fsvyk) :
-                      null;
+          (key === 'fvy') ? this.toNumber(material_steel[0].fsvyk) :
+            null;
         result.id = "1";
       } else if (thickness <= material_steel[1].separate) {
         result[key] = (key === 'fsy') ? this.toNumber(material_steel[1].fsyk) :
-                      (key === 'fvy') ? this.toNumber(material_steel[1].fsvyk) :
-                      null;
+          (key === 'fvy') ? this.toNumber(material_steel[1].fsvyk) :
+            null;
         result.id = "2";
       } else {
         result[key] = (key === 'fsy') ? this.toNumber(material_steel[2].fsyk) :
-                      (key === 'fvy') ? this.toNumber(material_steel[1].fsvyk) :
-                      null;
+          (key === 'fvy') ? this.toNumber(material_steel[1].fsvyk) :
+            null;
         result.id = "3";
       }
     } else {
@@ -168,7 +184,7 @@ export class DataHelperModule {
 
     return result;
   }
-  
+
   // コンクリート強度から弾性係数を 返す
   public getEc(fck: number) {
 
@@ -253,9 +269,9 @@ export class DataHelperModule {
   }
 
   // 側方鉄筋の情報を整理して返す
-  public sideInfo(barInfo1: any,barInfo2:any, dst: number, dsc: number, height: number){
+  public sideInfo(barInfo1: any, barInfo2: any, dst: number, dsc: number, height: number) {
 
-    if(height===null){
+    if (height === null) {
       return null; // 円形など側鉄筋を用いない形状はスキップ
     }
 
@@ -290,7 +306,7 @@ export class DataHelperModule {
     //　1118追加
     let cover2 = barInfo2.side_cover;
     if (this.toNumber(cover2) === null) {
-      cover2 =0;
+      cover2 = 0;
     }
 
     // 1段当りの本数
@@ -335,7 +351,7 @@ export class DataHelperModule {
     // 鉄筋の重心位置を計算する
     const steps: number = Math.ceil(n / line); // 鉄筋段数
     let result: number = cover;
-    if(steps > 1){
+    if (steps > 1) {
       let reNum: number = n;
       let PosNum: number = 0;
       for (let i = 0; i < steps; i++) {
@@ -354,7 +370,7 @@ export class DataHelperModule {
   public table_To_text(wTABLE) {
     var wRcString = "";
     var wTR = wTABLE.rows;
-    let spanList: any = { 1:{row:0, col:0}, 2:{row:0, col:0}, 3:{row:0, col:0} };
+    let spanList: any = { 1: { row: 0, col: 0 }, 2: { row: 0, col: 0 }, 3: { row: 0, col: 0 } };
     for (var i = 0; i < wTR.length; i++) {
       var wTD = wTABLE.rows[i].cells;
       var wTR_Text = "";
@@ -373,19 +389,21 @@ export class DataHelperModule {
             wTR_Text += "\t";
           }
           // colspanを処理する
-          for (let k = 1 ; k < wTD[j].colSpan; k++) {
+          for (let k = 1; k < wTD[j].colSpan; k++) {
             wTR_Text += "\t";
           }
           // rowspanを入手する
           if (wTD[j].rowSpan > 1) {
             for (const key of Object.keys(spanList)) {
               if (spanList[key].row < 2) {
-                spanList[key] = { row:wTD[j].rowSpan, col:wTD[j].colSpan };
+                spanList[key] = { row: wTD[j].rowSpan, col: wTD[j].colSpan };
                 break;
-          } } };
+              }
+            }
+          };
         }
       } else {
-      // 断面形状の列のみ、特殊な挙動をする
+        // 断面形状の列のみ、特殊な挙動をする
         wTR_Text = this.getShapeText(wTD);
         //以下のlink imgでurlを取得
         // const link = document.images[0].alt;
@@ -412,7 +430,7 @@ export class DataHelperModule {
   }
 
   private getShapeText(wTD) {
-    let text: string = ""; 
+    let text: string = "";
     let B_text: string = "";
     let H_text: string = "";
     let side: string = "";
@@ -443,7 +461,7 @@ export class DataHelperModule {
       const target = wTD[j].getElementsByTagName("DIV");
       let target2: any;
       // HTMLCollectionやNodeListでは処理できないため、以下のコードで対応
-      for (let i = 0; i < target[0].children.length; i++ ) {
+      for (let i = 0; i < target[0].children.length; i++) {
         if (target[0].children[i].tagName === 'IMG') {
           target2 = target[0].children[i];
           break;
@@ -478,7 +496,7 @@ export class DataHelperModule {
 
     const size: string = text + B_text + "\t".repeat(wTD[0].colSpan - 1) + '高さ\t\t' + H_text;
 
-    const result: string = side + shape + size; 
+    const result: string = side + shape + size;
 
     return result;
   }
