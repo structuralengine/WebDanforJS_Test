@@ -1,4 +1,4 @@
-﻿import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
+﻿import { Component, HostListener, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../../app.component";
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
