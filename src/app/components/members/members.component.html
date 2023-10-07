@@ -1,6 +1,7 @@
+<!-- <div #ht_container class="ht-container">
 <div #ht_container class="ht-container">
   <app-sheet  #grid [options]="options"></app-sheet>
-</div>
+</div> -->
 
   <!-- Hidden when finish WebDan の SRC構造の対応 #27
 <div class="footer">
@@ -48,6 +49,18 @@
 
 
 
+<div class="basic-layout">
+  <div class="container-fluid mt-16">
+    <div class="row left-contents">
+      <div #ht_container class="ht-container">
+        <app-sheet
+          #grid
+          [options]="options"
+          [class.isManual]="isManual"
+        ></app-sheet>
+      </div>
+    </div>
+  </div>
 <!-- 
 <div class="right-table">
   <p><br/></p>
