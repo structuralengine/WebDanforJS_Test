@@ -184,6 +184,7 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
           },
 
           // Hidden when finish WebDan の SRC構造の対応 #27
+          // 戻す場合は303行目以降も対応の事
           // {
           //   title: this.translate.instant("fatigues.s_grade"),
           //   align: 'center', dataType: 'string', dataIndx: 'M_Class', sortable: false, width: 50, nodrag: true,
@@ -299,14 +300,16 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
 
     let FIXED_CELLS_COUNT = this.save.isManual() ? 3 : 4;
 
+    // SRC対応用にfor_bのendから2列引いた
+    // SRC再表示後はendに2列分足すこと。
     const cellIndexMap = {
       'for_b': {
-        default: { start: 5, end: 15 },
-        manual: { start: 4, end: 14 }
+        default: { start: 5, end: 13 },
+        manual: { start: 4, end: 12 }
       },
       'default': {
-        default: { start: 16, end: 25 },
-        manual: { start: 15, end: 24 }
+        default: { start: 14, end: 25 },
+        manual: { start: 13, end: 24 }
       }
     };
     
