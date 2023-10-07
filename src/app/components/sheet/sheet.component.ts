@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, Renderer2 } from '@angular/core';
+import { HostListener } from '@angular/core';
 import pq from 'pqgrid';
 
 //import few localization files for this demo.
@@ -15,6 +16,38 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   @ViewChild('pqgrid') div: ElementRef;
   @Input() options: any;
   grid: pq.gridT.instance = null;
+
+  isMemberQuestionActive = false;
+  isCrackQuestionActive = false;
+  isSafetyQuestionActive = false;
+
+  @HostListener('document:mouseover', ['$event'])
+  toggleActive(event: Event) {
+    const elements = [
+      { iconId: '#member-question', tableId: '#member-table', activeProp: 'isMemberQuestionActive' },
+      { iconId: '#crack-question', tableId: '#crack-table', activeProp: 'isCrackQuestionActive' },
+      { iconId: '#safety-question', tableId: '#safety-table', activeProp: 'isSafetyQuestionActive' }
+    ];
+  
+    for (let element of elements) {
+      this.handleElementActivation(element, event);
+    }
+  }
+  
+  handleElementActivation(element: any, event: Event) {
+    const elQAIcon = window.document.querySelector(element.iconId);
+    const elTable = window.document.querySelector(element.tableId);
+    const grandEl = elQAIcon?.parentElement?.parentElement;
+  
+    this[element.activeProp] = grandEl?.classList.contains('active') || false;
+  
+    if (grandEl?.contains(event.target as Node)) {
+      grandEl.classList.add('active');
+    } else if (elTable.contains(event.target as Node) && this[element.activeProp]) {
+    } else {
+      grandEl?.classList.remove('active');
+    }
+  }  
 
   private createGrid() {
     this.options.beforeCellKeyDown = (evt, ui) => {

@@ -1,3 +1,95 @@
 <div class="datasheet">
-    <div #pqgrid ></div>
+  <div #pqgrid class="sheet-layout"></div>
+  <div
+    id="member-table"
+    class="description-table"
+    [ngStyle]="{ display: isMemberQuestionActive ? 'block' : 'none' }"
+  >
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th width="54px">
+              <p translate>members.No</p>
+            </th>
+            <th width="85px">
+              <p translate>members.structure</p>
+            </th>
+            <th width="77px">
+              <p translate>members.shape</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td rowspan="2">RC, SRC</td>
+            <td translate>members.rectangle</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td translate>members.t_shape</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>RC, CFT</td>
+            <td translate>members.r_shape</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>RC</td>
+            <td translate>members.oval</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    id="crack-table"
+    class="description-table"
+    [ngStyle]="{ display: isCrackQuestionActive ? 'block' : 'none' }"
+  >
+    <div class="container">
+      <table>
+        <tbody>
+          <tr>
+            <th width="30">1</th>
+            <td translate>crack-settings.normal</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td translate>crack-settings.cor</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td translate>crack-settings.es_cor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    id="safety-table"
+    class="description-table"
+    [ngStyle]="{ display: isSafetyQuestionActive ? 'block' : 'none' }"
+  >
+    <div class="container">
+      <table>
+        <tbody>
+          <tr>
+            <th width="30">1</th>
+            <td translate>safety-factors-material-strengths.rsb_ten</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td translate>safety-factors-material-strengths.ten_com</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td translate>safety-factors-material-strengths.all</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

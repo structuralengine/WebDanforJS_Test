@@ -358,7 +358,7 @@ export class InputBasicInformationService  {
         result =[
           {
             id: 0,
-            title: this.translate.instant("basic-information.jr_com"),
+            title: this.translate.instant("basic-information.jr_standard"),
             selected: true },
           {
             id: 1,
@@ -370,7 +370,7 @@ export class InputBasicInformationService  {
             selected: false },
           {
             id: 3, // JR各社 令和5年 RC標準
-            title: this.translate.instant("basic-information.jr_com5"),
+            title: this.translate.instant("basic-information.jr_stan5"),
             selected: false },
           {
             id: 4, // 運輸機構 令和5年 RC標準

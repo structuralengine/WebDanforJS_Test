@@ -20,6 +20,7 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public activeTab: string = 'for_b';
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
@@ -108,23 +109,24 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.activeButtons(0);
+    this.setActiveTab(this.activeTab);
   }
 
   private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       ];
     } else {
       this.columnHeaders = [
         {
           title: this.translate.instant("fatigues.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("fatigues.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }
@@ -133,15 +135,15 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.columnHeaders.push(
       {
         title: this.translate.instant("fatigues.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("fatigues.bh"),
-        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, width: 85, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, width: 85, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("fatigues.position"),
-        align: 'center', dataType: 'string', dataIndx: 'design_point_id', editable: false, frozen: true, sortable: false, width: 40, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        align: 'center', dataType: 'string', dataIndx: 'design_point_id', editable: false, frozen: true, sortable: false, width: 40, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("fatigues.for_b"),
@@ -182,6 +184,7 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
           },
 
           // Hidden when finish WebDan の SRC構造の対応 #27
+          // 戻す場合は303行目以降も対応の事
           // {
           //   title: this.translate.instant("fatigues.s_grade"),
           //   align: 'center', dataType: 'string', dataIndx: 'M_Class', sortable: false, width: 50, nodrag: true,
@@ -292,4 +295,38 @@ export class FatiguesComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+
+    let FIXED_CELLS_COUNT = this.save.isManual() ? 3 : 4;
+
+    // SRC対応用にfor_bのendから2列引いた
+    // SRC再表示後はendに2列分足すこと。
+    const cellIndexMap = {
+      'for_b': {
+        default: { start: 5, end: 13 },
+        manual: { start: 4, end: 12 }
+      },
+      'default': {
+        default: { start: 14, end: 25 },
+        manual: { start: 13, end: 24 }
+      }
+    };
+    
+    const mode = this.save.isManual() ? 'manual' : 'default';
+    const tabType = cellIndexMap[tab] || cellIndexMap['default'];
+    const { start, end } = tabType[mode];
+    
+    let startCellIndex = start;
+    let endCellIndex = end;
+
+    this.grid.grid.getColModel().forEach((column, index) => {
+      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
+      const isFixedCell = index <= FIXED_CELLS_COUNT;
+
+      column.hidden = !(isInTargetRange || isFixedCell);
+    });
+
+    this.grid.refreshDataAndView();
+  }
 }

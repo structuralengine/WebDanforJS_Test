@@ -69,11 +69,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.print_summary_table_checked = this.calc.print_selected.print_summary_table_checked;
     this.print_safety_ratio_checked = this.calc.print_selected.print_safety_ratio_checked;
 
-    this.calculate_moment_checked = this.calc.print_selected.calculate_moment_checked;
-    this.calculate_shear_force_checked = this.calc.print_selected.calculate_shear_force;
-    this.calculate_torsional_moment_checked = this.calc.print_selected.calculate_torsional_moment;
+    this.calculate_moment_checked = true;
+    this.calculate_shear_force_checked = true;
+    this.calculate_torsional_moment_checked = true;
 
-    this.consider_moment_checked = false;
+    this.consider_moment_checked = true;
 
     this.table_datas = new Array();
     for (const data of this.calc.getColumnData()) {
@@ -311,6 +311,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
           console.log("Error response: ", err);
           this.helper.alert(err['error']);
         })
+  }
+
+  isAnyPrintCheckboxChecked(): boolean {
+    return this.print_section_force_checked || this.print_calculate_checked || this.print_safety_ratio_checked;
+  }
+
+  isAnyDownloadCheckboxChecked(): boolean {
+    return this.calculate_moment_checked || this.calculate_shear_force_checked || this.calculate_torsional_moment_checked;
   }
 
   changeButton(el: any) {

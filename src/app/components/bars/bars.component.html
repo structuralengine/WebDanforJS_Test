@@ -8,9 +8,15 @@
       </li>
     </ul>
   </nav>
+  <div class="tabArea">
+    <ul class="tab-select-items">
+      <li class="tab-select-item" [ngClass]="{'is-active': activeTab === 'rebar_ax'}" (click)="setActiveTab('rebar_ax')" translate>bars.rebar_ax</li>
+      <li class="tab-select-item" [ngClass]="{'is-active': activeTab === 'rebar_sh'}" (click)="setActiveTab('rebar_sh')" translate>bars.rebar_sh</li>
+    </ul>
+  </div>
 </div>
 
-<div>
+<div class="c-sheetArea">
   <app-sheet #grid [options]="options"></app-sheet>
 </div>
 

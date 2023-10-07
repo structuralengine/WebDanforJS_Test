@@ -1,39 +1,43 @@
 .c-subNavArea {
+  padding-top: 11px;
+  background: var(--base-950);
 
-    &__nav {
-      text-align: left;
-      margin-left: -10px;
+  &__nav {
+      display: flex;
+      column-gap: 8px;
+      margin: 0 0 0 16px;
+      padding: 0;
       font-size: 0; /* タグ改行時の空白防止 */
-      background: #fff;
-      color: #2f3f4e;
-      font-size: 14px;
-    }
-  
-    a.is-active {
-      background: #2f3f4e;
-      color: #fff;
-    }
-  
-    &__navItem {
+      font-size: 13px;
+  }
+
+  a.is-active {
+      background: var(--base-900);
+      color: var(--primary);
+  }
+
+  &__navItem {
       display: inline-block;
-      margin-left: 10px;
-      font-size: 14px; /* ulでサイズ0にしたのを戻す */
-    }
-  
-    &__navItemTitle {
+      font-size: 13px; /* ulでサイズ0にしたのを戻す */
+  }
+
+  &__navItemTitle {
       transform: translateX(0);
       display: block;
-      border-bottom: 1px solid #000080;
+      // border-bottom: 1px solid #000080;
       padding: 10px 15px;
-      font-size: 16px;
-      color: #2f3f4e;
+      font-size: 13px;
       cursor: pointer;
       position: relative;
-  
-      &:hover {
-        background: #2f3f4e0c;
-        text-decoration: none;
-      }
-    }
-  
+      background: var(--base-700);
+      border-radius: 4px 4px 0px 0px;
   }
+}
+
+.c-sheetArea {
+  padding-top: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  background: var(--base-900);
+}

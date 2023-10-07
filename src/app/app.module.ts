@@ -37,6 +37,7 @@ import { ConfigService } from ".//providers/config.service";
 import { MenuComponent } from "./components/menu/menu.component";
 import { LoginDialogComponent } from "./components/login-dialog/login-dialog.component";
 import { WaitDialogComponent } from "./components/wait-dialog/wait-dialog.component";
+import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.component";
 
 import { BlankPageComponent } from "./components/blank-page/blank-page.component";
 import { BasicInformationComponent } from "./components/basic-information/basic-information.component";
@@ -67,7 +68,6 @@ import { IgxExcelModule } from 'igniteui-angular-excel';
 import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
-import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.component";
 
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
@@ -122,6 +122,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         MenuComponent,
         LoginDialogComponent,
         WaitDialogComponent,
+        AlertDialogComponent,
         BasicInformationComponent,
         MembersComponent,
         DesignPointsComponent,
