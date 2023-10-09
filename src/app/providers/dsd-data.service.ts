@@ -40,19 +40,15 @@ export class DsdDataService {
     private helper: DataHelperModule) { }
 
   // DSD データを読み込む
-  public readDsdData(arrayBuffer: ArrayBuffer): string {
-
-    const old = this.save.getInputJson();
-
+  public readDsdData(buffer: any): string {
+    const old = this.save.getInputJson();  
     try {
       this.save.clear();
-
       const buff: any = {
-        u8array: new Uint8Array(arrayBuffer),
+        u8array: new Uint8Array(buffer),
         byteOffset: 0
       };
-
-      const obj = this.IsDSDFile(buff);
+      const obj = this.IsDSDFile(buff);      
       buff['datVersID'] = obj.datVersID;
       buff['isManualInput'] = (obj.ManualInput > 0);
 
@@ -75,7 +71,6 @@ export class DsdDataService {
 
       // 互換性の確保
       this.shear.setLaFromPoint();
-
       // 断面力手入力モード
       if (buff.isManualInput) {
         return null;

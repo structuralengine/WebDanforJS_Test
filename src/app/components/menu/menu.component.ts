@@ -39,7 +39,7 @@ import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string; 
+  public pickup_file_name: string;
   public windows: KnownAppWindow[] = [];
   public logs: string[] = [];
 
@@ -68,7 +68,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._renew();    
+    this._renew();
     this.windows = this.multiWindowService.getKnownWindows();
   }
 
@@ -123,7 +123,6 @@ export class MenuComponent implements OnInit {
   open_electron() {
 
     const response = this.electronService.ipcRenderer.sendSync('open');
-
     if (response.status !== true) {
       this.helper.alert(this.translate.instant("menu.fail") + response.status);
       return;
@@ -136,8 +135,8 @@ export class MenuComponent implements OnInit {
 
     setTimeout(() => {
       switch (this.helper.getExt(this.fileName)) {
-        case "dsd":
-          const pik = this.dsdData.readDsdData(response.text);
+        case "dsd":     
+          const pik = this.dsdData.readDsdData(response.textB);
           this.open_done(modalRef);
           if (pik !== null) {
             this.helper.alert(pik + this.translate.instant("menu.open"));
@@ -150,7 +149,6 @@ export class MenuComponent implements OnInit {
     }, 10);
 
   }
-
   // ファイルを開く
   open(evt) {
     const modalRef = this.modalService.open(WaitDialogComponent);
@@ -292,7 +290,7 @@ export class MenuComponent implements OnInit {
     if (this.electronService.isElectron) {
       this.modalService.open(LoginDialogComponent, { backdrop: false }).result.then((result) => { });
     } else {
-      this.keycloak.login();      
+      this.keycloak.login();
     }
   }
 
