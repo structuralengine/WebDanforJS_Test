@@ -472,7 +472,7 @@ export class InputBasicInformationService  {
     const sp = this.specification1_list.find(
       value=>value.selected === true);
 
-    return sp.id;
+    return sp!=undefined?sp.id:0;
   }
 
   public get_specification2(): number {

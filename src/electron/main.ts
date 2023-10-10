@@ -72,12 +72,11 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
   try {
     const path = paths[0];
     const buff = fs.readFileSync(path);
-
     // ファイルを読み込む
-    let text = null;
+    let text = null;   
     switch (path.split('.').pop()) {
       case "dsd":
-        text = buff;
+        text = buff.buffer;
         break;
       default:
         text = buff.toString();
@@ -87,7 +86,8 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     event.returnValue = {
       status: true,
       path: path,
-      text
+      textB: buff.buffer,
+      text     
     };
   } catch (error) {
     event.returnValue = { status: false, message: error.message };
