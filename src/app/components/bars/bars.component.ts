@@ -14,6 +14,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
+  public activeTab: string = 'rebar_ax';
 
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
@@ -111,29 +112,28 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     for (let i = 0; i < this.table_datas.length; i++) {
       this.groupe_name.push(this.bars.getGroupeName(i));
     }
-
-
   }
 
   ngAfterViewInit() {
     this.activeButtons(0);
+    this.setActiveTab(this.activeTab);
   }
 
   private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
       this.beamHeaders = [
-        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true, },
+        { title: '', align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       ];
     } else {
       this.beamHeaders = [
         {
           title: this.translate.instant("bars.m_no"),
-          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, sortable: false, width: 60, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+          align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 70, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
           title: this.translate.instant("bars.position"),
-          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, sortable: false, width: 110, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+          dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }
@@ -149,11 +149,11 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.beamHeaders.push(
       {
         title: this.translate.instant("bars.p_name"),
-        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("bars.bh"),
-        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, width: 85, style: { 'background': '#f5f5f5' }, styleHead: { 'background': '#f5f5f5' }, nodrag: true,
+        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
         title: this.translate.instant("bars.haunch"),
@@ -163,7 +163,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
             align: 'center', colModel: [
               {
                 title: this.translate.instant("bars.shear"),
-                align: 'center', dataType: 'float', dataIndx: 'haunch_height', sortable: false, width: 85, nodrag: true,
+                align: 'center', dataType: 'float', dataIndx: 'haunch_height', frozen: true, sortable: false, width: 85, nodrag: true,
               },
             ],
             nodrag: true,
@@ -173,7 +173,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       {
         title: this.translate.instant("bars.position"),
-        align: 'center', dataType: 'string', dataIndx: 'design_point_id', editable: true, sortable: false, width: 40, nodrag: true,
+        align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, nodrag: true,
       },
       {
         title: this.translate.instant("bars.rebar_ax"),
@@ -188,19 +188,19 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           },
           {
             title: this.translate.instant("bars.cover"),
-            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 55, nodrag: true,
           },
           {
             title: this.translate.instant("bars.lines"),
-            dataType: 'float', dataIndx: 'rebar_lines', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_lines', sortable: false, width: 55, nodrag: true,
           },
           {
             title: this.translate.instant("bars.space"),
-            dataType: 'float', dataIndx: 'rebar_space', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_space', sortable: false, width: 55, nodrag: true,
           },
           {
             title: this.translate.instant("bars.ss"),
-            dataType: 'float', dataIndx: 'rebar_ss', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_ss', sortable: false, width: 55, nodrag: true,
           }
         ],
         nodrag: true,
@@ -227,6 +227,10 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         nodrag: true,
       },
       {
+        title: this.translate.instant("bars.rebar_ob"),
+        dataType: 'float', dataIndx: 'cos', sortable: false, width: 85, nodrag: true,
+      },
+      {
         title: this.translate.instant("bars.rebar_sh"),
         align: 'center', colModel: [
           {
@@ -243,10 +247,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         ],
         nodrag: true,
-      },
-      {
-        title: this.translate.instant("bars.rebar_ob"),
-        dataType: 'float', dataIndx: 'cos', sortable: false, width: 85, nodrag: true,
       },
       {
         title: 'tanγ+tanβ', dataType: 'float', dataIndx: 'tan', sortable: false, width: 85, nodrag: true,
@@ -327,4 +327,38 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+
+    let FIXED_CELLS_COUNT = this.save.isManual() ? 4 : 5;
+    let CHECK_CELL_INDEX = this.save.isManual() ? 24 : 25;
+    
+    let cellIndexMap = {
+      "rebar_ax": {
+        default: { start: 6, end: 16 },
+        manual: { start: 5, end: 15 }
+      },
+      "default": {
+        default: { start: 17, end: 24 },
+        manual: { start: 16, end: 23 }
+      }
+    };
+    
+    const mode = this.save.isManual() ? "manual" : "default";
+    const tabType = cellIndexMap[tab] || cellIndexMap["default"];
+    const { start, end } = tabType[mode];
+    
+    let startCellIndex = start;
+    let endCellIndex = end;
+
+    this.grid.grid.getColModel().forEach((column, index) => {
+      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
+      const isFixedCell = index <= FIXED_CELLS_COUNT;
+      const isCheckCell = index === CHECK_CELL_INDEX;
+
+      column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+    });
+
+    this.grid.refreshDataAndView();
+  }
 }

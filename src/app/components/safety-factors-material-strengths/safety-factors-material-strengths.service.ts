@@ -444,7 +444,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
   public setSaveData(safety: any) {
     this.safety_factor = safety.safety_factor,
     this.material_bar = safety.material_bar,
-    this.material_steel = safety.material_steel,
+    //this.material_steel = safety.material_steel,
     this.material_concrete = safety.material_concrete,
     this.pile_factor = safety.pile_factor
   }

@@ -24,115 +24,190 @@ export class InputSectionForcesService {
   }
 
   public getColumnHeaders1(): any {
-    const result: object[] = [
-      {
-        title: this.translate.instant("section-forces.p_name"),
-        align: 'left', dataType: 'string', dataIndx: 'p_name', frozen: true, sortable: false, width: 250, nodrag: true,
-      }
-    ];
-
-    let old: string = null;
-    let head: any = null;
-    for (const m of this.basic.pickup_moment) {
-      const titles = m.title.split(' ');
-      if (old !== titles[0]) {
-        if (head !== null) {
-          result.push(head);
-        }
-        head = { title: titles[0], align: 'center', colModel: [], nodrag: true, }
-        old = titles[0];
-      }
-      const key = 'Md' + m.id;
-      head.colModel.push(
-        {
-          title: titles[1], align: 'center', colModel: [
-            { title: 'Md<br/>(kN・m)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Md', sortable: false, width: 100, nodrag: true, },
-            { title: 'Nd<br/>(kN)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Nd', sortable: false, width: 100, nodrag: true, }
-          ], nodrag: true,
-        })
-    }
-    if (head !== null) {
-      result.push(head);
-    }
-
-    return result;
+    return this.createColumnHeaders(
+      this.basic.pickup_moment,
+      [0, 2, 5, 6, 7, 8],
+      "Md"
+    );
   }
 
   public getColumnHeaders2(): any {
-    const result: object[] = [
-      {
-        title: this.translate.instant("section-forces.p_name"),
-        align: 'left', dataType: 'string', dataIndx: 'p_name', frozen: true, sortable: false, width: 250, nodrag: true,
-      }
-      // { 
-      //   title: this.translate.instant("section-forces.s_len"),
-      //   dataType: "float", dataIndx: "La", sortable: false, width: 140 },
-    ];
-
-    let old: string = null;
-    let head: any = null;
-    for (const s of this.basic.pickup_shear_force) {
-      const titles = s.title.split(' ');
-      if (old !== titles[0]) {
-        if (head !== null) {
-          result.push(head);
-        }
-        head = { title: titles[0], align: 'center', colModel: [], nodrag: true, }
-        old = titles[0];
-      }
-      const key = 'Vd' + s.id;
-      head.colModel.push(
-        {
-          title: titles[1], align: 'center', colModel: [
-            { title: 'Vd<br/>(kN)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Vd', sortable: false, width: 100, nodrag: true, },
-            { title: 'Md<br/>(kN・m)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Md', sortable: false, width: 100, nodrag: true, },
-            { title: 'Nd<br/>(kN)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Nd', sortable: false, width: 100, nodrag: true, }
-          ], nodrag: true,
-        })
-    }
-    if (head !== null) {
-      result.push(head);
-    }
-
-    return result;
+    return this.createColumnHeaders(
+      this.basic.pickup_shear_force,
+      [0, 3, 5, 6, 7],
+      "Vd"
+    );
   }
 
   public getColumnHeaders3(): any {
-    const result: object[] = [
-      {
-        title: this.translate.instant("section-forces.p_name"),
-        align: 'left', dataType: 'string', dataIndx: 'p_name', sortable: false, width: 250, nodrag: true,
-      },
-    ];
+    return this.createColumnHeaders(
+      this.basic.pickup_torsional_moment,
+      [0, 5, 6, 7],
+      "Mt"
+    );
+  }
 
-    let old: string = null;
-    let head: any = null;
-    for (const s of this.basic.pickup_torsional_moment) {
-      const titles = s.title.split(' ');
-      if (old !== titles[0]) {
-        if (head !== null) {
-          result.push(head);
+  private createColumnHeaders(
+    dataArray: any[],
+    pushIds: number[],
+    keyPrefix: string
+  ): any {
+    const baseColumn: object = {
+      title: this.translate.instant("section-forces.p_name"),
+      align: "left",
+      dataType: "string",
+      dataIndx: "p_name",
+      frozen: true,
+      sortable: false,
+      width: 250,
+      nodrag: true,
+    };
+
+    const result: object[] = [baseColumn];
+    let currentHead: any = null;
+
+    for (const data of dataArray) {
+      const [mainTitle, subTitle] = data.title.split(" ");
+
+      if (pushIds.includes(data.id)) {
+        if (currentHead) {
+          result.push(currentHead);
         }
-        head = { title: titles[0], align: 'center', colModel: [], nodrag: true, }
-        old = titles[0];
+        currentHead = this.createNewHeader(mainTitle);
       }
-      const key = 'Mt' + s.id;
-      head.colModel.push(
-        {
-          title: titles[1], align: 'center', colModel: [
-            { title: 'Mt<br/>(kN・m)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Mt', sortable: false, width: 100, nodrag: true, },
-            { title: 'Md<br/>(kN・m)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Md', sortable: false, width: 100, nodrag: true, },
-            { title: 'Vd<br/>(kN)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Vd', sortable: false, width: 100, nodrag: true, },
-            { title: 'Nd<br/>(kN)', dataType: 'float', 'format': '#.00', dataIndx: key + '_Nd', sortable: false, width: 100, nodrag: true, }
-          ], nodrag: true,
-        })
+
+      const key = keyPrefix + data.id;
+      currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
     }
-    if (head !== null) {
-      result.push(head);
+
+    if (currentHead) {
+      result.push(currentHead);
     }
 
     return result;
   }
+
+  private createNewHeader(title: string): any {
+    return {
+      title: title,
+      align: "center",
+      colModel: [],
+      nodrag: true,
+    };
+  }
+
+  private createSubColumn(
+    subTitle: string,
+    key: string,
+    keyPrefix: string
+  ): object {
+    const baseConfig = {
+      title: subTitle,
+      align: "center",
+      colModel: [],
+      nodrag: true,
+    };
+
+    switch (keyPrefix) {
+      case "Md":
+        baseConfig.colModel.push(
+          {
+            title: "Md<br/>(kN・m)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Md",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Nd<br/>(kN)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Nd",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          }
+        );
+        break;
+      case "Vd":
+        baseConfig.colModel.push(
+          {
+            title: "Vd<br/>(kN)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Vd",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Md<br/>(kN・m)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Md",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Nd<br/>(kN)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Nd",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          }
+        );
+        break;
+      case "Mt":
+        baseConfig.colModel.push(
+          {
+            title: "Mt<br/>(kN・m)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Mt",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Md<br/>(kN・m)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Md",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Vd<br/>(kN)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Vd",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          },
+          {
+            title: "Nd<br/>(kN)",
+            dataType: "float",
+            format: "#.00",
+            dataIndx: key + "_Nd",
+            sortable: false,
+            width: 100,
+            nodrag: true,
+          }
+        );
+        break;
+      default:
+        break;
+    }
+    return baseConfig;
+  }
+
   // １行 のデフォルト値
   public default_column(index: number): any {
 

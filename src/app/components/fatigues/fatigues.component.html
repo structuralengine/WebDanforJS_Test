@@ -1,4 +1,4 @@
-<div class="form-container">
+<!-- <div class="form-container">
   <form>
     <div class="input-container">
       <label>
@@ -15,7 +15,7 @@
       <input id="jB" name="jB" type="text" [(ngModel)]="train_B_count" />
     </div>
   </form>
-</div>
+</div> -->
 
 <div class="c-subNavArea">
   <nav>
@@ -27,8 +27,14 @@
       </li>
     </ul>
   </nav>
+  <div class="tabArea">
+    <ul class="tab-select-items">
+      <li class="tab-select-item" [ngClass]="{'is-active': activeTab === 'for_b'}" (click)="setActiveTab('for_b')" translate>fatigues.for_b</li>
+      <li class="tab-select-item" [ngClass]="{'is-active': activeTab === 'for_s'}" (click)="setActiveTab('for_s')" translate>fatigues.for_s</li>
+    </ul>
+  </div>
 </div>
 
-<div>
+<div class="c-sheetArea">
   <app-sheet #grid [options]="options"></app-sheet>
 </div>

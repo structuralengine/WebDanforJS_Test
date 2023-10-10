@@ -8,3 +8,40 @@
   float: none;
   margin-bottom: 15px;
 }
+
+.tabArea {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 16px 16px 0;
+  background: var(--base-900);
+  
+  .tab-select {
+    &-items {
+      display: flex;
+      list-style: none;
+      column-gap: 2px;
+      padding: 0;
+      margin: 0;
+    }
+  
+    &-item {
+      color: var(--text_main);
+      font-size: 12px;
+      padding: 8px 16px;
+      background: var(--base-700);
+      cursor: pointer;
+  
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+      &.is-active {
+        color: var(--primary);
+        background: var(--base-950);
+      }
+    }
+  }
+}
