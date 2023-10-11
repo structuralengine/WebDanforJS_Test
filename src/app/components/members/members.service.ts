@@ -310,7 +310,8 @@ export class InputMembersService {
     const temp_list = [];
     for (const groupe of this.getGroupeList()) {
       if (this.helper.toNumber(groupe[0].g_no) !== null) {
-        temp_list[groupe[0].g_no * 10000] = groupe;
+        const index = Math.round(groupe[0].g_no * 10000);
+        temp_list[index] = groupe;
       }
     }
 

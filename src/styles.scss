@@ -11,11 +11,197 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
-html, body {
-  margin: 0;
-  padding: 0;
+@import "variables";
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--base_bg);
+    color: var(--text_main);
+    overflow: hidden;
 }
 
-ngb-modal-backdrop{
-  z-index: 1039 !important;
+a,
+legend {
+    color: var(--text_main);
+}
+
+a:hover {
+    color: var(--text_main);
+    opacity: 1;
+    text-decoration: none;
+}
+
+ngb-modal-backdrop {
+    z-index: 1039 !important;
+}
+
+.no-table #safety-table {
+    display: none !important;
+}
+
+.checkbox-input {
+    display: none;
+}
+
+.checkbox-parts {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    height: 30px;
+    position: relative;
+    width: 100%;
+    padding-right: 10px;
+    font-size: 14px;
+    background: #475059;
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.checkbox-input:checked + .checkbox-parts {
+    background: var(--checkbox_selected);
+}
+
+.checkbox-parts-disabled {
+    display: flex;
+    padding-left: 30px;
+    position: relative;
+    width: 100%;
+    opacity: 0.3;
+}
+
+.checkbox-parts::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2b2d30;
+    background-color: #2b2d30;
+    border-radius: 2px;
+}
+
+.checkbox-parts-disabled::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    disabled: 1;
+}
+
+.checkbox-input:hover + .checkbox-parts:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.checkbox-input:checked + .checkbox-parts {
+    color: var(--primary-600);
+    font-weight: 700;
+}
+
+.checkbox-input:checked + .checkbox-parts::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 5px;
+    height: 9px;
+    transform: translateY(-50%) rotate(40deg);
+    border-bottom: 2px solid var(--primary-600);
+    border-right: 2px solid var(--primary-600);
+}
+
+#member-table {
+    top: 60px;
+    left: 34.8%;
+}
+
+.isManual #member-table {
+    top: 60px;
+    left: 17%;
+}
+
+//grid
+body {
+    .pq-grid-col,
+    .pq-grid-number-col {
+        color: var(--text_main);
+    }
+    div.pq-editor-outer {
+        background: transparent !important;
+    }
+    div.pq-theme {
+        color: var(--primary);
+        border-color: var(--table_border) !important;
+        background: none;
+    }
+    .pq-body-outer .pq-cont-left {
+        border-color: var(--table_border) !important;
+    }
+    .pq-header-outer {
+        background: var(--table_empty_bg);
+        border-bottom-color: var(--table_border) !important;
+    }
+
+    .pq-header-outer .pq-cont-inner {
+        background-image: none;
+    }
+
+    .pq-td-border-right > .pq-grid-row > .pq-grid-cell {
+        border-right-color: var(--table_border) !important;
+    }
+    .pq-td-border-top > .pq-grid-row > .pq-grid-cell,
+    .pq-cont-inner > .pq-td-border-top > .pq-grid-row {
+        border-bottom-color: var(--table_border) !important;
+    }
+    .pq-grid-row > .pq-grid-number-cell,
+    .pq-grid-number-col {
+        border-color: var(--table_border) !important;
+    }
+    .pq-body-outer .pq-grid-number-cell,
+    .pq-summary-outer .pq-grid-number-cell {
+        background: none !important;
+    }
+    .pq-grid-col {
+        border-color: var(--table_border) !important;
+    }
+    .pq-grid-col:hover {
+        background: none;
+    }
+    .pq-grid-row.pq-striped,
+    .pq-grid-row.pq-striped .pq-align-right {
+        background: var(--table_row_odd_bg);
+        color: #fff;
+    }
+    .pq-grid-row,
+    .pq-grid-cell.pq-align-right {
+        background: var(--table_row_even_bg);
+        color: #fff;
+    }
+    .cdk-virtual-scroll-viewport {
+        contain: none;
+    }
+    .pq-title-span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pq-col-sort-count,
+    .pq-col-sort-icon {
+        display: none;
+    }
+    .pq-grid-cell input[type="checkbox"] {
+        accent-color: #00C95F;
+    }
 }

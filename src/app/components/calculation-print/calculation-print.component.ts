@@ -69,11 +69,11 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.print_summary_table_checked = this.calc.print_selected.print_summary_table_checked;
     this.print_safety_ratio_checked = this.calc.print_selected.print_safety_ratio_checked;
 
-    this.calculate_moment_checked = this.calc.print_selected.calculate_moment_checked;
-    this.calculate_shear_force_checked = this.calc.print_selected.calculate_shear_force;
-    this.calculate_torsional_moment_checked = this.calc.print_selected.calculate_torsional_moment;
+    this.calculate_moment_checked = true;
+    this.calculate_shear_force_checked = true;
+    this.calculate_torsional_moment_checked = true;
 
-    this.consider_moment_checked = false;
+    this.consider_moment_checked = true;
 
     this.table_datas = new Array();
     for (const data of this.calc.getColumnData()) {
@@ -313,6 +313,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         })
   }
 
+  isAnyPrintCheckboxChecked(): boolean {
+    return this.print_section_force_checked || this.print_calculate_checked || this.print_safety_ratio_checked;
+  }
+
+  isAnyDownloadCheckboxChecked(): boolean {
+    return this.calculate_moment_checked || this.calculate_shear_force_checked || this.calculate_torsional_moment_checked;
+  }
+
   changeButton(el: any) {
     if (el.target.checked && el.target.id !== "print_safety_ratio")
       this.print_safety_ratio_checked = false;
@@ -344,7 +352,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
-
+    ui_data['calc']['print_calculate_checked'] = true;
     console.log(JSON.stringify(ui_data));
 
     const url_summary = environment.printURL;
