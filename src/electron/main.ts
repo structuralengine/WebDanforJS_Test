@@ -76,7 +76,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     let text = null;   
     switch (path.split('.').pop()) {
       case "dsd":
-        text = buff.buffer;
+        text = buff;
         break;
       default:
         text = buff.toString();
@@ -86,7 +86,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     event.returnValue = {
       status: true,
       path: path,
-      textB: buff.buffer,
+      textB: buff,
       text     
     };
   } catch (error) {
