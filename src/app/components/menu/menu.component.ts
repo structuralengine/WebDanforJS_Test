@@ -270,7 +270,7 @@ export class MenuComponent implements OnInit {
   pickup(evt) {
     const file = evt.target.files[0];
     var ext = /^.+\.([^.]+)$/.exec(file.name);
-    if (ext != null && (ext[1] == 'pik' || ext[1] == "csv")) {
+    if (ext != null && (ext[1].toLowerCase() == 'pik' || ext[1].toLowerCase() == "csv")) {
       const modalRef = this.modalService.open(WaitDialogComponent);
       evt.target.value = "";
 
