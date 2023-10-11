@@ -352,7 +352,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
       });
 
     ui_data["member_group_selection"] = column_data;
-
+    ui_data['calc']['print_calculate_checked'] = true;
     console.log(JSON.stringify(ui_data));
 
     const url_summary = environment.printURL;
