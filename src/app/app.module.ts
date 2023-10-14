@@ -77,7 +77,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     console.log("initializaing keycloak");
     return () => keycloak.init({
         config: {
-            url: 'https://auth.malme.app',
+            url: 'https://auth.structuralengine.com',
             realm: 'structural-engine',
             clientId: 'structural-engine'
         },
