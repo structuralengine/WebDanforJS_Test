@@ -67,8 +67,7 @@ export class InputSectionForcesService {
     let currentHead: any = null;
 
     for (const data of dataArray) {
-      //If it cannot be translated, it will still return itself
-      // const [mainTitle, subTitle] = data.title.split(" ");
+      const [mainTitle, subTitle] = data.title.split(" ");
       const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
       if (pushIds.includes(data.id)) {
         if (currentHead) {
