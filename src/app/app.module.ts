@@ -87,7 +87,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     }).catch(error => window.alert("自動ログインに失敗しました。"));
 }
 
-
 @NgModule({
     imports: [
         BrowserModule,
