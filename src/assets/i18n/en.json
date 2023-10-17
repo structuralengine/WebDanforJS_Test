@@ -100,7 +100,7 @@
         "shape":"Shape",
         "rectangle":"Rectangle",
         "t_shape":"T shape",
-        "r_shape":"Round",
+        "r_shape":"Round,Circle",
         "oval":"oval",
         "circle":"Round/Circle",
         "m_no":"Member\nNo",
