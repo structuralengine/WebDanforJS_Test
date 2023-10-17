@@ -100,7 +100,7 @@
         "shape":"形状",
         "rectangle":"矩形",
         "t_shape":"T形",
-        "r_shape":"円形",
+        "r_shape":"円形, 円環",
         "oval":"小判",
         "circle":"円形・円環",
         "m_no":"部材\n番号",
