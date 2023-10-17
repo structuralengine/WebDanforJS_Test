@@ -17,7 +17,7 @@ async function createWindow() {
   });
   mainWindow.maximize();
   mainWindow.setMenuBarVisibility(false);
-  //mainWindow.webContents.openDevTools();
+   mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {
     let langText = require(`../assets/i18n/${locale}.json`)
     let choice = dialog.showMessageBoxSync(this,
@@ -73,7 +73,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     const path = paths[0];
     const buff = fs.readFileSync(path);
     // ファイルを読み込む
-    let text = null;
+    let text = null;   
     switch (path.split('.').pop()) {
       case "dsd":
         text = buff;
@@ -87,7 +87,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
       status: true,
       path: path,
       textB: buff,
-      text
+      text     
     };
   } catch (error) {
     event.returnValue = { status: false, message: error.message };
