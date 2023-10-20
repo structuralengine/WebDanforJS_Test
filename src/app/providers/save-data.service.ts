@@ -21,6 +21,7 @@ export class SaveDataService {
   // ピックアップファイル
   private pickup_filename: string;
   private pickup_data: Object;
+  private arrayAxis: any[];
   //={
   //  1:[
   //    { index: 1, m_no, p_id, position,
@@ -51,6 +52,7 @@ export class SaveDataService {
     private force: InputSectionForcesService,
     private calc: InputCalclationPrintService
   ) {
+    this.arrayAxis = this.safety.arrayAxis;
     this.clear();
   }
 
@@ -287,7 +289,8 @@ export class SaveDataService {
       // 断面力手入力情報
       force: this.force.getSaveData(),
       // 計算印刷設定
-      calc: this.calc.getSaveData()
+      calc: this.calc.getSaveData(),
+      axis_max_min: this.safety.arrayAxis
     };
   }
 

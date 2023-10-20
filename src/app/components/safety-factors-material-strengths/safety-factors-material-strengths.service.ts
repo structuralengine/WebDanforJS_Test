@@ -14,7 +14,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
   private material_steel: any;
   private material_concrete: any;
   public pile_factor: any;
-
+  public arrayAxis: any[]
   constructor(
     private basic: InputBasicInformationService,
     private members: InputMembersService,

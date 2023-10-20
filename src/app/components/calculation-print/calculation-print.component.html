@@ -47,24 +47,6 @@
         </div>
       </div>
       <div class="download-item">
-        <legend translate>calculation-print.axis_maxmin</legend>
-        <div>
-          <label class="checkbox-container">
-            <input
-              type="checkbox"
-              name="calculate_moment"
-              id="consider_moment"
-              class="checkbox-input"
-              [value]="consider_moment_checked"
-              [(ngModel)]="consider_moment_checked"
-              [checked]="consider_moment_checked"
-              (click)="changeButton($event)"
-            />
-            <span translate class="checkbox-parts">calculation-print.consider</span>
-          </label>
-        </div>
-      </div>
-      <div class="download-item">
         <legend translate>calculation-print.member</legend>
         <div class="hot">
           <ng-container *ngFor="let item of table_datas; index as j">

@@ -13,7 +13,9 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class SafetyFactorsMaterialStrengthsComponent
   implements OnInit, OnDestroy, AfterViewInit {
-
+  public arrayAxis: any[]
+  public consider_moment_checked: boolean;
+  public groupMem: any;
   // 安全係数
   @ViewChild('grid1') grid1: SheetComponent;
   public options1: pq.gridT.options;
@@ -71,10 +73,9 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.setTitle();
 
     const safety = this.safety.getTableColumns();
-
+    this.arrayAxis = this.safety.arrayAxis !== undefined ? this.safety.arrayAxis : new Array();
     this.groupe_list = safety.groupe_list;
     this.groupe_name = new Array();
-
     // 配列を作成
     this.table1_datas = new Array();      // 安全係数
     this.table2_datas = new Array();      // 鉄筋材料
@@ -89,7 +90,7 @@ export class SafetyFactorsMaterialStrengthsComponent
       const first = groupe[0];
       const id = first.g_id;
       this.groupe_name.push(this.members.getGroupeName(i));
-
+      
       // 安全係数
       const bar = [], steel = [];
       for (const col of safety.safety_factor[id]) {
@@ -401,7 +402,11 @@ export class SafetyFactorsMaterialStrengthsComponent
         },
       });
     }
-
+    this.groupe_name.map((data: any) => {     
+      if(this.arrayAxis.length < this.groupe_name.length)    
+        this.arrayAxis.push({id: data, consider_moment_checked: false})
+    })  
+    this.groupMem = this.arrayAxis[0].id;
     this.current_index = 0;
     this.options1 = this.option1_list[0];
     this.options2 = this.option2_list[0];
@@ -410,12 +415,17 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.options5 = this.option5_list[0];
     this.options6 = this.pile_factor_list[0];
     this.pile_factor_select_id = this.getPileFactorSelectId();
-
+    this.safety.arrayAxis = this.arrayAxis;
   }
 
   ngAfterViewInit() {
     this.activeButtons(0);
     this.setActiveTab(this.activeTab);
+    this.arrayAxis.map((data: any)=>{
+      if(data.id === this.groupMem){
+        this.consider_moment_checked = data.consider_moment_checked
+      }
+    })
   }
 
   private setTitle(): void {
@@ -600,7 +610,7 @@ export class SafetyFactorsMaterialStrengthsComponent
       material_concrete,
       pile_factor
     })
-
+    this.safety.arrayAxis = this.arrayAxis
   }
 
   // 杭の施工条件を変更を処理する関数
@@ -619,13 +629,17 @@ export class SafetyFactorsMaterialStrengthsComponent
     return result.id;
   }
 
-
-  public activePageChenge(id: number): void {
-
+  public activePageChenge(id: number, group: any): void {
+    this.groupMem=group;
     this.activeButtons(id);
-
-    this.current_index = id;
-
+    this.current_index = id;    
+    this.arrayAxis.map((data: any)=>{
+      if(data.id === group){
+        this.consider_moment_checked = data.consider_moment_checked
+      }
+    })
+    this.safety.arrayAxis = this.arrayAxis;
+    console.log("consider_moment_checked", this.consider_moment_checked)
     this.options1 = this.option1_list[id];
     this.grid1.options = this.options1;
     this.grid1.refreshDataAndView();
@@ -667,5 +681,13 @@ export class SafetyFactorsMaterialStrengthsComponent
 
   public setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+  changeButton(el: any) {
+    this.arrayAxis.forEach((data)=>{
+      if(data.id === this.groupMem){
+        data.consider_moment_checked = el.target.checked
+      }
+    })
+    this.safety.arrayAxis = this.arrayAxis;
   }
 }
