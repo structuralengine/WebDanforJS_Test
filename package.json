@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=127.0.0.1",
-    "build": "ng build --configuration production --base-href \"https://webdan.structuralengine.com/\" && angular-cli-ghpages",
-    "build-actions": "ng build --configuration production --base-href \"https://webdan.structuralengine.com/\"",
+    "build": "ng build --configuration production --base-href \"https://webdan.malme.app/\" && angular-cli-ghpages",
+    "build-actions": "ng build --configuration production --base-href \"https://webdan.malme.app/\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
