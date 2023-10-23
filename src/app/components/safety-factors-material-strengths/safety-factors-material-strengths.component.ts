@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { InputSafetyFactorsMaterialStrengthsService } from './safety-factors-material-strengths.service'
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
@@ -65,7 +65,8 @@ export class SafetyFactorsMaterialStrengthsComponent
   constructor(
     private safety: InputSafetyFactorsMaterialStrengthsService,
     private members: InputMembersService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private cdref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -421,13 +422,16 @@ export class SafetyFactorsMaterialStrengthsComponent
   ngAfterViewInit() {
     this.activeButtons(0);
     this.setActiveTab(this.activeTab);
+   
+  }
+  ngAfterContentChecked() {
     this.arrayAxis.map((data: any)=>{
       if(data.id === this.groupMem){
         this.consider_moment_checked = data.consider_moment_checked
       }
     })
-  }
-
+    this.cdref.detectChanges();
+ }
   private setTitle(): void {
     this.columnHeaders1 = [
       { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
@@ -638,8 +642,6 @@ export class SafetyFactorsMaterialStrengthsComponent
         this.consider_moment_checked = data.consider_moment_checked
       }
     })
-    this.safety.arrayAxis = this.arrayAxis;
-    console.log("consider_moment_checked", this.consider_moment_checked)
     this.options1 = this.option1_list[id];
     this.grid1.options = this.options1;
     this.grid1.refreshDataAndView();
