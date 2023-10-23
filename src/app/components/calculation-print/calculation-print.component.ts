@@ -279,10 +279,6 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     ui_data["member_group_selection"] = column_data;
 
     console.log(JSON.stringify(ui_data));
-
-    //if check consider then get table max min for bending moment
-    ui_data["axis_max_min"] = this.consider_moment_checked;
-    console.log(this.consider_moment_checked)
     //check if get safety ratio list
     const isSR = this.print_safety_ratio_checked;
     let url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
