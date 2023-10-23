@@ -70,7 +70,6 @@ export class SafetyFactorsMaterialStrengthsComponent
   ) { }
 
   ngOnInit() {
-
     this.setTitle();
 
     const safety = this.safety.getTableColumns();
@@ -417,6 +416,7 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.options6 = this.pile_factor_list[0];
     this.pile_factor_select_id = this.getPileFactorSelectId();
     this.safety.arrayAxis = this.arrayAxis;
+    console.log("safety.arrayAxis", this.arrayAxis)
   }
 
   ngAfterViewInit() {
