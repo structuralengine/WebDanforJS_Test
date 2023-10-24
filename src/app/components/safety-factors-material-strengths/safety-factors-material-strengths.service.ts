@@ -31,6 +31,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
     this.material_steel = {};
     this.material_concrete = {};
     this.pile_factor = {};
+    this.arrayAxis = new Array();
   }
 
   // 材料強度情報
@@ -574,7 +575,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
       if(this.arrayAxisBase.length < this.groupe_name.length)    
         this.arrayAxisBase.push({id: data, consider_moment_checked: false})
     }) 
-    if(this.arrayAxis !== undefined){
+    if(this.arrayAxis !== undefined &&  this.arrayAxis.length > 0){
       return this.arrayAxis
     }
     else return this.arrayAxisBase;
