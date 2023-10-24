@@ -19,6 +19,7 @@ import * as FileSaver from "file-saver";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PreviewExcelComponent } from '../preview-excel/preview-excel.component';
 import { merge } from 'rxjs';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-calculation-print',
@@ -371,7 +372,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
           this.summary_data = new Uint8Array(byteNumbers);
           this.hasSummary = true;
-          const filename = "dummy.xlsx";
+          const filename = `${Guid.create()}.xlsx`;
           this._save_summary(filename);
         },
         (err) => {
@@ -394,19 +395,16 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     // modalRef.componentInstance.file = file;
 
     // this.modalService.open(this.modalPreviewExcel, {backdrop: 'static',size: 'lg', keyboard: false, centered: true});
-    window.open(fileURL, "_blank");
+    //window.open(fileURL, "_blank");
 
     //const out_filename = "out_" + filename;
     //
     //// 保存する
-    //if(this.electronService.isElectron)
-    //  this.electronService.ipcRenderer.sendSync('saveFile', filename, this.summary_data);
-    //else {
-    //  const blob =
-    //    new window.Blob([this.summary_data],
-    //                    {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-    //  FileSaver.saveAs(blob, filename);
-    //}
+    if(this.electronService.isElectron)
+     this.electronService.ipcRenderer.sendSync('saveFileExcel', filename, this.summary_data);
+    else {
+      window.open(fileURL, "_blank");
+    }
   }
 
   private showPDF(base64: string) {

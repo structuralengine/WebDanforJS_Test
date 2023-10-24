@@ -57,6 +57,7 @@
     "electron-updater": "^6.1.0",
     "encoding-japanese": "^1.0.30",
     "file-saver": "^2.0.5",
+    "guid-typescript": "^1.0.9",
     "igniteui-angular-core": "^16.1.0",
     "igniteui-angular-excel": "^16.1.0",
     "igniteui-angular-spreadsheet": "^16.1.0",
