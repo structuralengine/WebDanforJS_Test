@@ -408,88 +408,70 @@ export class InputMembersService {
   // 内部保持用のデータに変換
   public setSaveData(members: any) {
     this.clear();
+    debugger
 
-    ////// NEW ADD G_TYPE
-    this.member_list = this.setGroupType(members);
-
-    ////// OLDER
-    // for (const m of members) {
-    //   const def = this.default_member(m.m_no);
-    //   for (const k of Object.keys(def)) {
-    //     if (k in m) {
-    //       def[k] = m[k];
-    //     }
-    //   }
-    //   this.member_list.push(def)
-    // }
+    var isHide = this.checkHideDesignCondition(members);
+    for (const m of members) {
+      const def = this.default_member(m.m_no);
+      for (const k of Object.keys(def)) {
+        if (k in m) {
+          def[k] = m[k];
+        }
+      }
+      this.setGType(def, m.g_type);
+      this.member_list.push(def)
+    }
+    console.log(this.member_list)
   }
 
 
   //Set for g_type in member
-  public setGroupType(members: any) {
-    const conditions_list = this.basicService.conditions_list;
-    var jr003 = conditions_list.find(e => e.id === "JR-003");
-    var jr005 = conditions_list.find(e => e.id === "JR-005");
+  public setGTypeForMembers() {
+    this.member_list.forEach(m => {
+      this.setGType(m);
+    })
+    console.log(this.member_list)
+  }
 
-    ///////     CHECK DATA HAVE G_TYPE
+  //Set for g_type in member
+  public setGType(member: any, gType?: any) {
+    if (gType === undefined || gType === null) {
+      const conditions_list = this.basicService.conditions_list;
+
+      var jr003 = conditions_list.find(e => e.id === "JR-003");
+      var jr005 = conditions_list.find(e => e.id === "JR-005");
+      // Circle
+      if (member.shape === 3) {
+        if (gType === null) member.g_type = 1;
+        else {
+          if (jr003.selected === false && jr005.selected === true) member.g_type = 1;
+          if (jr003.selected === true && jr005.selected === false) member.g_type = 2;
+          if (jr003.selected === false && jr005.selected === false) member.g_type = 3;
+        }
+      }
+
+      // rectangle or t-shape
+      if (member.shape === 1 || member.shape === 2) {
+        member.g_type = null;
+      }
+      // oval
+      if (member.shape === 4) {
+        if (member.g_type === undefined) member.g_type = null;
+      }
+    }
+    else {
+      member.g_type = gType;
+    }
+  }
+
+  public checkHideDesignCondition(members: any[]) {
     let hasGType = members.some(member => "g_type" in member);
     if (hasGType) {
       let gTypes = members.filter(m => m.shape === 3)
         .map(member => member.g_id);
-
       //   CHECK ALL IS SAME VALUE
       let allEqual = gTypes.every((val, i, arr) => val === arr[0]);
-      if (allEqual) {
-        members.forEach(m => {
-          if (parseFloat(m.shape) === 3) {
-            if (jr003.selected === false && jr005.selected === true) m.g_type = 1;
-            if (jr003.selected === true && jr005.selected === false) m.g_type = 2;
-            if (jr003.selected === false && jr005.selected === false) m.g_type = 3;
-          }
-        })
-      }
-      else {
-        // Hiden JR-003 and JR-005 
-        members.forEach(m => {
-          if (parseFloat(m.shape) === 3) {
-            if (m.g_type === undefined || m.g_type === null) m.g_type = 1;
-          }
-        })
-      }
-    }
-    ///Don't have g_type
-    else {
-      members.forEach(m => {
-        // Circle
-        if (m.shape == 3 && (m.g_type === null || m.g_type === undefined)) {
-          if (jr003.selected === false && jr005.selected === true) m.g_type = 1;
-          if (jr003.selected === true && jr005.selected === false) m.g_type = 2;
-          if (jr003.selected === false && jr005.selected === false) m.g_type = 3;
-        }
-        // rectangle or t-shpe
-        if (m.shape == 1 || m.shape == 2) {
-          m.g_type = null;
-        }
-        // oval
-        if (m.shape == 4) {
-          if (m.g_type === undefined || m.g_type === undefined) m.g_type = null;
-        }
-      })
-    }
-
-    return members;
-  }
-
-  public checkHideDesignCondition(members: any[]){
-    let hasGType = members.some(member => "g_type" in member);
-    if(hasGType)
-    {
-      let gTypes = members.filter(m => m.shape === 3)
-        .map(member => member.g_id);
-
-      //   CHECK ALL IS SAME VALUE
-      let allEqual = gTypes.every((val, i, arr) => val === arr[0]);
-      return allEqual;
+      return !allEqual;
     }
     return false;
   }

@@ -144,6 +144,9 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
 
               this.table_datas[row].shape
                 = this.members.getShapeDispFromShapeID(this.members.getShapeIDFromUserInput(value));
+
+              // If need to set "G-type" again
+              // this.members.setGTypeForMembers();
             }
 
           }

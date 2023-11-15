@@ -231,8 +231,11 @@ export class MenuComponent implements OnInit {
       default:
         this.fileToText(file)
           .then((text) => {
-            this.save.readInputData(text);
+            //Check to hide design condition
             this.hideDCJ3_J5 = this.save.hideDC(text);
+
+            //Read file
+            this.save.readInputData(text);
             this.open_done(modalRef);
           })
           .catch((err) => {
@@ -438,7 +441,21 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  public designConditionChange(item: any) {
-    console.log(`Checkbox with value ${item.id} is ${item.selected ? 'checked' : 'unchecked'}`);
+  public changeDesignCondition(item: any) {
+    if (item.id === "JR-003" && item.selected) {
+      const jR005 = this.conditions_list.find(item => item.id === "JR-005");
+      if (jR005 && jR005.selected) {
+        jR005.selected = false;
+      }
+    }
+    else if (item.id === "JR-005" && item.selected) {
+      const jR003 = this.conditions_list.find(item => item.id === "JR-003");
+      if (jR003 && jR003.selected) {
+        jR003.selected = false;
+      }
+    }
+
+    if (item.id === "JR-003" || item.id === "JR-005")
+      this.members.setGTypeForMembers();
   }
 }

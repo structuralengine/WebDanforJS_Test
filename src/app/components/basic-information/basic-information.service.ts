@@ -620,7 +620,7 @@ export class InputBasicInformationService {
       if (indexToInsertAfter !== -1) {
         conditions.splice(indexToInsertAfter + 1, 0, {
           "id": "JR-005",
-          "title": "Adopt a rebar placement method that reduces shear capacity in a circular section",
+          "title": this.translate.instant("basic-information.adopt"),
           "selected": false
         });
       }

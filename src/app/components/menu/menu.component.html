@@ -127,7 +127,7 @@
             <label class="checkbox-container" for="conditions{{i}}">
               <input type="checkbox" name="conditions{{i}}" id="conditions{{i}}" [(ngModel)]="item.selected"
                 [value]="item.id" [checked]="item.selected"
-                class="checkbox-input" (ngModelChange)="designConditionChange(item)"/>
+                class="checkbox-input" (ngModelChange)="changeDesignCondition(item)"/>
               <span translate class="checkbox-parts title">{{item.title | translate}}</span>
             </label>
           </div>
