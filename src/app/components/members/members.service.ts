@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { LanguagesService } from 'src/app/providers/languages.service';
+import { InputBasicInformationService } from '../basic-information/basic-information.service';
+import { forEach } from 'jszip';
+import { parse } from 'path';
+import { toDouble } from 'igniteui-angular-core';
+import { publicDecrypt } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +28,10 @@ export class InputMembersService {
   private lang_shape_names: any = {};
 
   constructor(private translate: TranslateService,
-              private helper: DataHelperModule,
-              private language: LanguagesService
-             ) {
+    private helper: DataHelperModule,
+    private language: LanguagesService,
+    private basicService: InputBasicInformationService,
+  ) {
     this.clear();
 
     for (const lang of this.langs) {
@@ -401,16 +407,90 @@ export class InputMembersService {
 
   // 内部保持用のデータに変換
   public setSaveData(members: any) {
-
     this.clear();
-    for (const m of members) {
-      const def = this.default_member(m.m_no);
-      for (const k of Object.keys(def)) {
-        if (k in m) {
-          def[k] = m[k];
-        }
+
+    ////// NEW ADD G_TYPE
+    this.member_list = this.setGroupType(members);
+
+    ////// OLDER
+    // for (const m of members) {
+    //   const def = this.default_member(m.m_no);
+    //   for (const k of Object.keys(def)) {
+    //     if (k in m) {
+    //       def[k] = m[k];
+    //     }
+    //   }
+    //   this.member_list.push(def)
+    // }
+  }
+
+
+  //Set for g_type in member
+  public setGroupType(members: any) {
+    const conditions_list = this.basicService.conditions_list;
+    var jr003 = conditions_list.find(e => e.id === "JR-003");
+    var jr005 = conditions_list.find(e => e.id === "JR-005");
+
+    ///////     CHECK DATA HAVE G_TYPE
+    let hasGType = members.some(member => "g_type" in member);
+    if (hasGType) {
+      let gTypes = members.filter(m => m.shape === 3)
+        .map(member => member.g_id);
+
+      //   CHECK ALL IS SAME VALUE
+      let allEqual = gTypes.every((val, i, arr) => val === arr[0]);
+      if (allEqual) {
+        members.forEach(m => {
+          if (parseFloat(m.shape) === 3) {
+            if (jr003.selected === false && jr005.selected === true) m.g_type = 1;
+            if (jr003.selected === true && jr005.selected === false) m.g_type = 2;
+            if (jr003.selected === false && jr005.selected === false) m.g_type = 3;
+          }
+        })
       }
-      this.member_list.push(def)
+      else {
+        // Hiden JR-003 and JR-005 
+        members.forEach(m => {
+          if (parseFloat(m.shape) === 3) {
+            if (m.g_type === undefined || m.g_type === null) m.g_type = 1;
+          }
+        })
+      }
     }
+    ///Don't have g_type
+    else {
+      members.forEach(m => {
+        // Circle
+        if (m.shape == 3 && (m.g_type === null || m.g_type === undefined)) {
+          if (jr003.selected === false && jr005.selected === true) m.g_type = 1;
+          if (jr003.selected === true && jr005.selected === false) m.g_type = 2;
+          if (jr003.selected === false && jr005.selected === false) m.g_type = 3;
+        }
+        // rectangle or t-shpe
+        if (m.shape == 1 || m.shape == 2) {
+          m.g_type = null;
+        }
+        // oval
+        if (m.shape == 4) {
+          if (m.g_type === undefined || m.g_type === undefined) m.g_type = null;
+        }
+      })
+    }
+
+    return members;
+  }
+
+  public checkHideDesignCondition(members: any[]){
+    let hasGType = members.some(member => "g_type" in member);
+    if(hasGType)
+    {
+      let gTypes = members.filter(m => m.shape === 3)
+        .map(member => member.g_id);
+
+      //   CHECK ALL IS SAME VALUE
+      let allEqual = gTypes.every((val, i, arr) => val === arr[0]);
+      return allEqual;
+    }
+    return false;
   }
 }

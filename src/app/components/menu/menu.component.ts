@@ -43,7 +43,7 @@ import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string; 
+  public pickup_file_name: string;
   public showMenu: boolean = false;
   public specification1_select_id: number;
   public specification2_select_id: number;
@@ -76,6 +76,7 @@ export class MenuComponent implements OnInit {
 
   public windows: KnownAppWindow[] = [];
   public logs: string[] = [];
+  public hideDCJ3_J5: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -188,7 +189,7 @@ export class MenuComponent implements OnInit {
 
     setTimeout(() => {
       switch (this.helper.getExt(this.fileName)) {
-        case "dsd":     
+        case "dsd":
           const pik = this.dsdData.readDsdData(response.textB);
           this.open_done(modalRef);
           if (pik !== null) {
@@ -231,6 +232,7 @@ export class MenuComponent implements OnInit {
         this.fileToText(file)
           .then((text) => {
             this.save.readInputData(text);
+            this.hideDCJ3_J5 = this.save.hideDC(text);
             this.open_done(modalRef);
           })
           .catch((err) => {
@@ -282,6 +284,8 @@ export class MenuComponent implements OnInit {
           this.save.readPickUpData(text, file.name); // データを読み込む
           this.pickup_file_name = this.save.getPickupFilename();
           modalRef.close();
+
+
         })
         .catch((err) => {
           modalRef.close();
@@ -432,5 +436,9 @@ export class MenuComponent implements OnInit {
       specification2_list: this.specification2_list, // 仕様
       conditions_list: this.conditions_list         // 設計条件
     });
+  }
+
+  public designConditionChange(item: any) {
+    console.log(`Checkbox with value ${item.id} is ${item.selected ? 'checked' : 'unchecked'}`);
   }
 }
