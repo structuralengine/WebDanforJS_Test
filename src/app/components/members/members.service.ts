@@ -430,7 +430,7 @@ export class InputMembersService {
     this.member_list.forEach(m => {
       this.setGType(m);
     })
-    console.log(this.member_list)
+    //console.log(this.member_list)
   }
 
   //Set for g_type in member
