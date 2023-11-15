@@ -408,9 +408,6 @@ export class InputMembersService {
   // 内部保持用のデータに変換
   public setSaveData(members: any) {
     this.clear();
-    debugger
-
-    var isHide = this.checkHideDesignCondition(members);
     for (const m of members) {
       const def = this.default_member(m.m_no);
       for (const k of Object.keys(def)) {
