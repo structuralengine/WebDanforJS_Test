@@ -14,7 +14,9 @@ export class InputSafetyFactorsMaterialStrengthsService {
   private material_steel: any;
   private material_concrete: any;
   public pile_factor: any;
-
+  public arrayAxis: any[]
+  public arrayAxisBase: any[]
+  public groupe_name: any[]
   constructor(
     private basic: InputBasicInformationService,
     private members: InputMembersService,
@@ -29,6 +31,7 @@ export class InputSafetyFactorsMaterialStrengthsService {
     this.material_steel = {};
     this.material_concrete = {};
     this.pile_factor = {};
+    this.arrayAxis = new Array();
   }
 
   // 材料強度情報
@@ -561,7 +564,22 @@ export class InputSafetyFactorsMaterialStrengthsService {
 
     return result;
   }
-
+  public getAxisForceJson(){
+    this.groupe_name = new Array();
+    const safety = this.getTableColumns();
+    this.arrayAxisBase = new Array();
+    for (let i = 0; i < safety.groupe_list.length; i++) {
+      this.groupe_name.push(this.members.getGroupeName(i));
+    }
+    this.groupe_name.map((data: any) => {     
+      if(this.arrayAxisBase.length < this.groupe_name.length)    
+        this.arrayAxisBase.push({id: data, consider_moment_checked: false})
+    }) 
+    if(this.arrayAxis !== undefined &&  this.arrayAxis.length > 0){
+      return this.arrayAxis
+    }
+    else return this.arrayAxisBase;
+  }
 }
 
 

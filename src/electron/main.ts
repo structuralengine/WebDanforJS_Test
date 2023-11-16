@@ -17,7 +17,7 @@ async function createWindow() {
   });
   mainWindow.maximize();
   mainWindow.setMenuBarVisibility(false);
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {
     let langText = require(`../assets/i18n/${locale}.json`)
     let choice = dialog.showMessageBoxSync(this,
@@ -137,6 +137,34 @@ ipcMain.on(
   }
 );
 
+ipcMain.on(
+  'saveFileExcel',
+  async (event: Electron.IpcMainEvent, filename: string, data: string) => {
+    // 場所とファイル名を選択
+    const path = dialog.showSaveDialogSync(mainWindow, {
+      buttonLabel: 'save', // ボタンのラベル
+      filters: [{ name: 'xlsx', extensions: ['xlsx'] }],
+      defaultPath: filename,
+      properties: [
+        'createDirectory', // ディレクトリの作成を許可 (macOS)
+      ],
+    });
+
+    // キャンセルで閉じた場合
+    if (path == null) {
+      event.returnValue = '';
+    }
+
+    // ファイルの内容を返却
+    try {
+      fs.writeFileSync(path, data);
+      event.returnValue = path;
+    } catch (error) {
+      await dialog.showMessageBox({ message: 'error : ' + error });
+      event.returnValue = '';
+    }
+  }
+);
 
 // アラートを表示する
 ipcMain.on(
