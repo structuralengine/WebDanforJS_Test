@@ -83,7 +83,6 @@ export class MembersComponent implements OnInit, AfterViewInit, OnDestroy {
         ]
       },
       change: (evt, ui) => {
-        debugger;
         for (const property of ui.updateList) {
           for (const key of Object.keys(property.newRow)) {
             const old = property.oldRow[key];
