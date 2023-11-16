@@ -66,6 +66,7 @@ export class InputMembersService {
       g_no: null,
       g_id: '',
       g_name: '',
+      g_type: undefined, //set g-Type == undefined
       shape: 0,
       B: null,
       H: null,
@@ -418,7 +419,7 @@ export class InputMembersService {
       this.setGType(def, m.g_type);
       this.member_list.push(def)
     }
-    // console.log(this.member_list)
+    console.log(this.member_list)
   }
 
 
