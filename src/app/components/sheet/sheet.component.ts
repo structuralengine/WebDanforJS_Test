@@ -135,6 +135,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
 
       return true;
     };
+    //when pressed, entering end into cell will advance to the next row, locking events behind to not advance to the next cell
     this.options.editorKeyDown = (evt, ui) => {
       let mov = 1;
       if(evt.keyCode === 13) {
