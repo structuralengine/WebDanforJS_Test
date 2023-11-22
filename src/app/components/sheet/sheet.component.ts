@@ -146,6 +146,18 @@ export class SheetComponent implements AfterViewInit, OnChanges {
         });
         return false;
       }
+      if(evt.keyCode === 9) {
+        debugger
+        let cell = this.grid.getCell({rowIndx: ui.rowIndx, colIndx: ui.colIndx + 1});
+        if(cell.length === 0){
+          this.grid.setSelection({
+            rowIndx: ui.rowIndx + mov,
+            colIndx: 0,
+            focus: true,
+          });
+          return false;
+        }
+      }
       return true;
     }
     this.grid = pq.grid(this.div.nativeElement, this.options);
