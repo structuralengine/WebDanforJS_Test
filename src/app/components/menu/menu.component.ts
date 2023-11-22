@@ -107,6 +107,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this._renew();
     this.windows = this.multiWindowService.getKnownWindows();
+    this.setDefaultOpenControl();
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -141,6 +142,16 @@ export class MenuComponent implements OnInit {
       event.preventDefault(); // Prevent default behavior of Ctrl + S
       // Perform your action here
       this.overWrite();
+    }
+  }
+
+  public setDefaultOpenControl() {
+    const controlBtnElement = this.elementRef.nativeElement.querySelector(
+      ".control-btn"
+    );
+    if (controlBtnElement) {
+      this.openShiyoJoken();
+      this.showMenu = true;
     }
   }
 
@@ -188,7 +199,7 @@ export class MenuComponent implements OnInit {
 
     setTimeout(() => {
       switch (this.helper.getExt(this.fileName)) {
-        case "dsd":     
+        case "dsd":
           const pik = this.dsdData.readDsdData(response.textB);
           this.open_done(modalRef);
           if (pik !== null) {
