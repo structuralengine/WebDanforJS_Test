@@ -388,7 +388,8 @@ export class SaveDataService {
   public hideDC(inputText: any): boolean {
     const jsonData: any = JSON.parse(inputText);
     if ("members" in jsonData) {
-      return this.members.checkHideDesignCondition(jsonData.members);
+      const hide = this.members.checkHideDesignCondition(jsonData.members);
+      return hide;
     }
     return false;
   }

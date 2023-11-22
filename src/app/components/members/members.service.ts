@@ -419,7 +419,7 @@ export class InputMembersService {
       this.setGType(def, m.g_type);
       this.member_list.push(def)
     }
-    console.log(this.member_list)
+    // console.log(this.member_list, "Set JR - members");
   }
 
 
@@ -428,7 +428,7 @@ export class InputMembersService {
     this.member_list.forEach(m => {
       this.setGType(m);
     })
-    //console.log(this.member_list)
+    // console.log(this.member_list, "Change JR - members");
   }
 
   //Set for g_type in member
@@ -440,12 +440,9 @@ export class InputMembersService {
       var jr005 = conditions_list.find(e => e.id === "JR-005");
       // Circle
       if (member.shape === 3) {
-        if (gType === null) member.g_type = 1;
-        else {
-          if (jr003.selected === false && jr005.selected === true) member.g_type = 1;
-          if (jr003.selected === true && jr005.selected === false) member.g_type = 2;
-          if (jr003.selected === false && jr005.selected === false) member.g_type = 3;
-        }
+        if (jr003.selected === false && jr005.selected === true) member.g_type = 1;
+        if (jr003.selected === true && jr005.selected === false) member.g_type = 2;
+        if (jr003.selected === false && jr005.selected === false) member.g_type = 3;
       }
 
       // rectangle or t-shape
@@ -454,7 +451,7 @@ export class InputMembersService {
       }
       // oval
       if (member.shape === 4) {
-        if (member.g_type === undefined) member.g_type = null;
+        member.g_type = 1;
       }
     }
     else {
@@ -463,14 +460,25 @@ export class InputMembersService {
   }
 
   public checkHideDesignCondition(members: any[]) {
-    let hasGType = members.some(member => "g_type" in member);
-    if (hasGType) {
-      let gTypes = members.filter(m => m.shape === 3)
-        .map(member => member.g_id);
-      //   CHECK ALL IS SAME VALUE
-      let allEqual = gTypes.every((val, i, arr) => val === arr[0]);
-      return !allEqual;
-    }
-    return false;
+    //true -> hide; false ->  show
+    let filterMembers = members.filter(member => member.shape === 3 && "g_type" in member);
+    if (filterMembers == undefined || filterMembers.length === 0) return false;
+    //check has multi group
+    let gNos = filterMembers.map(member => member.g_id);
+    let isOnlyG = gNos.every((val, i, arr) => val === arr[0]);
+    if (isOnlyG) return false;
+
+    //Check value each of group
+    let hide = false;
+    let firstElement = filterMembers[0];
+    filterMembers.forEach((val, i) => {
+      if (i > 0 &&
+        val.g_no !== firstElement.g_no &&
+        val.g_type !== firstElement.g_type) {
+        hide = true
+        return;
+      }
+    })
+    return hide;
   }
 }
