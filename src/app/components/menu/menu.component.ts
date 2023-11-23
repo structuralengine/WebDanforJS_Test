@@ -143,7 +143,12 @@ export class MenuComponent implements OnInit {
       this.overWrite();
     }
   }
-
+  changeInput(){
+    this.fatigues.setInputData(
+    this.train_A_count,
+    this.train_B_count,
+    this.service_life);
+  }
   public newWindow() {
     //window.open('index.html');     
     this.electronService.ipcRenderer.send("newWindow");
