@@ -162,6 +162,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       }
     });
     this.grid.refreshDataAndView();
+    this.grid.setColsShow();
+    // console.log(this.grid.colsShow)
   }
 
   // 指定行row まで、曲げモーメント入力データを読み取る
