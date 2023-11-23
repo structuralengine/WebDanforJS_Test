@@ -182,21 +182,45 @@ export class SheetComponent implements AfterViewInit, OnChanges {
       }
       //key tab
       if (evt.keyCode === 9) {
-        const indexCrr = this.colsShow.indexOf(ui.colIndx);
-        let colNext = this.colsShow[indexCrr + 1];
-        if (indexCrr === this.colsShow.length - 1) {
-          this.grid.setSelection({
-            rowIndx: ui.rowIndx + mov,
-            colIndx: 0,
-            focus: true,
-          });
+        if (evt.shiftKey){
+          if (!(ui.rowIndx === 0 && ui.colIndx === 0)) {
+            const indexCrr = this.colsShow.indexOf(ui.colIndx);
+            let colPre = this.colsShow[indexCrr - 1];
+            if (indexCrr === 0) {
+              colPre = this.colsShow[this.colsShow.length - 1]
+              this.grid.setSelection({
+                rowIndx: ui.rowIndx - mov,
+                colIndx: colPre,
+                focus: true,
+              });
+            }
+            else {
+              this.grid.setSelection({
+                rowIndx: ui.rowIndx,
+                colIndx: colPre,
+                focus: true,
+              });
+            }
+          }
         }
-        else {
-          this.grid.setSelection({
-            rowIndx: ui.rowIndx,
-            colIndx: colNext,
-            focus: true,
-          });
+        else
+        {
+          const indexCrr = this.colsShow.indexOf(ui.colIndx);
+          let colNext = this.colsShow[indexCrr + 1];
+          if (indexCrr === this.colsShow.length - 1) {
+            this.grid.setSelection({
+              rowIndx: ui.rowIndx + mov,
+              colIndx: 0,
+              focus: true,
+            });
+          }
+          else {
+            this.grid.setSelection({
+              rowIndx: ui.rowIndx,
+              colIndx: colNext,
+              focus: true,
+            });
+          }
         }
         return false;
       }
