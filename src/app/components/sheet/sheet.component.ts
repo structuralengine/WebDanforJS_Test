@@ -75,7 +75,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
 
         if (evt.shiftKey) {
           // 「Shift」 と「Tab」を同時に押した際に左へセルを進める
-          if (ui.colIndx !== 0 && ui.colIndx !== 0) {
+          if (!(ui.rowIndx === 0 && ui.colIndx === 0)) {
             const indexCrr = this.colsShow.indexOf(ui.colIndx);
             let colPre = this.colsShow[indexCrr - 1];
             if (indexCrr === 0) {
@@ -182,7 +182,6 @@ export class SheetComponent implements AfterViewInit, OnChanges {
       }
       //key tab
       if (evt.keyCode === 9) {
-        debugger
         const indexCrr = this.colsShow.indexOf(ui.colIndx);
         let colNext = this.colsShow[indexCrr + 1];
         if (indexCrr === this.colsShow.length - 1) {
