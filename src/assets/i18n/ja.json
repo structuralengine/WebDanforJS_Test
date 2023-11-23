@@ -108,7 +108,8 @@
         "g_no":"グループNo",
         "g_name":"部材名",
         "section":"断面(mm)",
-        "part_n":"部材数"
+        "part_n":"部材数",
+        "group": "「部材・断面」のグループNoが空欄です。"
     },
     "section-forces":{
         "b_check":"曲げ照査",
