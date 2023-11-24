@@ -7,6 +7,7 @@ import { forEach } from 'jszip';
 import { parse } from 'path';
 import { toDouble } from 'igniteui-angular-core';
 import { publicDecrypt } from 'crypto';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -403,6 +404,8 @@ export class InputMembersService {
       }
       result.push(def)
     }
+    console.log("data save", this.member_list);
+    
     return result;
   }
 
@@ -419,7 +422,6 @@ export class InputMembersService {
       this.setGType(def, m.g_type);
       this.member_list.push(def)
     }
-    // console.log(this.member_list, "Set JR - members");
   }
 
 
@@ -428,14 +430,17 @@ export class InputMembersService {
     this.member_list.forEach(m => {
       this.setGType(m);
     })
-    // console.log(this.member_list, "Change JR - members");
+    //console.log(this.member_list);
   }
 
   //Set for g_type in member
   public setGType(member: any, gType?: any) {
+    if (member.g_id === undefined || member.g_id === "blank"){
+      member.g_type = null;
+      return;
+    }
     if (gType === undefined || gType === null) {
       const conditions_list = this.basicService.conditions_list;
-
       var jr003 = conditions_list.find(e => e.id === "JR-003");
       var jr005 = conditions_list.find(e => e.id === "JR-005");
       // Circle
