@@ -136,16 +136,16 @@
         <!-- 耐用年数 セクション -->
         <div class="d-flex service-life">
           <p translate>fatigues.durable</p>
-          <input id="T" name="T" type="text" [(ngModel)]="service_life" />
+          <input id="T" name="T" type="text" [(ngModel)]="service_life" (change)="changeInput()" />
         </div>
         <div class="d-flex jA-jB">
           <div class="d-flex service-life">
             <p>jA</p>
-            <input id="jA" name="jA" type="text" [(ngModel)]="train_A_count" />
+            <input id="jA" name="jA" type="text" [(ngModel)]="train_A_count" (change)="changeInput()" />
           </div>
           <div class="d-flex service-life">
             <p>jB</p>
-            <input id="jB" name="jB" type="text" [(ngModel)]="train_B_count" />
+            <input id="jB" name="jB" type="text" [(ngModel)]="train_B_count" (change)="changeInput()" />
           </div>
         </div>
       </div>

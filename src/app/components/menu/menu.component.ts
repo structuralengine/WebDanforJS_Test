@@ -146,6 +146,14 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  changeInput(){
+    this.fatigues.setInputData(
+    this.train_A_count,
+    this.train_B_count,
+    this.service_life);
+  }
+
+
   public setDefaultOpenControl() {
     const controlBtnElement = this.elementRef.nativeElement.querySelector(
       ".control-btn"
@@ -155,6 +163,7 @@ export class MenuComponent implements OnInit {
       this.showMenu = true;
     }
   }
+
 
   public newWindow() {
     //window.open('index.html');     
