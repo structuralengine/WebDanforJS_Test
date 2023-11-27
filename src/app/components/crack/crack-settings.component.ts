@@ -6,6 +6,7 @@ import { SheetComponent } from '../sheet/sheet.component';
 import { InputCrackSettingsService } from './crack-settings.service';
 import { TranslateService } from "@ngx-translate/core";
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
+import { InputMembersService } from '../members/members.service';
 
 @Component({
   selector: 'app-crack-settings',
@@ -30,8 +31,9 @@ export class CrackSettingsComponent implements OnInit, OnDestroy, AfterViewInit 
     private save: SaveDataService,
     public helper: DataHelperModule,
     private translate: TranslateService,
-    private basic: InputBasicInformationService
-  ) { }
+    private basic: InputBasicInformationService,
+    private members: InputMembersService,
+  ) { this.members.checkGroupNo();}
 
   ngOnInit() {
 
