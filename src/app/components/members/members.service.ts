@@ -55,7 +55,15 @@ export class InputMembersService {
   public clear(): void {
     this.member_list = new Array();
   }
-
+  public checkGroupNo(){
+    let grNo = this.getGroupes();
+    let memList = this.getSaveData();
+    let check = memList.filter(x =>  x.g_name !== "" || x.B != null || x.H != null || x.t != null);
+    if(grNo.length == 0 && check.length > 0){
+      this.helper.alert(this.translate.instant("members.group"))
+    }
+    console.log(grNo);
+  }
   // 部材情報
   public default_member(m_no: number): any {
     // メモ:

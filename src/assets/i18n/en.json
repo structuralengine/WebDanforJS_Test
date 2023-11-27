@@ -109,7 +109,8 @@
         "g_no":"Group No",
         "g_name":"Part name",
         "section":"Cross section (mm)",
-        "part_n":"Number of parts"
+        "part_n":"Number of parts",
+        "group": "Group No. in \"Member/Cross Section\" is blank"
     },
     "section-forces":{
         "b_check":"Bending check",
