@@ -43,7 +43,7 @@ import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
 export class MenuComponent implements OnInit {
   public fileName: string;
   public version: string;
-  public pickup_file_name: string; 
+  public pickup_file_name: string;
   public showMenu: boolean = false;
   public specification1_select_id: number;
   public specification2_select_id: number;
@@ -76,6 +76,7 @@ export class MenuComponent implements OnInit {
 
   public windows: KnownAppWindow[] = [];
   public logs: string[] = [];
+  public hideDCJ3_J5: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -241,6 +242,10 @@ export class MenuComponent implements OnInit {
       default:
         this.fileToText(file)
           .then((text) => {
+            //Check to hide design condition
+            this.hideDCJ3_J5 = this.save.hideDC(text);
+
+            //Read file
             this.save.readInputData(text);
             this.open_done(modalRef);
           })
@@ -293,6 +298,8 @@ export class MenuComponent implements OnInit {
           this.save.readPickUpData(text, file.name); // データを読み込む
           this.pickup_file_name = this.save.getPickupFilename();
           modalRef.close();
+
+
         })
         .catch((err) => {
           modalRef.close();
@@ -443,5 +450,22 @@ export class MenuComponent implements OnInit {
       specification2_list: this.specification2_list, // 仕様
       conditions_list: this.conditions_list         // 設計条件
     });
+  }
+
+  public changeDesignCondition(item: any) {
+    if (item.id === "JR-003" && item.selected) {
+      const jR005 = this.conditions_list.find(item => item.id === "JR-005");
+      if (jR005 && jR005.selected) {
+        jR005.selected = false;
+      }
+    }
+    else if (item.id === "JR-005" && item.selected) {
+      const jR003 = this.conditions_list.find(item => item.id === "JR-003");
+      if (jR003 && jR003.selected) {
+        jR003.selected = false;
+      }
+    }
+    if (item.id === "JR-003" || item.id === "JR-005")
+      this.members.setGTypeForMembers();
   }
 }
