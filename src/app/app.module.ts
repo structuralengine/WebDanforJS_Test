@@ -22,6 +22,7 @@ import { NgxPrintModule } from "ngx-print";
 import { DataHelperModule } from "./providers/data-helper.module";
 import { MenuService } from "./components/menu/menu.service";
 import { InputBasicInformationService } from "./components/basic-information/basic-information.service";
+import { InputBasicRoadInformationService } from "./components/basic-road-information/basic-road-information.service";
 import { InputMembersService } from "./components/members/members.service";
 import { InputDesignPointsService } from "./components/design-points/design-points.service";
 import { InputBarsService } from "./components/bars/bars.service";
@@ -42,6 +43,7 @@ import { AlertDialogComponent } from "./components/alert-dialog/alert-dialog.com
 
 import { BlankPageComponent } from "./components/blank-page/blank-page.component";
 import { BasicInformationComponent } from "./components/basic-information/basic-information.component";
+import { BasicRoadInformationComponent } from './components/basic-road-information/basic-road-information.component';
 import { MembersComponent } from "./components/members/members.component";
 import { DesignPointsComponent } from "./components/design-points/design-points.component";
 import { BarsComponent } from "./components/bars/bars.component";
@@ -126,6 +128,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         WaitDialogComponent,
         AlertDialogComponent,
         BasicInformationComponent,
+        BasicRoadInformationComponent,
         MembersComponent,
         DesignPointsComponent,
         BarsComponent,
@@ -148,6 +151,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         UserInfoService,
         ConfigService,
         InputBasicInformationService,
+        InputBasicRoadInformationService,
         InputMembersService,
         InputDesignPointsService,
         InputBarsService,
