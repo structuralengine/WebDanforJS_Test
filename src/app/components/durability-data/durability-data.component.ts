@@ -1,19 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SheetComponent } from '../sheet/sheet.component';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import pq from 'pqgrid';
-import { SaveDataService } from 'src/app/providers/save-data.service';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
-import { TranslateService } from '@ngx-translate/core';
-import { ShearStrengthService } from './shear-strength.service';
+import { SaveDataService } from 'src/app/providers/save-data.service';
+import { SheetComponent } from '../sheet/sheet.component';
+import { TranslateService } from "@ngx-translate/core";
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
-
+import { InputDurabilityDataService } from './durability-data.service';
 @Component({
-  selector: 'app-shear',
-  templateUrl: './shear.component.html',
-  styleUrls: ['./shear.component.scss', '../subNavArea.scss']
+  selector: 'app-durability-data',
+  templateUrl: './durability-data.component.html',
+  styleUrls: ['./durability-data.component.scss', '../subNavArea.scss']
 })
-export class ShearComponent implements OnInit {
+export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
@@ -27,21 +26,17 @@ export class ShearComponent implements OnInit {
   public groupe_name: string[];
 
   constructor(
-    private shear: ShearStrengthService,
-    private members: InputMembersService,
+    private durability: InputDurabilityDataService,
     private save: SaveDataService,
     public helper: DataHelperModule,
-    private basic: InputBasicInformationService,
-    private translate: TranslateService
-  ) { 
-    this.members.checkGroupNo();
-  }
+    private translate: TranslateService,
+    private members: InputMembersService,
+  ) { this.members.checkGroupNo();}
 
   ngOnInit() {
 
     this.setTitle(this.save.isManual());
-
-    this.table_datas = this.shear.getTableColumns();
+    this.table_datas = this.durability.getTableColumns();
 
     // グリッドの設定
     this.options = new Array();
@@ -97,7 +92,7 @@ export class ShearComponent implements OnInit {
     // タブのタイトルとなる
     this.groupe_name = new Array();
     for (let i = 0; i < this.table_datas.length; i++) {
-      this.groupe_name.push(this.shear.getGroupeName(i));
+      this.groupe_name.push(this.durability.getGroupeName(i));
     }
 
   }
@@ -115,44 +110,26 @@ export class ShearComponent implements OnInit {
     } else {
       this.columnHeaders = [
         {
-          title: this.translate.instant("shear-strength.m_no"),
+          title: this.translate.instant("durability.m_no"),
           align: 'center', dataType: 'integer', dataIndx: 'm_no', editable: false, frozen: true, sortable: false, width: 60, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
         {
-          title: this.translate.instant("shear-strength.position"),
+          title: this.translate.instant("durability.position"),
           dataType: 'float', format: '#.000', dataIndx: 'position', editable: false, frozen: true, sortable: false, width: 110, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
       ];
     }
-
     // 共通する項目
     this.columnHeaders.push(
       {
-        title: this.translate.instant("shear-strength.p_name"),
+        title: this.translate.instant("durability.p_name"),
         dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
       },
       {
-        title: this.translate.instant("shear-strength.s_len"),
-        dataType: "float", dataIndx: "La", sortable: false, width: 200, nodrag: true,
+        title: this.translate.instant("durability.under_blow_groundwater"),
+        align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox',frozen: true, sortable: false, width: 150, nodrag: true,
       }
     );
-
-    // 令和5年 RC標準
-    const speci1 = this.basic.get_specification1();
-    const speci2 = this.basic.get_specification2();
-    if (speci1 === 0 && (speci2 === 3 || speci2 === 4)) {
-      this.columnHeaders.push(
-        {
-          title: this.translate.instant("shear-strength.fixed_end"),
-          align: 'center', dataType: 'bool', dataIndx: 'fixed_end', type: 'checkbox', sortable: false, width: 100, nodrag: true,
-        },
-        {
-          title: this.translate.instant("shear-strength.m_len"),
-          dataType: "float", dataIndx: "L", sortable: false, width: 150, nodrag: true,
-        }
-      );
-    }
-
   }
 
   public getGroupeName(i: number): string {
@@ -170,7 +147,7 @@ export class ShearComponent implements OnInit {
         a.push(e);
       }
     }
-    this.shear.setTableColumns(a);
+    this.durability.setTableColumns(a);
   }
 
   // 表の高さを計算する
@@ -192,7 +169,7 @@ export class ShearComponent implements OnInit {
   // アクティブになっているボタンを全て非アクティブにする
   private activeButtons(id: number) {
     for (let i = 0; i <= this.table_datas.length; i++) {
-      const data = document.getElementById("shr" + i);
+      const data = document.getElementById("crk" + i);
       if (data != null) {
         if (i === id) {
           data.classList.add("is-active");
@@ -204,3 +181,4 @@ export class ShearComponent implements OnInit {
   }
 
 }
+0

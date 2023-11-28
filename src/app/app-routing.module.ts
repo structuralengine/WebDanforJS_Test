@@ -1,4 +1,5 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { DurabilityDataComponent } from './components/durability-data/durability-data.component';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BlankPageComponent } from './components/blank-page/blank-page.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: 'fatigues', component: FatiguesComponent },
     { path: 'safety-factors-material-strengths', component: SafetyFactorsMaterialStrengthsComponent },
     { path: 'section-forces', component: SectionForcesComponent },
+    { path: 'durability_data', component: DurabilityDataComponent },
     { path: 'calculation-print', component: CalculationPrintComponent },
 //    { path: 'result-viewer', component: ResultViewerComponent },
     { path: 'blank-page', component: BlankPageComponent }

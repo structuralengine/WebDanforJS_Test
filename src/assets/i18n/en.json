@@ -35,6 +35,7 @@
         "steels":"Steel arrangement",
         "shear":"Shear strength",
         "crack":"Crack data",
+        "durability":"Durability data",
         "fatigues":"Fatigue data",
         "sf_ms":"Safety factor / Material strength",
         "calc_print":"Calculation / Printing",
@@ -114,7 +115,8 @@
         "g_no":"Group No",
         "g_name":"Part name",
         "section":"Cross section (mm)",
-        "part_n":"Number of parts"
+        "part_n":"Number of parts",
+        "group": "Group No. in \"Member/Cross Section\" is blank"
     },
     "section-forces":{
         "b_check":"Bending check",
@@ -434,6 +436,12 @@
         "tention": "",
         "member":"Member",
         "number":""
+    },
+    "durability":{
+        "m_no":"Member\nNo" ,
+        "position":"Position",
+        "p_name":"Part name",
+        "under_blow_groundwater":"Under or Below\ngroundwater level"
     },
     "result-durability-moment":{
         "u_bend_vfry_rslt":"Usability (appearance) Results of verification of bending cracks"

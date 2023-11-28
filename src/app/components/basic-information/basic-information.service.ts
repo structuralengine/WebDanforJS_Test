@@ -631,7 +631,24 @@ export class InputBasicInformationService {
         }
       }
     }
-    this.conditions_list = basic.conditions_list;
+
+    // this.conditions_list = basic.conditions_list;
+    const conditions = basic.conditions_list;
+    let isExist = conditions.some(item => item.id === 'JR-005');
+    if (!isExist) {
+      // Find index of insertAfterId
+      var indexToInsertAfter = conditions.findIndex(function (condition) {
+        return condition.id === 'JR-003';
+      });
+      if (indexToInsertAfter !== -1) {
+        conditions.splice(indexToInsertAfter + 1, 0, {
+          "id": "JR-005",
+          "title": this.translate.instant("basic-information.adopt"),
+          "selected": false
+        });
+      }
+    }
+    this.conditions_list = conditions;
   }
 
   public setPickUpData() {}
