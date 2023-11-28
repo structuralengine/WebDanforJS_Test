@@ -3,6 +3,7 @@ import { InputDesignPointsService } from "./components/design-points/design-poin
 import { InputMembersService } from "./components/members/members.service";
 import { ConfigService } from "./providers/config.service";
 import { SaveDataService } from "./providers/save-data.service";
+import { MenuService } from "./components/menu/menu.service";
 
 @Component({
   selector: "app-root",
@@ -14,6 +15,7 @@ export class AppComponent {
     private config: ConfigService,
     private save: SaveDataService,
     private members: InputMembersService,
+    public menuService: MenuService,
     private points: InputDesignPointsService
   ) {}
 
