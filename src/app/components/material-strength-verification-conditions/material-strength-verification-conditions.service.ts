@@ -7,7 +7,8 @@ import { InputBasicInformationService } from '../basic-information/basic-informa
 @Injectable({
   providedIn: 'root'
 })
-export class InputMaterialStrengthVerificationConditionService {npm 
+
+export class InputMaterialStrengthVerificationConditionService {
   private material_bar: any;
   private material_steel: any;
   private material_concrete: any;
