@@ -73,6 +73,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
 import { DurabilityDataComponent } from "./components/durability-data/durability-data.component";
 import { InputMaterialStrengthVerificationConditionService } from "./components/material-strength-verification-conditions/material-strength-verification-conditions.service";
+import { MaterialStrengthVerificationConditionComponent } from "./components/material-strength-verification-conditions/material-strength-verification-conditions.component";
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -134,6 +135,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         BarsComponent,
         FatiguesComponent,
         SafetyFactorsMaterialStrengthsComponent,
+        MaterialStrengthVerificationConditionComponent,
         SectionForcesComponent,
         CalculationPrintComponent,
         BlankPageComponent,
@@ -144,7 +146,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         ChatComponent,
         ShearComponent,
         ActivateSessionComponent,
-        PreviewExcelComponent
+        PreviewExcelComponent,
     ],
     providers: [
         MenuService,
