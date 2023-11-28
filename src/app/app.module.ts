@@ -20,6 +20,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxPrintModule } from "ngx-print";
 
 import { DataHelperModule } from "./providers/data-helper.module";
+import { MenuService } from "./components/menu/menu.service";
 import { InputBasicInformationService } from "./components/basic-information/basic-information.service";
 import { InputMembersService } from "./components/members/members.service";
 import { InputDesignPointsService } from "./components/design-points/design-points.service";
@@ -68,6 +69,7 @@ import { IgxExcelModule } from 'igniteui-angular-excel';
 import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
+import { DurabilityDataComponent } from "./components/durability-data/durability-data.component";
 
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
@@ -135,12 +137,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
         SheetComponent,
         SteelsComponent,
         CrackSettingsComponent,
+        DurabilityDataComponent,
         ChatComponent,
         ShearComponent,
         ActivateSessionComponent,
         PreviewExcelComponent
     ],
     providers: [
+        MenuService,
         UserInfoService,
         ConfigService,
         InputBasicInformationService,

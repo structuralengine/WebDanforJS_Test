@@ -38,7 +38,9 @@
         "durability":"耐久性データ",
         "fatigues":"疲労データ",
         "sf_ms":"安全係数・材料強度",
-        "calc_print":"計算・印刷"
+        "calc_print":"計算・印刷",
+        "material_condition": "材料強度・照査条件",
+        "durability_data":"耐久性データ"
     },
     "blank-page":{
         "cs_pc":"断面性能照査",
@@ -59,6 +61,7 @@
         "dc":"設計条件",
         "sre_cross":"断面照査に用いる応力",
         "rail":"鉄道",
+        "road":"道",
         "Pilipinas": "フィリピン鉄道",
         "japan_civil":"土木学会",
         "d_stress":"耐久性 縁応力度検討用",
@@ -92,8 +95,10 @@
         "jr_east":"ＪＲ東日本",
         "limit100":"ひび割れ幅制限値に用いるかぶりは 100mm を上限とする",
         "apex":"円形断面で鉄筋を頂点に１本配置する",
-        "adopt":"円形断面のせん断耐力が小さくなるような鉄筋配置を採用",
-        "Mud":"せん断耐力におけるβn算定時の Mud は軸力を考慮しない"
+        "Mud":"せん断耐力におけるβn算定時の Mud は軸力を考慮しない",
+        "limit_design_method":"限界設計法",
+        "partial_coefficient_method":"部分係数法",
+        "allowable_stress_method":"許容応力度法"
     },
     "members" :{
         "section_sh":"断面形状",
