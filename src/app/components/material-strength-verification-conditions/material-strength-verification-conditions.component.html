@@ -13,11 +13,11 @@
 <div class="tabContent">
   <ul class="tab-select-items">
     <li class="tab-select-item"
-      translate>material-strength-verifiaction-condition.rsb_con</li>    
+      translate [ngClass]="{'is-active': activeTab === 'rsb_con'}" (click)="setActiveTab('rsb_con')">material-strength-verifiaction-condition.rsb_con</li>    
     <li class="tab-select-item" 
       translate [ngClass]="{'is-active': activeTab === 'com_type'}" (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
     <li class="tab-select-item" 
-      translate>material-strength-verifiaction-condition.rsb_con</li>    
+      translate [ngClass]="{'is-active': activeTab === 'sei_ver'}" (click)="setActiveTab('sei_ver')">material-strength-verifiaction-condition.sei_ver</li>    
     <li class="tab-select-item"
       translate [ngClass]="{'is-active': activeTab === 'other_con'}" (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
   </ul>

@@ -17,34 +17,21 @@ import pq from 'pqgrid';
 
 export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public groupe_name: string[];
-  public activeTab: string = 'com_type';
+  public activeTab: string = 'rsb_con';
 
   public options3: any[]; 
   public pile_factor_list: any[] = new Array();
   public pile_factor_select_id: string;
 
   public options5: any[]; 
-  public material_steel_list: any[] = new Array();
-  
-
-  constructor(private translate: TranslateService,) { }
-
-  ngOnInit() {
-    
-  }
-
-  ngAfterViewInit() {
-    this.setActiveTab(this.activeTab);
-
-  }
+  public material_steel_list: any[] = new Array(); 
   public setActiveTab(tab: string) {
     this.activeTab = tab;
-=======
-export class MaterialStrengthVerificationConditionComponent implements OnInit, OnDestroy, AfterViewInit {
+  }
+
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
-  public options1: pq.gridT.options;
-  public activeTab: string = 'rsb_con';
+  public options1: pq.gridT.options;  
   private option1_list: pq.gridT.options[] = new Array();
   private columnHeaders1: object[] = [];
   private table1_datas: any[];
@@ -61,7 +48,6 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit, O
 
   private current_index: number;
   private groupe_list: any[];
-  public groupe_name: string[];
   constructor(
     private material: InputMaterialStrengthVerificationConditionService,
     private members: InputMembersService,
@@ -87,7 +73,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit, O
     //throw new Error('Method not implemented.');
   }
   ngAfterViewInit(): void {
-    //throw new Error('Method not implemented.');
+    this.setActiveTab(this.activeTab)
   }
   private setTitle() : void{
     this.columnHeaders1 = [

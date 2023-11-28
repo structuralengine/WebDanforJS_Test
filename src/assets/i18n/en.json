@@ -222,7 +222,7 @@
     "material-strength-verifiaction-condition":{
         "com_type":"Component Type",
         "other_con":"Other conditions",
-        "base_stan":"Base Standard"
+        "base_stan":"Base Standard",
         "rsb_con":"Reinforcing bar / Concrete",
         "γi":"Coefficient γi",
         "ys":"Yield strength",
@@ -236,7 +236,8 @@
         "vcd":"Design of bar members without shear reinforced steel Shear strength Vcd reduction coefficient",
         "cs":"Compressive strength",
         "as":"Adhesion strength",
-        "young":"Young's modulus"
+        "young":"Young's modulus",
+        "sei_ver": "Seismic Verification Conditions"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",
