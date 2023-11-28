@@ -220,7 +220,20 @@
         "fold":"folding"
     },
     "material-strength-verifiaction-condition":{
-        
+        "rsb_con":"Reinforcing bar / Concrete",
+        "γi":"Coefficient γi",
+        "ys":"Yield strength",
+        "d25":"D25 or less",
+        "d29":"D29 and above",
+        "dts":"Design tensile strength",
+        "r_mta":"Reinforcing bar material strength",
+        "pile":"Pile construction conditions",
+        "method":"Construction method",
+        "ρc":"Construction correction factor ρc",
+        "vcd":"Design of bar members without shear reinforced steel Shear strength Vcd reduction coefficient",
+        "cs":"Compressive strength",
+        "as":"Adhesion strength",
+        "young":"Young's modulus"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",

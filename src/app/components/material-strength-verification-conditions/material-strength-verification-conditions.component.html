@@ -2,7 +2,7 @@
   <nav>
     <ul class="c-subNavArea__nav">
       <li class="c-subNavArea__navItem" *ngFor="let groupe of groupe_name; index as i">
-        <a (click)="activePageChenge(i, groupe)" id="saf{{i}}" class="c-subNavArea__navItemTitle">
+        <a (click)="activePageChenge(i, groupe)" id="mat{{i}}" class="c-subNavArea__navItemTitle">
           <span>{{groupe}}</span>
         </a>
       </li>
@@ -24,35 +24,35 @@
 
 
   <div class="tab-inner">
-    <div class="item-container">    
-      <!-- [ngClass]="{'hide': activeTab !== 'rsb_con'}" -->
+    <div class="item-container"  [ngClass]="{'hide': activeTab !== 'rsb_con'}">    
+     
 
       <div class="material-strength">
         <h5 translate>material-strength-verifiaction-condition.r_mta</h5>
         <div class="table-container">
-          <!-- <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet> -->
+          <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet>
         </div>
       </div>
-      <div class="concrete-strength">
+      <!-- <div class="concrete-strength">
         <h5 translate>material-strength-verifiaction-condition.c_mta</h5>
-        <!-- <app-sheet #grid3 [options]="options3" class="no-table"></app-sheet> -->
-      </div>
+        <app-sheet #grid3 [options]="options3" class="no-table"></app-sheet>
+      </div> -->
     </div>
 
     <div class="item-container" >
       <div class="safety-factors">
         <h5 translate>material-strength-verifiaction-condition.safe</h5>
         <div class="table-container">
-          <!-- <app-sheet #grid4 [options]="options4" class="no-table"></app-sheet> -->
+          <app-sheet #grid4 [options]="options4" class="no-table"></app-sheet>
         </div>
       </div>
 
-      <div class="material-strength">
+      <!-- <div class="material-strength">
         <h5 translate>material-strength-verifiaction-condition.s_mta</h5>
         <div class="table-container">
-          <!-- <app-sheet #grid5 [options]="options5" class="no-table"></app-sheet> -->
+          <app-sheet #grid5 [options]="options5" class="no-table"></app-sheet>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="item-container" >
@@ -84,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of options6; index as i">
+            <!-- <ng-container *ngFor="let item of options6; index as i">
               <tr>
                 <td width="20px">
                   <input type="radio" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
@@ -96,7 +96,7 @@
                 <td>{{item.rEc.toFixed(2)}}</td>
                 <td>{{item.rVcd.toFixed(2)}}</td>
               </tr>
-            </ng-container>
+            </ng-container> -->
           </tbody>
         </table>
       </div>
