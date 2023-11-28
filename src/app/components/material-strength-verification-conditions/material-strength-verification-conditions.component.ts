@@ -10,6 +10,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("run");
   }
 
 }
