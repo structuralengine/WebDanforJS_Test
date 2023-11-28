@@ -34,6 +34,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
 import { MultiWindowService, Message, KnownAppWindow } from 'ngx-multi-window';
+import { MenuService } from "./menu.service";
 
 @Component({
   selector: "app-menu",
@@ -79,6 +80,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
+    public menuService: MenuService,
     private app: AppComponent,
     private save: SaveDataService,
     private members: InputMembersService,
@@ -105,6 +107,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.menuService.selectedRoad = false;
     this._renew();
     this.windows = this.multiWindowService.getKnownWindows();
   }
@@ -386,6 +389,7 @@ export class MenuComponent implements OnInit {
       this.grid3.refreshDataAndView();
 
     this.specification1_select_id = i;
+    this.menuService.selectApply(i);
   }
 
   /// 仕様 変更時の処理
