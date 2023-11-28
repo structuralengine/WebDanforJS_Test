@@ -70,7 +70,7 @@ import { IgxSpreadsheetModule } from 'igniteui-angular-spreadsheet';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MultiWindowConfig, MultiWindowModule, WindowSaveStrategy} from 'ngx-multi-window'
 import { DurabilityDataComponent } from "./components/durability-data/durability-data.component";
-
+import { InputMaterialStrengthVerificationConditionService } from "./components/material-strength-verification-conditions/material-strength-verification-conditions.service";
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -156,6 +156,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         InputSafetyFactorsMaterialStrengthsService,
         InputSectionForcesService,
         InputCalclationPrintService,
+        InputMaterialStrengthVerificationConditionService,
         SaveDataService,
         // 計算結果コンポーネントで他のコンポーネントから使いまわされるものは
         // declarations だけではなくココ(providers) にも宣言して
