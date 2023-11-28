@@ -213,6 +213,9 @@
         "hoop":"Hoop",
         "fold":"folding"
     },
+    "material-strength-verifiaction-condition":{
+        
+    },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",
         "safe":"Stability factor",

@@ -14,6 +14,7 @@ import { CalculationPrintComponent } from './components/calculation-print/calcul
 //import { ResultViewerComponent } from './calculation/result-viewer/result-viewer.component';
 import { CrackSettingsComponent } from './components/crack/crack-settings.component';
 import { ShearComponent } from './components/shear/shear.component';
+import { MaterialStrengthVerificationConditionComponent } from './components/material-strength-verification-conditions/material-strength-verification-conditions.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     { path: 'section-forces', component: SectionForcesComponent },
     { path: 'calculation-print', component: CalculationPrintComponent },
 //    { path: 'result-viewer', component: ResultViewerComponent },
-    { path: 'blank-page', component: BlankPageComponent }
+    { path: 'blank-page', component: BlankPageComponent },
+    {path: 'material-strength-verification-conditions', component: MaterialStrengthVerificationConditionComponent}
 ];
 
 @NgModule({
