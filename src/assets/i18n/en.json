@@ -220,6 +220,9 @@
         "fold":"folding"
     },
     "material-strength-verifiaction-condition":{
+        "com_type":"Component Type",
+        "other_con":"Other conditions",
+        "base_stan":"Base Standard"
         "rsb_con":"Reinforcing bar / Concrete",
         "γi":"Coefficient γi",
         "ys":"Yield strength",

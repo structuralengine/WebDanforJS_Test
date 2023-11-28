@@ -15,18 +15,17 @@
     <li class="tab-select-item"
       translate>material-strength-verifiaction-condition.rsb_con</li>    
     <li class="tab-select-item" 
-      translate>material-strength-verifiaction-condition.pile</li>
-      <li class="tab-select-item" 
+      translate [ngClass]="{'is-active': activeTab === 'com_type'}" (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
+    <li class="tab-select-item" 
       translate>material-strength-verifiaction-condition.rsb_con</li>    
     <li class="tab-select-item"
-      translate>material-strength-verifiaction-condition.pile</li>
+      translate [ngClass]="{'is-active': activeTab === 'other_con'}" (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
   </ul>
 
-
+  
   <div class="tab-inner">
-    <div class="item-container"  [ngClass]="{'hide': activeTab !== 'rsb_con'}">    
-     
 
+    <div class="item-container"  [ngClass]="{'hide': activeTab !== 'rsb_con'}">  
       <div class="material-strength">
         <h5 translate>material-strength-verifiaction-condition.r_mta</h5>
         <div class="table-container">
@@ -39,7 +38,40 @@
       </div> -->
     </div>
 
-    <div class="item-container" >
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'com_type'}">
+      <div class="pile-factors">
+        <h5 translate>material-strength-verifiaction-condition.com_type</h5>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2" colspan="2" width="20px">
+              </th>
+              <th rowspan="2" colspan="2">
+                <p translate>material-strength-verifiaction-condition.com_type</p>
+              </th>
+              <th rowspan="2" width="110px">
+                <p translate>material-strength-verifiaction-condition.base_stan</p>
+              </th>
+            </tr>
+            
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of options3; index as i">
+              <tr>
+                <td width="20px">
+                  <input type="radio" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
+                    [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
+                </td>
+                <td style="text-align: left" width="200px">{{item.title}}</td>
+                <td style="text-align: left" width="200px">{{item.title}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="item-container" [ngClass]="{'hide': activeTab !== ''}">
       <div class="safety-factors">
         <h5 translate>material-strength-verifiaction-condition.safe</h5>
         <div class="table-container">
@@ -55,52 +87,36 @@
       </div> -->
     </div>
 
-    <div class="item-container" >
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'other_con'}">
       <div class="pile-factors">
-        <h5 translate>material-strength-verifiaction-condition.pile</h5>
+        <h5 translate>material-strength-verifiaction-condition.other_con</h5>
         <table>
           <thead>
             <tr>
-              <th rowspan="2" colspan="2">
-                <p translate>material-strength-verifiaction-condition.method</p>
+              <th rowspan="2" colspan="2" width="20px">
               </th>
-              <th colspan="3">
-                <p translate>material-strength-verifiaction-condition.ρc</p>
-              </th>
-              <th rowspan="2" width="110px">
-                <p translate>material-strength-verifiaction-condition.vcd</p>
-              </th>
-            </tr>
-            <tr>
-              <th width="80px">
-                <p translate>material-strength-verifiaction-condition.cs</p>
-              </th>
-              <th width="80px">
-                <p translate>material-strength-verifiaction-condition.as</p>
-              </th>
-              <th width="80px">
-                <p translate>material-strength-verifiaction-condition.young</p>
+              <th rowspan="2" colspan="2" width="300px">
+                <p translate>material-strength-verifiaction-condition.other_con</p>
               </th>
             </tr>
           </thead>
           <tbody>
+
             <!-- <ng-container *ngFor="let item of options6; index as i">
+
               <tr>
                 <td width="20px">
-                  <input type="radio" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
+                  <input type="checkbox" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
                     [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
                 </td>
                 <td style="text-align: left" width="200px">{{item.title}}</td>
-                <td>{{item.rfck.toFixed(2)}}</td>
-                <td>{{item.rfbok.toFixed(2)}}</td>
-                <td>{{item.rEc.toFixed(2)}}</td>
-                <td>{{item.rVcd.toFixed(2)}}</td>
               </tr>
             </ng-container> -->
           </tbody>
         </table>
       </div>
     </div>
+
   </div>
 
 </div>

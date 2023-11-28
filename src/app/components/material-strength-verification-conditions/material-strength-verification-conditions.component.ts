@@ -1,3 +1,6 @@
+
+
+
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { InputMembersService } from '../members/members.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -5,11 +8,38 @@ import { InputMaterialStrengthVerificationConditionService } from './material-st
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
 
+
 @Component({
   selector: 'app-material-strength',
   templateUrl: './material-strength-verification-conditions.component.html',
   styleUrls: ['./material-strength-verification-conditions.component.scss', '../subNavArea.scss']
 })
+
+export class MaterialStrengthVerificationConditionComponent implements OnInit {
+  public groupe_name: string[];
+  public activeTab: string = 'com_type';
+
+  public options3: any[]; 
+  public pile_factor_list: any[] = new Array();
+  public pile_factor_select_id: string;
+
+  public options5: any[]; 
+  public material_steel_list: any[] = new Array();
+  
+
+  constructor(private translate: TranslateService,) { }
+
+  ngOnInit() {
+    
+  }
+
+  ngAfterViewInit() {
+    this.setActiveTab(this.activeTab);
+
+  }
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+=======
 export class MaterialStrengthVerificationConditionComponent implements OnInit, OnDestroy, AfterViewInit {
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
@@ -91,6 +121,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit, O
         nodrag: true,
       },
     ];
+
 
   }
   public activePageChenge(id: number, group: any): void {

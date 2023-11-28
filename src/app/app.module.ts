@@ -146,7 +146,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
         ChatComponent,
         ShearComponent,
         ActivateSessionComponent,
-        PreviewExcelComponent
+        PreviewExcelComponent,
     ],
     providers: [
         MenuService,
