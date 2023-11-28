@@ -35,6 +35,7 @@
         "steels":"鉄骨配置",
         "shear":"せん断耐力算定",
         "crack":"ひび割れデータ",
+        "durability":"耐久性データ",
         "fatigues":"疲労データ",
         "sf_ms":"安全係数・材料強度",
         "calc_print":"計算・印刷"

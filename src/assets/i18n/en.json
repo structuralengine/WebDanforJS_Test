@@ -35,6 +35,7 @@
         "steels":"Steel arrangement",
         "shear":"Shear strength",
         "crack":"Crack data",
+        "durability":"Durability data",
         "fatigues":"Fatigue data",
         "sf_ms":"Safety factor / Material strength",
         "calc_print":"Calculation / Printing"
@@ -430,6 +431,12 @@
         "tention": "",
         "member":"Member",
         "number":""
+    },
+    "durability":{
+        "m_no":"Member\nNo" ,
+        "position":"Position",
+        "p_name":"Part name",
+        "under_blow_groundwater":"Under or Below\ngroundwater level"
     },
     "result-durability-moment":{
         "u_bend_vfry_rslt":"Usability (appearance) Results of verification of bending cracks"

@@ -412,8 +412,6 @@ export class InputMembersService {
       }
       result.push(def)
     }
-    console.log("data save", this.member_list);
-    
     return result;
   }
 
