@@ -15,7 +15,7 @@ export class MenuService {
   }
   selectApply(i:number){
     this.selectedRoad = false;
-    if(i === 1) this.selectedRoad = true;
+    if(i === 2) this.selectedRoad = true;
   }
 
 }

@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { BlankPageComponent } from './components/blank-page/blank-page.component';
 import { BasicInformationComponent } from './components/basic-information/basic-information.component';
-import { BasicRoadInformationComponent } from './components/basic-road-information/basic-road-information.component';
 import { MembersComponent } from './components/members/members.component';
 import { DesignPointsComponent } from './components/design-points/design-points.component';
 import { BarsComponent } from './components/bars/bars.component';
@@ -35,7 +34,6 @@ const routes: Routes = [
 //    { path: 'result-viewer', component: ResultViewerComponent },
     { path: 'blank-page', component: BlankPageComponent },
     {path: 'material-strength-verification-conditions', component: MaterialStrengthVerificationConditionComponent},
-    { path: 'basic-road-information', component: BasicRoadInformationComponent },
 ];
 
 @NgModule({
