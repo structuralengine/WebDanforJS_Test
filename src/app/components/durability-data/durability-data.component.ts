@@ -4,7 +4,6 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { SaveDataService } from 'src/app/providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import { TranslateService } from "@ngx-translate/core";
-import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
 import { InputDurabilityDataService } from './durability-data.service';
 @Component({
@@ -34,7 +33,6 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   ) { this.members.checkGroupNo();}
 
   ngOnInit() {
-
     this.setTitle(this.save.isManual());
     this.table_datas = this.durability.getTableColumns();
 
@@ -169,7 +167,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   // アクティブになっているボタンを全て非アクティブにする
   private activeButtons(id: number) {
     for (let i = 0; i <= this.table_datas.length; i++) {
-      const data = document.getElementById("crk" + i);
+      const data = document.getElementById("dura" + i);
       if (data != null) {
         if (i === id) {
           data.classList.add("is-active");
