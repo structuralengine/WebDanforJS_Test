@@ -68,6 +68,8 @@ export class MenuComponent implements OnInit {
 
   // 適用 に関する変数
   public specification1_list: any[];
+  public specification1_list_file: any[];
+  public specification2_list_file: any[];
 
   // 仕様 に関する変数
   public specification2_list: any[];
@@ -259,6 +261,13 @@ export class MenuComponent implements OnInit {
 
             //Read file
             this.save.readInputData(text);
+            let basicFile = this.save.getBasicData();
+            this.specification1_list_file = basicFile.specification1_list;
+            this.basic.set_specification1_data_file(this.specification1_list_file);
+            this.specification2_list_file = basicFile.specification2_list;
+            this.specification2_list_file.forEach(el => {
+              this.setSpecification2(el.id);
+            })
             this.open_done(modalRef);
           })
           .catch((err) => {
@@ -417,6 +426,16 @@ export class MenuComponent implements OnInit {
 
     this.specification1_select_id = i;
     this.menuService.selectApply(i);
+    this.router.navigate(['./basic-information']);
+    for (let i = 0; i <= 12; i++) {
+      const data = document.getElementById(i + "");
+      if (data != null) {
+        if (data.classList.contains("is-active")) {
+          data.classList.remove("is-active");
+        }
+      }
+    }
+    document.getElementById("0").classList.add("is-active");
   }
 
   /// 仕様 変更時の処理
@@ -429,9 +448,10 @@ export class MenuComponent implements OnInit {
   // 耐用年数, jA, jB
   public openShiyoJoken() {
     const basic = this.basic.getSaveData();
-
+    
     // 適用
     this.specification1_list = basic.specification1_list;
+    
     this.specification1_select_id = this.basic.get_specification1();
     // 仕様
     this.specification2_list = basic.specification2_list;
