@@ -228,7 +228,10 @@
         "p_name":"算出点名",
         "s_len":"せん断スパン長(mm)",
         "fixed_end":"両端固定",
-        "m_len":"部材長さ(mm)"
+        "m_len":"部材長さ(mm)",
+        "consider_shear":"せん断スパン比の影響を考慮する",
+        "concrete":"コンクリート",
+        "reinforcement_bar":"せん断補強鉄筋"
     },
     "fatigues":{
         "durable":"耐用年数",
@@ -463,6 +466,12 @@
         "tention": "引張",
         "member":"部材",
         "number":"本"
+    },
+    "durability":{
+        "m_no":"部材\n番号",
+        "position":"位置",
+        "p_name":"算出点名",
+        "under_blow_groundwater":"水中または\n地下水位以下"
     },
     "result-durability-moment":{
         "u_bend_vfry_rslt":"使用性（外観）曲げひび割れの照査結果"
