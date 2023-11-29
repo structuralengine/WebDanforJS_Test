@@ -205,8 +205,8 @@ export class ShearComponent implements OnInit {
             nodrag: true,
           },
           {
-            title: this.translate.instant("shear-strength.s_len"),
-            dataType: "float", dataIndx: "L", sortable: false, width: 200, nodrag: true,
+            title: this.translate.instant("shear-strength.s_len_a"),
+            dataType: "center", dataIndx: "L", sortable: false, width: 150, nodrag: true,
           }
         );
       }

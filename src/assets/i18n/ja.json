@@ -228,6 +228,7 @@
         "position":"位置",
         "p_name":"算出点名",
         "s_len":"せん断スパン長(mm)",
+        "s_len_a":"せん断スパン長\n a(mm)",
         "fixed_end":"両端固定",
         "m_len":"部材長さ(mm)",
         "consider_shear":"せん断スパン比の影響を考慮する",

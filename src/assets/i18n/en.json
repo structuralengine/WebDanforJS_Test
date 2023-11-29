@@ -228,6 +228,7 @@
         "position":"Position",
         "p_name":"Calculated point name",
         "s_len":"Shear span length (mm)",
+        "s_len_a":"Shear span length\n a(mm)",
         "fixed_end":"fixed end",
         "m_len":"Distance (mm)",
         "consider_shear":"Consider the effect of shear span ratio",
