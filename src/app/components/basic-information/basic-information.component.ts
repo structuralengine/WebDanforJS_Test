@@ -108,7 +108,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     };
 
     this.options2 = {
-      height: 310,
+      height: 340,
       showTop: false,
       reactive: true,
       sortable: false,
@@ -152,7 +152,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     };
 
     this.options3 = {
-      height: 210,
+      height: 340,
       showTop: false,
       reactive: true,
       sortable: false,

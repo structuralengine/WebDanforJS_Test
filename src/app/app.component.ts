@@ -38,7 +38,7 @@ export class AppComponent {
 
   // アクティブになっているボタンを全て非アクティブにする
   public deactiveButtons() {
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 12; i++) {
       const data = document.getElementById(i + "");
       if (data != null) {
         if (data.classList.contains("is-active")) {
