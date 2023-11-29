@@ -98,7 +98,8 @@
         "Mud":"Mud when calculating βn in shear strength does not consider axial force",
         "limit_design_method":"limit design method",
         "partial_coefficient_method":"partial coefficient method",
-        "allowable_stress_method":"allowable stress method"
+        "allowable_stress_method":"allowable stress method",
+        "adopt":"Adopt a rebar placement method that reduces shear capacity in a circular section"
     },
     "basic-information-road":{
         "bs_dcp_of_is": "Durability Corrosion protection of internal steel [1]",

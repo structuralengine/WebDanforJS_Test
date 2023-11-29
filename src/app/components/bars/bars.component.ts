@@ -5,7 +5,6 @@ import { SaveDataService } from 'src/app/providers/save-data.service';
 import pq from 'pqgrid';
 import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
-import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-bars',
@@ -32,7 +31,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     private members: InputMembersService,
     private bars: InputBarsService,
     private save: SaveDataService,
-    private menuService: MenuService,
     private translate: TranslateService
   ) { 
     this.members.checkGroupNo();
