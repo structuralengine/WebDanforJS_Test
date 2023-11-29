@@ -174,7 +174,6 @@ export class SafetyFactorsMaterialStrengthsComponent
 
       // 杭の施工条件
       this.pile_factor_list.push(safety.pile_factor[id]);
-      console.log("safety.pile_factor",safety.pile_factor)
 
       // グリッドの設定
       this.option1_list.push({
@@ -415,11 +414,8 @@ export class SafetyFactorsMaterialStrengthsComponent
     this.options4 = this.option4_list[0];
     this.options5 = this.option5_list[0];
     this.options6 = this.pile_factor_list[0];
-    console.log("this.options6",this.options6)
-    console.log(" this.pile_factor_list[0]", this.pile_factor_list[0])
     this.pile_factor_select_id = this.getPileFactorSelectId();
     this.safety.arrayAxis = this.arrayAxis;
-    console.log("safety.arrayAxis", this.arrayAxis)
   }
 
   ngAfterViewInit() {

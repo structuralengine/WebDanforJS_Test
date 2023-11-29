@@ -46,13 +46,13 @@
         <h5 translate>material-strength-verifiaction-condition.com_type</h5>
         <table>
           <thead>
-            <tr>
-              <th rowspan="2" colspan="2" width="20px">
+            <tr> 
+              <th width="20px">     
               </th>
-              <th rowspan="2" colspan="2">
+              <th>
                 <p translate>material-strength-verifiaction-condition.com_type</p>
               </th>
-              <th rowspan="2" width="110px">
+              <th>
                 <p translate>material-strength-verifiaction-condition.base_stan</p>
               </th>
             </tr>
@@ -66,7 +66,7 @@
                     [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
                 </td>
                 <td style="text-align: left" width="200px">{{item.title}}</td>
-                <td style="text-align: left" width="200px">{{item.title}}</td>
+                <td style="text-align: center" width="200px">{{item.baseStan}}</td>
               </tr>
             </ng-container>
           </tbody>
@@ -101,7 +101,7 @@
               <tr>
                 <td width="20px">
                   <input type="checkbox" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
-                    [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
+                    [value]="item.id" (change)="setPileFactor(i)" />
                 </td>
                 <td style="text-align: left" width="200px">{{item.title}}</td>
               </tr>

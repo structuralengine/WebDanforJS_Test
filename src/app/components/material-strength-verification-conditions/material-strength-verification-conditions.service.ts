@@ -21,7 +21,9 @@ export class InputMaterialStrengthVerificationConditionService {
     private helper: DataHelperModule,
     private translate: TranslateService,
     private basic: InputBasicInformationService,
-  ) { }
+  ) { 
+    this.clear();
+  }
   public getTableColumns(): any {
 
     const material_bar = {};
@@ -82,13 +84,14 @@ export class InputMaterialStrengthVerificationConditionService {
           const tmp = tmp_pile_factor[i];
           const old = old_pile_factor[i];
           for (const key of Object.keys(tmp)) {
-            // if (key === 'title')
-            //   continue;
+            if (key === 'title' || key === 'baseStan')
+              continue;
             if (key in old)
               tmp[key] = old[key];
           }
         }
       }
+
       material_bar[id] = tmp_material_bar
       material_steel[id] = tmp_material_steel;
       material_concrete[id] = tmp_material_concrete;
@@ -152,23 +155,23 @@ export class InputMaterialStrengthVerificationConditionService {
       result = [
           { 
             id: 'pile-000', 
-            title: this.translate.instant("safety-factors-material-strengths.dont_use"),
+            title: this.translate.instant("material-strength-verifiaction-condition.dont_use"),
             rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
           { 
             id: 'pile-001', 
-            title: this.translate.instant("safety-factors-material-strengths.muddy_less"),
+            title: this.translate.instant("material-strength-verifiaction-condition.muddy_less"),
             rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
           { 
             id: 'pile-002', 
-            title: this.translate.instant("safety-factors-material-strengths.natural_less"),
+            title: this.translate.instant("material-strength-verifiaction-condition.natural_less"),
             rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
           { 
             id: 'pile-003', 
-            title: this.translate.instant("safety-factors-material-strengths.bentonite"),
+            title: this.translate.instant("material-strength-verifiaction-condition.bentonite"),
             rfck: 0.6, rfbok: 0.5, rEc: 0.7, rVcd: 0.8, selected: false },
           { 
             id: 'pile-004', 
-            title: this.translate.instant("safety-factors-material-strengths.aerial"),
+            title: this.translate.instant("material-strength-verifiaction-condition.aerial"),
             rfck: 0.9, rfbok: 0.9, rEc: 0.9, rVcd: 1.0, selected: false },
         ];
         break;
@@ -177,30 +180,45 @@ export class InputMaterialStrengthVerificationConditionService {
         result = [
             { 
               id: 'pile-000', 
-              title: this.translate.instant("safety-factors-material-strengths.dont_use"),
+              title: this.translate.instant("material-strength-verifiaction-condition.dont_use"),
               rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
             { 
               id: 'pile-001', 
-              title: this.translate.instant("safety-factors-material-strengths.muddy_less"),
+              title: this.translate.instant("material-strength-verifiaction-condition.muddy_less"),
               rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
             { 
               id: 'pile-002', 
-              title: this.translate.instant("safety-factors-material-strengths.natural_less"),
+              title: this.translate.instant("material-strength-verifiaction-condition.natural_less"),
               rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
             { 
               id: 'pile-003', 
-              title: this.translate.instant("safety-factors-material-strengths.bentonite"),
+              title: this.translate.instant("material-strength-verifiaction-condition.bentonite"),
               rfck: 0.6, rfbok: 0.5, rEc: 0.7, rVcd: 0.8, selected: false },
             { 
               id: 'pile-004', 
-              title: this.translate.instant("safety-factors-material-strengths.aerial"),
+              title: this.translate.instant("material-strength-verifiaction-condition.aerial"),
               rfck: 0.9, rfbok: 0.9, rEc: 0.9, rVcd: 1.0, selected: false },
           ];
           break;
     
-      case 2: // 港湾
-      result = new Array();
-
+      case 2: // Road
+       result = [
+        { 
+          id: 'pile-000', 
+          title: this.translate.instant("material-strength-verifiaction-condition.ge_pa"),
+          rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true, baseStan:"Road H29 Part Ⅲ" },
+        { 
+          id: 'pile-001', 
+          title: this.translate.instant("material-strength-verifiaction-condition.fla_for_flo_sla"),
+          rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false, baseStan:"Road H29 Part Ⅲ" },
+        { 
+          id: 'pile-002', 
+          title: this.translate.instant("material-strength-verifiaction-condition.sub"),
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false, baseStan:"Road H29 Part Ⅳ" },
+       ];
+      break;
+      case 3:
+        result = new Array();
         break;
     }
     return result;
@@ -242,5 +260,81 @@ export class InputMaterialStrengthVerificationConditionService {
     this.material_concrete = {};
     this.pile_factor = {};
     this.arrayAxis = new Array();
+    
+  }
+
+
+  public setTableColumns(material: any): void {
+    this.clear();
+
+    for (const id of Object.keys(material.safety_factor)) {
+
+      // const tmp_safety_factor = this.default_safety_factor();
+      const tmp_material_bar = this.default_material_bar();
+      const tmp_material_steel = this.default_material_steel();
+      const tmp_material_concrete = this.default_material_concrete();
+      const tmp_pile_factor = this.default_pile_factor();
+
+      // if (id in safety.safety_factor) {
+      //   const new_safety_factor = safety.safety_factor[id];
+      //   for (const tmp of tmp_safety_factor) {
+      //     const org = new_safety_factor.find(v => v.id === tmp.id)
+      //     if (org !== undefined) {
+      //       for (const key of Object.keys(tmp)) {
+      //         if (key in org) { tmp[key] = org[key]; }
+      //       }
+      //     }
+      //   }
+      // }
+
+      if (id in material.material_bar) {
+        const new_material_bar = material.material_bar[id];
+        for (let i = 0; i < tmp_material_bar.length; i++) {
+          const tmp = tmp_material_bar[i];
+          const org = new_material_bar[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+
+      if (id in material.material_steel) {
+        const new_material_steel = material.material_steel[id];
+        for (let i = 0; i < tmp_material_steel.length; i++) {
+          const tmp = tmp_material_steel[i];
+          const org = new_material_steel[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+
+      if (id in material.material_concrete) {
+        const new_material_concrete = material.material_concrete[id];
+        for (const key of Object.keys(tmp_material_concrete)) {
+          if (key in new_material_concrete) {
+            tmp_material_concrete[key] = new_material_concrete[key];
+          }
+        }
+      }
+
+      if (id in material.pile_factor) {
+        const new_pile_factor = material.pile_factor[id];
+        for (let i = 0; i < tmp_pile_factor.length; i++) {
+          const tmp = tmp_pile_factor[i];
+          const org = new_pile_factor[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+      // this.safety_factor[id] = tmp_safety_factor;
+      this.material_bar[id] = tmp_material_bar;
+      this.material_steel[id] = tmp_material_steel;
+      this.material_concrete[id] = tmp_material_concrete;
+      this.pile_factor[id] = tmp_pile_factor;
+      console.log("this.pile_factor[id]",this.pile_factor[id])
+    }
+
   }
 }
