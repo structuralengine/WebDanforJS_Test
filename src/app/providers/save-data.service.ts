@@ -436,4 +436,8 @@ export class SaveDataService {
   public getPickupFilename(): string {
     return this.pickup_filename;
   }
+
+  public getBasicData(): any{
+    return this.basic;
+  }
 }
