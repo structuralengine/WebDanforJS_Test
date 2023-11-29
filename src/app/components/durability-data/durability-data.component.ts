@@ -107,7 +107,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     let pile_factor = new Array();
     pile_factor = this.material.pile_factor[id];
     if(pile_factor !== null && pile_factor !== undefined){
-      var sub = pile_factor.find((value) => value.title === "Substructure" )
+      var sub = pile_factor.find((value) => value.id === "pile-002" )
       if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
     }
   }
