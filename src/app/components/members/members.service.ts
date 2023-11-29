@@ -62,7 +62,6 @@ export class InputMembersService {
     if(grNo.length == 0 && check.length > 0){
       this.helper.alert(this.translate.instant("members.group"))
     }
-    console.log(grNo);
   }
   // 部材情報
   public default_member(m_no: number): any {

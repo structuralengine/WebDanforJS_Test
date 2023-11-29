@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { TranslateService } from "@ngx-translate/core";
+import { MenuService } from '../menu/menu.service';
 
 @Injectable({
   providedIn: "root",
@@ -22,7 +23,8 @@ export class InputBasicInformationService {
 
   constructor(
     private helper: DataHelperModule,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private menuService: MenuService
   ) {
     this.clear();
   }
@@ -44,12 +46,12 @@ export class InputBasicInformationService {
       {
         id: 0,
         title: this.translate.instant("basic-information.rail"),
-        selected: false,
+        selected: true,
       },
       {
         id: 2,
         title: this.translate.instant("basic-information.road"),
-        selected: true,
+        selected: false,
       },
       // 一時的にフィリピン版を非表示
       /*{ 
@@ -57,6 +59,18 @@ export class InputBasicInformationService {
         title: this.translate.instant("basic-information.Pilipinas"),
         selected: false }*/
     ];
+  }
+
+  public set_specification1_data_file(specification1_list_file: any): any {
+    if (specification1_list_file != undefined) {
+      this.specification1_list.forEach((element) => {
+        let value = specification1_list_file.find(
+          (e) => e.id === element.id
+        ).selected;
+        if (value === true) this.menuService.selectApply(element.id);
+        element.selected = value;
+      });
+    }
   }
   /// get_specification1 によって変わる項目の設定
   private set_default_pickup(): void {
@@ -172,12 +186,16 @@ export class InputBasicInformationService {
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information-road.bs_dcp_of_is"),
+            title: this.translate.instant(
+              "basic-information-road.bs_dcp_of_is"
+            ),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information-road.bs_durability_fatigue"),
+            title: this.translate.instant(
+              "basic-information-road.bs_durability_fatigue"
+            ),
             no: null,
           },
           {
@@ -212,48 +230,50 @@ export class InputBasicInformationService {
           },
           {
             id: 9,
-            title: this.translate.instant("basic-information-road.bs_min_rebar_amount"),
+            title: this.translate.instant(
+              "basic-information-road.bs_min_rebar_amount"
+            ),
             no: null,
           },
         ];
-      // case 2: // 道
-      //   result = [
-      //     {
-      //       id: 0,
-      //       title: this.translate.instant("basic-information.u_stress"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 1,
-      //       title: this.translate.instant("basic-information.pl_u"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 3,
-      //       title: this.translate.instant("basic-information.pl_f"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 4,
-      //       title: this.translate.instant("basic-information.f_pv"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 5,
-      //       title: this.translate.instant("basic-information.ul"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 6,
-      //       title: this.translate.instant("basic-information.us_earth"),
-      //       no: null,
-      //     },
-      //     {
-      //       id: 7,
-      //       title: this.translate.instant("basic-information.ul_earth"),
-      //       no: null,
-      //     },
-      //   ];
+        // case 2: // 道
+        //   result = [
+        //     {
+        //       id: 0,
+        //       title: this.translate.instant("basic-information.u_stress"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 1,
+        //       title: this.translate.instant("basic-information.pl_u"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 3,
+        //       title: this.translate.instant("basic-information.pl_f"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 4,
+        //       title: this.translate.instant("basic-information.f_pv"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 5,
+        //       title: this.translate.instant("basic-information.ul"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 6,
+        //       title: this.translate.instant("basic-information.us_earth"),
+        //       no: null,
+        //     },
+        //     {
+        //       id: 7,
+        //       title: this.translate.instant("basic-information.ul_earth"),
+        //       no: null,
+        //     },
+        //   ];
         break;
       // case 2: // 港湾
       //   result = [
@@ -364,12 +384,16 @@ export class InputBasicInformationService {
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information-road.sfv_dcp_of_is"),
+            title: this.translate.instant(
+              "basic-information-road.sfv_dcp_of_is"
+            ),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information-road.sfv_durability_fatigue"),
+            title: this.translate.instant(
+              "basic-information-road.sfv_durability_fatigue"
+            ),
             no: null,
           },
           {
@@ -504,12 +528,16 @@ export class InputBasicInformationService {
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information-road.tv_dcp_of_is"),
+            title: this.translate.instant(
+              "basic-information-road.tv_dcp_of_is"
+            ),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information-road.tv_durability_fatigue"),
+            title: this.translate.instant(
+              "basic-information-road.tv_durability_fatigue"
+            ),
             no: null,
           },
           {
@@ -624,21 +652,29 @@ export class InputBasicInformationService {
         break;
 
       case 2: // 港湾
-        result = [{
-          id: 6,
-          title: this.translate.instant("basic-information.limit_design_method"),
-          selected: false,
-        },
-        {
-          id: 7,
-          title: this.translate.instant("basic-information.partial_coefficient_method"),
-          selected: false,
-        },
-        {
-          id: 8,
-          title: this.translate.instant("basic-information.allowable_stress_method"),
-          selected: false,
-        }];
+        result = [
+          {
+            id: 5,
+            title: this.translate.instant(
+              "basic-information.limit_design_method"
+            ),
+            selected: false,
+          },
+          {
+            id: 6,
+            title: this.translate.instant(
+              "basic-information.partial_coefficient_method"
+            ),
+            selected: false,
+          },
+          {
+            id: 7,
+            title: this.translate.instant(
+              "basic-information.allowable_stress_method"
+            ),
+            selected: false,
+          },
+        ];
         break;
       default:
       // まだ対応していない
@@ -810,17 +846,17 @@ export class InputBasicInformationService {
 
     // this.conditions_list = basic.conditions_list;
     const conditions = basic.conditions_list;
-    let isExist = conditions.some(item => item.id === 'JR-005');
+    let isExist = conditions.some((item) => item.id === "JR-005");
     if (!isExist) {
       // Find index of insertAfterId
       var indexToInsertAfter = conditions.findIndex(function (condition) {
-        return condition.id === 'JR-003';
+        return condition.id === "JR-003";
       });
       if (indexToInsertAfter !== -1) {
         conditions.splice(indexToInsertAfter + 1, 0, {
-          "id": "JR-005",
-          "title": this.translate.instant("basic-information.adopt"),
-          "selected": false
+          id: "JR-005",
+          title: this.translate.instant("basic-information.adopt"),
+          selected: false,
         });
       }
     }
