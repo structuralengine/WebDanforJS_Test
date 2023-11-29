@@ -40,12 +40,10 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   private option2_list: pq.gridT.options[] = new Array();
   private columnHeaders2: object[] = [];
   private table2_datas: any[];
-  @ViewChild('grid4') grid4: SheetComponent;
-  public options4: pq.gridT.options;
-  private option4_list: pq.gridT.options[] = new Array();
-  private columnHeaders4: object[] = [];
-  private table4_datas: any[];
 
+  public options4: any[];
+  private option4_list: any[] = new Array();
+ 
   private current_index: number;
   private groupe_list: any[];
   constructor(
@@ -58,8 +56,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.setTitle()
     const material = this.material.getTableColumns();
     this.table1_datas = new Array();      // 安全係数
-    this.table2_datas = new Array();      // 鉄筋材料    
-    this.table4_datas = new Array();      // 鉄骨材料    
+    this.table2_datas = new Array();     // 鉄筋材料               
     this.groupe_name = new Array();
 
     for (let i = 0; i < material.groupe_list.length; i++) {
@@ -70,9 +67,9 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       const fx = material.material_bar[id];
       const key = ["tensionBar", "sidebar", "stirrup"];
       const title = [
-        this.translate.instant("safety-factors-material-strengths.rebar_ax"),
-        this.translate.instant("safety-factors-material-strengths.rebar_la"),
-        this.translate.instant("safety-factors-material-strengths.stirrup")
+        this.translate.instant("material-strength-verifiaction-condition.rebar_ax"),
+        this.translate.instant("material-strength-verifiaction-condition.rebar_la"),
+        this.translate.instant("material-strength-verifiaction-condition.stirrup")
       ];
       const table1 = [];
       for (let j = 0; j < key.length; j++) {
@@ -91,12 +88,24 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       this.table1_datas.push(table1);
       const concrete = material.material_concrete[id];
       this.table2_datas.push([{
-        title: this.translate.instant("safety-factors-material-strengths.fck"),
+        title: this.translate.instant("material-strength-verifiaction-condition.fck"),
         value: concrete.fck
       }, {
-        title: this.translate.instant("safety-factors-material-strengths.max_ca"),
+        title: this.translate.instant("material-strength-verifiaction-condition.max_ca"),
         value: concrete.dmax
       }]);
+      const safety_factor = material.safety_factor[id];
+      const bar = [];
+      for (const col of safety_factor) {
+
+        if (col.id === 8) continue; // 最小鉄筋量の安全係数は、編集しない
+
+        bar.push({
+          id: col.id, title: col.title,        
+          ri: col.ri, range: col.range
+        });       
+      }
+      this.option4_list.push(bar);
       this.option1_list.push({
         width: 550,
         height: 200,
@@ -190,6 +199,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     }
     this.options1 = this.option1_list[0];
     this.options2 = this.option2_list[0];
+    this.options4 = this.option4_list[0];
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
@@ -234,40 +244,6 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
     ];
-    this.columnHeaders4 = [
-      {
-        title: this.translate.instant("material-strength-verifiaction-condition.si"),
-        align: "left",
-        dataType: "string",
-        dataIndx: "m_no",
-        frozen: true,
-        sortable: false,
-        width: 70,
-        editable: false,
-        nodrag: true,
-        style: { 'background': '#373e45' },
-        styleHead: { 'background': '#373e45' }
-      },
-      {
-        title: this.translate.instant("design-material-strength-verifiaction-condition.pl_ex"),
-        align: "center",
-        dataType: "bool",
-        dataIndx: "isMtCalc",
-        type: "checkbox",
-        sortable: false,
-        width: 120,
-        nodrag: true,
-      },
-      {
-        title: this.translate.instant("design-material-strength-verifiaction-condition.lv_e"),
-        dataType: "string",
-        dataIndx: "p_name",
-        frozen: true,
-        sortable: false,
-        width: 250,
-        nodrag: true,
-      },
-    ]
   }
   public activePageChenge(id: number, group: any): void {
     this.groupMem=group;
@@ -281,11 +257,6 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.options2 = this.option2_list[id];
     this.grid2.options = this.options2;
     this.grid2.refreshDataAndView();  
-
-    this.options4 = this.option4_list[id];
-    this.grid4.options = this.options4;
-    this.grid4.refreshDataAndView();
-   
   }
   private activeButtons(id: number) {
     for (let i = 0; i <= this.groupe_name.length; i++) {

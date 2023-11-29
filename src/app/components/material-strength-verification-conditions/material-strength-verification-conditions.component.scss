@@ -50,7 +50,8 @@ legend {
   .material-strength {
     display: inline-block;
   }
-  
+
+  .safety-factors,
   .pile-factors {
     display: inline-block;
   
@@ -83,6 +84,10 @@ legend {
   
     tr:nth-child(even) {
       background: var(--table_row_even_bg);
+    }
+    .center{
+      text-align: center;
+      vertical-align: middle;
     }
   }
   
