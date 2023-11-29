@@ -24,18 +24,21 @@
 
   
   <div class="tab-inner">
-
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
+      <div class="safety-factors">
+        <h5 translate>safety-factors-material-strengths.r_mta</h5>
+        <div class="table-container">
+          <app-sheet #grid1 [options]="options1"></app-sheet>
+        </div>
+      </div>
+    </div>
     <div class="item-container"  [ngClass]="{'hide': activeTab !== 'rsb_con'}">  
       <div class="material-strength">
-        <h5 translate>material-strength-verifiaction-condition.r_mta</h5>
+        <h5 translate>material-strength-verifiaction-condition.c_mta</h5>
         <div class="table-container">
           <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet>
         </div>
-      </div>
-      <!-- <div class="concrete-strength">
-        <h5 translate>material-strength-verifiaction-condition.c_mta</h5>
-        <app-sheet #grid3 [options]="options3" class="no-table"></app-sheet>
-      </div> -->
+      </div>      
     </div>
 
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'com_type'}">
@@ -70,21 +73,13 @@
         </table>
       </div>
     </div>
-
-    <div class="item-container" [ngClass]="{'hide': activeTab !== ''}">
-      <div class="safety-factors">
-        <h5 translate>material-strength-verifiaction-condition.safe</h5>
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'sei_ver'}">
+      <div class="material-strength">
+        <h5 translate>material-strength-verifiaction-condition.sei_ver</h5>
         <div class="table-container">
           <app-sheet #grid4 [options]="options4" class="no-table"></app-sheet>
         </div>
       </div>
-
-      <!-- <div class="material-strength">
-        <h5 translate>material-strength-verifiaction-condition.s_mta</h5>
-        <div class="table-container">
-          <app-sheet #grid5 [options]="options5" class="no-table"></app-sheet>
-        </div>
-      </div> -->
     </div>
 
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'other_con'}">

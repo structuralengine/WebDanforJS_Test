@@ -67,12 +67,135 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       const first = groupe[0];
       const id = first.g_id;
       this.groupe_name.push(this.members.getGroupeName(i));
+      const fx = material.material_bar[id];
+      const key = ["tensionBar", "sidebar", "stirrup"];
+      const title = [
+        this.translate.instant("safety-factors-material-strengths.rebar_ax"),
+        this.translate.instant("safety-factors-material-strengths.rebar_la"),
+        this.translate.instant("safety-factors-material-strengths.stirrup")
+      ];
+      const table1 = [];
+      for (let j = 0; j < key.length; j++) {
+        const target = { title: title[j] };
+        const k = key[j];
+        for (let i = 0; i < fx.length; i++) {
+          const current = fx[i];
+          const cur = current[k];
+          const k1 = "fsy" + (i + 1);
+          const k2 = "fsu" + (i + 1);
+          target[k1] = cur.fsy;
+          target[k2] = cur.fsu;
+        }
+        table1.push(target);
+      }
+      this.table1_datas.push(table1);
+      const concrete = material.material_concrete[id];
+      this.table2_datas.push([{
+        title: this.translate.instant("safety-factors-material-strengths.fck"),
+        value: concrete.fck
+      }, {
+        title: this.translate.instant("safety-factors-material-strengths.max_ca"),
+        value: concrete.dmax
+      }]);
+      this.option1_list.push({
+        width: 550,
+        height: 200,
+        showTop: false,
+        reactive: true,
+        sortable: false,
+        locale: 'jp',
+        numberCell: { show: false }, // 行番号
+        colModel: this.columnHeaders1,
+        dataModel: { data: this.table1_datas[i] },
+        freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
+      });
+      this.option2_list.push({
+        width: 550,
+        height: 105,
+        showTop: false,
+        reactive: true,
+        sortable: false,
+        locale: 'jp',
+        numberCell: { show: false }, // 行番号
+        colModel: this.columnHeaders2,
+        dataModel: { data: this.table2_datas[i] },
+        freezeCols: 1,
+        contextMenu: {
+          on: true,
+          items: [
+            {
+              name: this.translate.instant("action_key.copy"),
+              shortcut: 'Ctrl + C',
+              action: function (evt, ui, item) {
+                this.copy();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.paste"),
+              shortcut: 'Ctrl + V',
+              action: function (evt, ui, item) {
+                this.paste();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.cut"),
+              shortcut: 'Ctrl + X',
+              action: function (evt, ui, item) {
+                this.cut();
+              }
+            },
+            {
+              name: this.translate.instant("action_key.undo"),
+              shortcut: 'Ctrl + Z',
+              action: function (evt, ui, item) {
+                this.History().undo();
+              }
+            }
+          ]
+        },
+      });
     }
+    this.options1 = this.option1_list[0];
+    this.options2 = this.option2_list[0];
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
   }
   ngAfterViewInit(): void {
+    this.activeButtons(0);
     this.setActiveTab(this.activeTab)
   }
   private setTitle() : void{
@@ -107,8 +230,44 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         nodrag: true,
       },
     ];
-
-
+    this.columnHeaders2 = [
+      { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 390, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
+      { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
+    ];
+    this.columnHeaders4 = [
+      {
+        title: this.translate.instant("material-strength-verifiaction-condition.si"),
+        align: "left",
+        dataType: "string",
+        dataIndx: "m_no",
+        frozen: true,
+        sortable: false,
+        width: 70,
+        editable: false,
+        nodrag: true,
+        style: { 'background': '#373e45' },
+        styleHead: { 'background': '#373e45' }
+      },
+      {
+        title: this.translate.instant("design-material-strength-verifiaction-condition.pl_ex"),
+        align: "center",
+        dataType: "bool",
+        dataIndx: "isMtCalc",
+        type: "checkbox",
+        sortable: false,
+        width: 120,
+        nodrag: true,
+      },
+      {
+        title: this.translate.instant("design-material-strength-verifiaction-condition.lv_e"),
+        dataType: "string",
+        dataIndx: "p_name",
+        frozen: true,
+        sortable: false,
+        width: 250,
+        nodrag: true,
+      },
+    ]
   }
   public activePageChenge(id: number, group: any): void {
     this.groupMem=group;
