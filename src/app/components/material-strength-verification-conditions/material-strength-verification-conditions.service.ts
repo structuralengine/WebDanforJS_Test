@@ -228,4 +228,19 @@ export class InputMaterialStrengthVerificationConditionService {
     ];
     return result;
   }
+
+  public setSaveData(material: any) {
+    //this.safety_factor = safety.safety_factor,
+    this.material_bar = material.material_bar,
+    this.material_steel = material.material_steel,
+    this.material_concrete = material.material_concrete,
+    this.pile_factor = material.pile_factor
+  }
+  public clear(): void {   
+    this.material_bar = {};
+    this.material_steel = {};
+    this.material_concrete = {};
+    this.pile_factor = {};
+    this.arrayAxis = new Array();
+  }
 }

@@ -251,6 +251,9 @@
         "other_con":"Other conditions",
         "base_stan":"Base Standard",
         "rsb_con":"Reinforcing bar / Concrete",
+        "rebar_ax":"Axial rebar",
+        "rebar_la":"Lateral rebar",
+        "stirrup":"Stirrup",
         "γi":"Coefficient γi",
         "ys":"Yield strength",
         "d25":"D25 or less",
@@ -264,7 +267,11 @@
         "cs":"Compressive strength",
         "as":"Adhesion strength",
         "young":"Young's modulus",
-        "sei_ver": "Seismic Verification Conditions"
+        "sei_ver": "Seismic Verification Conditions",
+        "c_mta":"Concrete material strength",
+        "si": "Situation",
+        "pl_ex": "Plasticization Expect",
+        "lv_e": "Level 2 earthquake motionType"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",
