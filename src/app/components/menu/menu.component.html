@@ -101,9 +101,9 @@
         <p class="topic" translate>basic-information.apply</p>
         <ng-container *ngFor="let item of specification1_list; index as i">
           <div class="d-flex" [ngClass]="{'spec-rdo-active': item.selected, 'spec-rdo': !item.selected}">
-            <input type="radio" name="specification1" id="specification1{{i}}" [(ngModel)]="specification1_select_id"
-              [value]="item.id" [checked]="item.selected" (change)="setSpecification1(i)" />
-            <label class="form-check-label" for="specification1{{i}}">{{item.title | translate}}</label>
+            <input type="radio" name="specification1" id="specification1{{item.id}}" [(ngModel)]="specification1_select_id"
+              [value]="item.id" [checked]="item.selected" (change)="setSpecification1(item.id)" />
+            <label class="form-check-label" for="specification1{{item.id}}">{{item.title | translate}}</label>
           </div>
         </ng-container>
 
