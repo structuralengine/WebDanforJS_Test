@@ -13,7 +13,7 @@ export class LanguagesService {
     en: "English",
   };
 
-  private readonly default_lang: string = "en";
+  // private readonly default_lang: string = "en";
 
   constructor(
     public translate: TranslateService,
@@ -21,19 +21,20 @@ export class LanguagesService {
     public electronService: ElectronService,
   ) {
 
-    if(translate.getBrowserLang() in this.languageIndex)
-      this.browserLang = translate.getBrowserLang();
-    else
-      this.browserLang = this.default_lang;
+    // if(translate.getBrowserLang() in this.languageIndex)
+    //   this.browserLang = translate.getBrowserLang();
+    // else
+    //   this.browserLang = this.default_lang;
 
-    //console.log("BROWSER LANG: ", this.browserLang);
-    translate.use(this.browserLang);
-    if (this.electronService.isElectron) {
-      this.electronService.ipcRenderer.send('change-lang', this.browserLang);
-    }
+    // console.log("BROWSER LANG: ", this.browserLang);
+    // translate.use(this.browserLang);
+    // if (this.electronService.isElectron) {
+    //   this.electronService.ipcRenderer.send('change-lang', this.browserLang);
+    // }
   }
 
   public trans(key: string) {
+    console.log(key,"tr")
     this.browserLang = key;
     this.translate.use(this.browserLang);
     if (this.electronService.isElectron) {
