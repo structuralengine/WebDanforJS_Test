@@ -77,7 +77,6 @@ export class InputCrackSettingsService {
   }
 
   public getTableColumn(index: any): any {
-
     let result = this.crack_list.find((value) => value.index === index);
     if (result == null) {
       result = this.default_crack(index);
@@ -126,8 +125,8 @@ export class InputCrackSettingsService {
   }
 
   public setTableColumns(table_datas: any[]) {
-
     this.crack_list = new Array();
+    console.log(this.crack_list, 'Crack');
 
     for (const column of table_datas) {
       const b = this.default_crack(column.index);
@@ -146,6 +145,7 @@ export class InputCrackSettingsService {
       b.JRTT05 = column.JRTT05;
       this.crack_list.push(b);
     }
+
   }
 
   public setPickUpData() {
