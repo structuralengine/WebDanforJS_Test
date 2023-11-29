@@ -100,8 +100,8 @@ export class InputMaterialStrengthVerificationConditionService {
           const tmp = tmp_pile_factor[i];
           const old = old_pile_factor[i];
           for (const key of Object.keys(tmp)) {
-            if (key === 'title')
-              continue;
+            // if (key === 'title')
+            //   continue;
             if (key in old)
               tmp[key] = old[key];
           }
@@ -114,7 +114,7 @@ export class InputMaterialStrengthVerificationConditionService {
       pile_factor[id] = tmp_pile_factor;
 
     }
-
+  
     return {
       safety_factor,
       groupe_list,

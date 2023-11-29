@@ -196,6 +196,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
           ]
         },
       });
+      this.pile_factor_list.push(material.pile_factor[id]);
+      this.options3=this.pile_factor_list[0]
     }
     this.options1 = this.option1_list[0];
     this.options2 = this.option2_list[0];
@@ -245,6 +247,13 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
     ];
   }
+
+  private getPileFactorSelectId(): string {
+    const id = this.current_index
+    const options6 = this.pile_factor_list[id];
+    const result = options6.find((v) => v.selected === true);
+    return result.id;
+  }
   public activePageChenge(id: number, group: any): void {
     this.groupMem=group;
     this.activeButtons(id);
@@ -257,6 +266,10 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.options2 = this.option2_list[id];
     this.grid2.options = this.options2;
     this.grid2.refreshDataAndView();  
+
+    this.options3 = this.pile_factor_list[id];
+    this.pile_factor_select_id = this.getPileFactorSelectId();   
+
   }
   private activeButtons(id: number) {
     for (let i = 0; i <= this.groupe_name.length; i++) {
