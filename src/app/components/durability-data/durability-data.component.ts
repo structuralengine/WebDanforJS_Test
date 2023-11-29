@@ -6,6 +6,7 @@ import { SheetComponent } from '../sheet/sheet.component';
 import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
 import { InputDurabilityDataService } from './durability-data.service';
+import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
 @Component({
   selector: 'app-durability-data',
   templateUrl: './durability-data.component.html',
@@ -21,18 +22,21 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   private columnHeaders: object[] = new Array();
 
   public table_datas: any[];
+  public isSubstructure: boolean = false; //false wwhen initial then get value from component type is checked
   // タブのヘッダ名
   public groupe_name: string[];
 
   constructor(
     private durability: InputDurabilityDataService,
+    private material: InputSafetyFactorsMaterialStrengthsService,
     private save: SaveDataService,
     public helper: DataHelperModule,
     private translate: TranslateService,
     private members: InputMembersService,
-  ) { this.members.checkGroupNo();}
+  ) { this.members.checkGroupNo(); }
 
   ngOnInit() {
+    this.setShow(1);
     this.setTitle(this.save.isManual());
     this.table_datas = this.durability.getTableColumns();
 
@@ -99,6 +103,15 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     this.activeButtons(0);
   }
 
+  public setShow(id){
+    let pile_factor = new Array();
+    pile_factor = this.material.pile_factor[id];
+    if(pile_factor !== null && pile_factor !== undefined){
+      var sub = pile_factor.find((value) => value.title === "Substructure" )
+      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    }
+  }
+
   private setTitle(isManual: boolean): void {
     if (isManual) {
       // 断面力手入力モードの場合
@@ -122,12 +135,17 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
       {
         title: this.translate.instant("durability.p_name"),
         dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
-      },
-      {
-        title: this.translate.instant("durability.under_blow_groundwater"),
-        align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox',frozen: true, sortable: false, width: 150, nodrag: true,
       }
     );
+    if (this.isSubstructure) {
+      this.columnHeaders.push(
+        {
+          title: this.translate.instant("durability.under_blow_groundwater"),
+          align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+        }
+      );
+    }
+
   }
 
   public getGroupeName(i: number): string {
@@ -157,6 +175,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
 
   public activePageChenge(id: number): void {
+    this.setShow(id + 1);
     this.activeButtons(id);
 
     this.options = this.option_list[id];
