@@ -228,7 +228,10 @@
         "p_name":"Calculated point name",
         "s_len":"Shear span length (mm)",
         "fixed_end":"fixed end",
-        "m_len":"Distance (mm)"
+        "m_len":"Distance (mm)",
+        "consider_shear":"Consider the effect of shear span ratio",
+        "concrete":"concrete",
+        "reinforcement_bar":"shear reinforcement bar"
     },
     "fatigues":{
         "durable":"Durable life",

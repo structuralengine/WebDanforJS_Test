@@ -34,7 +34,6 @@ export class LanguagesService {
   }
 
   public trans(key: string) {
-    console.log(key,"tr")
     this.browserLang = key;
     this.translate.use(this.browserLang);
     if (this.electronService.isElectron) {

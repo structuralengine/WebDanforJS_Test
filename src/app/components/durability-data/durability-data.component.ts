@@ -103,6 +103,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     this.activeButtons(0);
   }
 
+  //Set show following component type is "Substructure"
   public setShow(id){
     let pile_factor = new Array();
     pile_factor = this.material.pile_factor[id];
