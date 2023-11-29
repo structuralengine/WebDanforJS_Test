@@ -44,10 +44,10 @@ export class InputBasicInformationService {
       {
         id: 0,
         title: this.translate.instant("basic-information.rail"),
-        selected: true,
+        selected: false,
       },
       {
-        id: 1,
+        id: 2,
         title: this.translate.instant("basic-information.road"),
         selected: true,
       },
@@ -168,45 +168,132 @@ export class InputBasicInformationService {
         ];
         break;
 
-      case 2: // 港湾
+      case 2: // 道
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information.u_stress"),
+            title: this.translate.instant("basic-information-road.bs_dcp_of_is"),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information.pl_u"),
+            title: this.translate.instant("basic-information-road.bs_durability_fatigue"),
             no: null,
           },
           {
             id: 3,
-            title: this.translate.instant("basic-information.pl_f"),
+            title: this.translate.instant("basic-information-road.bs_lcc1"),
             no: null,
           },
           {
             id: 4,
-            title: this.translate.instant("basic-information.f_pv"),
+            title: this.translate.instant("basic-information-road.bs_lcc2_8"),
             no: null,
           },
           {
             id: 5,
-            title: this.translate.instant("basic-information.ul"),
+            title: this.translate.instant("basic-information-road.bs_lcc9"),
             no: null,
           },
           {
             id: 6,
-            title: this.translate.instant("basic-information.us_earth"),
+            title: this.translate.instant("basic-information-road.bs_lcc10"),
             no: null,
           },
           {
             id: 7,
-            title: this.translate.instant("basic-information.ul_earth"),
+            title: this.translate.instant("basic-information-road.bs_lcc11"),
+            no: null,
+          },
+          {
+            id: 8,
+            title: this.translate.instant("basic-information-road.bs_lcc12"),
+            no: null,
+          },
+          {
+            id: 9,
+            title: this.translate.instant("basic-information-road.bs_min_rebar_amount"),
             no: null,
           },
         ];
+      // case 2: // 道
+      //   result = [
+      //     {
+      //       id: 0,
+      //       title: this.translate.instant("basic-information.u_stress"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 1,
+      //       title: this.translate.instant("basic-information.pl_u"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 3,
+      //       title: this.translate.instant("basic-information.pl_f"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 4,
+      //       title: this.translate.instant("basic-information.f_pv"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 5,
+      //       title: this.translate.instant("basic-information.ul"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 6,
+      //       title: this.translate.instant("basic-information.us_earth"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 7,
+      //       title: this.translate.instant("basic-information.ul_earth"),
+      //       no: null,
+      //     },
+      //   ];
         break;
+      // case 2: // 港湾
+      //   result = [
+      //     {
+      //       id: 0,
+      //       title: this.translate.instant("basic-information.u_stress"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 1,
+      //       title: this.translate.instant("basic-information.pl_u"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 3,
+      //       title: this.translate.instant("basic-information.pl_f"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 4,
+      //       title: this.translate.instant("basic-information.f_pv"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 5,
+      //       title: this.translate.instant("basic-information.ul"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 6,
+      //       title: this.translate.instant("basic-information.us_earth"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 7,
+      //       title: this.translate.instant("basic-information.ul_earth"),
+      //       no: null,
+      //     },
+      //   ];
+      //   break;
       default:
       // まだ対応していない
     }
@@ -277,46 +364,90 @@ export class InputBasicInformationService {
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information.u_shear_judge"),
+            title: this.translate.instant("basic-information-road.sfv_dcp_of_is"),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information.pl_u"),
+            title: this.translate.instant("basic-information-road.sfv_durability_fatigue"),
             no: null,
           },
           {
             id: 2,
-            title: this.translate.instant("basic-information.vl_u"),
+            title: this.translate.instant("basic-information-road.sfv_lcc1"),
             no: null,
           },
           {
             id: 3,
-            title: this.translate.instant("basic-information.pl_f"),
+            title: this.translate.instant("basic-information-road.sfv_lcc2_8"),
             no: null,
           },
           {
             id: 4,
-            title: this.translate.instant("basic-information.f_pv"),
+            title: this.translate.instant("basic-information-road.sfv_lcc9"),
             no: null,
           },
           {
             id: 5,
-            title: this.translate.instant("basic-information.ul"),
+            title: this.translate.instant("basic-information-road.sfv_lcc10"),
             no: null,
           },
           {
             id: 6,
-            title: this.translate.instant("basic-information.us_earth"),
+            title: this.translate.instant("basic-information-road.sfv_lcc11"),
             no: null,
           },
           {
             id: 7,
-            title: this.translate.instant("basic-information.ul_earth"),
+            title: this.translate.instant("basic-information-road.sfv_lcc12"),
             no: null,
           },
         ];
         break;
+      // case 2: // 港湾
+      //   result = [
+      //     {
+      //       id: 0,
+      //       title: this.translate.instant("basic-information.u_shear_judge"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 1,
+      //       title: this.translate.instant("basic-information.pl_u"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 2,
+      //       title: this.translate.instant("basic-information.vl_u"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 3,
+      //       title: this.translate.instant("basic-information.pl_f"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 4,
+      //       title: this.translate.instant("basic-information.f_pv"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 5,
+      //       title: this.translate.instant("basic-information.ul"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 6,
+      //       title: this.translate.instant("basic-information.us_earth"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 7,
+      //       title: this.translate.instant("basic-information.ul_earth"),
+      //       no: null,
+      //     },
+      //   ];
+      //   break;
       default:
       // まだ対応していない
     }
@@ -373,31 +504,75 @@ export class InputBasicInformationService {
         result = [
           {
             id: 0,
-            title: this.translate.instant("basic-information.u_shear_judge"),
+            title: this.translate.instant("basic-information-road.tv_dcp_of_is"),
             no: null,
           },
           {
             id: 1,
-            title: this.translate.instant("basic-information.pl_u"),
+            title: this.translate.instant("basic-information-road.tv_durability_fatigue"),
+            no: null,
+          },
+          {
+            id: 2,
+            title: this.translate.instant("basic-information-road.tv_lcc1"),
+            no: null,
+          },
+          {
+            id: 3,
+            title: this.translate.instant("basic-information-road.tv_lcc2_8"),
+            no: null,
+          },
+          {
+            id: 4,
+            title: this.translate.instant("basic-information-road.tv_lcc9"),
             no: null,
           },
           {
             id: 5,
-            title: this.translate.instant("basic-information.ul"),
+            title: this.translate.instant("basic-information-road.tv_lcc10"),
             no: null,
           },
           {
             id: 6,
-            title: this.translate.instant("basic-information.us_earth"),
+            title: this.translate.instant("basic-information-road.tv_lcc11"),
             no: null,
           },
           {
             id: 7,
-            title: this.translate.instant("basic-information.ul_earth"),
+            title: this.translate.instant("basic-information-road.tv_lcc12"),
             no: null,
           },
         ];
         break;
+      // case 2: // 港湾
+      //   result = [
+      //     {
+      //       id: 0,
+      //       title: this.translate.instant("basic-information.u_shear_judge"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 1,
+      //       title: this.translate.instant("basic-information.pl_u"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 5,
+      //       title: this.translate.instant("basic-information.ul"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 6,
+      //       title: this.translate.instant("basic-information.us_earth"),
+      //       no: null,
+      //     },
+      //     {
+      //       id: 7,
+      //       title: this.translate.instant("basic-information.ul_earth"),
+      //       no: null,
+      //     },
+      //   ];
+      //   break;
       default:
       // まだ対応していない
     }
@@ -445,6 +620,10 @@ export class InputBasicInformationService {
         break;
 
       case 1: // 土木学会
+        result = [];
+        break;
+
+      case 2: // 港湾
         result = [{
           id: 6,
           title: this.translate.instant("basic-information.limit_design_method"),
@@ -459,11 +638,7 @@ export class InputBasicInformationService {
           id: 8,
           title: this.translate.instant("basic-information.allowable_stress_method"),
           selected: false,
-        },];
-        break;
-
-      case 2: // 港湾
-        result = [];
+        }];
         break;
       default:
       // まだ対応していない
@@ -562,10 +737,11 @@ export class InputBasicInformationService {
     const id = sp !== undefined ? sp.id : -1;
     return id;
   }
-  public set_specification1(index: number): any {
-    const id: number = this.specification1_list.findIndex(
-      (value) => value.id === index
-    );
+  // public set_specification1(index: number): any {
+  public set_specification1(id: number): any {
+    // const id: number = this.specification1_list.findIndex(
+    //   (value) => value.id === index
+    // );
 
     this.specification1_list.map(
       (obj) => (obj.selected = obj.id === id ? true : false)
