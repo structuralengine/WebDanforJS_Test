@@ -258,13 +258,13 @@
               <input
                 type="radio"
                 name="specification2"
-                id="specification2{{ i }}"
+                id="specification2{{ item.id }}"
                 [(ngModel)]="specification2_select_id"
                 [value]="item.id"
                 [checked]="item.selected"
-                (change)="setSpecification2(i)"
+                (change)="setSpecification2(item.id)"
               />
-              <label class="form-check-label" for="specification2{{ i }}">{{
+              <label class="form-check-label" for="specification2{{ item.id }}">{{
                 item.title | translate
               }}</label>
             </div>
