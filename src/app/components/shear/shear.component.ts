@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ShearStrengthService } from './shear-strength.service';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
+import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-shear',
@@ -17,7 +19,8 @@ export class ShearComponent implements OnInit {
 
   @ViewChild('grid') grid: SheetComponent;
   public options: pq.gridT.options;
-
+  public isSubstructure: boolean = false; 
+  public isRoad: boolean = false;
   // データグリッドの設定変数
   private option_list: pq.gridT.options[] = new Array();
   private columnHeaders: object[] = new Array();
@@ -29,6 +32,9 @@ export class ShearComponent implements OnInit {
   constructor(
     private shear: ShearStrengthService,
     private members: InputMembersService,
+    private material: InputSafetyFactorsMaterialStrengthsService,
+    private menu: MenuService,
+
     private save: SaveDataService,
     public helper: DataHelperModule,
     private basic: InputBasicInformationService,
@@ -38,7 +44,7 @@ export class ShearComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.isRoad = this.menu.selectedRoad;
     this.setTitle(this.save.isManual());
 
     this.table_datas = this.shear.getTableColumns();
@@ -137,6 +143,22 @@ export class ShearComponent implements OnInit {
       }
     );
 
+    if (this.isRoad) {
+    
+      this.columnHeaders.push(
+        {
+          title: this.translate.instant("shear-strength.p_name"),
+          dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
+        },
+        {
+          title: this.translate.instant("shear-strength.s_len"),
+          dataType: "float", dataIndx: "La", sortable: false, width: 200, nodrag: true,
+        }
+      );
+    
+    
+    }
+
     // 令和5年 RC標準
     const speci1 = this.basic.get_specification1();
     const speci2 = this.basic.get_specification2();
@@ -180,7 +202,14 @@ export class ShearComponent implements OnInit {
     return containerHeight;
   }
 
-
+  public setShow(id){
+    let pile_factor = new Array();
+    pile_factor = this.material.pile_factor[id];
+    if(pile_factor !== null && pile_factor !== undefined){
+      var sub = pile_factor.find((value) => value.id === "pile-002" )
+      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    }
+  }
   public activePageChenge(id: number): void {
     this.activeButtons(id);
 
