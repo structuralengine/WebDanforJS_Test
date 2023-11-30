@@ -578,6 +578,8 @@ export class InputBasicInformationService {
       for (const k of Object.keys(e)) {
         if (k === 'title')
           continue;
+        if (k === 'id')
+          continue;        
         if (k in t)
           e[k] = t[k];
       }
@@ -590,6 +592,8 @@ export class InputBasicInformationService {
       for (const k of Object.keys(e)) {
         if (k === 'title')
           continue;
+        if (k === 'id')
+          continue;          
         if (k in t)
           e[k] = t[k];
       }
@@ -603,6 +607,8 @@ export class InputBasicInformationService {
         for (const k of Object.keys(e)) {
           if (k === 'title')
             continue;
+          if (k === 'id')
+            continue;            
           if (k in t)
             e[k] = t[k];
         }
