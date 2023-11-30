@@ -96,6 +96,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         value: concrete.dmax
       }]);
       this.pile_factor_list.push(material.pile_factor[id]);
+      this.material_steel_list.push(material.material_steel[id]);
       const safety_factor = material.safety_factor[id];
       const bar = [], steel = [];
       for (const col of safety_factor) {
@@ -215,6 +216,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.options3 = this.pile_factor_list[0]
     this.pile_factor_select_id = this.getPileFactorSelectId();
     this.options4 = this.option4_list[0];
+    this.options5 = this.material_steel_list[0];
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
@@ -275,6 +277,10 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
       }];
 
+
+     
+      
+      material_steel[id] =  this.material_steel_list[i];
       // 鉄骨材料
       // const steel = this.table5_datas[i];
       // material_steel[id] = [
@@ -305,6 +311,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
       pile_factor[id] = this.pile_factor_list[i];
     }
+    console.log("material_steel",material_steel)
     this.material.setTableColumns({
       safety_factor,
       material_bar,
@@ -370,10 +377,21 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     element.selected = !element.selected
   }
   private getPileFactorSelectId(): string {
-    const id = this.current_index
+    const id = this.current_index;
+    let result:any = []
     const options3 = this.pile_factor_list[id];
-    const result = options3.find((v) => v.selected === true);
+   if(options3){
+     result = options3.find((v) => v.selected === true);
+   }
     return result.id;
+  }
+  handleCheck(event:any,item:any){
+    const id = this.current_index
+   this.material_steel_list[id].forEach((data:any)=>{
+    if(data.separate=== item.separate){
+      data.fsyk= event.target.checked
+    }
+   })
   }
   public activePageChenge(id: number, group: any): void {
     this.groupMem = group;
@@ -389,6 +407,9 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.grid2.refreshDataAndView();
 
     this.options3 = this.pile_factor_list[id];
+
+    this.pile_factor_select_id = this.getPileFactorSelectId(); 
+    this.options5= this.material_steel_list[id]
     this.pile_factor_select_id = this.getPileFactorSelectId();
     this.options4 = this.option4_list[id]
 

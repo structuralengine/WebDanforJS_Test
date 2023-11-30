@@ -80,6 +80,8 @@ export class InputMaterialStrengthVerificationConditionService {
           const tmp = tmp_material_steel[i];
           const old = old_material_steel[i];
           for (const key of Object.keys(tmp)) {
+            if(key ==="separate" )
+            continue;
             if (key in old) {
               tmp[key] = old[key];
             }
@@ -271,15 +273,23 @@ export class InputMaterialStrengthVerificationConditionService {
         { 
           id: 'pile-000', 
           title: this.translate.instant("material-strength-verifiaction-condition.ge_pa"),
-          rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true, baseStan:"Road H29 Part Ⅲ" },
+          rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
         { 
           id: 'pile-001', 
           title: this.translate.instant("material-strength-verifiaction-condition.fla_for_flo_sla"),
-          rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false, baseStan:"Road H29 Part Ⅲ" },
+          rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
         { 
           id: 'pile-002', 
           title: this.translate.instant("material-strength-verifiaction-condition.sub"),
-          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false, baseStan:"Road H29 Part Ⅳ" },
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
+        { 
+          id: 'pile-003', 
+          title: "",
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
+        { 
+          id: 'pile-004', 
+          title: "",
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false},
        ];
       break;
       case 3:
@@ -289,26 +299,55 @@ export class InputMaterialStrengthVerificationConditionService {
     return result;
   }
   public default_material_steel(): any {
-    const result = [
-      {
-        separate: 16,
-        fsyk: 245,
-        fsvyk: 140,
-        fsuk: 400,
-      },
-      {
-        separate: 40,
-        fsyk: 235,
-        fsvyk: 135,
-        fsuk: 400,
-      },
-      {
-        separate: 75,
-        fsyk: 215,
-        fsvyk: 125,
-        fsuk: 400,
-      }
-    ];
+    let result = [];
+    switch (this.basic.get_specification1()) {
+     case 0:
+     case 1:
+      result = [
+        {
+          separate: 16,
+          fsyk: 245,
+          fsvyk: 140,
+          fsuk: 400,
+        },
+        {
+          separate: 40,
+          fsyk: 235,
+          fsvyk: 135,
+          fsuk: 400,
+        },
+        {
+          separate: 75,
+          fsyk: 215,
+          fsvyk: 125,
+          fsuk: 400,
+        }
+      ];
+      break;
+      case 2:
+        result = [
+          {
+            separate: this.translate.instant("material-strength-verifiaction-condition.sep"),
+            fsyk: true,
+            fsvyk: 140,
+            fsuk: 400,
+          },
+          {
+            separate: 40,
+            fsyk: 235,
+            fsvyk: 135,
+            fsuk: 400,
+          },
+          {
+            separate:75,
+            fsyk: 215,
+            fsvyk: 125,
+            fsuk: 400,
+          }
+        ];
+      break;
+    }
+     
     return result;
   }
 

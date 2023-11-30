@@ -60,13 +60,14 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of options3; index as i">
-              <tr>
+              <tr *ngIf="item.title !== ''">
                 <td width="20px">
                   <input type="radio" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
                     [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
                 </td>
                 <td style="text-align: left" width="200px">{{item.title}}</td>
-                <td style="text-align: center" width="200px">{{item.baseStan}}</td>
+                <td *ngIf="item.id==='pile-000' || item.id==='pile-001'" style="text-align: center" width="200px">Road H29 Part Ⅲ</td>
+                <td *ngIf="item.id==='pile-002' " style="text-align: center" width="200px">Road H29 Part Ⅳ</td>
               </tr>
             </ng-container>
           </tbody>
@@ -93,6 +94,25 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of options4; index as i">
+              <tr *ngIf="item.title != null">
+                <td style="text-align: left" >{{item.title}}</td>               
+                <td class="center" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock">
+                  <input type="checkbox">                  
+                </td>    
+                <ng-template  #elseBlock>
+                  <td class="center" [width]="70" >
+                    <input type="radio">
+                  </td>                  
+                 </ng-template>           
+                <td style="text-align: center;" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock1">
+                  {{item.range}}
+                </td>    
+                <ng-template  #elseBlock1>
+                  <td style="text-align: center;" [width]="70" >       
+                    {{""}}     
+                    <div class="line"></div>          
+                  </td>                  
+                 </ng-template>                
               <tr *ngIf="item.title != null ">
                 <td style="text-align: left">{{item.title}}</td>
                 <td class="center" width="70px">
@@ -120,9 +140,9 @@
         <table>
           <thead>
             <tr>
-              <th rowspan="2" colspan="2" width="20px">
+              <th rowspan="2" width="20px">
               </th>
-              <th rowspan="2" colspan="2" width="300px">
+              <th rowspan="2" >
                 <p translate>material-strength-verifiaction-condition.other_con</p>
               </th>
             </tr>
@@ -130,12 +150,12 @@
           <tbody>
 
             <ng-container *ngFor="let item of options5; index as i">
-              <tr>
-                <td width="20px">
-                  <input type="checkbox" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
-                    [value]="item.id" (change)="setPileFactor(i)" />
+              <tr *ngIf="i === 0">
+                <td class="center" width="20px">
+                  <input type="checkbox" name="material_steel" id="material_steel{{i}}" [checked]="item.fsyk"
+                    (click)="handleCheck($event,item)"  />
                 </td>
-                <td style="text-align: left" width="200px">{{item.title}}</td>
+                <td style="text-align: left" >{{item.separate}}</td>
               </tr>
             </ng-container>
           </tbody>
