@@ -61,7 +61,7 @@
         "dc":"設計条件",
         "sre_cross":"断面照査に用いる応力",
         "rail":"鉄道",
-        "road":"道",
+        "road":"道路",
         "Pilipinas": "フィリピン鉄道",
         "japan_civil":"土木学会",
         "d_stress":"耐久性 縁応力度検討用",
@@ -98,7 +98,9 @@
         "Mud":"せん断耐力におけるβn算定時の Mud は軸力を考慮しない",
         "limit_design_method":"限界設計法",
         "partial_coefficient_method":"部分係数法",
-        "allowable_stress_method":"許容応力度法"
+        "allowable_stress_method":"許容応力度法",
+        "adopt":"円形断面のせん断耐力が小さくなるような鉄筋配置を採用",
+        "note_img": "※[]内の数値は下表（作用の組合せ）の番号に対応"
     },
     "basic-information-road":{
         "bs_dcp_of_is": "耐久性 内部鋼材の防食[1]",
@@ -227,8 +229,12 @@
         "position":"位置",
         "p_name":"算出点名",
         "s_len":"せん断スパン長(mm)",
+        "s_len_a":"せん断スパン長\n a(mm)",
         "fixed_end":"両端固定",
-        "m_len":"部材長さ(mm)"
+        "m_len":"部材長さ(mm)",
+        "consider_shear":"せん断スパン比の影響を考慮する",
+        "concrete":"コンクリート",
+        "reinforcement_bar":"せん断補強鉄筋"
     },
     "fatigues":{
         "durable":"耐用年数",
@@ -463,6 +469,12 @@
         "tention": "引張",
         "member":"部材",
         "number":"本"
+    },
+    "durability":{
+        "m_no":"部材\n番号",
+        "position":"位置",
+        "p_name":"算出点名",
+        "under_blow_groundwater":"水中または\n地下水位以下"
     },
     "result-durability-moment":{
         "u_bend_vfry_rslt":"使用性（外観）曲げひび割れの照査結果"

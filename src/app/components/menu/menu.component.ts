@@ -29,7 +29,7 @@ import { InputDesignPointsService } from "../design-points/design-points.service
 import { LanguagesService } from "../../providers/languages.service";
 import { ElectronService } from "src/app/providers/electron.service";
 import packageJson from '../../../../package.json';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
@@ -114,6 +114,9 @@ export class MenuComponent implements OnInit {
     this._renew();
     this.windows = this.multiWindowService.getKnownWindows();
     this.setDefaultOpenControl();
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.openShiyoJoken();
+    })
   }
 
   @HostListener('window:beforeunload', ['$event'])
