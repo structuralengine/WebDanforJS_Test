@@ -12,17 +12,17 @@
 
 <div class="tabContent">
   <ul class="tab-select-items">
-    <li class="tab-select-item"
-      translate [ngClass]="{'is-active': activeTab === 'rsb_con'}" (click)="setActiveTab('rsb_con')">material-strength-verifiaction-condition.rsb_con</li>    
-    <li class="tab-select-item" 
-      translate [ngClass]="{'is-active': activeTab === 'com_type'}" (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
-    <li class="tab-select-item" 
-      translate [ngClass]="{'is-active': activeTab === 'sei_ver'}" (click)="setActiveTab('sei_ver')">material-strength-verifiaction-condition.sei_ver</li>    
-    <li class="tab-select-item"
-      translate [ngClass]="{'is-active': activeTab === 'other_con'}" (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'rsb_con'}"
+      (click)="setActiveTab('rsb_con')">material-strength-verifiaction-condition.rsb_con</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'com_type'}"
+      (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'sei_ver'}"
+      (click)="setActiveTab('sei_ver')">material-strength-verifiaction-condition.sei_ver</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'other_con'}"
+      (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
   </ul>
 
-  
+
   <div class="tab-inner">
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
       <div class="safety-factors">
@@ -32,13 +32,13 @@
         </div>
       </div>
     </div>
-    <div class="item-container"  [ngClass]="{'hide': activeTab !== 'rsb_con'}">  
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
       <div class="material-strength">
         <h5 translate>material-strength-verifiaction-condition.c_mta</h5>
         <div class="table-container">
           <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet>
         </div>
-      </div>      
+      </div>
     </div>
 
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'com_type'}">
@@ -46,8 +46,8 @@
         <h5 translate>material-strength-verifiaction-condition.com_type</h5>
         <table>
           <thead>
-            <tr> 
-              <th width="20px">     
+            <tr>
+              <th width="20px">
               </th>
               <th>
                 <p translate>material-strength-verifiaction-condition.com_type</p>
@@ -56,7 +56,7 @@
                 <p translate>material-strength-verifiaction-condition.base_stan</p>
               </th>
             </tr>
-            
+
           </thead>
           <tbody>
             <ng-container *ngFor="let item of options3; index as i">
@@ -79,39 +79,35 @@
         <table>
           <thead>
             <tr>
-              <th rowspan="2" >
+              <th rowspan="2">
                 <p translate>material-strength-verifiaction-condition.si</p>
               </th>
-              <th rowspan="2" >
+              <th rowspan="2">
                 <p translate>material-strength-verifiaction-condition.pl_ex</p>
               </th>
-              <th rowspan="2" >
+              <th rowspan="2">
                 <p translate style="font-size: 10px;">material-strength-verifiaction-condition.lv_e</p>
               </th>
             </tr>
-            
+
           </thead>
           <tbody>
             <ng-container *ngFor="let item of options4; index as i">
-              <tr *ngIf="item.title != null">
-                <td style="text-align: left" >{{item.title}}</td>               
-                <td class="center" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock">
-                  <input type="checkbox">                  
-                </td>    
-                <ng-template  #elseBlock>
-                  <td class="center" [width]="70" >
-                    <input type="radio">
-                  </td>                  
-                 </ng-template>           
-                <td style="text-align: center;" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock1">
-                  {{item.range}}
-                </td>    
-                <ng-template  #elseBlock1>
-                  <td style="text-align: center;" [width]="70" >       
-                    {{""}}               
-                  </td>                  
-                 </ng-template>                
+              <tr *ngIf="item.title != null ">
+                <td style="text-align: left">{{item.title}}</td>
+                <td class="center" width="70px">
+                  <input type="checkbox" name="pla_ex{{i}}" id="pla_ex{{i}}" [value]="item.id"
+                    [checked]="!item.selected"  (change)="setCheckboxPlastic(i)" />
+                </td>
+                <td style="text-align: center;" width="80px" *ngIf="item.selected; else elseBlock" >
+                  <div class="diagonalRising"></div>
+                </td>
               </tr>
+              <ng-template #elseBlock>                
+                  <td style="width:85px" >
+                    <input class="levelType" type="text" value="{{item.range}}">
+                  </td>             
+              </ng-template>
             </ng-container>
           </tbody>
         </table>
