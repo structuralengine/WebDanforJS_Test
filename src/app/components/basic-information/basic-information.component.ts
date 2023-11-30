@@ -57,20 +57,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
       default: {
       }
     }
-    this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
-      switch (event.lang) {
-        case "en": {
-          this.imgLink = "assets/img/basic-information/en.png";
-          break;
-        }
-        case "ja": {
-          this.imgLink = "assets/img/basic-information/jp.png";
-          break;
-        }
-        default: {
-        }
-      }
-    });
+    
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       switch (event.lang) {
         case "en": {
@@ -84,9 +71,14 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
         default: {
         }
       }
+      this.saveData();
+      this.onInitData();
     });
-    const basic = this.basic.getSaveData();
-
+    this.onInitData();
+  }
+  onInitData(){
+    let basic : any = {};
+    basic = this.basic.getSaveData();
     // 適用
     this.specification1_list = basic.specification1_list;
     this.specification1_select_id = this.basic.get_specification1();
