@@ -712,6 +712,11 @@ export class InputBasicInformationService {
             selected: true,
           },
           {
+            id: 'JR-005',
+            title: this.translate.instant("basic-information.adopt"),
+            selected: false
+          },
+          {
             id: "JR-004",
             title: this.translate.instant("basic-information.Mud"),
             selected: false,

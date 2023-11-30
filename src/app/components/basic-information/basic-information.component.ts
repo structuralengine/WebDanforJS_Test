@@ -3,7 +3,7 @@ import { InputBasicInformationService } from './basic-information.service';
 import { SaveDataService } from '../../providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-basic-information',
@@ -42,9 +42,49 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     private save: SaveDataService,
     private translate: TranslateService
   ) { }
-
+  public imgLink ="";
   ngOnInit() {
-
+    let currentLang = this.translate.currentLang;
+    switch (currentLang) {
+      case "en": {
+        this.imgLink = "assets/img/basic-information/en.png";
+        break;
+      }
+      case "ja": {
+        this.imgLink = "assets/img/basic-information/jp.png";
+        break;
+      }
+      default: {
+      }
+    }
+    this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
     const basic = this.basic.getSaveData();
 
     // 適用
