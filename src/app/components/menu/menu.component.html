@@ -252,7 +252,8 @@
               class="d-flex"
               [ngClass]="{
                 'spec-rdo-active': specification2_select_id === item.id,
-                'spec-rdo': specification2_select_id !== item.id
+                'spec-rdo': specification2_select_id !== item.id,
+                'disabled' : item.id === 5
               }"
             >
               <input
@@ -262,7 +263,8 @@
                 [(ngModel)]="specification2_select_id"
                 [value]="item.id"
                 [checked]="item.selected"
-                (change)="setSpecification2(item.id)"
+                (change)="setSpecification2(item.id)" 
+                [disabled]="item.id === 5 ? true : false"
               />
               <label class="form-check-label" for="specification2{{ item.id }}">{{
                 item.title | translate

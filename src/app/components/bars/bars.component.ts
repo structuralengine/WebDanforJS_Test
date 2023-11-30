@@ -366,7 +366,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
             index >= startCellIndex && index <= endCellIndex;
           const isFixedCell = index <= FIXED_CELLS_COUNT;
           const isCheckCell = index === CHECK_CELL_INDEX;
-          let hidden = isInTargetRange || isFixedCell || isCheckCell;
           column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
         }
       });
@@ -376,7 +375,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           index >= startCellIndex && index <= endCellIndex;
         const isFixedCell = index <= FIXED_CELLS_COUNT;
         const isCheckCell = index === CHECK_CELL_INDEX;
-        let hidden = isInTargetRange || isFixedCell || isCheckCell;
         column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
       });
     }
