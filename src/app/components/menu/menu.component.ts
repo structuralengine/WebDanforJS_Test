@@ -411,7 +411,6 @@ export class MenuComponent implements OnInit {
   public setSpecification1(i: number): void {
 
     const basic = this.basic.set_specification1(i);
-
     this.specification1_list = basic.specification1_list; // 適用
     this.specification2_list = basic.specification2_list; // 仕様
     this.conditions_list = basic.conditions_list;         //  設計条件
@@ -451,15 +450,17 @@ export class MenuComponent implements OnInit {
   // 耐用年数, jA, jB
   public openShiyoJoken() {
     const basic = this.basic.getSaveData();
-    
     // 適用
+    this.basic.updateTitleSpecification(1, basic.specification1_list)
     this.specification1_list = basic.specification1_list;
-    
     this.specification1_select_id = this.basic.get_specification1();
+
     // 仕様
+    this.basic.updateTitleSpecification(2, basic.specification2_list)
     this.specification2_list = basic.specification2_list;
     this.specification2_select_id = this.basic.get_specification2();
     //  設計条件
+    this.basic.updateTitleCondition(basic.conditions_list)
     this.conditions_list = basic.conditions_list;
 
     this.table1_datas = basic.pickup_moment;
