@@ -346,7 +346,6 @@ export class InputSafetyFactorsMaterialStrengthsService {
       pile_factor[id] = tmp_pile_factor;
 
     }
-
     return {
       groupe_list,
       safety_factor,

@@ -9,6 +9,7 @@ import { InputBasicInformationService } from '../basic-information/basic-informa
 })
 
 export class InputMaterialStrengthVerificationConditionService {
+  private safety_factor: any;
   private material_bar: any;
   private material_steel: any;
   private material_concrete: any;
@@ -21,9 +22,11 @@ export class InputMaterialStrengthVerificationConditionService {
     private helper: DataHelperModule,
     private translate: TranslateService,
     private basic: InputBasicInformationService,
-  ) { }
+  ) { 
+    this.clear();
+  }
   public getTableColumns(): any {
-
+    const safety_factor = {};
     const material_bar = {};
     const material_steel = {};
     const material_concrete = {};
@@ -36,11 +39,28 @@ export class InputMaterialStrengthVerificationConditionService {
       const id = first.g_id;
 
       // 空のデータを1行追加する
+      const tmp_safety_factor = this.default_safety_factor();
       const tmp_material_bar = this.default_material_bar();
       const tmp_material_steel = this.default_material_steel();
       const tmp_material_concrete = this.default_material_concrete();
-      const tmp_pile_factor = this.default_pile_factor();     
+      const tmp_pile_factor = this.default_pile_factor();
 
+      if (id in this.safety_factor) {
+        const old_safety_factor = this.safety_factor[id];
+        for (const tmp of tmp_safety_factor) {
+          const old = old_safety_factor.find(v => v.id === tmp.id)
+          if (old !== undefined) {
+            for (const key of Object.keys(tmp)) {
+              if (key === 'title')
+                continue;
+              if (key in old)
+                tmp[key] = old[key];
+              else
+                tmp[key] = null;
+            }
+          }
+        }
+      }
       if (id in this.material_bar) {
         const old_material_bar = this.material_bar[id];
         for (let i = 0; i < tmp_material_bar.length; i++) {
@@ -60,6 +80,8 @@ export class InputMaterialStrengthVerificationConditionService {
           const tmp = tmp_material_steel[i];
           const old = old_material_steel[i];
           for (const key of Object.keys(tmp)) {
+            if(key ==="separate" )
+            continue;
             if (key in old) {
               tmp[key] = old[key];
             }
@@ -82,21 +104,24 @@ export class InputMaterialStrengthVerificationConditionService {
           const tmp = tmp_pile_factor[i];
           const old = old_pile_factor[i];
           for (const key of Object.keys(tmp)) {
-            if (key === 'title')
+            if (key === 'title' || key === 'baseStan')
               continue;
             if (key in old)
               tmp[key] = old[key];
           }
         }
       }
+
+      safety_factor[id] = tmp_safety_factor;
       material_bar[id] = tmp_material_bar
       material_steel[id] = tmp_material_steel;
       material_concrete[id] = tmp_material_concrete;
       pile_factor[id] = tmp_pile_factor;
 
     }
-
+  
     return {
+      safety_factor,
       groupe_list,
       material_bar,
       material_steel,
@@ -113,74 +138,35 @@ export class InputMaterialStrengthVerificationConditionService {
     switch (sp1) {
       case 0: // 鉄道
       case 1: // 土木学会
-
+      case 2:
         result = [
           {
-            id: 0, 
-            title: this.translate.instant("material-strength-verifiaction-condition.d_u"),
+            id: 0,
+            title: this.translate.instant("material-strength-verifiaction-condition.var_st"),
             M_rc: 1.00, M_rs: 1.00, M_rbs: 1.00,
             V_rc: 1.00, V_rs: 1.00, V_rbc: 1.00, V_rbs: 1.00, V_rbv: null,
             T_rbt:1.00,
-            ri: 1.00, range: 1,
+            ri: true, range: "",
             S_rs: 1.0, S_rb: 1.0
           },
           {
-            id: 2, 
-            title: this.translate.instant("material-strength-verifiaction-condition.safe_ff"),
+            id: 2,
+            title: this.translate.instant("material-strength-verifiaction-condition.acc_st"),
             M_rc: 1.30, M_rs: 1.05, M_rbs: 1.00,
             V_rc: 1.30, V_rs: 1.05, V_rbc: 1.30, V_rbs: 1.0, V_rbv: null,
-            T_rbt:1.00,
-            ri: 1.10, range: 2,
+            T_rbt:1.00,            
+            ri: false, range: "2",
             S_rs: 1.0, S_rb: 1.1
-          },
-          {
-            id: 5, 
-            title: this.translate.instant("material-strength-verifiaction-condition.safe_d"),
-            M_rc: 1.30, M_rs: 1.0, M_rbs: 1.10,
-            V_rc: 1.30, V_rs: 1.0, V_rbc: 1.30, V_rbs: 1.10, V_rbv: 1.20,
-            T_rbt:1.30,
-            ri: 1.20, range: 2,
-            S_rs: 1.05, S_rb: 1.1
-          },
-          {
-            id: 6, 
-            title:  (sp2 !== 3 && sp2 !== 4) ? this.translate.instant("material-strength-verifiaction-condition.r_ex") : this.translate.instant("material-strength-verifiaction-condition.u_damage"),
-            M_rc: 1.30, M_rs: 1.00, M_rbs: 1.0,
-            V_rc: 1.30, V_rs: 1.00, V_rbc: 1.30, V_rbs: 1.10, V_rbv: 1.20,
-            T_rbt:1.30,
-            ri: 1.20, range: 3,
-            S_rs: 1.05, S_rb: 1.1
-          },
-          {
-            id: 7, 
-            title: this.translate.instant("material-strength-verifiaction-condition.r_at"),
-            M_rc: 1.30, M_rs: 1.00, M_rbs: 1.00,
-            V_rc: 1.30, V_rs: 1.00, V_rbc: 1.30, V_rbs: 1.00, V_rbv: 1.20,
-            T_rbt:1.30,
-            ri: 1.00, range: 3,
-            S_rs: 1.05, S_rb: 1.1
-          },
-          {
-            id: 8, 
-            title: this.translate.instant("material-strength-verifiaction-condition.min_rebar"),
-            M_rc: 1.30, M_rs: 1.00, M_rbs: 1.00,
-            V_rc: null, V_rs: null, V_rbc: null, V_rbs: null, V_rbv: null,
-            T_rbt:null,
-            ri: 1.00, range: 3,
-            S_rs: 1.05, S_rb: 1.1
-          }
+          }   
+         
         ]
 
-        break;
-
-      case 2: // 港湾
-        result = new Array();
-        break;
+        break;      
     }
 
     // 例外
-    if(sp1 === 0){
-      if( this.basic.get_specification2() === 2){
+    if (sp1 === 0) {
+      if (this.basic.get_specification2() === 2) {
         // JR東日本
         result[3].r1 = 1.00; // 復旧性の γi =1.00
       }
@@ -207,7 +193,7 @@ export class InputMaterialStrengthVerificationConditionService {
         bend: { fsy: 390, fsu: 560 }
       }
     ]
-    if( sp1===1 ){
+    if (sp1 === 1) {
       result = [
         {
           tensionBar: { fsy: 415, fsu: 550 },
@@ -236,24 +222,24 @@ export class InputMaterialStrengthVerificationConditionService {
       result = [
           { 
             id: 'pile-000', 
-            title: this.translate.instant("safety-factors-material-strengths.dont_use"),
+            title: this.translate.instant("material-strength-verifiaction-condition.dont_use"),
             rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
           { 
             id: 'pile-001', 
-            title: this.translate.instant("safety-factors-material-strengths.muddy_less"),
+            title: this.translate.instant("material-strength-verifiaction-condition.muddy_less"),
             rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
           { 
             id: 'pile-002', 
-            title: this.translate.instant("safety-factors-material-strengths.natural_less"),
+            title: this.translate.instant("material-strength-verifiaction-condition.natural_less"),
             rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
           { 
             id: 'pile-003', 
-            title: this.translate.instant("safety-factors-material-strengths.bentonite"),
+            title: this.translate.instant("material-strength-verifiaction-condition.bentonite"),
             rfck: 0.6, rfbok: 0.5, rEc: 0.7, rVcd: 0.8, selected: false },
           { 
             id: 'pile-004', 
-            title: this.translate.instant("safety-factors-material-strengths.aerial"),
-            rfck: 0.9, rfbok: 0.9, rEc: 0.9, rVcd: 1.0, selected: false },
+            title: this.translate.instant("material-strength-verifiaction-condition.aerial"),
+            rfck: 0.9, rfbok: 0.9, rEc: 0.9, rVcd: 1.0, selected: false },     
         ];
         break;
 
@@ -261,55 +247,206 @@ export class InputMaterialStrengthVerificationConditionService {
         result = [
             { 
               id: 'pile-000', 
-              title: this.translate.instant("safety-factors-material-strengths.dont_use"),
+              title: this.translate.instant("material-strength-verifiaction-condition.dont_use"),
               rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
             { 
               id: 'pile-001', 
-              title: this.translate.instant("safety-factors-material-strengths.muddy_less"),
+              title: this.translate.instant("material-strength-verifiaction-condition.muddy_less"),
               rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
             { 
               id: 'pile-002', 
-              title: this.translate.instant("safety-factors-material-strengths.natural_less"),
+              title: this.translate.instant("material-strength-verifiaction-condition.natural_less"),
               rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
             { 
               id: 'pile-003', 
-              title: this.translate.instant("safety-factors-material-strengths.bentonite"),
+              title: this.translate.instant("material-strength-verifiaction-condition.bentonite"),
               rfck: 0.6, rfbok: 0.5, rEc: 0.7, rVcd: 0.8, selected: false },
             { 
               id: 'pile-004', 
-              title: this.translate.instant("safety-factors-material-strengths.aerial"),
+              title: this.translate.instant("material-strength-verifiaction-condition.aerial"),
               rfck: 0.9, rfbok: 0.9, rEc: 0.9, rVcd: 1.0, selected: false },
           ];
           break;
     
-      case 2: // 港湾
-      result = new Array();
-
-        break;
+      case 2: // Road
+       result = [
+        { 
+          id: 'pile-000', 
+          title: this.translate.instant("material-strength-verifiaction-condition.ge_pa"),
+          rfck: 1.0, rfbok: 1.0, rEc: 1.0, rVcd: 1.0, selected: true },
+        { 
+          id: 'pile-001', 
+          title: this.translate.instant("material-strength-verifiaction-condition.fla_for_flo_sla"),
+          rfck: 0.8, rfbok: 0.7, rEc: 0.8, rVcd: 0.9, selected: false },
+        { 
+          id: 'pile-002', 
+          title: this.translate.instant("material-strength-verifiaction-condition.sub"),
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
+        { 
+          id: 'pile-003', 
+          title: "",
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false },
+        { 
+          id: 'pile-004', 
+          title: "",
+          rfck: 0.7, rfbok: 0.6, rEc: 0.8, rVcd: 0.9, selected: false},
+       ];
+      break;
+      case 3:
+        result = new Array();          
+        break;     
     }
     return result;
   }
   public default_material_steel(): any {
-    const result = [
-      {
-        separate: 16,
-        fsyk: 245,
-        fsvyk: 140,
-        fsuk: 400,
-      },
-      {
-        separate: 40,
-        fsyk: 235,
-        fsvyk: 135,
-        fsuk: 400,
-      },
-      {
-        separate: 75,
-        fsyk: 215,
-        fsvyk: 125,
-        fsuk: 400,
-      }
-    ];
+    let result = [];
+    switch (this.basic.get_specification1()) {
+     case 0:
+     case 1:
+      result = [
+        {
+          separate: 16,
+          fsyk: 245,
+          fsvyk: 140,
+          fsuk: 400,
+        },
+        {
+          separate: 40,
+          fsyk: 235,
+          fsvyk: 135,
+          fsuk: 400,
+        },
+        {
+          separate: 75,
+          fsyk: 215,
+          fsvyk: 125,
+          fsuk: 400,
+        }
+      ];
+      break;
+      case 2:
+        result = [
+          {
+            separate: this.translate.instant("material-strength-verifiaction-condition.sep"),
+            fsyk: true,
+            fsvyk: 140,
+            fsuk: 400,
+          },
+          {
+            separate: 40,
+            fsyk: 235,
+            fsvyk: 135,
+            fsuk: 400,
+          },
+          {
+            separate:75,
+            fsyk: 215,
+            fsvyk: 125,
+            fsuk: 400,
+          }
+        ];
+      break;
+    }
+     
     return result;
+  }
+
+  public setSaveData(material: any) {
+    this.safety_factor = material.safety_factor,
+    this.material_bar = material.material_bar,
+      this.material_steel = material.material_steel,
+      this.material_concrete = material.material_concrete,
+      this.pile_factor = material.pile_factor
+  }
+  public clear(): void {
+    this.material_bar = {};
+    this.material_steel = {};
+    this.material_concrete = {};
+    this.pile_factor = {};
+    this.arrayAxis = new Array();
+    
+  }
+
+
+  public setTableColumns(material: any): void {
+    this.clear();
+
+    for (const id of Object.keys(material.safety_factor)) {
+
+      const tmp_safety_factor = this.default_safety_factor();
+      const tmp_material_bar = this.default_material_bar();
+      const tmp_material_steel = this.default_material_steel();
+      const tmp_material_concrete = this.default_material_concrete();
+      const tmp_pile_factor = this.default_pile_factor();
+
+      if (id in material.safety_factor) {
+        const new_safety_factor = material.safety_factor[id];
+        for (const tmp of tmp_safety_factor) {
+          const org = new_safety_factor.find(v => v.id === tmp.id)
+          if (org !== undefined) {
+            for (const key of Object.keys(tmp)) {
+              if (key in org) { tmp[key] = org[key]; }
+            }
+          }
+        }
+      }
+
+      if (id in material.material_bar) {
+        const new_material_bar = material.material_bar[id];
+        for (let i = 0; i < tmp_material_bar.length; i++) {
+          const tmp = tmp_material_bar[i];
+          const org = new_material_bar[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+
+      if (id in material.material_steel) {
+        const new_material_steel = material.material_steel[id];
+        for (let i = 0; i < tmp_material_steel.length; i++) {
+          const tmp = tmp_material_steel[i];
+          const org = new_material_steel[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+
+      if (id in material.material_concrete) {
+        const new_material_concrete = material.material_concrete[id];
+        for (const key of Object.keys(tmp_material_concrete)) {
+          if (key in new_material_concrete) {
+            tmp_material_concrete[key] = new_material_concrete[key];
+          }
+        }
+      }
+
+      if (id in material.pile_factor) {
+        const new_pile_factor = material.pile_factor[id];
+        for (let i = 0; i < tmp_pile_factor.length; i++) {
+          const tmp = tmp_pile_factor[i];
+          const org = new_pile_factor[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+      this.safety_factor[id] = tmp_safety_factor;
+      this.material_bar[id] = tmp_material_bar;
+      this.material_steel[id] = tmp_material_steel;
+      this.material_concrete[id] = tmp_material_concrete;
+      this.pile_factor[id] = tmp_pile_factor;
+    }
+
+  }
+  public getSaveData(): any {
+    return {
+      safety_factor: this.safety_factor,
+      material_bar: this.material_bar,
+      material_steel: this.material_steel,
+      material_concrete: this.material_concrete,
+      pile_factor: this.pile_factor
+    }
   }
 }
