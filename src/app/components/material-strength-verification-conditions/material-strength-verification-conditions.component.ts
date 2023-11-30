@@ -19,19 +19,16 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public groupe_name: string[];
   public activeTab: string = 'rsb_con';
 
-  public options3: any[]; 
+  public options3: any[];
   public pile_factor_list: any[] = new Array();
   public pile_factor_select_id: string;
 
-  public options5: any[]; 
-  public material_steel_list: any[] = new Array(); 
-  public setActiveTab(tab: string) {
-    this.activeTab = tab;
-  }
+  public options5: any[];
+  public material_steel_list: any[] = new Array();
 
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
-  public options1: pq.gridT.options;  
+  public options1: pq.gridT.options;
   private option1_list: pq.gridT.options[] = new Array();
   private columnHeaders1: object[] = [];
   private table1_datas: any[];
@@ -43,23 +40,23 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
   public options4: any[];
   private option4_list: any[] = new Array();
- 
   private table4_datas: any[];
+  public plastic_expect_selected_id: string;
+  public plastic_selected: boolean = false;
   private current_index: number;
   private groupe_list: any[];
   constructor(
     private material: InputMaterialStrengthVerificationConditionService,
     private members: InputMembersService,
     private translate: TranslateService,
-  ) { } 
+  ) { }
 
   ngOnInit() {
     this.setTitle()
     const material = this.material.getTableColumns();
-    this.table1_datas = new Array();      // 安全係数
-    this.table2_datas = new Array();      // 鉄筋材料    
-    this.pile_factor_list = new Array();   
-    this.table2_datas = new Array();     // 鉄筋材料               
+    this.table1_datas = new Array();
+    this.pile_factor_list = new Array();
+    this.table2_datas = new Array();
     this.groupe_name = new Array();
     this.groupe_list = material.groupe_list;
     this.table4_datas = new Array();
@@ -107,16 +104,17 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         if (col.id === 8) continue; // 最小鉄筋量の安全係数は、編集しない
 
         bar.push({
-           id: col.id, title: col.title,
+          id: col.id, title: col.title,
           M_rc: col.M_rc, M_rs: col.M_rs, M_rbs: col.M_rbs,
           V_rc: col.V_rc, V_rs: col.V_rs, V_rbc: col.V_rbc, V_rbs: col.V_rbs, V_rbv: col.V_rbv,
           T_rbt: col.T_rbt,
-          ri: col.ri, range: col.range
-        });   
+          ri: col.ri, range: col.range,
+          selected: this.table2_datas[0][0].value > 30 ? true : false
+        });
         steel.push({
           id: col.id, title: col.title,
           S_rs: col.S_rs, S_rb: col.S_rb
-        });    
+        });
       }
       this.option4_list.push(bar);
       this.table4_datas.push(steel);
@@ -210,6 +208,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
           ]
         },
       });
+
     }
     this.current_index = 0;
     this.options1 = this.option1_list[0];
@@ -222,6 +221,20 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
     this.saveData();
+  }
+  public setActiveTab(tab: string) {
+    this.activeTab = tab;
+    const i = this.current_index;
+    const plastic = this.option4_list[i];
+    for (let k = 0; k < plastic.length; k++) {
+      const element = plastic[k]
+      if (this.table2_datas[i][0].value > 30) {
+        element.selected = true
+      } else element.selected = false
+    }
+
+
+
   }
   public saveData(): void {
     const safety_factor = {};
@@ -246,7 +259,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
           V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
           T_rbt: bar.T_rbt,
           ri: bar.ri, range: bar.range,
-          S_rs: steel.S_rs, S_rb: steel.S_rb   
+          S_rs: steel.S_rs, S_rb: steel.S_rb
         })
       }
       safety_factor[id] = factor;
@@ -264,9 +277,30 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
       }];
 
+
      
       
       material_steel[id] =  this.material_steel_list[i];
+      // 鉄骨材料
+      // const steel = this.table5_datas[i];
+      // material_steel[id] = [
+      //   {
+      //     fsyk: steel[0].SRCfsyk1,
+      //     fsvyk: steel[1].SRCfsyk1,
+      //     fsuk: steel[2].SRCfsyk1,
+      //   },
+      //   {
+      //     fsyk: steel[0].SRCfsyk2,
+      //     fsvyk: steel[1].SRCfsyk2,
+      //     fsuk: steel[2].SRCfsyk2,
+      //   },
+      //   {
+      //     fsyk: steel[0].SRCfsyk3,
+      //     fsvyk: steel[1].SRCfsyk3,
+      //     fsuk: steel[2].SRCfsyk3,
+      //   }
+      // ];
+
 
       const conc = this.table2_datas[i];
       material_concrete[id] = {
@@ -274,7 +308,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         dmax: conc[1].value
       }
 
-      
+
       pile_factor[id] = this.pile_factor_list[i];
     }
     console.log("material_steel",material_steel)
@@ -285,13 +319,13 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       material_concrete,
       pile_factor
     })
-   
+
   }
   ngAfterViewInit(): void {
     this.activeButtons(0);
     this.setActiveTab(this.activeTab)
   }
-  private setTitle() : void{
+  private setTitle(): void {
     this.columnHeaders1 = [
       { title: '', align: 'left', dataType: 'string', dataIndx: 'title', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' } },
       {
@@ -336,6 +370,12 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     }
     this.pile_factor_select_id = this.getPileFactorSelectId();
   }
+  public setCheckboxPlastic(j: number): void {
+    const i = this.current_index;
+    const plastic = this.option4_list[i];
+    const element = plastic[j];  
+    element.selected = !element.selected
+  }
   private getPileFactorSelectId(): string {
     const id = this.current_index;
     let result:any = []
@@ -354,21 +394,24 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
    })
   }
   public activePageChenge(id: number, group: any): void {
-    this.groupMem=group;
+    this.groupMem = group;
     this.activeButtons(id);
-    this.current_index = id;    
-   
+    this.current_index = id;
+
     this.options1 = this.option1_list[id];
     this.grid1.options = this.options1;
     this.grid1.refreshDataAndView();
 
     this.options2 = this.option2_list[id];
     this.grid2.options = this.options2;
-    this.grid2.refreshDataAndView();  
+    this.grid2.refreshDataAndView();
 
     this.options3 = this.pile_factor_list[id];
+
     this.pile_factor_select_id = this.getPileFactorSelectId(); 
     this.options5= this.material_steel_list[id]
+    this.pile_factor_select_id = this.getPileFactorSelectId();
+    this.options4 = this.option4_list[id]
 
   }
   private activeButtons(id: number) {
