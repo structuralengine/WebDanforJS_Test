@@ -93,26 +93,8 @@
 
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of options4; index as i">
-              <tr *ngIf="item.title != null">
-                <td style="text-align: left" >{{item.title}}</td>               
-                <td class="center" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock">
-                  <input type="checkbox">                  
-                </td>    
-                <ng-template  #elseBlock>
-                  <td class="center" [width]="70" >
-                    <input type="radio">
-                  </td>                  
-                 </ng-template>           
-                <td style="text-align: center;" [width]="70" *ngIf="table2_datas[i][0].value < 35; else elseBlock1">
-                  {{item.range}}
-                </td>    
-                <ng-template  #elseBlock1>
-                  <td style="text-align: center;" [width]="70" >       
-                    {{""}}     
-                    <div class="line"></div>          
-                  </td>                  
-                 </ng-template>                
+            <ng-container *ngFor="let item of options4; index as i">               
+                             
               <tr *ngIf="item.title != null ">
                 <td style="text-align: left">{{item.title}}</td>
                 <td class="center" width="70px">
