@@ -111,10 +111,13 @@
     padding-right: 10px;
     padding-bottom: 10px;
     background: var(--base-900);
-    height: 688px;
+    // height: 688px;
+    height: 500px;
 }
 
-.s-border{
-    position: fixed;
-    width: 89.5%;
+.section-img{
+    padding-right: 40px;
+    img{
+      width: 100%;
+    }
 }

@@ -10,7 +10,17 @@
   }
 
 }
-
+.basic-img{
+  padding-right: 40px;
+  img{
+    width: 100%;
+  }
+}
+.basic-note-img{
+  span{
+    font-size: 12px;
+  }
+}
 .right-contents{
   position: relative; 
   float: left;
