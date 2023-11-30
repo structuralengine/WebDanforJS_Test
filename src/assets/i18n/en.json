@@ -253,6 +253,7 @@
         "ge_pa":"General parts",
         "fla_for_flo_sla":"Flange for floor slab",
         "sub":"Substructure",
+        "sep":"The upper limit of the characteristic value Sc of shear force that concrete can bear is not taken into account",
         "rsb_con":"Reinforcing bar / Concrete",
         "rebar_ax":"Axial rebar",
         "rebar_la":"Lateral rebar",
