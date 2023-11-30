@@ -5,6 +5,7 @@ import { SaveDataService } from 'src/app/providers/save-data.service';
 import pq from 'pqgrid';
 import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-bars',
@@ -31,7 +32,8 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     private members: InputMembersService,
     private bars: InputBarsService,
     private save: SaveDataService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private menuService: MenuService
   ) { 
     this.members.checkGroupNo();
   }
@@ -353,15 +355,31 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     
     let startCellIndex = start;
     let endCellIndex = end;
-
-    this.grid.grid.getColModel().forEach((column, index) => {
-      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
-      const isFixedCell = index <= FIXED_CELLS_COUNT;
-      const isCheckCell = index === CHECK_CELL_INDEX;
-
-      column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
-    });
-
+    if (this.menuService.selectedRoad) {
+      this.grid.grid.getColModel().forEach((column, index) => {
+        if (tab === "rebar_ax" && index == 20) {
+          column.hidden = false;
+        } else if (tab === "rebar_sh" && index == 20) {
+          column.hidden = true;
+        } else {
+          const isInTargetRange =
+            index >= startCellIndex && index <= endCellIndex;
+          const isFixedCell = index <= FIXED_CELLS_COUNT;
+          const isCheckCell = index === CHECK_CELL_INDEX;
+          let hidden = isInTargetRange || isFixedCell || isCheckCell;
+          column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+        }
+      });
+    } else {
+      this.grid.grid.getColModel().forEach((column, index) => {
+        const isInTargetRange =
+          index >= startCellIndex && index <= endCellIndex;
+        const isFixedCell = index <= FIXED_CELLS_COUNT;
+        const isCheckCell = index === CHECK_CELL_INDEX;
+        let hidden = isInTargetRange || isFixedCell || isCheckCell;
+        column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+      });
+    }
     this.grid.refreshDataAndView();
   }
 }
