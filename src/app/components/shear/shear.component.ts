@@ -4,7 +4,7 @@ import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
 import { SaveDataService } from 'src/app/providers/save-data.service';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ShearStrengthService } from './shear-strength.service';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
@@ -47,6 +47,23 @@ export class ShearComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+
+  }
+
+  clear(){
+    this.columnHeaders = new Array();
+    this.table_datas = new Array();
+    this.options = new Array();
+    this.option_list = new Array();
+  }
+
+  onInitData(){
+    this.clear();
     this.isRoad = this.menu.selectedRoad;
     if(this.isRoad){
       this.setShow(0); //set default by first group
@@ -112,8 +129,8 @@ export class ShearComponent implements OnInit {
       this.groupe_name.push(this.shear.getGroupeName(i));
     }
 
+    
   }
-
   ngAfterViewInit() {
     this.activeButtons(0);
   }

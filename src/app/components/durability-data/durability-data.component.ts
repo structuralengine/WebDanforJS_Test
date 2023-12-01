@@ -3,7 +3,7 @@ import pq from 'pqgrid';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { SaveDataService } from 'src/app/providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
 import { InputDurabilityDataService } from './durability-data.service';
 import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
@@ -37,12 +37,27 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   ) { this.members.checkGroupNo(); }
 
   ngOnInit() {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+  }
+
+  clear(){
+    this.columnHeaders = new Array();
+    this.table_datas = new Array();
+    this.options = new Array();
+    this.option_list = new Array();
+  }
+
+  onInitData(){
+    this.clear();
     this.setShow(0);
     this.setTitle(this.save.isManual());
     this.table_datas = this.durability.getTableColumns();
 
     // グリッドの設定
-    this.options = new Array();
     for (let i = 0; i < this.table_datas.length; i++) {
       const op = {
         showTop: false,
@@ -90,6 +105,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
       };
       this.option_list.push(op);
     }
+    console.log("sssss");
     this.options = this.option_list[0];
 
     // タブのタイトルとなる
@@ -97,7 +113,6 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     for (let i = 0; i < this.table_datas.length; i++) {
       this.groupe_name.push(this.durability.getGroupeName(i));
     }
-
   }
 
   ngAfterViewInit() {
@@ -118,6 +133,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   private setTitle(isManual: boolean): void {
+    this.columnHeaders= new Array();
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
