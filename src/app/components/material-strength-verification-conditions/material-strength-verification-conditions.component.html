@@ -62,12 +62,12 @@
             <ng-container *ngFor="let item of options3; index as i">
               <tr *ngIf="item.title !== ''">
                 <td width="20px">
-                  <input type="radio" name="pile_factor" id="pile_factor{{i}}" [(ngModel)]="pile_factor_select_id"
-                    [value]="item.id" [checked]="item.selected" (change)="setPileFactor(i)" />
+                  <input type="radio" name="component" id="component{{i}}" [(ngModel)]="component_select_id"
+                    [value]="item.id" [checked]="item.selected" (change)="setComponent(i)" />
                 </td>
                 <td style="text-align: left" width="200px">{{item.title}}</td>
-                <td *ngIf="item.id==='pile-000' || item.id==='pile-001'" style="text-align: center" width="200px">Road H29 Part Ⅲ</td>
-                <td *ngIf="item.id==='pile-002' " style="text-align: center" width="200px">Road H29 Part Ⅳ</td>
+                <td *ngIf="item.id===0 || item.id===1" style="text-align: center" width="200px">Road H29 Part Ⅲ</td>
+                <td *ngIf="item.id===2 " style="text-align: center" width="200px">Road H29 Part Ⅳ</td>
               </tr>
             </ng-container>
           </tbody>
@@ -132,12 +132,12 @@
           <tbody>
 
             <ng-container *ngFor="let item of options5; index as i">
-              <tr *ngIf="i === 0">
+              <tr >
                 <td class="center" width="20px">
-                  <input type="checkbox" name="material_steel" id="material_steel{{i}}" [checked]="item.fsyk"
+                  <input type="checkbox" name="other" id="other{{i}}" [checked]="item.selected"
                     (click)="handleCheck($event,item)"  />
                 </td>
-                <td style="text-align: left" >{{item.separate}}</td>
+                <td style="text-align: left" >{{item.title}}</td>
               </tr>
             </ng-container>
           </tbody>
