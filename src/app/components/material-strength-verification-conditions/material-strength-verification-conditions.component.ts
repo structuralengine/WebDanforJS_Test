@@ -20,11 +20,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public activeTab: string = 'rsb_con';
 
   public options3: any[];
-  public pile_factor_list: any[] = new Array();
-  public pile_factor_select_id: string;
+  public component_list: any[] = new Array();
+  public component_select_id: string;
 
   public options5: any[];
-  public material_steel_list: any[] = new Array();
+  public other_list: any[] = new Array();
 
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
@@ -53,7 +53,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
   ngOnInit() {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      //this.saveData();
+      this.saveData();
       this.onInitData();
     });
     this.onInitData();
@@ -62,11 +62,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.setTitle()
     const material = this.material.getTableColumns();
     this.table1_datas = new Array();
-    this.pile_factor_list = new Array();
+    this.component_list = new Array();
     this.option1_list = new Array();
     this.option2_list = new Array();
     this.option4_list =new Array();
-    this.material_steel_list= new Array();
+    this.other_list= new Array();
     this.table2_datas = new Array();
     this.groupe_name = new Array();
     this.groupe_list = material.groupe_list;
@@ -106,8 +106,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         title: this.translate.instant("material-strength-verifiaction-condition.max_ca"),
         value: concrete.dmax
       }]);
-      this.pile_factor_list.push(material.pile_factor[id]);
-      this.material_steel_list.push(material.material_steel[id]);
+      this.component_list.push(material.component[id]);
+      this.other_list.push(material.other[id]);
       const safety_factor = material.safety_factor[id];
       const bar = [], steel = [];
       for (const col of safety_factor) {
@@ -224,14 +224,14 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.current_index = 0;
     this.options1 = this.option1_list[0];
     this.options2 = this.option2_list[0];
-    this.options3 = this.pile_factor_list[0]
-    this.pile_factor_select_id = this.getPileFactorSelectId();
+    this.options3 = this.component_list[0]
+    this.component_select_id = this.getComponentSelectId();
     this.options4 = this.option4_list[0];
-    this.options5 = this.material_steel_list[0];
+    this.options5 = this.other_list[0];
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
-    //this.saveData();
+    this.saveData();
   }
   public setActiveTab(tab: string) {
     this.activeTab = tab;
@@ -247,90 +247,94 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
 
   }
-  // public saveData(): void {
-  //   const safety_factor = {};
-  //   const material_bar = {};
-  //   const material_steel = {};
-  //   const material_concrete = {};
-  //   const pile_factor = {};
-  //   for (let i = 0; i < this.groupe_list.length; i++) {
-  //     const groupe = this.groupe_list[i];
-  //     const first = groupe[0];
-  //     const id = first.g_id;
+  public saveData(): void {
+    const safety_factor = {};
+    const material_bar = {};
+    const component = {};
+    const verification ={};
+    const other = {};
+    const material_concrete = {};
+    const material_steel ={};
+    const pile_factor = {};
+    for (let i = 0; i < this.groupe_list.length; i++) {
+      const groupe = this.groupe_list[i];
+      const first = groupe[0];
+      const id = first.g_id;
 
-  //     // 安全係数
-  //     const safety_bar = this.option4_list[i];
-  //     const safety_steel = this.table4_datas[i];
-  //     const factor = [];
-  //     for (let j = 0; j < safety_bar.length; j++) {
-  //       const bar = safety_bar[j], steel = safety_steel[j];;
-  //       factor.push({
-  //         id: bar.id, title: bar.title,
-  //         M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
-  //         V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
-  //         T_rbt: bar.T_rbt,
-  //         ri: bar.ri, range: bar.range,
-  //         S_rs: steel.S_rs, S_rb: steel.S_rb
-  //       })
-  //     }
-  //     safety_factor[id] = factor;
+      // 安全係数
+      const safety_bar = this.option4_list[i];
+      const safety_steel = this.table4_datas[i];
+      const factor = [];
+      for (let j = 0; j < safety_bar.length; j++) {
+        const bar = safety_bar[j], steel = safety_steel[j];;
+        factor.push({
+          id: bar.id, title: bar.title,
+          M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
+          V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
+          T_rbt: bar.T_rbt,
+          ri: bar.ri, range: bar.range,
+          S_rs: steel.S_rs, S_rb: steel.S_rb
+        })
+      }
+      safety_factor[id] = factor;
 
-  //     // 鉄筋材料
-  //     const bar = this.table1_datas[i];
-  //     material_bar[id] = [{
-  //       tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
-  //       sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
-  //       stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
-  //     },
-  //     {
-  //       tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
-  //       sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
-  //       stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
-  //     }];
+      // 鉄筋材料
+      const bar = this.table1_datas[i];
+      material_bar[id] = [{
+        tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
+        sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
+        stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
+      },
+      {
+        tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
+        sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
+        stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
+      }];
 
 
      
       
-  //     material_steel[id] =  this.material_steel_list[i];
-  //     // 鉄骨材料
-  //     // const steel = this.table5_datas[i];
-  //     // material_steel[id] = [
-  //     //   {
-  //     //     fsyk: steel[0].SRCfsyk1,
-  //     //     fsvyk: steel[1].SRCfsyk1,
-  //     //     fsuk: steel[2].SRCfsyk1,
-  //     //   },
-  //     //   {
-  //     //     fsyk: steel[0].SRCfsyk2,
-  //     //     fsvyk: steel[1].SRCfsyk2,
-  //     //     fsuk: steel[2].SRCfsyk2,
-  //     //   },
-  //     //   {
-  //     //     fsyk: steel[0].SRCfsyk3,
-  //     //     fsvyk: steel[1].SRCfsyk3,
-  //     //     fsuk: steel[2].SRCfsyk3,
-  //     //   }
-  //     // ];
+      component[id] = this.component_list[i];
+      // 鉄骨材料
+      // const steel = this.table5_datas[i];
+      // material_steel[id] = [
+      //   {
+      //     fsyk: steel[0].SRCfsyk1,
+      //     fsvyk: steel[1].SRCfsyk1,
+      //     fsuk: steel[2].SRCfsyk1,
+      //   },
+      //   {
+      //     fsyk: steel[0].SRCfsyk2,
+      //     fsvyk: steel[1].SRCfsyk2,
+      //     fsuk: steel[2].SRCfsyk2,
+      //   },
+      //   {
+      //     fsyk: steel[0].SRCfsyk3,
+      //     fsvyk: steel[1].SRCfsyk3,
+      //     fsuk: steel[2].SRCfsyk3,
+      //   }
+      // ];
 
 
-  //     const conc = this.table2_datas[i];
-  //     material_concrete[id] = {
-  //       fck: conc[0].value,
-  //       dmax: conc[1].value
-  //     }
+      const conc = this.table2_datas[i];
+      material_concrete[id] = {
+        fck: conc[0].value,
+        dmax: conc[1].value
+      }
+      other[id] =  this.other_list[i];
+    }
+    this.material.setTableColumns({
+      safety_factor,
+      material_bar,
+      material_steel,
+      material_concrete,
+      pile_factor,
+      component,
+      verification,
+      other
+    })
 
-
-  //     pile_factor[id] = this.pile_factor_list[i];
-  //   }
-  //   this.material.setTableColumns({
-  //     safety_factor,
-  //     material_bar,
-  //     material_steel,
-  //     material_concrete,
-  //     pile_factor
-  //   })
-
-  // }
+  }
   ngAfterViewInit(): void {
     this.activeButtons(0);
     this.setActiveTab(this.activeTab)
@@ -372,13 +376,13 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       { title: '', dataType: 'float', dataIndx: 'value', sortable: false, width: 140, nodrag: true, },
     ];
   }
-  public setPileFactor(j: number): void {
+  public setComponent(j: number): void {
     const i = this.current_index;
-    const pile = this.pile_factor_list[i];
-    for (let k = 0; k < pile.length; k++) {
-      pile[k].selected = (j === k) ? true : false;
+    const component = this.component_list[i];
+    for (let k = 0; k < component.length; k++) {
+      component[k].selected = (j === k) ? true : false;
     }
-    this.pile_factor_select_id = this.getPileFactorSelectId();
+    this.component_select_id = this.getComponentSelectId();
   }
   public setCheckboxPlastic(j: number): void {
     const i = this.current_index;
@@ -386,10 +390,10 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     const element = plastic[j];  
     element.selected = !element.selected
   }
-  private getPileFactorSelectId(): string {
+  private getComponentSelectId(): string {
     const id = this.current_index;
     let result:any = []
-    const options3 = this.pile_factor_list[id];
+    const options3 = this.component_list[id];
    if(options3){
      result = options3.find((v) => v.selected === true);
    }
@@ -397,9 +401,9 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   }
   handleCheck(event:any,item:any){
     const id = this.current_index
-   this.material_steel_list[id].forEach((data:any)=>{
-    if(data.separate=== item.separate){
-      data.fsyk= event.target.checked
+   this.other_list[id].forEach((data:any)=>{
+    if(data.id === item.id){
+      data.selected = event.target.checked
     }
    })
   }
@@ -416,11 +420,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.grid2.options = this.options2;
     this.grid2.refreshDataAndView();
 
-    this.options3 = this.pile_factor_list[id];
+    this.options3 = this.component_list[id];
+    this.component_select_id = this.getComponentSelectId();
 
-    this.pile_factor_select_id = this.getPileFactorSelectId(); 
-    this.options5= this.material_steel_list[id]
-    this.pile_factor_select_id = this.getPileFactorSelectId();
+    this.options5= this.other_list[id]
+
     this.options4 = this.option4_list[id]
 
   }

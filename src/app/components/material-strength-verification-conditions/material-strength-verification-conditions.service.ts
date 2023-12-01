@@ -403,7 +403,7 @@ export class InputMaterialStrengthVerificationConditionService {
      
     return result;
   }
-  public default_component(): any{
+  public default_verification(): any{
     let result = [];
     switch(this.basic.get_specification1()){
       case 0:
@@ -428,7 +428,7 @@ export class InputMaterialStrengthVerificationConditionService {
     return result;
   }
 
-  public default_verification(): any{
+  public default_component(): any{
     let result = [];
     switch(this.basic.get_specification1()){
       case 0:
@@ -505,6 +505,9 @@ export class InputMaterialStrengthVerificationConditionService {
       const tmp_material_steel = this.default_material_steel();
       const tmp_material_concrete = this.default_material_concrete();
       const tmp_pile_factor = this.default_pile_factor();
+      const tmp_component = this.default_component();
+      const tmp_verification = this.default_verification();
+      const tmp_other = this.default_other()
 
       if (id in material.safety_factor) {
         const new_safety_factor = material.safety_factor[id];
@@ -559,11 +562,34 @@ export class InputMaterialStrengthVerificationConditionService {
           }
         }
       }
+      if (id in material.component) {
+        const new_component = material.component[id];
+        for (let i = 0; i < tmp_component.length; i++) {
+          const tmp = tmp_component[i];
+          const org = new_component[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
+      if (id in material.other) {
+        const new_other = material.other[id];
+        for (let i = 0; i < tmp_other.length; i++) {
+          const tmp = tmp_other[i];
+          const org = new_other[i];
+          for (const key of Object.keys(tmp)) {
+            if (key in org) { tmp[key] = org[key]; }
+          }
+        }
+      }
       this.safety_factor[id] = tmp_safety_factor;
       this.material_bar[id] = tmp_material_bar;
       this.material_steel[id] = tmp_material_steel;
       this.material_concrete[id] = tmp_material_concrete;
       this.pile_factor[id] = tmp_pile_factor;
+      this.component[id] = tmp_component;
+      this.other[id] = tmp_other;
+
     }
 
   }
