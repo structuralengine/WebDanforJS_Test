@@ -97,7 +97,7 @@ h5 {
     vertical-align: middle;
 
     input[type="checkbox"]:checked {
-      accent-color: red;
+      accent-color: #00C95F;
       background-color: opacify($color: #000000, $amount: 0);
     }
   } 
@@ -110,11 +110,14 @@ h5 {
     border: none;
     color: white;
     text-align: center;
-    max-width: 20px;
+    max-width: 80px;
    
   }
   input:focus-visible {
     outline: -webkit-focus-ring-color auto 0px !important;
+  }
+  .hideCol{
+    display: none;
   }
 }
 

@@ -174,14 +174,14 @@ export class InputMaterialStrengthVerificationConditionService {
           {
             id: 0,
             title: this.translate.instant("material-strength-verifiaction-condition.var_st"),
-            selected: true,
-            type: 0
+            selected: false,
+            type: null
           },
           {
             id: 1,
             title: this.translate.instant("material-strength-verifiaction-condition.acc_st"),
-            selected: true,
-            type: 1
+            selected: false,
+            type: null
           },
         ]
         break;
