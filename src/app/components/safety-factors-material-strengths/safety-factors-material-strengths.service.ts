@@ -3,6 +3,7 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
 import { TranslateService } from "@ngx-translate/core";
+import { InputMaterialStrengthVerificationConditionService } from '../material-strength-verification-conditions/material-strength-verification-conditions.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class InputSafetyFactorsMaterialStrengthsService {
     private basic: InputBasicInformationService,
     private members: InputMembersService,
     private helper: DataHelperModule,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private material: InputMaterialStrengthVerificationConditionService
     ) {
     this.clear();
   }
@@ -439,7 +441,10 @@ export class InputSafetyFactorsMaterialStrengthsService {
       material_bar: this.material_bar,
       material_steel: this.material_steel,
       material_concrete: this.material_concrete,
-      pile_factor: this.pile_factor
+      pile_factor: this.pile_factor,
+      component: this.material.getSaveData().component,
+      verification: this.material.getSaveData().verification,
+      other: this.material.getSaveData().other
     }
   }
 
