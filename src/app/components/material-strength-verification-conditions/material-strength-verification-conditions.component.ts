@@ -18,13 +18,9 @@ import pq from 'pqgrid';
 export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public groupe_name: string[];
   public activeTab: string = 'rsb_con';
-
-  public options3: any[];
-  public component_list: any[] = new Array();
-  public component_select_id: string;
-
-  public options5: any[];
-  public other_list: any[] = new Array();
+  private current_index: number;
+  private groupe_list: any[];
+ 
 
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
@@ -38,13 +34,18 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   private columnHeaders2: object[] = [];
   private table2_datas: any[];
 
-  public options4: any[];
+  public options3: any[];
+  public component_list: any[] = new Array();
+  public component_select_id: string;
+
+ public options4: any[];
   private option4_list: any[] = new Array();
-  private table4_datas: any[];
-  public plastic_expect_selected_id: string;
-  public plastic_selected: boolean = false;
-  private current_index: number;
-  private groupe_list: any[];
+
+  public options5: any[];
+  public other_list: any[] = new Array();
+ 
+  
+
   constructor(
     private material: InputMaterialStrengthVerificationConditionService,
     private members: InputMembersService,
@@ -70,7 +71,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.table2_datas = new Array();
     this.groupe_name = new Array();
     this.groupe_list = material.groupe_list;
-    this.table4_datas = new Array();
+   
     for (let i = 0; i < material.groupe_list.length; i++) {
       const groupe = material.groupe_list[i];
       const first = groupe[0];
@@ -108,31 +109,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       }]);
 
       this.component_list.push(material.component[id]);
-      this.other_list.push(material.other[id]);
-      const safety_factor = material.safety_factor[id];
-      const bar = [], steel = [];
-      for (const col of safety_factor) {
-
-        if (col.id === 8) continue; // 最小鉄筋量の安全係数は、編集しない
-
-        bar.push({
-          id: col.id, title: col.title,
-          M_rc: col.M_rc, M_rs: col.M_rs, M_rbs: col.M_rbs,
-          V_rc: col.V_rc, V_rs: col.V_rs, V_rbc: col.V_rbc, V_rbs: col.V_rbs, V_rbv: col.V_rbv,
-          T_rbt: col.T_rbt,
-          ri: col.ri, range: col.range,
-          selected: this.table2_datas[0][0].value > 30 ? true : false
-        });
-        steel.push({
-          id: col.id, title: col.title,
-          S_rs: col.S_rs, S_rb: col.S_rb
-        });
-      }
-      this.option4_list.push(bar);
-      this.table4_datas.push(steel);
-
-      this.pile_factor_list.push(material.pile_factor[id]);
-      this.material_steel_list.push(material.material_steel[id]);
+      this.other_list.push(material.other[id]);   
       const verification = material.verification[id];   
       this.option4_list.push(verification);     
 
@@ -243,88 +220,30 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public setActiveTab(tab: string) {
     this.activeTab = tab;    
   }
-  public saveData(): void {
-    const safety_factor = {};
+  public saveData(): void {    
     const material_bar = {};
     const component = {};
     const verification ={};
     const other = {};
     const material_concrete = {};
-    const material_steel ={};
-    const pile_factor = {};
     for (let i = 0; i < this.groupe_list.length; i++) {
       const groupe = this.groupe_list[i];
       const first = groupe[0];
-      const id = first.g_id;
-
-      // 安全係数
-      const safety_bar = this.option4_list[i];
-      const safety_steel = this.table4_datas[i];
-      const factor = [];
-      for (let j = 0; j < safety_bar.length; j++) {
-        const bar = safety_bar[j], steel = safety_steel[j];;
-        factor.push({
-          id: bar.id, title: bar.title,
-          M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
-          V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
-          T_rbt: bar.T_rbt,
-          ri: bar.ri, range: bar.range,
-          S_rs: steel.S_rs, S_rb: steel.S_rb
-        })
-      }
-      safety_factor[id] = factor;
-
-      // 鉄筋材料
-      const bar = this.table1_datas[i];
-      material_bar[id] = [{
-        tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
-        sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
-        stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
-      },
-      {
-        tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
-        sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
-        stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
-      }];
-
-
+      const id = first.g_id;   
      
-      
-      component[id] = this.component_list[i];
-      // 鉄骨材料
-      // const steel = this.table5_datas[i];
-      // material_steel[id] = [
-      //   {
-      //     fsyk: steel[0].SRCfsyk1,
-      //     fsvyk: steel[1].SRCfsyk1,
-      //     fsuk: steel[2].SRCfsyk1,
-      //   },
-      //   {
-      //     fsyk: steel[0].SRCfsyk2,
-      //     fsvyk: steel[1].SRCfsyk2,
-      //     fsuk: steel[2].SRCfsyk2,
-      //   },
-      //   {
-      //     fsyk: steel[0].SRCfsyk3,
-      //     fsvyk: steel[1].SRCfsyk3,
-      //     fsuk: steel[2].SRCfsyk3,
-      //   }
-      // ];
-
+      component[id] = this.component_list[i];    
 
       const conc = this.table2_datas[i];
       material_concrete[id] = {
         fck: conc[0].value,
         dmax: conc[1].value
       }
+      verification[id] = this.option4_list[i];
       other[id] =  this.other_list[i];
     }
     this.material.setTableColumns({
-      safety_factor,
       material_bar,
-      material_steel,
       material_concrete,
-      pile_factor,
       component,
       verification,
       other
