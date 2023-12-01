@@ -3,7 +3,7 @@
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { InputMembersService } from '../members/members.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { InputMaterialStrengthVerificationConditionService } from './material-strength-verification-conditions.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
@@ -52,10 +52,21 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+  }
+  onInitData(){
     this.setTitle()
     const material = this.material.getTableColumns();
     this.table1_datas = new Array();
     this.pile_factor_list = new Array();
+    this.option1_list = new Array();
+    this.option2_list = new Array();
+    this.option4_list =new Array();
+    this.material_steel_list= new Array();
     this.table2_datas = new Array();
     this.groupe_name = new Array();
     this.groupe_list = material.groupe_list;
@@ -311,7 +322,6 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
       pile_factor[id] = this.pile_factor_list[i];
     }
-    console.log("material_steel",material_steel)
     this.material.setTableColumns({
       safety_factor,
       material_bar,

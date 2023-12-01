@@ -1,3 +1,4 @@
+import { forEach } from 'jszip';
 import { Injectable } from '@angular/core';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { TranslateService } from "@ngx-translate/core";
@@ -851,8 +852,13 @@ export class InputBasicInformationService {
 
     // this.conditions_list = basic.conditions_list;
     const conditions = basic.conditions_list;
-    let isExist = conditions.some((item) => item.id === "JR-005");
-    if (!isExist) {
+    let jr005 = conditions.find((item) => item.id === "JR-005");
+    if(jr005 !== null && jr005 !== undefined){
+      this.updateTitleCondition(conditions);
+    }
+    else {
+      this.updateTitleCondition(conditions);
+
       // Find index of insertAfterId
       var indexToInsertAfter = conditions.findIndex(function (condition) {
         return condition.id === "JR-003";
@@ -880,5 +886,79 @@ export class InputBasicInformationService {
       specification2_list: this.specification2_list, // 仕様
       conditions_list: this.conditions_list, // 設計条件
     };
+  }
+ 
+  public updateTitleCondition (conditions: any[]){
+    conditions.forEach(item => {
+      switch(item.id) {
+        case "JR-001":
+          item.title = this.translate.instant("basic-information.limit100");
+          break;
+        case "JR-003":
+          item.title = this.translate.instant("basic-information.apex");
+          break;
+        case "JR-005":
+          item.title = this.translate.instant("basic-information.adopt");
+          break;
+        case "JR-004":
+          item.title = this.translate.instant("basic-information.Mud");
+          break;
+        default:
+          // nothing
+      }
+    })
+  }
+
+  public updateTitleSpecification (id: number, specs: any){
+    ///specification1_list
+    if(id === 1){
+      specs.forEach(item => {
+        switch(item.id) {
+          case 0:
+            item.title = this.translate.instant("basic-information.rail");
+            break;
+          case 1:
+            item.title = this.translate.instant("basic-information.Pilipinas");
+            break;
+          case 2:
+            item.title = this.translate.instant("basic-information.road");
+            break;
+          default:
+            // nothing
+        }
+      })
+    }
+    else if(id === 2){
+      specs.forEach(item => {
+        switch(item.id) {
+          case 0:
+            item.title = this.translate.instant("basic-information.jr_com");
+            break;
+          case 1:
+            item.title = this.translate.instant("basic-information.trans");
+            break;
+          case 2:
+            item.title = this.translate.instant("basic-information.jr_east");
+            break;
+          case 3:
+            item.title = this.translate.instant("basic-information.jr_com5");
+            break;
+          case 4:
+            item.title = this.translate.instant("basic-information.trans5");
+            break;
+          case 5:
+            item.title = this.translate.instant("basic-information.limit_design_method");
+            break;
+          case 6:
+            item.title = this.translate.instant("basic-information.partial_coefficient_method");
+            break;
+          case 7:
+            item.title = this.translate.instant("basic-information.allowable_stress_method");
+            break;
+          default:
+            // nothing
+        }
+      })
+    }
   }
 }
