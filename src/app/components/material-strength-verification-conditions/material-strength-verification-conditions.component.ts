@@ -53,7 +53,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
   ngOnInit() {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.saveData();
+      //this.saveData();
       this.onInitData();
     });
     this.onInitData();
@@ -231,7 +231,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
-    this.saveData();
+    //this.saveData();
   }
   public setActiveTab(tab: string) {
     this.activeTab = tab;
@@ -247,90 +247,90 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
 
 
   }
-  public saveData(): void {
-    const safety_factor = {};
-    const material_bar = {};
-    const material_steel = {};
-    const material_concrete = {};
-    const pile_factor = {};
-    for (let i = 0; i < this.groupe_list.length; i++) {
-      const groupe = this.groupe_list[i];
-      const first = groupe[0];
-      const id = first.g_id;
+  // public saveData(): void {
+  //   const safety_factor = {};
+  //   const material_bar = {};
+  //   const material_steel = {};
+  //   const material_concrete = {};
+  //   const pile_factor = {};
+  //   for (let i = 0; i < this.groupe_list.length; i++) {
+  //     const groupe = this.groupe_list[i];
+  //     const first = groupe[0];
+  //     const id = first.g_id;
 
-      // 安全係数
-      const safety_bar = this.option4_list[i];
-      const safety_steel = this.table4_datas[i];
-      const factor = [];
-      for (let j = 0; j < safety_bar.length; j++) {
-        const bar = safety_bar[j], steel = safety_steel[j];;
-        factor.push({
-          id: bar.id, title: bar.title,
-          M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
-          V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
-          T_rbt: bar.T_rbt,
-          ri: bar.ri, range: bar.range,
-          S_rs: steel.S_rs, S_rb: steel.S_rb
-        })
-      }
-      safety_factor[id] = factor;
+  //     // 安全係数
+  //     const safety_bar = this.option4_list[i];
+  //     const safety_steel = this.table4_datas[i];
+  //     const factor = [];
+  //     for (let j = 0; j < safety_bar.length; j++) {
+  //       const bar = safety_bar[j], steel = safety_steel[j];;
+  //       factor.push({
+  //         id: bar.id, title: bar.title,
+  //         M_rc: bar.M_rc, M_rs: bar.M_rs, M_rbs: bar.M_rbs,
+  //         V_rc: bar.V_rc, V_rs: bar.V_rs, V_rbc: bar.V_rbc, V_rbs: bar.V_rbs, V_rbv: bar.V_rbv,
+  //         T_rbt: bar.T_rbt,
+  //         ri: bar.ri, range: bar.range,
+  //         S_rs: steel.S_rs, S_rb: steel.S_rb
+  //       })
+  //     }
+  //     safety_factor[id] = factor;
 
-      // 鉄筋材料
-      const bar = this.table1_datas[i];
-      material_bar[id] = [{
-        tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
-        sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
-        stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
-      },
-      {
-        tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
-        sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
-        stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
-      }];
+  //     // 鉄筋材料
+  //     const bar = this.table1_datas[i];
+  //     material_bar[id] = [{
+  //       tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
+  //       sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
+  //       stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
+  //     },
+  //     {
+  //       tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
+  //       sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
+  //       stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
+  //     }];
 
 
      
       
-      material_steel[id] =  this.material_steel_list[i];
-      // 鉄骨材料
-      // const steel = this.table5_datas[i];
-      // material_steel[id] = [
-      //   {
-      //     fsyk: steel[0].SRCfsyk1,
-      //     fsvyk: steel[1].SRCfsyk1,
-      //     fsuk: steel[2].SRCfsyk1,
-      //   },
-      //   {
-      //     fsyk: steel[0].SRCfsyk2,
-      //     fsvyk: steel[1].SRCfsyk2,
-      //     fsuk: steel[2].SRCfsyk2,
-      //   },
-      //   {
-      //     fsyk: steel[0].SRCfsyk3,
-      //     fsvyk: steel[1].SRCfsyk3,
-      //     fsuk: steel[2].SRCfsyk3,
-      //   }
-      // ];
+  //     material_steel[id] =  this.material_steel_list[i];
+  //     // 鉄骨材料
+  //     // const steel = this.table5_datas[i];
+  //     // material_steel[id] = [
+  //     //   {
+  //     //     fsyk: steel[0].SRCfsyk1,
+  //     //     fsvyk: steel[1].SRCfsyk1,
+  //     //     fsuk: steel[2].SRCfsyk1,
+  //     //   },
+  //     //   {
+  //     //     fsyk: steel[0].SRCfsyk2,
+  //     //     fsvyk: steel[1].SRCfsyk2,
+  //     //     fsuk: steel[2].SRCfsyk2,
+  //     //   },
+  //     //   {
+  //     //     fsyk: steel[0].SRCfsyk3,
+  //     //     fsvyk: steel[1].SRCfsyk3,
+  //     //     fsuk: steel[2].SRCfsyk3,
+  //     //   }
+  //     // ];
 
 
-      const conc = this.table2_datas[i];
-      material_concrete[id] = {
-        fck: conc[0].value,
-        dmax: conc[1].value
-      }
+  //     const conc = this.table2_datas[i];
+  //     material_concrete[id] = {
+  //       fck: conc[0].value,
+  //       dmax: conc[1].value
+  //     }
 
 
-      pile_factor[id] = this.pile_factor_list[i];
-    }
-    this.material.setTableColumns({
-      safety_factor,
-      material_bar,
-      material_steel,
-      material_concrete,
-      pile_factor
-    })
+  //     pile_factor[id] = this.pile_factor_list[i];
+  //   }
+  //   this.material.setTableColumns({
+  //     safety_factor,
+  //     material_bar,
+  //     material_steel,
+  //     material_concrete,
+  //     pile_factor
+  //   })
 
-  }
+  // }
   ngAfterViewInit(): void {
     this.activeButtons(0);
     this.setActiveTab(this.activeTab)

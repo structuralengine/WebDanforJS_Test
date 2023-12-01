@@ -14,6 +14,9 @@ export class InputMaterialStrengthVerificationConditionService {
   private material_steel: any;
   private material_concrete: any;
   public pile_factor: any;
+  private component: any;
+  private verification: any;
+  private other: any;
   public arrayAxis: any[]
   public arrayAxisBase: any[]
   public groupe_name: any[]
@@ -31,7 +34,9 @@ export class InputMaterialStrengthVerificationConditionService {
     const material_steel = {};
     const material_concrete = {};
     const pile_factor = {};
-
+    const component = {};
+    const verification = {};
+    const other = {};
     // グリッド用データの作成
     const groupe_list = this.members.getGroupeList();
     for (const groupe of groupe_list) {
@@ -44,7 +49,9 @@ export class InputMaterialStrengthVerificationConditionService {
       const tmp_material_steel = this.default_material_steel();
       const tmp_material_concrete = this.default_material_concrete();
       const tmp_pile_factor = this.default_pile_factor();
-
+      const tmp_component = this.default_component();
+      const tmp_verification = this.default_verification();
+      const tmp_other = this.default_other()
       if (id in this.safety_factor) {
         const old_safety_factor = this.safety_factor[id];
         for (const tmp of tmp_safety_factor) {
@@ -111,13 +118,56 @@ export class InputMaterialStrengthVerificationConditionService {
           }
         }
       }
-
+      if(id in this.component){
+        const old_component = this.component[id];
+        for(let i = 0; i< tmp_component.length; i++){
+          const tmp = tmp_component[i];
+          const old = old_component[i];
+          for(const key of Object.keys(tmp)){
+            if(key === 'title')
+              continue;
+            if(key in old){
+              tmp[key] = old[key]
+            }
+          }
+        }
+      }  
+      if(id in this.verification){
+        const old_verification = this.verification[id];
+        for(let i = 0; i< tmp_verification.length; i++){
+          const tmp = tmp_verification[i];
+          const old = old_verification[i];
+          for(const key of Object.keys(tmp)){
+            if(key === 'title')
+              continue;
+            if(key in old){
+              tmp[key] = old[key]
+            }
+          }
+        }
+      }
+      if(id in this.other){
+        const old_other= this.other[id];
+        for(let i = 0; i< tmp_other.length; i++){
+          const tmp = tmp_other[i];
+          const old = old_other[i];
+          for(const key of Object.keys(tmp)){
+            if(key === 'title')
+              continue;
+            if(key in old){
+              tmp[key] = old[key]
+            }
+          }
+        }
+      }
       safety_factor[id] = tmp_safety_factor;
       material_bar[id] = tmp_material_bar
       material_steel[id] = tmp_material_steel;
       material_concrete[id] = tmp_material_concrete;
       pile_factor[id] = tmp_pile_factor;
-
+      component[id]= tmp_component
+      verification[id] = tmp_verification
+      other[id] = tmp_other
     }
   
     return {
@@ -126,7 +176,10 @@ export class InputMaterialStrengthVerificationConditionService {
       material_bar,
       material_steel,
       material_concrete,
-      pile_factor
+      pile_factor,
+      component,
+      verification,
+      other
     };
 
   }
@@ -350,13 +403,85 @@ export class InputMaterialStrengthVerificationConditionService {
      
     return result;
   }
+  public default_component(): any{
+    let result = [];
+    switch(this.basic.get_specification1()){
+      case 0:
+      case 1:
+      case 2:
+        result = [
+          {
+            id: 0,
+            title: this.translate.instant("material-strength-verifiaction-condition.var_st"),
+            selected: true,
+            type: 0
+          },
+          {
+            id: 1,
+            title: this.translate.instant("material-strength-verifiaction-condition.acc_st"),
+            selected: true,
+            type: 1
+          },
+        ]
+        break;
+    }
+    return result;
+  }
+
+  public default_verification(): any{
+    let result = [];
+    switch(this.basic.get_specification1()){
+      case 0:
+      case 1:
+      case 2:
+        result = [
+          {
+            id: 0,
+            title: this.translate.instant("material-strength-verifiaction-condition.ge_pa"),
+            selected: false           
+          },
+          {
+            id: 1,
+            title: this.translate.instant("material-strength-verifiaction-condition.fla_for_flo_sla"),
+            selected: false            
+          },
+          {
+            id: 2,
+            title: this.translate.instant("material-strength-verifiaction-condition.sub"),
+            selected: true           
+          },
+        ]
+        break;
+    }
+    return result;
+  }
+  public default_other(): any{
+    let result = [];
+    switch(this.basic.get_specification1()){
+      case 0:
+      case 1:
+      case 2:
+        result = [
+          {
+            id: 0,
+            title: this.translate.instant("material-strength-verifiaction-condition.sep"),
+            selected: false           
+          }          
+        ]
+        break;
+    }
+    return result;
+  }
 
   public setSaveData(material: any) {
     this.safety_factor = material.safety_factor,
     this.material_bar = material.material_bar,
-      this.material_steel = material.material_steel,
-      this.material_concrete = material.material_concrete,
-      this.pile_factor = material.pile_factor
+    this.material_steel = material.material_steel,
+    this.material_concrete = material.material_concrete,
+    this.pile_factor = material.pile_factor
+    this.component = material.component
+    this.verification = material.verification
+    this.other = material.other
   }
   public clear(): void {
     this.material_bar = {};
@@ -364,7 +489,9 @@ export class InputMaterialStrengthVerificationConditionService {
     this.material_concrete = {};
     this.pile_factor = {};
     this.arrayAxis = new Array();
-    
+    this.component = {};
+    this.verification = {};
+    this.other = {};
   }
 
 
@@ -446,7 +573,10 @@ export class InputMaterialStrengthVerificationConditionService {
       material_bar: this.material_bar,
       material_steel: this.material_steel,
       material_concrete: this.material_concrete,
-      pile_factor: this.pile_factor
+      pile_factor: this.pile_factor,
+      component: this.component,
+      verification: this.verification,
+      other: this.other
     }
   }
 }
