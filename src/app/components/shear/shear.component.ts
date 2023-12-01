@@ -195,18 +195,18 @@ export class ShearComponent implements OnInit {
             align: 'center', colModel: [
               {
                 title: this.translate.instant("shear-strength.concrete"),
-                align: 'center', dataType: 'bool', dataIndx: 'La', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+                align: 'center', dataType: 'bool', dataIndx: 'concrete', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
               },
               {
                 title: this.translate.instant("shear-strength.reinforcement_bar"),
-                align: 'center', dataType: 'bool', dataIndx: 'fixed_end', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+                align: 'center', dataType: 'bool', dataIndx: 'bar', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
               }
             ],
             nodrag: true,
           },
           {
             title: this.translate.instant("shear-strength.s_len_a"),
-            dataType: "center", dataIndx: "L", sortable: false, width: 150, nodrag: true,
+            align: 'float', dataType: "integer", dataIndx: "La", sortable: false, width: 150, nodrag: true,
           }
         );
       }

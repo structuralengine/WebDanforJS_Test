@@ -22,7 +22,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   private columnHeaders: object[] = new Array();
 
   public table_datas: any[];
-  public isSubstructure: boolean = false; //false wwhen initial then get value from component type is checked
+  public isSubstructure: boolean = false; //get value from component type is checked
   // タブのヘッダ名
   public groupe_name: string[];
 
@@ -142,7 +142,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
       this.columnHeaders.push(
         {
           title: this.translate.instant("durability.under_blow_groundwater"),
-          align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+          align: 'center', dataType: 'bool', dataIndx: 'WL', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
         }
       );
     }
