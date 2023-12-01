@@ -122,11 +122,12 @@
       <div class="mega-menu2">
         <p class="topic" translate>basic-information.dc</p>
         <ng-container *ngFor="let item of conditions_list; index as i">
-          <div class="d-flex" [ngClass]="{'cond-chk-active': item.selected, 'cond-chk': !item.selected}">
+          <!--  -->
+          <div *ngIf="!(hideDCJ3_J5 && (i === 1 || i ===2))" class="d-flex" [ngClass]="{'cond-chk-active': item.selected, 'cond-chk': !item.selected}">
             <label class="checkbox-container" for="conditions{{i}}">
               <input type="checkbox" name="conditions{{i}}" id="conditions{{i}}" [(ngModel)]="item.selected"
                 [value]="item.id" [checked]="item.selected"
-                class="checkbox-input" />
+                class="checkbox-input" (ngModelChange)="changeDesignCondition(item)"/>
               <span translate class="checkbox-parts title">{{item.title | translate}}</span>
             </label>
           </div>
@@ -135,16 +136,16 @@
         <!-- 耐用年数 セクション -->
         <div class="d-flex service-life">
           <p translate>fatigues.durable</p>
-          <input id="T" name="T" type="text" [(ngModel)]="service_life" />
+          <input id="T" name="T" type="text" [(ngModel)]="service_life" (change)="changeInput()" />
         </div>
         <div class="d-flex jA-jB">
           <div class="d-flex service-life">
             <p>jA</p>
-            <input id="jA" name="jA" type="text" [(ngModel)]="train_A_count" />
+            <input id="jA" name="jA" type="text" [(ngModel)]="train_A_count" (change)="changeInput()" />
           </div>
           <div class="d-flex service-life">
             <p>jB</p>
-            <input id="jB" name="jB" type="text" [(ngModel)]="train_B_count" />
+            <input id="jB" name="jB" type="text" [(ngModel)]="train_B_count" (change)="changeInput()" />
           </div>
         </div>
       </div>

@@ -162,6 +162,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       }
     });
     this.grid.refreshDataAndView();
+    this.grid.setColsShow();
+    // console.log(this.grid.colsShow)
   }
 
   // 指定行row まで、曲げモーメント入力データを読み取る
@@ -184,7 +186,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   // 表の高さを計算する
   private tableHeight(): number {
     let containerHeight = window.innerHeight;
-    containerHeight -= 160;
+    containerHeight -= 190;
     return containerHeight;
   }
 
