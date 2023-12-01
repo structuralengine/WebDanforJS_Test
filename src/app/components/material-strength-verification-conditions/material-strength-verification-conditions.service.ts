@@ -403,7 +403,7 @@ export class InputMaterialStrengthVerificationConditionService {
      
     return result;
   }
-  public default_component(): any{
+  public default_verification(): any{
     let result = [];
     switch(this.basic.get_specification1()){
       case 0:
@@ -428,7 +428,7 @@ export class InputMaterialStrengthVerificationConditionService {
     return result;
   }
 
-  public default_verification(): any{
+  public default_component(): any{
     let result = [];
     switch(this.basic.get_specification1()){
       case 0:

@@ -99,15 +99,15 @@
                 <td style="text-align: left">{{item.title}}</td>
                 <td class="center" width="70px">
                   <input type="checkbox" name="pla_ex{{i}}" id="pla_ex{{i}}" [value]="item.id"
-                    [checked]="!item.selected"  (change)="setCheckboxPlastic(i)" />
+                    [checked]="item.selected"  (change)="setCheckboxPlastic(i)" />
                 </td>
-                <td style="text-align: center;" width="80px" *ngIf="item.selected; else elseBlock" >
+                <td style="text-align: center;" width="80px" *ngIf="!item.selected; else elseBlock" >
                   <div class="diagonalRising"></div>
                 </td>
               </tr>
               <ng-template #elseBlock>                
                   <td style="width:85px" >
-                    <input class="levelType" type="text" value="{{item.range}}">
+                    <input class="levelType" type="text" value="{{item.type!=0?item.type:''}}">
                   </td>             
               </ng-template>
             </ng-container>

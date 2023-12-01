@@ -108,27 +108,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       }]);
       this.pile_factor_list.push(material.pile_factor[id]);
       this.material_steel_list.push(material.material_steel[id]);
-      const safety_factor = material.safety_factor[id];
-      const bar = [], steel = [];
-      for (const col of safety_factor) {
-
-        if (col.id === 8) continue; // 最小鉄筋量の安全係数は、編集しない
-
-        bar.push({
-          id: col.id, title: col.title,
-          M_rc: col.M_rc, M_rs: col.M_rs, M_rbs: col.M_rbs,
-          V_rc: col.V_rc, V_rs: col.V_rs, V_rbc: col.V_rbc, V_rbs: col.V_rbs, V_rbv: col.V_rbv,
-          T_rbt: col.T_rbt,
-          ri: col.ri, range: col.range,
-          selected: this.table2_datas[0][0].value > 30 ? true : false
-        });
-        steel.push({
-          id: col.id, title: col.title,
-          S_rs: col.S_rs, S_rb: col.S_rb
-        });
-      }
-      this.option4_list.push(bar);
-      this.table4_datas.push(steel);
+      const verification = material.verification[id];   
+      this.option4_list.push(verification);     
       this.option1_list.push({
         width: 550,
         height: 200,
@@ -234,18 +215,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     //this.saveData();
   }
   public setActiveTab(tab: string) {
-    this.activeTab = tab;
-    const i = this.current_index;
-    const plastic = this.option4_list[i];
-    for (let k = 0; k < plastic.length; k++) {
-      const element = plastic[k]
-      if (this.table2_datas[i][0].value > 30) {
-        element.selected = true
-      } else element.selected = false
-    }
-
-
-
+    this.activeTab = tab;    
   }
   // public saveData(): void {
   //   const safety_factor = {};
