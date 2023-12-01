@@ -10,6 +10,7 @@ import { InputBasicInformationService } from '../basic-information/basic-informa
 import { InputMembersService } from '../members/members.service';
 import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
 import { MenuService } from '../menu/menu.service';
+import { InputMaterialStrengthVerificationConditionService } from '../material-strength-verification-conditions/material-strength-verification-conditions.service';
 
 @Component({
   selector: 'app-shear',
@@ -39,7 +40,7 @@ export class ShearComponent implements OnInit {
     public helper: DataHelperModule,
     private basic: InputBasicInformationService,
     private translate: TranslateService,
-    private material: InputSafetyFactorsMaterialStrengthsService,
+    private material: InputMaterialStrengthVerificationConditionService,
     private menu: MenuService,
   ) {
     this.members.checkGroupNo();
@@ -48,7 +49,7 @@ export class ShearComponent implements OnInit {
   ngOnInit() {
     this.isRoad = this.menu.selectedRoad;
     if(this.isRoad){
-      this.setShow(1); //set default by first group
+      this.setShow(0); //set default by first group
     }
     this.setTitle(this.save.isManual());
 
@@ -223,11 +224,14 @@ export class ShearComponent implements OnInit {
 
   //Set show following component type is "Substructure"
   public setShow(id){
-    let pile_factor = new Array();
-    pile_factor = this.material.pile_factor[id];
-    if(pile_factor !== null && pile_factor !== undefined){
-      var sub = pile_factor.find((value) => value.id === "pile-002" )
-      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    let components = this.material.getSaveData().component;
+    const newComponents = Object.values(components)
+    let component : any = newComponents[id];
+
+    if(component !== null && component !== undefined){
+      var sub = component.find((value) => value.id === 2 ) //Substructure
+      if(sub !== null && sub !== undefined)
+       this.isSubstructure = sub.selected;
     }
   }
 

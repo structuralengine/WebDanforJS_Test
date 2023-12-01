@@ -7,6 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
 import { InputDurabilityDataService } from './durability-data.service';
 import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
+import { InputMaterialStrengthVerificationConditionService } from '../material-strength-verification-conditions/material-strength-verification-conditions.service';
 @Component({
   selector: 'app-durability-data',
   templateUrl: './durability-data.component.html',
@@ -28,7 +29,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
   constructor(
     private durability: InputDurabilityDataService,
-    private material: InputSafetyFactorsMaterialStrengthsService,
+    private material: InputMaterialStrengthVerificationConditionService,
     private save: SaveDataService,
     public helper: DataHelperModule,
     private translate: TranslateService,
@@ -36,7 +37,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   ) { this.members.checkGroupNo(); }
 
   ngOnInit() {
-    this.setShow(1);
+    this.setShow(0);
     this.setTitle(this.save.isManual());
     this.table_datas = this.durability.getTableColumns();
 
@@ -105,11 +106,14 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
   //Set show following component type is "Substructure"
   public setShow(id){
-    let pile_factor = new Array();
-    pile_factor = this.material.pile_factor[id];
-    if(pile_factor !== null && pile_factor !== undefined){
-      var sub = pile_factor.find((value) => value.id === "pile-002" )
-      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    let components = this.material.getSaveData().component;
+    const newComponents = Object.values(components)
+    let component : any = newComponents[id];
+
+    if(component !== null && component !== undefined){
+      var sub = component.find((value) => value.id === 2 ) //Substructure
+      if(sub !== null && sub !== undefined)
+       this.isSubstructure = sub.selected;
     }
   }
 
@@ -176,7 +180,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
 
   public activePageChenge(id: number): void {
-    this.setShow(id + 1);
+    this.setShow(id);
     this.activeButtons(id);
 
     this.options = this.option_list[id];
