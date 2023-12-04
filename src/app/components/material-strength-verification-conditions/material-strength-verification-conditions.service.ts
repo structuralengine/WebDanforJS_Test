@@ -237,9 +237,9 @@ export class InputMaterialStrengthVerificationConditionService {
   public setSaveData(material: any) {  
     this.material_bar = material.material_bar,  
     this.material_concrete = material.material_concrete 
-    this.component = material.component
-    this.verification = material.verification
-    this.other = material.other
+    this.component = material.component ?? {}
+    this.verification = material.verification ?? {}
+    this.other = material.other??{}
   }
   public clear(): void {
     this.material_bar = {}; 

@@ -16,7 +16,7 @@
       (click)="setActiveTab('rsb_con')">material-strength-verifiaction-condition.rsb_con</li>
     <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'com_type'}"
       (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
-    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'sei_ver'}"
+    <li class="tab-select-item" translate  [ngClass]="{'is-active': activeTab === 'sei_ver' && fck <= 30, 'hideSei': fck > 30}"
       (click)="setActiveTab('sei_ver')">material-strength-verifiaction-condition.sei_ver</li>
     <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'other_con'}"
       (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
@@ -77,7 +77,7 @@
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'sei_ver'}">
       <div class="safety-factors">
         <h5 translate>material-strength-verifiaction-condition.sei_ver</h5>
-        <table>
+        <table [ngClass]="{'hideTab': fck>30}">
           <thead>
             <tr>
               <th rowspan="2">
@@ -86,7 +86,7 @@
               <th rowspan="2">
                 <p translate>material-strength-verifiaction-condition.pl_ex</p>
               </th>
-              <th rowspan="2" [ngClass]="{'hideCol': fck > 30 }">
+              <th rowspan="2" >
                 <p translate style="font-size: 10px;">material-strength-verifiaction-condition.lv_e</p>
               </th>
             </tr>
@@ -101,12 +101,12 @@
                   <input type="checkbox" name="pla_ex{{i}}" id="pla_ex{{i}}" [value]="item.id"
                     [checked]="item.selected"  (change)="setCheckboxPlastic(i)" />
                 </td>
-                <td  style="text-align: center;" width="80px" [ngClass]="{'hideCol': fck > 30 }" *ngIf="!item.selected ; else elseBlock" >
+                <td  style="text-align: center;" width="80px" *ngIf="!item.selected ; else elseBlock" >
                   <div class="diagonalRising"></div>
                 </td>
               </tr>
               <ng-template #elseBlock>                
-                  <td  style="width:85px" [ngClass]="{'hideCol': fck > 30 }" >
+                  <td  style="width:85px"  >
                     <input class="levelType" type="text" value="{{item.type!=0?item.type:''}}" (change)="setLevel(i, $event)" >
                   </td>             
               </ng-template>
