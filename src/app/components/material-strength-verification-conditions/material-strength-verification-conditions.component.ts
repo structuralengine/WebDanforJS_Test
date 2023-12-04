@@ -202,23 +202,9 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
             }
           ]
         },
-      //   change: (evt, ui) => {
-      //     const changes = ui.updateList;
-      // for (const target of changes) {
-      //   const row: number = target.rowIndx;
-      //   const key = Object.keys(target.newRow);
-      //   const m: string = target.newRow[key.toString()];
-      //   console.log("m",m);
-      // }
-      // for (const target of ui.addList) {
-      //   const no: number = target.rowIndx;
-      //   const newRow = target.newRow;
-      //   console.log("no",no);
-      //   console.log("newRow",newRow);
-        
-      // }
-      //    console.log("ui",ui)
-      //   }
+        change: (evt, ui) => {
+        this.fck= this.table2_datas[0][0].value;
+        }
       });
 
     }
@@ -229,7 +215,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.component_select_id = this.getComponentSelectId();
     this.options4 = this.option4_list[0];
     this.options5 = this.other_list[0];
-    this.fck = this.table2_datas[0][0].value;
+    this.fck = this.table2_datas.length>0?this.table2_datas[0][0].value: 0;
+   
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
@@ -238,7 +225,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public setActiveTab(tab: string) {
     this.activeTab = tab;  
     const i = this.current_index;    
-    this.fck = this.table2_datas[i][0].value;  
+    this.fck = this.table2_datas.length>0?this.table2_datas[i][0].value: 0;
   }
   public saveData(): void {    
     const material_bar = {};
