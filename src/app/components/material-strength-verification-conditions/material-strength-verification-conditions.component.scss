@@ -62,8 +62,15 @@ h5 {
 
   table {
     margin: 15px;
+   
   }
-
+  .hideTab{
+    color: gray;
+    pointer-events: none;
+    input{
+      color: gray;
+    }
+  }
   th {
     border: 1px solid var(--table_border);
     font-weight: normal;
@@ -118,7 +125,7 @@ h5 {
   }
   .hideCol{
     display: none;
-  }
+  }  
 }
 
 //#00C95F
@@ -131,7 +138,9 @@ h5 {
   float: right;
   // margin-left: 15px;
 }
-
+.hideSei{
+  color: gray !important;
+}
 .tab-select {
   &-items {
     display: flex;
