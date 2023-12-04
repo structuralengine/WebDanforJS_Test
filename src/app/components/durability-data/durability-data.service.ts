@@ -41,6 +41,7 @@ export class InputDurabilityDataService {
       kr: null,
       k4: null,
       JRTT05: false, // 縁応力度が制限値以内の場合でもひび割れ幅を計算するフラグ
+      WL: false, // 縁応力度が制限値以内の場合でもひび割れ幅を計算するフラグ
     };
   }
 
@@ -72,9 +73,9 @@ export class InputDurabilityDataService {
           data.g_name = pos.g_name;
           data.p_name = pos.p_name;
           data.g_id = member.g_id;
-
+          
           let cr = crackData.find((value) => value.index === pos.index);
-          if(cr != null) data.vis_u = cr.vis_u;
+          if(cr != null) data.WL = cr.WL;
           table_group.push(data);
           count++;
         }
@@ -94,12 +95,12 @@ export class InputDurabilityDataService {
   }
 
   public setTableColumns(table_datas: any[]) {
-    this.crack_list = new Array();
+    this.crack_list = new Array(); //Local save in Durability
     let crack_temp = this.cracks.crack_list;
     for (const column of table_datas) {
-      //update "vis_u"
+      //find crack by Index and update "WL"
       const c = crack_temp.find((value) => value.index === column.index);
-      c.vis_u = column.vis_u;
+      c.WL = column.WL;
       this.crack_list.push(c);
     }
     this.setSaveData();

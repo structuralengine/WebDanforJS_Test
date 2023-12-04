@@ -3,10 +3,11 @@ import pq from 'pqgrid';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { SaveDataService } from 'src/app/providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
 import { InputDurabilityDataService } from './durability-data.service';
 import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
+import { InputMaterialStrengthVerificationConditionService } from '../material-strength-verification-conditions/material-strength-verification-conditions.service';
 @Component({
   selector: 'app-durability-data',
   templateUrl: './durability-data.component.html',
@@ -22,13 +23,13 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   private columnHeaders: object[] = new Array();
 
   public table_datas: any[];
-  public isSubstructure: boolean = false; //false wwhen initial then get value from component type is checked
+  public isSubstructure: boolean = false; //get value from component type is checked
   // タブのヘッダ名
   public groupe_name: string[];
 
   constructor(
     private durability: InputDurabilityDataService,
-    private material: InputSafetyFactorsMaterialStrengthsService,
+    private material: InputMaterialStrengthVerificationConditionService,
     private save: SaveDataService,
     public helper: DataHelperModule,
     private translate: TranslateService,
@@ -36,12 +37,27 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
   ) { this.members.checkGroupNo(); }
 
   ngOnInit() {
-    this.setShow(1);
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+  }
+
+  clear(){
+    this.columnHeaders = new Array();
+    this.table_datas = new Array();
+    this.options = new Array();
+    this.option_list = new Array();
+  }
+
+  onInitData(){
+    this.clear();
+    this.setShow(0);
     this.setTitle(this.save.isManual());
     this.table_datas = this.durability.getTableColumns();
 
     // グリッドの設定
-    this.options = new Array();
     for (let i = 0; i < this.table_datas.length; i++) {
       const op = {
         showTop: false,
@@ -89,6 +105,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
       };
       this.option_list.push(op);
     }
+    console.log("sssss");
     this.options = this.option_list[0];
 
     // タブのタイトルとなる
@@ -96,7 +113,6 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     for (let i = 0; i < this.table_datas.length; i++) {
       this.groupe_name.push(this.durability.getGroupeName(i));
     }
-
   }
 
   ngAfterViewInit() {
@@ -105,15 +121,19 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
   //Set show following component type is "Substructure"
   public setShow(id){
-    let pile_factor = new Array();
-    pile_factor = this.material.pile_factor[id];
-    if(pile_factor !== null && pile_factor !== undefined){
-      var sub = pile_factor.find((value) => value.id === "pile-002" )
-      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    let components = this.material.getSaveData().component;
+    const newComponents = Object.values(components)
+    let component : any = newComponents[id];
+
+    if(component !== null && component !== undefined){
+      var sub = component.find((value) => value.id === 2 ) //Substructure
+      if(sub !== null && sub !== undefined)
+       this.isSubstructure = sub.selected;
     }
   }
 
   private setTitle(isManual: boolean): void {
+    this.columnHeaders= new Array();
     if (isManual) {
       // 断面力手入力モードの場合
       this.columnHeaders = [
@@ -142,7 +162,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
       this.columnHeaders.push(
         {
           title: this.translate.instant("durability.under_blow_groundwater"),
-          align: 'center', dataType: 'bool', dataIndx: 'vis_u', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+          align: 'center', dataType: 'bool', dataIndx: 'WL', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
         }
       );
     }
@@ -176,7 +196,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
 
 
   public activePageChenge(id: number): void {
-    this.setShow(id + 1);
+    this.setShow(id);
     this.activeButtons(id);
 
     this.options = this.option_list[id];

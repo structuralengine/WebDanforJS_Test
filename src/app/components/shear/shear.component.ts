@@ -4,12 +4,13 @@ import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
 import { SaveDataService } from 'src/app/providers/save-data.service';
 import { DataHelperModule } from 'src/app/providers/data-helper.module';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ShearStrengthService } from './shear-strength.service';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputMembersService } from '../members/members.service';
 import { InputSafetyFactorsMaterialStrengthsService } from '../safety-factors-material-strengths/safety-factors-material-strengths.service';
 import { MenuService } from '../menu/menu.service';
+import { InputMaterialStrengthVerificationConditionService } from '../material-strength-verification-conditions/material-strength-verification-conditions.service';
 
 @Component({
   selector: 'app-shear',
@@ -39,16 +40,33 @@ export class ShearComponent implements OnInit {
     public helper: DataHelperModule,
     private basic: InputBasicInformationService,
     private translate: TranslateService,
-    private material: InputSafetyFactorsMaterialStrengthsService,
+    private material: InputMaterialStrengthVerificationConditionService,
     private menu: MenuService,
   ) {
     this.members.checkGroupNo();
   }
 
   ngOnInit() {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+
+  }
+
+  clear(){
+    this.columnHeaders = new Array();
+    this.table_datas = new Array();
+    this.options = new Array();
+    this.option_list = new Array();
+  }
+
+  onInitData(){
+    this.clear();
     this.isRoad = this.menu.selectedRoad;
     if(this.isRoad){
-      this.setShow(1); //set default by first group
+      this.setShow(0); //set default by first group
     }
     this.setTitle(this.save.isManual());
 
@@ -111,8 +129,8 @@ export class ShearComponent implements OnInit {
       this.groupe_name.push(this.shear.getGroupeName(i));
     }
 
+    
   }
-
   ngAfterViewInit() {
     this.activeButtons(0);
   }
@@ -195,18 +213,18 @@ export class ShearComponent implements OnInit {
             align: 'center', colModel: [
               {
                 title: this.translate.instant("shear-strength.concrete"),
-                align: 'center', dataType: 'bool', dataIndx: 'La', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+                align: 'center', dataType: 'bool', dataIndx: 'concrete', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
               },
               {
                 title: this.translate.instant("shear-strength.reinforcement_bar"),
-                align: 'center', dataType: 'bool', dataIndx: 'fixed_end', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
+                align: 'center', dataType: 'bool', dataIndx: 'bar', type: 'checkbox', frozen: true, sortable: false, width: 150, nodrag: true,
               }
             ],
             nodrag: true,
           },
           {
             title: this.translate.instant("shear-strength.s_len_a"),
-            dataType: "center", dataIndx: "L", sortable: false, width: 150, nodrag: true,
+            align: 'float', dataType: "integer", dataIndx: "La", sortable: false, width: 150, nodrag: true,
           }
         );
       }
@@ -223,11 +241,14 @@ export class ShearComponent implements OnInit {
 
   //Set show following component type is "Substructure"
   public setShow(id){
-    let pile_factor = new Array();
-    pile_factor = this.material.pile_factor[id];
-    if(pile_factor !== null && pile_factor !== undefined){
-      var sub = pile_factor.find((value) => value.id === "pile-002" )
-      if(sub !== null && sub !== undefined) this.isSubstructure = sub.selected;
+    let components = this.material.getSaveData().component;
+    const newComponents = Object.values(components)
+    let component : any = newComponents[id];
+
+    if(component !== null && component !== undefined){
+      var sub = component.find((value) => value.id === 2 ) //Substructure
+      if(sub !== null && sub !== undefined)
+       this.isSubstructure = sub.selected;
     }
   }
 
