@@ -31,14 +31,14 @@ export class ShearComponent implements OnInit {
   // タブのヘッダ名
   public groupe_name: string[];
 
-  public isSubstructure: boolean = false;
-  public isRoad: boolean = false;
+  // public isSubstructure: boolean = false;
+  // public isRoad: boolean = false;
 
   constructor(
     private shear: ShearStrengthService,
     private members: InputMembersService,
-    private material: InputSafetyFactorsMaterialStrengthsService,
-    private menu: MenuService,
+    // private material: InputSafetyFactorsMaterialStrengthsService,
+    // private menu: MenuService,
 
     private save: SaveDataService,
     public helper: DataHelperModule,
