@@ -202,6 +202,23 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
             }
           ]
         },
+      //   change: (evt, ui) => {
+      //     const changes = ui.updateList;
+      // for (const target of changes) {
+      //   const row: number = target.rowIndx;
+      //   const key = Object.keys(target.newRow);
+      //   const m: string = target.newRow[key.toString()];
+      //   console.log("m",m);
+      // }
+      // for (const target of ui.addList) {
+      //   const no: number = target.rowIndx;
+      //   const newRow = target.newRow;
+      //   console.log("no",no);
+      //   console.log("newRow",newRow);
+        
+      // }
+      //    console.log("ui",ui)
+      //   }
       });
 
     }

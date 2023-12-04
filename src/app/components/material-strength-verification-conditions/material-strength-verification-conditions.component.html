@@ -77,6 +77,7 @@
     <div class="item-container" [ngClass]="{'hide': activeTab !== 'sei_ver'}">
       <div class="safety-factors">
         <h5 translate>material-strength-verifiaction-condition.sei_ver</h5>
+       <div  [ngClass]="{'dottedLine': fck>30}">
         <table [ngClass]="{'hideTab': fck>30}">
           <thead>
             <tr>
@@ -113,6 +114,7 @@
             </ng-container>
           </tbody>
         </table>
+       </div>
       </div>
     </div>
 

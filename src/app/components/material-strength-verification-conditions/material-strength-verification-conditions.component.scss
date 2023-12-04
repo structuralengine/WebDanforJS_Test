@@ -71,6 +71,10 @@ h5 {
       color: gray;
     }
   }
+  .dottedLine{
+    border: 10px dotted red;
+    display: table-cell;
+  }
   th {
     border: 1px solid var(--table_border);
     font-weight: normal;
@@ -140,6 +144,7 @@ h5 {
 }
 .hideSei{
   color: gray !important;
+  pointer-events: none;
 }
 .tab-select {
   &-items {
