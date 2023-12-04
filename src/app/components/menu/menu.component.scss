@@ -2,7 +2,9 @@ $border-color: #42c1ca;
 .welcome-message {
     display: flex;
 }
-
+div.disabled{
+    background-color: #93999e;
+}
 .margin {
     margin: 0 5;
 }

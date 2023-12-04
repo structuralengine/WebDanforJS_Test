@@ -126,7 +126,6 @@ export class InputCrackSettingsService {
 
   public setTableColumns(table_datas: any[]) {
     this.crack_list = new Array();
-    console.log(this.crack_list, 'Crack');
 
     for (const column of table_datas) {
       const b = this.default_crack(column.index);

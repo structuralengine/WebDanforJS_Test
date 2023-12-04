@@ -4,6 +4,7 @@ import { InputMembersService } from "./components/members/members.service";
 import { ConfigService } from "./providers/config.service";
 import { SaveDataService } from "./providers/save-data.service";
 import { MenuService } from "./components/menu/menu.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-root",
@@ -16,8 +17,11 @@ export class AppComponent {
     private save: SaveDataService,
     private members: InputMembersService,
     public menuService: MenuService,
-    private points: InputDesignPointsService
-  ) {}
+    private points: InputDesignPointsService,
+    private translate: TranslateService
+  ) {
+    translate.use(this.translate.getBrowserLang());
+  }
 
   public isManual(): boolean {
     return this.save.isManual();

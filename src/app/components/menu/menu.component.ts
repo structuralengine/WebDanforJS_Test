@@ -29,7 +29,7 @@ import { InputDesignPointsService } from "../design-points/design-points.service
 import { LanguagesService } from "../../providers/languages.service";
 import { ElectronService } from "src/app/providers/electron.service";
 import packageJson from '../../../../package.json';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UserInfoService } from "src/app/providers/user-info.service";
@@ -114,6 +114,9 @@ export class MenuComponent implements OnInit {
     this._renew();
     this.windows = this.multiWindowService.getKnownWindows();
     this.setDefaultOpenControl();
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.openShiyoJoken();
+    })
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -408,7 +411,6 @@ export class MenuComponent implements OnInit {
   public setSpecification1(i: number): void {
 
     const basic = this.basic.set_specification1(i);
-
     this.specification1_list = basic.specification1_list; // 適用
     this.specification2_list = basic.specification2_list; // 仕様
     this.conditions_list = basic.conditions_list;         //  設計条件
@@ -448,15 +450,17 @@ export class MenuComponent implements OnInit {
   // 耐用年数, jA, jB
   public openShiyoJoken() {
     const basic = this.basic.getSaveData();
-    
     // 適用
+    this.basic.updateTitleSpecification(1, basic.specification1_list)
     this.specification1_list = basic.specification1_list;
-    
     this.specification1_select_id = this.basic.get_specification1();
+
     // 仕様
+    this.basic.updateTitleSpecification(2, basic.specification2_list)
     this.specification2_list = basic.specification2_list;
     this.specification2_select_id = this.basic.get_specification2();
     //  設計条件
+    this.basic.updateTitleCondition(basic.conditions_list)
     this.conditions_list = basic.conditions_list;
 
     this.table1_datas = basic.pickup_moment;

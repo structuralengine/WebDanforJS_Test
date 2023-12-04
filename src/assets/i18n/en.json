@@ -99,7 +99,8 @@
         "limit_design_method":"limit design method",
         "partial_coefficient_method":"partial coefficient method",
         "allowable_stress_method":"allowable stress method",
-        "adopt":"Adopt a rebar placement method that reduces shear capacity in a circular section"
+        "adopt":"Adopt a rebar placement method that reduces shear capacity in a circular section",
+        "note_img": "※ The numbers in [] correspond to the numbers in the table below (combination of actions)."
     },
     "basic-information-road":{
         "bs_dcp_of_is": "Durability Corrosion protection of internal steel [1]",
@@ -228,6 +229,7 @@
         "position":"Position",
         "p_name":"Calculated point name",
         "s_len":"Shear span length (mm)",
+        "s_len_a":"Shear span length\n a(mm)",
         "fixed_end":"fixed end",
         "m_len":"Distance (mm)",
         "consider_shear":"Consider the effect of shear span ratio",
@@ -251,7 +253,31 @@
         "fold":"folding"
     },
     "material-strength-verifiaction-condition":{
-        
+        "com_type":"Component Type",
+        "other_con":"Other conditions",
+        "base_stan":"Base Standard",
+        "ge_pa":"General parts",
+        "fla_for_flo_sla":"Flange for floor slab",
+        "sub":"Substructure",
+        "sep":"The upper limit of the characteristic value Sc of shear force that concrete can bear is not taken into account",
+        "rsb_con":"Reinforcing bar / Concrete",
+        "rebar_ax":"Axial rebar",
+        "rebar_la":"Lateral rebar",
+        "stirrup":"Stirrup",     
+        "ys":"Yield strength",
+        "d25":"D25 or less",
+        "d29":"D29 and above",
+        "dts":"Design tensile strength",
+        "r_mta":"Reinforcing bar material strength",   
+        "sei_ver": "Seismic Verification Conditions",
+        "c_mta":"Concrete material strength",
+        "si": "Situation",
+        "pl_ex": "Plasticization Expect",
+        "lv_e": "Level 2 earthquake motionType",
+        "var_st": "Variable Action Control Status",
+        "acc_st": "Accidental Action Control Status",
+        "fck":"Design standard strength of concrete fck(N/mm2)",
+        "max_ca":"Maximum dimensions of coarse aggregate (mm)"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",

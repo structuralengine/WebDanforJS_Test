@@ -17,5 +17,8 @@ export class MenuService {
     this.selectedRoad = false;
     if(i === 2) this.selectedRoad = true;
   }
-
+  reloadTranslate(selectedRoad:boolean){
+    this.selectedRoad = !selectedRoad;
+    this.selectedRoad = selectedRoad;
+  }
 }

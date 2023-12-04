@@ -1,3 +1,150 @@
-<p>
-  material-strength works!
-</p>
+<div class="c-subNavArea">
+  <nav>
+    <ul class="c-subNavArea__nav">
+      <li class="c-subNavArea__navItem" *ngFor="let groupe of groupe_name; index as i">
+        <a (click)="activePageChenge(i, groupe)" id="mat{{i}}" class="c-subNavArea__navItemTitle">
+          <span>{{groupe}}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="tabContent">
+  <ul class="tab-select-items">
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'rsb_con'}"
+      (click)="setActiveTab('rsb_con')">material-strength-verifiaction-condition.rsb_con</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'com_type'}"
+      (click)="setActiveTab('com_type')">material-strength-verifiaction-condition.com_type</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'sei_ver'}"
+      (click)="setActiveTab('sei_ver')">material-strength-verifiaction-condition.sei_ver</li>
+    <li class="tab-select-item" translate [ngClass]="{'is-active': activeTab === 'other_con'}"
+      (click)="setActiveTab('other_con')">material-strength-verifiaction-condition.other_con</li>
+  </ul>
+
+
+  <div class="tab-inner">
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
+      <div class="safety-factors">
+        <h5 translate>safety-factors-material-strengths.r_mta</h5>
+        <div class="table-container">
+          <app-sheet #grid1 [options]="options1"></app-sheet>
+        </div>
+      </div>
+    </div>
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'rsb_con'}">
+      <div class="material-strength">
+        <h5 translate>material-strength-verifiaction-condition.c_mta</h5>
+        <div class="table-container">
+          <app-sheet #grid2 [options]="options2" class="no-table"></app-sheet>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'com_type'}">
+      <div class="pile-factors">
+        <h5 translate>material-strength-verifiaction-condition.com_type</h5>
+        <table>
+          <thead>
+            <tr>
+              <th width="20px">
+              </th>
+              <th>
+                <p translate>material-strength-verifiaction-condition.com_type</p>
+              </th>
+              <th>
+                <p translate>material-strength-verifiaction-condition.base_stan</p>
+              </th>
+            </tr>
+
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of options3; index as i">
+              <tr *ngIf="item.title !== ''">
+                <td width="20px">
+                  <input type="radio" name="component" id="component{{i}}" [(ngModel)]="component_select_id"
+                    [value]="item.id" [checked]="item.selected" (change)="setComponent(i)" />
+                </td>
+                <td style="text-align: left" width="200px">{{item.title}}</td>
+                <td *ngIf="item.id===0 || item.id===1" style="text-align: center" width="200px">Road H29 Part Ⅲ</td>
+                <td *ngIf="item.id===2 " style="text-align: center" width="200px">Road H29 Part Ⅳ</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'sei_ver'}">
+      <div class="safety-factors">
+        <h5 translate>material-strength-verifiaction-condition.sei_ver</h5>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">
+                <p translate>material-strength-verifiaction-condition.si</p>
+              </th>
+              <th rowspan="2">
+                <p translate>material-strength-verifiaction-condition.pl_ex</p>
+              </th>
+              <th rowspan="2">
+                <p translate style="font-size: 10px;">material-strength-verifiaction-condition.lv_e</p>
+              </th>
+            </tr>
+
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of options4; index as i">               
+                             
+              <tr *ngIf="item.title != null ">
+                <td style="text-align: left">{{item.title}}</td>
+                <td class="center" width="70px">
+                  <input type="checkbox" name="pla_ex{{i}}" id="pla_ex{{i}}" [value]="item.id"
+                    [checked]="item.selected"  (change)="setCheckboxPlastic(i)" />
+                </td>
+                <td style="text-align: center;" width="80px" *ngIf="!item.selected; else elseBlock" >
+                  <div class="diagonalRising"></div>
+                </td>
+              </tr>
+              <ng-template #elseBlock>                
+                  <td style="width:85px" >
+                    <input class="levelType" type="text" value="{{item.type!=0?item.type:''}}">
+                  </td>             
+              </ng-template>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="item-container" [ngClass]="{'hide': activeTab !== 'other_con'}">
+      <div class="pile-factors">
+        <h5 translate>material-strength-verifiaction-condition.other_con</h5>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2" width="20px">
+              </th>
+              <th rowspan="2" >
+                <p translate>material-strength-verifiaction-condition.other_con</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <ng-container *ngFor="let item of options5; index as i">
+              <tr >
+                <td class="center" width="20px">
+                  <input type="checkbox" name="other" id="other{{i}}" [checked]="item.selected"
+                    (click)="handleCheck($event,item)"  />
+                </td>
+                <td style="text-align: left" >{{item.title}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
