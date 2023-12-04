@@ -277,7 +277,8 @@
         "var_st": "変動作用支配状況",
         "acc_st": "偶発作用支配状況",
         "fck":"コンクリートの設計基準強度 fck(N/mm2)",
-        "max_ca":"粗骨材の最大寸法 (mm)"
+        "max_ca":"粗骨材の最大寸法 (mm)",
+        "text_mes":"コンクリートの設計基準強度がfck>30の場合は考慮しない"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"鉄筋・コンクリート",
