@@ -5,6 +5,7 @@ import { SaveDataService } from 'src/app/providers/save-data.service';
 import pq from 'pqgrid';
 import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-bars',
@@ -26,6 +27,21 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
   public table_datas: any[];
   // タブのヘッダ名
   public groupe_name: string[];
+  public style ={"pointer-events":"none", "background": "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)"}
+  public styleShaded1:any =   { 
+    haunch_height: { ...this.style},
+  }
+  public styleShaded2 ={
+    stirrup_dia:{...this.style},
+    stirrup_n:{...this.style},
+    stirrup_ss:{...this.style},
+    bending_dia:{...this.style},
+    bending_n:{...this.style},
+    bending_ss:{...this.style},
+    bending_angle:{...this.style},
+    
+  }
+  
 
   constructor(
     private members: InputMembersService,
@@ -40,10 +56,19 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.setTitle(this.save.isManual());
 
     this.table_datas = this.bars.getTableColumns();
-
+    
+  
     // グリッドの設定
     this.option_list = new Array();
     for (let i = 0; i < this.table_datas.length; i++) {
+      this.table_datas[i].forEach((data:any,index:any)=>{
+       if(this.activeTab==="rebar_ax"){
+        if(index % 2!==0){
+          data.pq_cellstyle=this.styleShaded1;
+        }
+       }
+       })
+      console.log(`this.table_datas[${i}]`,this.table_datas[i])
       const op = {
         showTop: false,
         reactive: true,
@@ -234,6 +259,9 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         dataType: 'float', dataIndx: 'cos', sortable: false, width: 85, nodrag: true,
       },
       {
+        title: 'tanγ+tanβ', dataType: 'float', dataIndx: 'tan', sortable: false, width: 85, nodrag: true,
+      },
+      {
         title: this.translate.instant("bars.rebar_sh"),
         align: 'center', colModel: [
           {
@@ -250,9 +278,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         ],
         nodrag: true,
-      },
-      {
-        title: 'tanγ+tanβ', dataType: 'float', dataIndx: 'tan', sortable: false, width: 85, nodrag: true,
       },
       {
         title: this.translate.instant("bars.rebar_fo"),
@@ -310,7 +335,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public activePageChenge(id: number): void {
     this.activeButtons(id);
-
+    
     this.options = this.option_list[id];
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
@@ -332,18 +357,38 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public setActiveTab(tab: string) {
     this.activeTab = tab;
+    for (let i = 0; i < this.table_datas.length; i++) {
+      
+      this.table_datas[i].forEach((data:any,index:any)=>{
+        data.pq_cellstyle={}
+       if(this.activeTab==="rebar_ax"){
+        if(index % 2!==0){
+          data.pq_cellstyle=this.styleShaded1;
+        }
+       }
+       if(this.activeTab!=="rebar_ax"){
+        if(index % 2!==0){
+          data.pq_cellstyle=this.styleShaded2;
+        }
+         if(index % 2===0){
+          data.pq_cellstyle=this.styleShaded1;
+        }
+       }
+       })
+      }
+    console.log(`this.table_datas`,this.table_datas)
 
     let FIXED_CELLS_COUNT = this.save.isManual() ? 4 : 5;
     let CHECK_CELL_INDEX = this.save.isManual() ? 24 : 25;
     
     let cellIndexMap = {
       "rebar_ax": {
-        default: { start: 6, end: 16 },
-        manual: { start: 5, end: 15 }
+        default: { start: 6, end: 17 },
+        manual: { start: 5, end: 16 }
       },
       "default": {
-        default: { start: 17, end: 24 },
-        manual: { start: 16, end: 23 }
+        default: { start: 18, end: 24 },
+        manual: { start: 17, end: 23 }
       }
     };
     
