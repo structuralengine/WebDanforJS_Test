@@ -319,7 +319,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public setCheckboxPlastic(j: number): void {
     const i = this.current_index;
     const plastic = this.option4_list[i];
-    const element = plastic[j];  
+    const element = plastic[j];     
     element.selected = !element.selected
   }
   private getComponentSelectId(): string {
