@@ -211,6 +211,11 @@ export class InputMaterialStrengthVerificationConditionService {
             title: this.translate.instant("material-strength-verifiaction-condition.sub"),
             selected: true           
           },
+          {
+            id: 11,
+            title: this.translate.instant("material-strength-verifiaction-condition.co"),
+            selected: true           
+          },
         ]
         break;
     }
@@ -227,7 +232,12 @@ export class InputMaterialStrengthVerificationConditionService {
             id: 0,
             title: this.translate.instant("material-strength-verifiaction-condition.sep"),
             selected: false           
-          }          
+          },
+          {
+            id: 1,
+            title: this.translate.instant("material-strength-verifiaction-condition.do_not"),
+            selected: false           
+          }            
         ]
         break;
     }

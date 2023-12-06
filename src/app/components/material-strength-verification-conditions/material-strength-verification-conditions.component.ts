@@ -331,13 +331,22 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
    }
     return result.id;
   }
-  handleCheck(event:any,item:any){
+  handleCheck(event:any,item:any, type){
     const id = this.current_index
-   this.other_list[id].forEach((data:any)=>{
-    if(data.id === item.id){
-      data.selected = event.target.checked
+    if(type==="component"){
+      this.component_list[id].forEach((data:any)=>{
+        if(data.id === item.id){
+          data.selected = event.target.checked
+        }
+       })
     }
-   })
+    if(type==="other"){
+      this.other_list[id].forEach((data:any)=>{
+        if(data.id === item.id){
+          data.selected = event.target.checked
+        }
+       })
+    }
   }
   setLevel(j: number, event: any){
     const i = this.current_index;

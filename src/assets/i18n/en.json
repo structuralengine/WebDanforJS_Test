@@ -278,7 +278,9 @@
         "acc_st": "Accidental Action Control Status",
         "fck":"Design standard strength of concrete fck(N/mm2)",
         "max_ca":"Maximum dimensions of coarse aggregate (mm)",
-        "text_mes":"If 'Design standard strength of concrete fck>30', not considered"
+        "text_mes":"If 'Design standard strength of concrete fck>30', not considered",
+        "co":"Corbel",
+        "do_not":"Do not except axial effect on shear forces that concrete can bear"
     },
     "safety-factors-material-strengths":{
         "rsb_con":"Reinforcing bar / Concrete",

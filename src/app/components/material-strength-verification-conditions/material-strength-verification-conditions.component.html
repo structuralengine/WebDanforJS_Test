@@ -60,7 +60,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of options3; index as i">
-              <tr *ngIf="item.title !== ''">
+              <tr *ngIf="item.id !== 11">
                 <td width="20px">
                   <input type="radio" name="component" id="component{{i}}" [(ngModel)]="component_select_id"
                     [value]="item.id" [checked]="item.selected" (change)="setComponent(i)" />
@@ -68,6 +68,18 @@
                 <td style="text-align: left" width="200px">{{item.title}}</td>
                 <td *ngIf="item.id===0 || item.id===1" style="text-align: center" width="200px">Road H29 Part Ⅲ</td>
                 <td *ngIf="item.id===2 " style="text-align: center" width="200px">Road H29 Part Ⅳ</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <ng-container *ngFor="let item of options3; index as i">
+              <tr *ngIf="item.id === 11">
+                <td class="center" width="20px">
+                  <input type="checkbox" name="component" id="component{{i}}" [checked]="item.selected" (change)="handleCheck($event,item,'component')" />
+                </td>
+                <td style="text-align: left" width="200px">{{item.title}}</td>
               </tr>
             </ng-container>
           </tbody>
@@ -139,7 +151,7 @@
               <tr >
                 <td class="center" width="20px">
                   <input type="checkbox" name="other" id="other{{i}}" [checked]="item.selected"
-                    (click)="handleCheck($event,item)"  />
+                    (click)="handleCheck($event,item,'other')"  />
                 </td>
                 <td style="text-align: left" >{{item.title}}</td>
               </tr>
