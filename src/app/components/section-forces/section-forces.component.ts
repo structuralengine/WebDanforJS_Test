@@ -322,6 +322,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         let titleString = "";
         if (value.id < 2)
           titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+        else if (value.id === 8 || value.id === 9) ///temporary set: delete minimun rebar amount
+          return
         else
           titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
         currentSW.push({
@@ -401,7 +403,6 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     });
     this.grid.refreshDataAndView();
     this.grid.setColsShow();
-    console.log(this.grid.colsShow)
   }
 
   // 指定行row まで、曲げモーメント入力データを読み取る

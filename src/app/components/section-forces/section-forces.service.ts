@@ -102,8 +102,10 @@ export class InputSectionForcesService {
         let titles = new Array();
         if(data.id <2)
           titles = this.cutString(this.translate.instant(data.title), 10);
+        else if(data.id === 8 || data.id === 9) ///temporary set: delete minimun rebar amount
+            continue;
         else
-          titles = this.cutString(this.translate.instant(data.title), 22)
+          titles = this.cutString(this.translate.instant(data.title), 22);
 
         if (pushIds.includes(data.id)) {
           if (currentHead) {
@@ -333,9 +335,9 @@ export class InputSectionForcesService {
       if (flg === true) {
         this.force.push(new_colum);
       }
-      //
-      const position = this.points.getCalcData(new_colum.index);
-      position.p_name = data.p_name;
+      // ????
+      // const position = this.points.getCalcData(new_colum.index);
+      // position.p_name =  data.p_name;
       // position.La = data.La;
     }
   }
