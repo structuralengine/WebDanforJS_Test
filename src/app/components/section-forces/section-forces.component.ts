@@ -72,46 +72,11 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnInit() {
     this.selectedRoad = this.menu.selectedRoad;
-    let currentLang = this.translate.currentLang;
-    switch (currentLang) {
-      case "en": {
-        this.imgLink = "assets/img/basic-information/en.png";
-        break;
-      }
-      case "ja": {
-        this.imgLink = "assets/img/basic-information/jp.png";
-        break;
-      }
-      default: {
-      }
-    }
-    this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
-      switch (event.lang) {
-        case "en": {
-          this.imgLink = "assets/img/basic-information/en.png";
-          break;
-        }
-        case "ja": {
-          this.imgLink = "assets/img/basic-information/jp.png";
-          break;
-        }
-        default: {
-        }
-      }
-    });
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      switch (event.lang) {
-        case "en": {
-          this.imgLink = "assets/img/basic-information/en.png";
-          break;
-        }
-        case "ja": {
-          this.imgLink = "assets/img/basic-information/jp.png";
-          break;
-        }
-        default: {
-        }
+      if(this.menu.selectedRoad){
+        this.setKeyGroupsRoad()
       }
+      this.initTable ();
     });
 
     if(this.menu.selectedRoad){
