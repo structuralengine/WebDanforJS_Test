@@ -27,12 +27,12 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
   public table_datas: any[];
   // タブのヘッダ名
   public groupe_name: string[];
-  public style ={"pointer-events":"none", "background": "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)"}
+  public style ={"pointer-events":"none", "background": "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)", "font-size":"0" }
   public styleShaded1:any =   { 
-    haunch_height: { ...this.style},
+    haunch_height : { ...this.style},
   }
   public styleShaded2 ={
-    stirrup_dia:{...this.style},
+    stirrup_dia :{...this.style},
     stirrup_n:{...this.style},
     stirrup_ss:{...this.style},
     bending_dia:{...this.style},
@@ -41,7 +41,20 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     bending_angle:{...this.style},
     
   }
-  
+  public prop={edit: false,show:false}
+  public propShaded1:any =   { 
+    haunch_height : { ...this.prop},
+  }
+  public propShaded2 ={
+    stirrup_dia :{...this.prop},
+    stirrup_n:{...this.prop},
+    stirrup_ss:{...this.prop},
+    bending_dia:{...this.prop},
+    bending_n:{...this.prop},
+    bending_ss:{...this.prop},
+    bending_angle:{...this.prop},
+    
+  }
 
   constructor(
     private members: InputMembersService,
@@ -54,10 +67,8 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.setTitle(this.save.isManual());
-
     this.table_datas = this.bars.getTableColumns();
-    
-  
+
     // グリッドの設定
     this.option_list = new Array();
     for (let i = 0; i < this.table_datas.length; i++) {
@@ -65,10 +76,10 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
        if(this.activeTab==="rebar_ax"){
         if(index % 2!==0){
           data.pq_cellstyle=this.styleShaded1;
+          data.pq_cellprop=this.propShaded1
         }
        }
        })
-      console.log(`this.table_datas[${i}]`,this.table_datas[i])
       const op = {
         showTop: false,
         reactive: true,
@@ -360,24 +371,26 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     for (let i = 0; i < this.table_datas.length; i++) {
       
       this.table_datas[i].forEach((data:any,index:any)=>{
-        data.pq_cellstyle={}
+        data.pq_cellstyle={};
+        data.pq_cellprop={}
        if(this.activeTab==="rebar_ax"){
         if(index % 2!==0){
           data.pq_cellstyle=this.styleShaded1;
+          data.pq_cellprop=this.propShaded1
         }
        }
        if(this.activeTab!=="rebar_ax"){
         if(index % 2!==0){
           data.pq_cellstyle=this.styleShaded2;
+          data.pq_cellprop= this.propShaded2
         }
          if(index % 2===0){
           data.pq_cellstyle=this.styleShaded1;
+          data.pq_cellprop=this.propShaded1
         }
        }
        })
       }
-    console.log(`this.table_datas`,this.table_datas)
-
     let FIXED_CELLS_COUNT = this.save.isManual() ? 4 : 5;
     let CHECK_CELL_INDEX = this.save.isManual() ? 24 : 25;
     
