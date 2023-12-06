@@ -270,10 +270,12 @@ export class ShearComponent implements OnInit {
   }
 
   public activePageChenge(id: number): void {
-    this.setShow(id + 1);
+    this.setShow(id);
     this.activeButtons(id);
 
+    this.setTitle(this.save.isManual());
     this.options = this.option_list[id];
+    this.options.colModel = this.columnHeaders;
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
   }
