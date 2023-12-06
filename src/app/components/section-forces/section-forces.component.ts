@@ -159,12 +159,12 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     this.setColGroupsAndKeys(0);
 
     //Set active start
-    if(!this.menu.selectedRoad){
-      this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
+    if(this.menu.selectedRoad){
+      this.bendingColGroupKeys = Object.keys(this.bendingColGroupsRoad);
     }
     else
     {
-      this.bendingColGroupKeys = Object.keys(this.bendingColGroupsRoad);
+      this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
     }
     for (const group of this.bendingColGroupKeys) {
       this.toggleStatus[group] = true;
@@ -278,6 +278,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private setTitleGroupsRoad(id: number) {
+    let crrLang = this.translate.currentLang ?? "ja";
     const basic = this.basic.getSaveData();
     //Set title switch
     let currentSW = new Array();
@@ -285,42 +286,92 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       basic.pickup_moment.forEach((value, index) => {
         let key = "B" + value.id;
         let titleString = "";
-        if (value.id < 2)
-          titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-        else if (index === basic.pickup_moment.length -1) ///temporary set: delete minimun rebar amount
-          return
+
+        if(crrLang === "en"){
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
+            return
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
         else
-          titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-        currentSW.push({
-          id: key,
-          title: titleString,
-        })
+        {
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
+          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
+            return
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
       });
     } else if (id === 1) {
       basic.pickup_shear_force.forEach((value, index) => {
         let key = "S" + value.id;
         let titleString = "";
-        if (value.id < 2)
-          titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+
+        if(crrLang === "en"){
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
         else
-          titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-        currentSW.push({
-          id: key,
-          title: titleString,
-        })
+        {
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
+          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
+            return
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
+
       });
     } else if (id === 2) {
       basic.pickup_torsional_moment.forEach((value, index) => {
         let key = "T" + value.id;
         let titleString = "";
-        if (value.id < 2)
-          titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+
+        if(crrLang === "en"){
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
         else
-          titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-        currentSW.push({
-          id: key,
-          title: titleString,
-        })
+        {
+          if (value.id < 2)
+            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
+          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
+            return
+          else
+            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+          currentSW.push({
+            id: key,
+            title: titleString,
+          })
+        }
+        
       });
     }
     this.currentSW = currentSW;

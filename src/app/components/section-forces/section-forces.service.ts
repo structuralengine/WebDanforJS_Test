@@ -27,13 +27,16 @@ export class InputSectionForcesService {
 
   public getColumnHeaders1(): any {
     let pushIds = new Array();
+    let pickup_moment = this.basic.pickup_moment;
+
     if(this.menu.selectedRoad){
       pushIds = [0, 2];
+      pickup_moment.pop();
     }
     else
       pushIds = [0, 2, 5, 6, 7, 8];
     return this.createColumnHeaders(
-      this.basic.pickup_moment,
+      pickup_moment,
       pushIds,
       "Md"
     );
@@ -91,6 +94,7 @@ export class InputSectionForcesService {
       nodrag: true,
     };
 
+    let crrLang = this.translate.currentLang ?? "ja";
     const result: object[] = [baseColumn];
     let currentHead: any = null;
 
@@ -100,18 +104,32 @@ export class InputSectionForcesService {
       for (const data of dataArray) {
         // const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
         let titles = new Array();
-        if(data.id <2)
-          titles = this.cutString(this.translate.instant(data.title), 10);
-          else if (data.id === dataArray[dataArray.length -1].id) ///temporary set: delete minimun rebar amount
-            continue;
-        else
-          titles = this.cutString(this.translate.instant(data.title), 22);
 
-        if (pushIds.includes(data.id)) {
-          if (currentHead) {
-            result.push(currentHead);
-          }
+        if(crrLang === "en"){
+          if (data.id < 2)
+            titles = this.cutString(this.translate.instant(data.title), 10);
+          else
+            titles = this.cutString(this.translate.instant(data.title), 22);
+
+          if (pushIds.includes(data.id)) {
+            if (currentHead) {
+              result.push(currentHead);
+            }
           currentHead = this.createNewHeader(titles[0]);
+        }
+        }
+        else
+        {
+          if (data.id < 2)
+            titles = this.cutString(this.translate.instant(data.title), 4);
+          else
+            titles = this.cutString(this.translate.instant(data.title), 11);
+          if (pushIds.includes(data.id)) {
+            if (currentHead) {
+              result.push(currentHead);
+            }
+            currentHead = this.createNewHeader(titles[0]);
+          }
         }
         const key = keyPrefix + data.id;
         currentHead.colModel.push(this.createSubColumn(titles[1], key, keyPrefix));
