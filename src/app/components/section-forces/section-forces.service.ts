@@ -3,6 +3,7 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputDesignPointsService } from '../design-points/design-points.service';
 import { TranslateService } from "@ngx-translate/core";
+import { MenuService } from '../menu/menu.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class InputSectionForcesService {
     private helper: DataHelperModule,
     private basic: InputBasicInformationService,
     private points: InputDesignPointsService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private menu: MenuService
   ) {
     this.clear();
   }
@@ -24,27 +26,53 @@ export class InputSectionForcesService {
   }
 
   public getColumnHeaders1(): any {
+    let pushIds = new Array();
+    if(this.menu.selectedRoad){
+      pushIds = [0, 2];
+    }
+    else
+      pushIds = [0, 2, 5, 6, 7, 8];
     return this.createColumnHeaders(
       this.basic.pickup_moment,
-      [0, 2, 5, 6, 7, 8],
+      pushIds,
       "Md"
     );
   }
 
   public getColumnHeaders2(): any {
+    let pushIds = new Array();
+    if(this.menu.selectedRoad){
+      pushIds = [0, 2];
+    }
+    else
+      pushIds = [0, 3, 5, 6, 7];
+
     return this.createColumnHeaders(
       this.basic.pickup_shear_force,
-      [0, 3, 5, 6, 7],
+      pushIds,
       "Vd"
     );
   }
 
   public getColumnHeaders3(): any {
+    let pushIds = new Array();
+    if(this.menu.selectedRoad){
+      pushIds = [0, 2];
+    }
+    else
+      pushIds = [0, 5, 6, 7];
+
     return this.createColumnHeaders(
       this.basic.pickup_torsional_moment,
-      [0, 5, 6, 7],
+      pushIds,
       "Mt"
     );
+  }
+
+  public cutString(input, index) {
+    const mainTitle = input.substring(0, index).trim();
+    const subTitle = input.substring(index).trim();
+    return [mainTitle, subTitle];
   }
 
   private createColumnHeaders(
@@ -66,19 +94,43 @@ export class InputSectionForcesService {
     const result: object[] = [baseColumn];
     let currentHead: any = null;
 
-    for (const data of dataArray) {
-      //If it cannot be translated, it will still return itself
-      // const [mainTitle, subTitle] = data.title.split(" ");
-      const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
-      if (pushIds.includes(data.id)) {
-        if (currentHead) {
-          result.push(currentHead);
-        }
-        currentHead = this.createNewHeader(mainTitle);
-      }
+    if(this.menu.selectedRoad)
+    {
+      //Customer title table for Road
+      for (const data of dataArray) {
+        // const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
+        let titles = new Array();
+        if(data.id <2)
+          titles = this.cutString(this.translate.instant(data.title), 10);
+        else
+          titles = this.cutString(this.translate.instant(data.title), 22)
 
-      const key = keyPrefix + data.id;
-      currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
+        if (pushIds.includes(data.id)) {
+          if (currentHead) {
+            result.push(currentHead);
+          }
+          currentHead = this.createNewHeader(titles[0]);
+        }
+        const key = keyPrefix + data.id;
+        currentHead.colModel.push(this.createSubColumn(titles[1], key, keyPrefix));
+      }
+    }
+    else
+    {
+      for (const data of dataArray) {
+        //If it cannot be translated, it will still return itself
+        // const [mainTitle, subTitle] = data.title.split(" ");
+        const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
+        if (pushIds.includes(data.id)) {
+          if (currentHead) {
+            result.push(currentHead);
+          }
+          currentHead = this.createNewHeader(mainTitle);
+        }
+  
+        const key = keyPrefix + data.id;
+        currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
+      }
     }
 
     if (currentHead) {
