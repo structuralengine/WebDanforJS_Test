@@ -287,7 +287,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         let titleString = "";
         if (value.id < 2)
           titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-        else if (value.id === 8 || value.id === 9) ///temporary set: delete minimun rebar amount
+        else if (index === basic.pickup_moment.length -1) ///temporary set: delete minimun rebar amount
           return
         else
           titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];

@@ -102,7 +102,7 @@ export class InputSectionForcesService {
         let titles = new Array();
         if(data.id <2)
           titles = this.cutString(this.translate.instant(data.title), 10);
-        else if(data.id === 8 || data.id === 9) ///temporary set: delete minimun rebar amount
+          else if (data.id === dataArray[dataArray.length -1].id) ///temporary set: delete minimun rebar amount
             continue;
         else
           titles = this.cutString(this.translate.instant(data.title), 22);
