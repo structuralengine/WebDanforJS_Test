@@ -114,8 +114,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       this.option4_list.push(verification);     
 
       this.option1_list.push({
-        width: 550,
-        height: 200,
+        width: 650,
+        height: 180,
         showTop: false,
         reactive: true,
         sortable: false,
@@ -279,11 +279,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         align: 'center', colModel: [
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d25"),
-            dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 90, nodrag: true,
           },
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d29"),
-            dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 100, nodrag: true,
           }
         ],
         nodrag: true,
@@ -293,11 +293,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         align: 'center', colModel: [
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d25"),
-            dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 90, nodrag: true,
           },
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d29"),
-            dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 100, nodrag: true,
           }
         ],
         nodrag: true,

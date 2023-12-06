@@ -54,6 +54,7 @@ h5 {
 .safety-factors,
 .material-strength {
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .safety-factors,
@@ -82,7 +83,7 @@ h5 {
     text-align: center;
     padding: 0;
     line-height: 1.5;
-    background: var(--table_row_even_bg);
+    background: var(--table_row_even_bg);   
   }
 
   td {
