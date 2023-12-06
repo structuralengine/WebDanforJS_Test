@@ -114,8 +114,7 @@ h5 {
     }
   } 
   .diagonalRising {
-    border: solid #0000003d 0.11px;
-    transform: rotate(-15deg);
+    background: linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)
   }
   .levelType{
     background: transparent;
