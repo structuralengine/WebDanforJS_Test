@@ -51,6 +51,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   }
 
   private createGrid() {
+    
     this.options.beforeCellKeyDown = (evt, ui) => {
       const mov = 1;
       // Enterで下に移動
