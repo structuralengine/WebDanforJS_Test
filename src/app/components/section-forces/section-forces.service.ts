@@ -32,7 +32,8 @@ export class InputSectionForcesService {
 
     if(this.menu.selectedRoad){
       pushIds = [0, 2];
-      pickup_moment = pickup_moment.filter((value, index) => this.translate.instant(value.title) !== this.translate.instant("basic-information-road.bs_min_rebar_amount"));
+      const arrayIgnore = ["Minimum rebar amount[1-10]", "最小鉄筋量[1~10]"]
+      pickup_moment = pickup_moment.filter((value, index) => !arrayIgnore.includes(this.translate.instant(value.title)));
     }
     else
       pushIds = [0, 2, 5, 6, 7, 8];
@@ -72,11 +73,39 @@ export class InputSectionForcesService {
       "Mt"
     );
   }
+  public handleTitle(inputString: string, number?: number){
+    //// split input string and return [a, b] => ex: "This words" => ["This", "words"]
+    inputString = this.translate.instant(inputString);
+    const words: string[] = inputString.split(' ');
+    let mainTitle, subTitle;
+    
+    //Set specification case title Japanese
+    if(words.length <=3)
+    {
+      //get number words from Array
+      const firstTemp = words.slice(0, 1);
+      mainTitle = firstTemp.join(' ')
 
-  public cutString(input, index) {
-    const mainTitle = input.substring(0, index).trim();
-    const subTitle = input.substring(index).trim();
-    return [mainTitle, subTitle];
+      const remainTemp = words.slice(1);
+      subTitle = remainTemp.join(' ')
+      return [mainTitle, subTitle]
+    }
+    else
+    {
+      //get number words from Array
+      if (number == null || number > words.length) {
+        mainTitle = words[0];
+        subTitle = " ";
+      }
+      else {
+        const firstTemp = words.slice(0, number);
+        mainTitle = firstTemp.join(' ')
+
+        const remainTemp = words.slice(number);
+        subTitle = remainTemp.join(' ')
+      }
+      return [mainTitle, subTitle]
+    }
   }
 
   private createColumnHeaders(
@@ -101,40 +130,17 @@ export class InputSectionForcesService {
 
     if(this.menu.selectedRoad)
     {
-      //console.log(dataArray);
       //Customer title table for Road
       for (const data of dataArray) {
-        // const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
-        let titles = new Array();
-
-        if(crrLang === "en"){
-          if (data.id < 2)
-            titles = this.cutString(this.translate.instant(data.title), 10);
-          else
-            titles = this.cutString(this.translate.instant(data.title), 22);
-
-          if (pushIds.includes(data.id)) {
-            if (currentHead) {
-              result.push(currentHead);
-            }
-          currentHead = this.createNewHeader(titles[0]);
-        }
-        }
-        else
-        {
-          // if (data.id < 2)
-          //   titles = this.translate.instant(data.title).split(" ");
-          // else
-            titles = this.translate.instant(data.title).split(" ");
-          if (pushIds.includes(data.id)) {
-            if (currentHead) {
-              result.push(currentHead);
-            }
-            currentHead = this.createNewHeader(titles[0]);
+        const [mainTitle, subTitle] = this.handleTitle(data.title, data.id < 2? 1 : 3);
+        if (pushIds.includes(data.id)) {
+          if (currentHead) {
+            result.push(currentHead);
           }
+          currentHead = this.createNewHeader(mainTitle);
         }
         const key = keyPrefix + data.id;
-        currentHead.colModel.push(this.createSubColumn(titles[1], key, keyPrefix));
+        currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
       }
     }
     else

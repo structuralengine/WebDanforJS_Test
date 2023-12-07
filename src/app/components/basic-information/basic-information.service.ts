@@ -200,37 +200,37 @@ export class InputBasicInformationService {
             no: null,
           },
           {
-            id: 3,
+            id: 2,
             title: this.translate.instant("basic-information-road.bs_lcc1"),
             no: null,
           },
           {
-            id: 4,
+            id: 3,
             title: this.translate.instant("basic-information-road.bs_lcc2_8"),
             no: null,
           },
           {
-            id: 5,
+            id: 4,
             title: this.translate.instant("basic-information-road.bs_lcc9"),
             no: null,
           },
           {
-            id: 6,
+            id: 4,
             title: this.translate.instant("basic-information-road.bs_lcc10"),
             no: null,
           },
           {
-            id: 7,
+            id: 5,
             title: this.translate.instant("basic-information-road.bs_lcc11"),
             no: null,
           },
           {
-            id: 8,
+            id: 6,
             title: this.translate.instant("basic-information-road.bs_lcc12"),
             no: null,
           },
           {
-            id: 9,
+            id: 7,
             title: this.translate.instant(
               "basic-information-road.bs_min_rebar_amount"
             ),

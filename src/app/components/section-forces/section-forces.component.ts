@@ -73,6 +73,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     this.selectedRoad = this.menu.selectedRoad;
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.saveData();
       if(this.menu.selectedRoad){
         this.setKeyGroupsRoad()
       }
@@ -249,11 +250,14 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     this.bendingColGroupsRoad = {};
     this.shearColGroupsRoad = {};
     this.torsionalColGroupsRoad = {};
+    const arrayIgnore = ["Minimum rebar amount[1-10]", "最小鉄筋量[1~10]"]
+    let pickup_moment = basic.pickup_moment;
+
+    pickup_moment = pickup_moment.filter((value, index) => !arrayIgnore.includes(this.translate.instant(value.title)));
+
     //bending
     let bendingRoad: any = new Object, iB = 1;
-    basic.pickup_moment.forEach((value, index) => {
-      if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
-        return
+    pickup_moment.forEach((value, index) => {
       let key = "B" + value.id;
       bendingRoad[key] = { start: iB, end: iB + 1 };
       iB += 2;
@@ -280,101 +284,38 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private setTitleGroupsRoad(id: number) {
-    let crrLang = this.translate.currentLang ?? "ja";
     const basic = this.basic.getSaveData();
-
     //Set title switch
     let currentSW = new Array();
     if (id === 0) {
-      
-      basic.pickup_moment.forEach((value, index) => {
+      const arrayIgnore = ["Minimum rebar amount[1-10]", "最小鉄筋量[1~10]"]
+      let pickup_moment = basic.pickup_moment;
+      pickup_moment = pickup_moment.filter((value, index) => !arrayIgnore.includes(this.translate.instant(value.title)));
+      pickup_moment.forEach((value, index) => {
         let key = "B" + value.id;
-        let titleString = "";
-
-        if(crrLang === "en"){
-          if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-          else if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
-            return  
-          else
-            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
-        else
-        {
-          if (value.id < 2)
-            titleString = this.translate.instant(value.title);
-          else if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
-            return
-          else
-            titleString = this.translate.instant(value.title);
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
+        const [mainTitle, subTitle] = this.force.handleTitle(value.title, value.id < 2 ? 1 : 3);
+        currentSW.push({
+          id: key,
+          title: subTitle,
+        })
       });
     } else if (id === 1) {
       basic.pickup_shear_force.forEach((value, index) => {
         let key = "S" + value.id;
-        let titleString = "";
-
-        if(crrLang === "en"){
-          if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-          else
-            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
-        else
-        {
-          if (value.id < 2)
-            titleString = this.translate.instant(value.title);
-          else
-            titleString = this.translate.instant(value.title);
-
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
-
+        const [mainTitle, subTitle] = this.force.handleTitle(value.title, value.id < 2 ? 1 : 3);
+        currentSW.push({
+          id: key,
+          title: subTitle,
+        })
       });
     } else if (id === 2) {
       basic.pickup_torsional_moment.forEach((value, index) => {
         let key = "T" + value.id;
-        let titleString = "";
-
-        if(crrLang === "en"){
-          if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-          else
-            titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
-        else
-        {
-          if (value.id < 2)
-            titleString = this.translate.instant(value.title);
-          else
-            titleString = this.translate.instant(value.title);
-
-          currentSW.push({
-            id: key,
-            title: titleString,
-          })
-        }
-        
+        const [mainTitle, subTitle] = this.force.handleTitle(value.title, value.id < 2 ? 1 : 3);
+        currentSW.push({
+          id: key,
+          title: subTitle,
+        })
       });
     }
     this.currentSW = currentSW;
@@ -385,7 +326,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     {
       //set for CurrentColGroupKeys
       this.setTitleGroupsRoad(id);
-      
+
       //set title again
       this.columnHeaders1 = this.force.getColumnHeaders1();
       this.columnHeaders2 = this.force.getColumnHeaders2();
