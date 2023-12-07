@@ -32,10 +32,12 @@ export class ShearComponent implements OnInit {
     background:
       "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)",
   };
+
   // タブのヘッダ名
   public styleShead = {
     L: { ...this.style },
   };
+
   public groupe_name: string[];
 
   // public isSubstructure: boolean = false;
@@ -87,7 +89,7 @@ export class ShearComponent implements OnInit {
 
     for (let i = 0; i < this.table_datas.length; i++) {
       this.table_datas[i].forEach((data: any, index: any) => {
-        if (data.fixed_end !== false && data.L === null) {
+        if (data.L === null) {
           data.pq_cellstyle = this.styleShead;
         }
       });
@@ -134,6 +136,24 @@ export class ShearComponent implements OnInit {
               },
             },
           ],
+        },
+        change(evt, ui) {
+          const style = {
+            "pointer-events": "none",
+            background:
+              "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)",
+          };
+
+          // タブのヘッダ名
+          const styleShead = {
+            L: { ...style },
+          };
+
+          if (ui.updateList[0].newRow.fixed_end === false) {
+            ui.updateList[0].rowData.pq_cellstyle = styleShead;
+          } else {
+            ui.updateList[0].rowData.pq_cellstyle = null;
+          }
         },
       };
       this.option_list.push(op);
