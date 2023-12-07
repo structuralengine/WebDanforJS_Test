@@ -157,7 +157,6 @@ export class ShearComponent implements OnInit {
             ) {
             ui.updateList[0].rowData.pq_cellstyle = styleShead;
             
-            console.log(ui.updateList[0],"check");
           } else {
             ui.updateList[0].rowData.pq_cellstyle = null;
           }
@@ -271,6 +270,8 @@ export class ShearComponent implements OnInit {
             dataType: "float",
             dataIndx: "L",
             sortable: false,
+            editable: false,
+            frozen: true,
             width: 150,
             nodrag: true,
           }
