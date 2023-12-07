@@ -215,22 +215,22 @@ export class InputBasicInformationService {
             no: null,
           },
           {
-            id: 4,
+            id: 5,
             title: this.translate.instant("basic-information-road.bs_lcc10"),
             no: null,
           },
           {
-            id: 5,
+            id: 6,
             title: this.translate.instant("basic-information-road.bs_lcc11"),
             no: null,
           },
           {
-            id: 6,
+            id: 7,
             title: this.translate.instant("basic-information-road.bs_lcc12"),
             no: null,
           },
           {
-            id: 7,
+            id: 8,
             title: this.translate.instant(
               "basic-information-road.bs_min_rebar_amount"
             ),
