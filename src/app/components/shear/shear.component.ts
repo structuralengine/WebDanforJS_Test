@@ -149,7 +149,7 @@ export class ShearComponent implements OnInit {
             L: { ...style },
           };
 
-          if (ui.updateList[0].newRow.fixed_end === false) {
+          if (ui.updateList[0].newRow.fixed_end === false && ui.updateList[0].rowData.L === null ) {
             ui.updateList[0].rowData.pq_cellstyle = styleShead;
           } else {
             ui.updateList[0].rowData.pq_cellstyle = null;
