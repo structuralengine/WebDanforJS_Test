@@ -142,6 +142,9 @@ export class ShearComponent implements OnInit {
             "pointer-events": "none",
             background:
               "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)",
+              "text-indent": "200%",
+              "white-space": "nowrap",
+              "overflow": "hidden",
           };
 
           // タブのヘッダ名
@@ -149,8 +152,12 @@ export class ShearComponent implements OnInit {
             L: { ...style },
           };
 
-          if (ui.updateList[0].newRow.fixed_end === false && ui.updateList[0].rowData.L === null ) {
+          if (ui.updateList[0].newRow.fixed_end === false 
+            // && ui.updateList[0].rowData.L === null 
+            ) {
             ui.updateList[0].rowData.pq_cellstyle = styleShead;
+            
+            console.log(ui.updateList[0],"check");
           } else {
             ui.updateList[0].rowData.pq_cellstyle = null;
           }
