@@ -252,6 +252,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     //bending
     let bendingRoad: any = new Object, iB = 1;
     basic.pickup_moment.forEach((value, index) => {
+      if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
+        return
       let key = "B" + value.id;
       bendingRoad[key] = { start: iB, end: iB + 1 };
       iB += 2;
@@ -280,9 +282,11 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
   private setTitleGroupsRoad(id: number) {
     let crrLang = this.translate.currentLang ?? "ja";
     const basic = this.basic.getSaveData();
+
     //Set title switch
     let currentSW = new Array();
     if (id === 0) {
+      
       basic.pickup_moment.forEach((value, index) => {
         let key = "B" + value.id;
         let titleString = "";
@@ -290,8 +294,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         if(crrLang === "en"){
           if (value.id < 2)
             titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
-          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
-            return
+          else if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
+            return  
           else
             titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
           currentSW.push({
@@ -302,11 +306,11 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         else
         {
           if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
-          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
+            titleString = this.translate.instant(value.title);
+          else if(this.translate.instant(value.title) === this.translate.instant("basic-information-road.bs_min_rebar_amount"))
             return
           else
-            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+            titleString = this.translate.instant(value.title);
           currentSW.push({
             id: key,
             title: titleString,
@@ -323,6 +327,7 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
             titleString = this.force.cutString(this.translate.instant(value.title), 10)[1];
           else
             titleString = this.force.cutString(this.translate.instant(value.title), 22)[1];
+
           currentSW.push({
             id: key,
             title: titleString,
@@ -331,11 +336,10 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         else
         {
           if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
-          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
-            return
+            titleString = this.translate.instant(value.title);
           else
-            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+            titleString = this.translate.instant(value.title);
+
           currentSW.push({
             id: key,
             title: titleString,
@@ -361,11 +365,10 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
         else
         {
           if (value.id < 2)
-            titleString = this.force.cutString(this.translate.instant(value.title), 4)[1];
-          else if (index === basic.pickup_moment.length - 1) ///temporary set: delete minimun rebar amount
-            return
+            titleString = this.translate.instant(value.title);
           else
-            titleString = this.force.cutString(this.translate.instant(value.title), 11)[1];
+            titleString = this.translate.instant(value.title);
+
           currentSW.push({
             id: key,
             title: titleString,
@@ -382,6 +385,11 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     {
       //set for CurrentColGroupKeys
       this.setTitleGroupsRoad(id);
+      
+      //set title again
+      this.columnHeaders1 = this.force.getColumnHeaders1();
+      this.columnHeaders2 = this.force.getColumnHeaders2();
+      this.columnHeaders3 = this.force.getColumnHeaders3();
 
       if (id === 0) {
         this.currentColGroups = this.bendingColGroupsRoad;

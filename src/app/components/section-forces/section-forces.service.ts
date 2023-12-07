@@ -4,6 +4,7 @@ import { InputBasicInformationService } from '../basic-information/basic-informa
 import { InputDesignPointsService } from '../design-points/design-points.service';
 import { TranslateService } from "@ngx-translate/core";
 import { MenuService } from '../menu/menu.service';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class InputSectionForcesService {
 
     if(this.menu.selectedRoad){
       pushIds = [0, 2];
-      pickup_moment.pop();
+      pickup_moment = pickup_moment.filter((value, index) => this.translate.instant(value.title) !== this.translate.instant("basic-information-road.bs_min_rebar_amount"));
     }
     else
       pushIds = [0, 2, 5, 6, 7, 8];
@@ -100,6 +101,7 @@ export class InputSectionForcesService {
 
     if(this.menu.selectedRoad)
     {
+      //console.log(dataArray);
       //Customer title table for Road
       for (const data of dataArray) {
         // const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
@@ -120,10 +122,10 @@ export class InputSectionForcesService {
         }
         else
         {
-          if (data.id < 2)
-            titles = this.cutString(this.translate.instant(data.title), 4);
-          else
-            titles = this.cutString(this.translate.instant(data.title), 11);
+          // if (data.id < 2)
+          //   titles = this.translate.instant(data.title).split(" ");
+          // else
+            titles = this.translate.instant(data.title).split(" ");
           if (pushIds.includes(data.id)) {
             if (currentHead) {
               result.push(currentHead);
