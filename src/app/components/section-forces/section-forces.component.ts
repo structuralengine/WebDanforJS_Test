@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular
 import { InputSectionForcesService } from './section-forces.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-section-forces',
@@ -53,13 +53,60 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   // ねじりモーメントのグリッド設定変数
   private columnHeaders3: object[];
-
+  public imgLink ="";
 
   ngOnInit() {
-    this.setColGroupsAndKeys(0);
-    this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
-    for (const group of this.bendingColGroupKeys) {
-      this.toggleStatus[group] = true;
+    let currentLang = this.translate.currentLang;
+    switch (currentLang) {
+      case "en": {
+        this.imgLink = "assets/img/basic-information/en.png";
+        break;
+      }
+      case "ja": {
+        this.imgLink = "assets/img/basic-information/jp.png";
+        break;
+      }
+      default: {
+      }
+    }
+    this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
+    //this.setColGroupsAndKeys(0);
+    if (JSON.stringify(this.force.toggleStatus) != '{}') {
+      this.toggleStatus = this.force.toggleStatus;
+      this.currentColGroupKeys = Object.keys(this.force.toggleStatus);      
+    } else {
+      this.currentColGroups = this.bendingColGroups;
+      this.currentColGroupKeys = Object.keys(this.currentColGroups);
+      for (const group of this.currentColGroupKeys) {
+        this.toggleStatus[group] = true;
+      }
     }
 
     // データを登録する
@@ -145,7 +192,6 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       this.currentColGroups = this.torsionalColGroups;
     }
     this.currentColGroupKeys = Object.keys(this.currentColGroups);
-
     for (const group of this.currentColGroupKeys) {
       if (this.toggleStatus[group] === undefined) {
         this.toggleStatus[group] = true;
@@ -177,16 +223,22 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnDestroy(): void {
     this.saveData();
+    this.saveDataCol();
   }
   public saveData(): void {
     this.force.setTableColumns(this.table_datas);
+
   }
 
-
+  public saveDataCol() {
+    this.force.setCelCols(this.toggleStatus)
+  }
   // 表の高さを計算する
   private tableHeight(): number {
     let containerHeight = window.innerHeight;
-    containerHeight -= 190;
+    // containerHeight -= 190;
+    containerHeight -= 30;
+    containerHeight /= 2;
     return containerHeight;
   }
 
@@ -237,5 +289,5 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       }
     }
   }
-  
+
 }
