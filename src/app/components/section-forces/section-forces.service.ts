@@ -10,7 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class InputSectionForcesService {
 
   private force: any[];
-
+  public toggleStatus: { [key: string]: boolean } = {};
   constructor(
     private helper: DataHelperModule,
     private basic: InputBasicInformationService,
@@ -21,6 +21,7 @@ export class InputSectionForcesService {
   }
   public clear(): void {
     this.force = new Array();
+    this.toggleStatus= {};
   }
 
   public getColumnHeaders1(): any {
@@ -296,5 +297,7 @@ export class InputSectionForcesService {
     this.force = force;
   }
 
-
+  public setCelCols(toggleStatus: any){
+     this.toggleStatus = toggleStatus;
+  }
 }
