@@ -85,8 +85,8 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       this.setKeyGroupsRoad()
     }
     this.initTable ();
-    
-        let currentLang = this.translate.currentLang;
+
+    let currentLang = this.translate.currentLang;
     switch (currentLang) {
       case "en": {
         this.imgLink = "assets/img/basic-information/en.png";
@@ -223,6 +223,72 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     }
     for (const group of this.bendingColGroupKeys) {
       this.toggleStatus[group] = true;
+    }
+
+    // データを登録する
+    this.ROWS_COUNT = this.rowsCount();
+    this.loadData(this.ROWS_COUNT);
+
+    this.columnHeaders1 = this.force.getColumnHeaders1();
+    this.columnHeaders2 = this.force.getColumnHeaders2();
+    this.columnHeaders3 = this.force.getColumnHeaders3();
+
+    // グリッドの初期化 --------------------------------------
+    this.options = {
+      showTop: false,
+      reactive: true,
+      sortable: false,
+      locale: 'jp',
+      height: this.tableHeight().toString(),
+      numberCell: { show: true }, // 行番号
+      colModel: this.columnHeaders1,
+      dataModel: { data: this.table_datas },
+      freezeCols: 1,
+      contextMenu: {
+        on: true,
+        items: [
+          {
+            name: this.translate.instant("action_key.copy"),
+            shortcut: 'Ctrl + C',
+            action: function (evt, ui, item) {
+              this.copy();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.paste"),
+            shortcut: 'Ctrl + V',
+            action: function (evt, ui, item) {
+              this.paste();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.cut"),
+            shortcut: 'Ctrl + X',
+            action: function (evt, ui, item) {
+              this.cut();
+            }
+          },
+          {
+            name: this.translate.instant("action_key.undo"),
+            shortcut: 'Ctrl + Z',
+            action: function (evt, ui, item) {
+              this.History().undo();
+            }
+          }
+        ]
+      },
+      beforeTableView: (evt, ui) => {
+        const dataV = this.table_datas.length;
+        if (ui.initV == null) {
+          return;
+        }
+        if (ui.finalV >= dataV - 1) {
+          this.loadData(dataV + this.ROWS_COUNT);
+          this.grid.refreshDataAndView();
+        }
+      },
+    };
+  }
 
   ngAfterViewInit() {
     this.activeButtons(0);
