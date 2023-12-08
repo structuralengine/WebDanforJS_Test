@@ -33,6 +33,8 @@ export class ShearComponent implements OnInit {
       "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)",
   };
   public prop={edit: false}
+  public propTrue={edit: true}
+
 
   // タブのヘッダ名
   public styleShead = {
@@ -40,6 +42,9 @@ export class ShearComponent implements OnInit {
   };
   public propShaded1:any =   { 
     L : { ...this.prop},
+  }
+  public propShaded2:any =   { 
+    L : { ...this.propTrue},
   }
   public groupe_name: string[];
 
@@ -151,6 +156,7 @@ export class ShearComponent implements OnInit {
               "overflow": "hidden",
           };
           const prop={edit: false}
+          const propTrue={edit: true}
 
           // タブのヘッダ名
           const styleShead = {
@@ -159,6 +165,9 @@ export class ShearComponent implements OnInit {
           };
           const propShaded1:any =   { 
             L : { ...prop},
+          }
+          const propShaded2:any =   { 
+            L : { ...propTrue},
           }
 
           if (ui.updateList[0].newRow.fixed_end === false 
@@ -169,6 +178,8 @@ export class ShearComponent implements OnInit {
             
           } else {
             ui.updateList[0].rowData.pq_cellstyle = null;
+            ui.updateList[0].rowData.pq_cellprop= propShaded2;
+
           }
         },
       };
