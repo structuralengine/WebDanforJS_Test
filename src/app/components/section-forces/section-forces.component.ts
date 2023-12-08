@@ -470,8 +470,10 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
     if(hideParent1 === undefined || hideParent1 === null) returnHeader.splice(1,1);
 
     const hideParent2 = this.groupActive.find(value => value >= 2);
-    if(hideParent2 === undefined || hideParent2 === null) returnHeader.splice(2,1);
-
+    if(hideParent2 === undefined || hideParent2 === null) 
+    {
+      returnHeader.splice(returnHeader.length - 1,1);
+    }
     return returnHeader;
   }
 
