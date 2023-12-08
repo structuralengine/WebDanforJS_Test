@@ -10,6 +10,7 @@ import { InputBasicInformationService } from '../basic-information/basic-informa
 import { log } from 'console';
 import { hide } from '@popperjs/core';
 
+
 @Component({
   selector: 'app-section-forces',
   templateUrl: './section-forces.component.html',
@@ -89,6 +90,59 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       this.setKeyGroupsRoad()
     }
     this.initTable ();
+
+    let currentLang = this.translate.currentLang;
+    switch (currentLang) {
+      case "en": {
+        this.imgLink = "assets/img/basic-information/en.png";
+        break;
+      }
+      case "ja": {
+        this.imgLink = "assets/img/basic-information/jp.png";
+        break;
+      }
+      default: {
+      }
+    }
+    this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+    });
+    //this.setColGroupsAndKeys(0);
+    if (JSON.stringify(this.force.toggleStatus) != '{}') {
+      this.toggleStatus = this.force.toggleStatus;
+      this.currentColGroupKeys = Object.keys(this.force.toggleStatus);      
+    } else {
+      this.currentColGroups = this.bendingColGroups;
+      this.currentColGroupKeys = Object.keys(this.currentColGroups);
+      for (const group of this.currentColGroupKeys) {
+        this.toggleStatus[group] = true;
+      }
+    }
 
     // this.setColGroupsAndKeys(0);
     // this.bendingColGroupKeys = Object.keys(this.bendingColGroups);
@@ -432,16 +486,23 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnDestroy(): void {
     this.saveData();
+    this.saveDataCol();
   }
   public saveData(): void {
     this.force.setTableColumns(this.table_datas);
+
   }
 
-
+  public saveDataCol() {
+    this.force.setCelCols(this.toggleStatus)
+  }
   // 表の高さを計算する
   private tableHeight(): number {
     let containerHeight = window.innerHeight;
-    containerHeight -= 250;
+    // containerHeight -= 250;
+    containerHeight -= 30;
+    containerHeight /= 2;
+
     return containerHeight;
   }
 
@@ -495,5 +556,5 @@ export class SectionForcesComponent implements OnInit, AfterViewInit, OnDestroy 
       }
     }
   }
-  
+
 }
