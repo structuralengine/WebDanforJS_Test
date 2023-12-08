@@ -1,9 +1,10 @@
+import { MenuService } from './../menu/menu.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { InputBasicInformationService } from './basic-information.service';
 import { SaveDataService } from '../../providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-basic-information',
@@ -13,6 +14,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class BasicInformationComponent implements OnInit, OnDestroy {
 
   private columnHeaders: object[] = [];
+  private columnHeaderDisableds: object[] = [];
   public specification1_select_id: number;
   public specification2_select_id: number;
 
@@ -40,13 +42,46 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
   constructor(
     private basic: InputBasicInformationService,
     private save: SaveDataService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private menuService: MenuService
   ) { }
-
+  public imgLink ="";
   ngOnInit() {
-
-    const basic = this.basic.getSaveData();
-
+    let currentLang = this.translate.currentLang;
+    switch (currentLang) {
+      case "en": {
+        this.imgLink = "assets/img/basic-information/en.png";
+        break;
+      }
+      case "ja": {
+        this.imgLink = "assets/img/basic-information/jp.png";
+        break;
+      }
+      default: {
+      }
+    }
+    
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      switch (event.lang) {
+        case "en": {
+          this.imgLink = "assets/img/basic-information/en.png";
+          break;
+        }
+        case "ja": {
+          this.imgLink = "assets/img/basic-information/jp.png";
+          break;
+        }
+        default: {
+        }
+      }
+      this.saveData();
+      this.onInitData();
+    });
+    this.onInitData();
+  }
+  onInitData(){
+    let basic : any = {};
+    basic = this.basic.getSaveData();
     // 適用
     this.specification1_list = basic.specification1_list;
     this.specification1_select_id = this.basic.get_specification1();
@@ -108,7 +143,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     };
 
     this.options2 = {
-      height: 310,
+      height: 340,
       showTop: false,
       reactive: true,
       sortable: false,
@@ -152,14 +187,15 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     };
 
     this.options3 = {
-      height: 210,
+      height: 340,
       showTop: false,
       reactive: true,
       sortable: false,
       locale: 'jp',
       numberCell: { show: true }, // 行番号
-      colModel: this.columnHeaders,
+      colModel: this.menuService.selectedRoad ? this.columnHeaderDisableds : this.columnHeaders,
       dataModel: { data: this.table3_datas },
+      editable:false,
       contextMenu: {
         on: true,
         items: [
@@ -201,6 +237,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     if (isManual) {
       // 断面力手入力モードの場合の項目
       this.columnHeaders = [];
+      this.columnHeaderDisableds = [];
     } else {
       // ピックアップファイルを使う場合の項目
       this.columnHeaders = [
@@ -208,7 +245,15 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
           title: this.translate.instant("basic-information.sre_cross"),
           dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
-        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true},
+      ];
+      this.columnHeaderDisableds = [
+        {
+          title: this.translate.instant("basic-information.sre_cross"),
+          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' },
+          cls:"col-disabled"
+        },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, cls:"col-disabled" },
       ];
     }
   }

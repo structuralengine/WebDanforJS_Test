@@ -35,6 +35,37 @@
             <span translate>app.basic_info</span>
           </a>
         </li>
+        <!-- Material strength - verification condition         -->
+        <li class="c-mainNavArea__navItem" *ngIf="menuService.selectedRoad">
+          <a
+            routerLink="./material-strength-verification-conditions"
+            routerLinkActive="selected-item"
+            (click)="activePageChenge(11)"
+            id="11"
+            class="c-mainNavArea__navItemTitle"
+          >
+          <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12.5 1L17.2631 9.25H7.73686L12.5 1Z" fill="white" />
+          <path d="M12.5 1L17.2631 9.25H7.73686L12.5 1Z" stroke="black" />
+          <circle cx="16.5" cy="16.5" r="4.5" fill="white" />
+          <rect
+            x="9.5"
+            y="11"
+            width="7.5"
+            height="7.5"
+            transform="rotate(90 9.5 11)"
+            fill="white"
+          />
+        </svg>
+            <span translate>app.material_condition</span>
+          </a>
+        </li>
         <li class="c-mainNavArea__navItem">
           <a
             routerLink="./members"
@@ -291,7 +322,7 @@
             <span translate>app.shear</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem">
+        <li class="c-mainNavArea__navItem" *ngIf="!menuService.selectedRoad">
           <a
             routerLink="./crack"
             routerLinkActive="selected-item"
@@ -317,7 +348,7 @@
             <span translate>app.crack</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem">
+        <li class="c-mainNavArea__navItem" *ngIf="!menuService.selectedRoad">
           <a
             routerLink="./fatigues"
             routerLinkActive="selected-item"
@@ -342,7 +373,7 @@
             <span translate>app.fatigues</span>
           </a>
         </li>
-        <li class="c-mainNavArea__navItem">
+        <li class="c-mainNavArea__navItem" *ngIf="!menuService.selectedRoad">
           <a
             routerLink="./safety-factors-material-strengths"
             routerLinkActive="selected-item"
@@ -370,6 +401,33 @@
               />
             </svg>
             <span translate>app.sf_ms</span>
+          </a>
+        </li>
+        <!-- Durability Data -->
+        <li class="c-mainNavArea__navItem"  *ngIf="menuService.selectedRoad">
+          <a
+            routerLink="./durability_data"
+            routerLinkActive="selected-item"
+            (click)="activePageChenge(12)"
+            id="12"
+            class="c-mainNavArea__navItemTitle"
+          >
+          <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 5L8.5 3L5 12.5L17 5L11.5 17L21 14L18.5 21.5"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+            <span translate>app.durability_data</span>
           </a>
         </li>
         <li class="c-mainNavArea__navItem">

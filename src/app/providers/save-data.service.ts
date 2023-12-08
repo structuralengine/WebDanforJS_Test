@@ -13,6 +13,7 @@ import { InputSteelsService } from "../components/steels/steels.service";
 import { ShearStrengthService } from "../components/shear/shear-strength.service";
 
 import packageJson from '../../../package.json';
+import { InputMaterialStrengthVerificationConditionService } from "../components/material-strength-verification-conditions/material-strength-verification-conditions.service";
 
 @Injectable({
   providedIn: "root",
@@ -49,6 +50,7 @@ export class SaveDataService {
     private fatigues: InputFatiguesService,
     private members: InputMembersService,
     private safety: InputSafetyFactorsMaterialStrengthsService,
+    private material: InputMaterialStrengthVerificationConditionService,
     private force: InputSectionForcesService,
     private calc: InputCalclationPrintService
   ) {
@@ -68,6 +70,7 @@ export class SaveDataService {
     this.fatigues.clear();
     this.safety.clear();
     this.force.clear();
+    this.material.clear();
   }
 
   // 断面力て入力モードかどうか判定する
@@ -365,8 +368,10 @@ export class SaveDataService {
     // 安全係数情報
     if ("safety" in jsonData) {
       this.safety.setSaveData(jsonData.safety);
+      this.material.setSaveData(jsonData.safety);
     } else {
       this.safety.clear();
+      this.material.clear();
     }
     // 断面力手入力情報
     if ("force" in jsonData) {
@@ -435,5 +440,9 @@ export class SaveDataService {
 
   public getPickupFilename(): string {
     return this.pickup_filename;
+  }
+
+  public getBasicData(): any{
+    return this.basic;
   }
 }

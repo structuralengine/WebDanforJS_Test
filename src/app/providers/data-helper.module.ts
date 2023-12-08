@@ -26,7 +26,6 @@ export class DataHelperModule {
 
   //Yes/Noのダイアログを表示する
   public async confirm(message: string): Promise<boolean> {
-    debugger
     if (this.electronService.isElectron) {
       return window.confirm(message);
     } else {

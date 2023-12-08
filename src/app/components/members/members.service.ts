@@ -62,7 +62,6 @@ export class InputMembersService {
     if(grNo.length == 0 && check.length > 0){
       this.helper.alert(this.translate.instant("members.group"))
     }
-    console.log(grNo);
   }
   // 部材情報
   public default_member(m_no: number): any {
@@ -226,8 +225,7 @@ export class InputMembersService {
     if (this.lang_shape_names.length <= shape_id)
       return 0;
 
-
-    return this.lang_shape_names[this.language.browserLang][shape_id];
+    return this.lang_shape_names[this.translate.currentLang][shape_id];
   }
 
   // 入力された文字列から形状IDを返す
@@ -412,8 +410,6 @@ export class InputMembersService {
       }
       result.push(def)
     }
-    console.log("data save", this.member_list);
-    
     return result;
   }
 

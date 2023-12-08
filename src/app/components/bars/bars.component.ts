@@ -5,6 +5,7 @@ import { SaveDataService } from 'src/app/providers/save-data.service';
 import pq from 'pqgrid';
 import { TranslateService } from "@ngx-translate/core";
 import { InputMembersService } from '../members/members.service';
+import { MenuService } from '../menu/menu.service';
 import { data } from 'jquery';
 
 @Component({
@@ -60,7 +61,8 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     private members: InputMembersService,
     private bars: InputBarsService,
     private save: SaveDataService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private menuService: MenuService
   ) { 
     this.members.checkGroupNo();
   }
@@ -185,6 +187,141 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     // 共通する項目
+    if(this.menuService.selectedRoad){
+    this.beamHeaders.push(
+      {
+        title: this.translate.instant("bars.p_name"),
+        dataType: 'string', dataIndx: 'p_name', editable: false, frozen: true, sortable: false, width: 250, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
+      },
+      {
+        title: this.translate.instant("bars.bh"),
+        align: 'center', dataType: 'float', dataIndx: 'bh', editable: false, frozen: true, sortable: false, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
+      },
+      {
+        title: this.translate.instant("bars.haunch"),
+        align: 'center', colModel: [
+          {
+            title: this.translate.instant("bars.bending"),
+            align: 'center', colModel: [
+              {
+                title: this.translate.instant("bars.shear"),
+                align: 'center', dataType: 'float', dataIndx: 'haunch_height', frozen: true, sortable: false, width: 85, nodrag: true,
+              },
+            ],
+            nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.position"),
+        align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.rebar_ax"),
+        align: 'center', colModel: [
+          {
+            title: this.translate.instant("bars.dia"),
+            dataType: 'integer', dataIndx: 'rebar_dia', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.number"),
+            dataType: 'float', dataIndx: 'rebar_n', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.cover"),
+            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 55, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.lines"),
+            dataType: 'float', dataIndx: 'rebar_lines', sortable: false, width: 55, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.space"),
+            dataType: 'float', dataIndx: 'rebar_space', sortable: false, width: 55, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.ss"),
+            dataType: 'float', dataIndx: 'rebar_ss', sortable: false, width: 55, nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.rebar_la"),
+        align: 'center', colModel: [
+          {
+            title: this.translate.instant("bars.dia"),
+            dataType: 'integer', dataIndx: 'side_dia', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.pieces"),
+            dataType: 'float', dataIndx: 'side_n', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: sideCoverTitle, dataType: 'float', dataIndx: 'side_cover', sortable: false, width: 85, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.ss"),
+            dataType: 'float', dataIndx: 'side_ss', sortable: false, width: 70, nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.rebar_ob"),
+        dataType: 'float', dataIndx: 'cos', sortable: false, width: 85, nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.rebar_sh"),
+        align: 'center', colModel: [
+          {
+            title: this.translate.instant("bars.dia"),
+            dataType: 'integer', dataIndx: 'stirrup_dia', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.number"),
+            dataType: 'float', dataIndx: 'stirrup_n', sortable: false, width: 70, nodrag: true,
+          },
+          {
+            title: this.translate.instant("bars.ss"),
+            dataType: 'float', dataIndx: 'stirrup_ss', sortable: false, width: 70, nodrag: true,
+          }
+        ],
+        nodrag: true,
+      },
+      {
+        title: 'tanγ+tanβ', dataType: 'float', dataIndx: 'tan', sortable: false, width: 85, nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.rebar_fo"), cls:"col-disabled", editable:false, 
+        align: 'center', colModel: [
+          {
+            title: this.translate.instant("bars.dia"),
+            dataType: 'integer', dataIndx: 'bending_dia', sortable: false, width: 70, nodrag: true, cls:"col-disabled" , editable:false
+          },
+          {
+            title: this.translate.instant("bars.number"),
+            dataType: 'float', dataIndx: 'bending_n', sortable: false, width: 70, nodrag: true, cls:"col-disabled" , editable:false
+          },
+          {
+            title: this.translate.instant("bars.ss"),
+            dataType: 'float', dataIndx: 'bending_ss', sortable: false, width: 70, nodrag: true, cls:"col-disabled" , editable:false
+          },
+          {
+            title: this.translate.instant("bars.angle"),
+            dataType: 'float', dataIndx: 'bending_angle', sortable: false, width: 70, nodrag: true, cls:"col-disabled", editable:false 
+          }
+        ],
+        nodrag: true,
+      },
+      {
+        title: this.translate.instant("bars.process"),
+        align: 'center', dataType: 'bool', dataIndx: 'enable', type: 'checkbox', sortable: false, width: 40, nodrag: true,
+      },
+    );
+    }
+    else{
     this.beamHeaders.push(
       {
         title: this.translate.instant("bars.p_name"),
@@ -317,6 +454,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         align: 'center', dataType: 'bool', dataIndx: 'enable', type: 'checkbox', sortable: false, width: 40, nodrag: true,
       },
     );
+    }
   }
 
   public getGroupeName(i: number): string {
@@ -411,15 +549,29 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
     
     let startCellIndex = start;
     let endCellIndex = end;
-
-    this.grid.grid.getColModel().forEach((column, index) => {
-      const isInTargetRange = index >= startCellIndex && index <= endCellIndex;
-      const isFixedCell = index <= FIXED_CELLS_COUNT;
-      const isCheckCell = index === CHECK_CELL_INDEX;
-
-      column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
-    });
-
+    if (this.menuService.selectedRoad) {
+      this.grid.grid.getColModel().forEach((column, index) => {
+        if (tab === "rebar_ax" && index == 20) {
+          column.hidden = false;
+        } else if (tab === "rebar_sh" && index == 20) {
+          column.hidden = true;
+        } else {
+          const isInTargetRange =
+            index >= startCellIndex && index <= endCellIndex;
+          const isFixedCell = index <= FIXED_CELLS_COUNT;
+          const isCheckCell = index === CHECK_CELL_INDEX;
+          column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+        }
+      });
+    } else {
+      this.grid.grid.getColModel().forEach((column, index) => {
+        const isInTargetRange =
+          index >= startCellIndex && index <= endCellIndex;
+        const isFixedCell = index <= FIXED_CELLS_COUNT;
+        const isCheckCell = index === CHECK_CELL_INDEX;
+        column.hidden = !(isInTargetRange || isFixedCell || isCheckCell);
+      });
+    }
     this.grid.refreshDataAndView();
   }
 }

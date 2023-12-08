@@ -3,6 +3,8 @@ import { InputDesignPointsService } from "./components/design-points/design-poin
 import { InputMembersService } from "./components/members/members.service";
 import { ConfigService } from "./providers/config.service";
 import { SaveDataService } from "./providers/save-data.service";
+import { MenuService } from "./components/menu/menu.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-root",
@@ -14,8 +16,12 @@ export class AppComponent {
     private config: ConfigService,
     private save: SaveDataService,
     private members: InputMembersService,
-    private points: InputDesignPointsService
-  ) {}
+    public menuService: MenuService,
+    private points: InputDesignPointsService,
+    private translate: TranslateService
+  ) {
+    translate.use(this.translate.getBrowserLang());
+  }
 
   public isManual(): boolean {
     return this.save.isManual();
@@ -36,7 +42,7 @@ export class AppComponent {
 
   // アクティブになっているボタンを全て非アクティブにする
   public deactiveButtons() {
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 12; i++) {
       const data = document.getElementById(i + "");
       if (data != null) {
         if (data.classList.contains("is-active")) {
