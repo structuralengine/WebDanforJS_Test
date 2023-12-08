@@ -1,4 +1,3 @@
-import { MenuService } from './../menu/menu.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { InputBasicInformationService } from './basic-information.service';
 import { SaveDataService } from '../../providers/save-data.service';
@@ -14,7 +13,6 @@ import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 export class BasicInformationComponent implements OnInit, OnDestroy {
 
   private columnHeaders: object[] = [];
-  private columnHeaderDisableds: object[] = [];
   public specification1_select_id: number;
   public specification2_select_id: number;
 
@@ -42,8 +40,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
   constructor(
     private basic: InputBasicInformationService,
     private save: SaveDataService,
-    private translate: TranslateService,
-    private menuService: MenuService
+    private translate: TranslateService
   ) { }
   public imgLink ="";
   ngOnInit() {
@@ -193,9 +190,8 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
       sortable: false,
       locale: 'jp',
       numberCell: { show: true }, // 行番号
-      colModel: this.menuService.selectedRoad ? this.columnHeaderDisableds : this.columnHeaders,
+      colModel: this.columnHeaders,
       dataModel: { data: this.table3_datas },
-      editable:false,
       contextMenu: {
         on: true,
         items: [
@@ -237,7 +233,6 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     if (isManual) {
       // 断面力手入力モードの場合の項目
       this.columnHeaders = [];
-      this.columnHeaderDisableds = [];
     } else {
       // ピックアップファイルを使う場合の項目
       this.columnHeaders = [
@@ -245,15 +240,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
           title: this.translate.instant("basic-information.sre_cross"),
           dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' }
         },
-        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true},
-      ];
-      this.columnHeaderDisableds = [
-        {
-          title: this.translate.instant("basic-information.sre_cross"),
-          dataType: 'string', dataIndx: 'title', editable: false, sortable: false, width: 270, nodrag: true, style: { 'background': '#373e45' }, styleHead: { 'background': '#373e45' },
-          cls:"col-disabled"
-        },
-        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, cls:"col-disabled" },
+        { title: 'Pickup No', align: 'center', dataType: 'integer', dataIndx: 'no', sortable: false, width: 100, nodrag: true, },
       ];
     }
   }

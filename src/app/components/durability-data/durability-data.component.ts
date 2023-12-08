@@ -199,9 +199,7 @@ export class DurabilityDataComponent implements OnInit, OnDestroy, AfterViewInit
     this.setShow(id);
     this.activeButtons(id);
 
-    this.setTitle(this.save.isManual());
     this.options = this.option_list[id];
-    this.options.colModel = this.columnHeaders;
     this.grid.options = this.options;
     this.grid.refreshDataAndView();
   }

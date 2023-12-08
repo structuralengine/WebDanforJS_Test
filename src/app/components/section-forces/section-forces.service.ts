@@ -3,8 +3,6 @@ import { DataHelperModule } from 'src/app/providers/data-helper.module';
 import { InputBasicInformationService } from '../basic-information/basic-information.service';
 import { InputDesignPointsService } from '../design-points/design-points.service';
 import { TranslateService } from "@ngx-translate/core";
-import { MenuService } from '../menu/menu.service';
-import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +15,7 @@ export class InputSectionForcesService {
     private helper: DataHelperModule,
     private basic: InputBasicInformationService,
     private points: InputDesignPointsService,
-    private translate: TranslateService,
-    private menu: MenuService
+    private translate: TranslateService
   ) {
     this.clear();
   }
@@ -27,85 +24,27 @@ export class InputSectionForcesService {
   }
 
   public getColumnHeaders1(): any {
-    let pushIds = new Array();
-    let pickup_moment = this.basic.pickup_moment;
-
-    if(this.menu.selectedRoad){
-      pushIds = [0, 2];
-      const arrayIgnore = ["Minimum rebar amount[1-10]", "最小鉄筋量[1~10]"]
-      pickup_moment = pickup_moment.filter((value, index) => !arrayIgnore.includes(this.translate.instant(value.title)));
-    }
-    else
-      pushIds = [0, 2, 5, 6, 7, 8];
     return this.createColumnHeaders(
-      pickup_moment,
-      pushIds,
+      this.basic.pickup_moment,
+      [0, 2, 5, 6, 7, 8],
       "Md"
     );
   }
 
   public getColumnHeaders2(): any {
-    let pushIds = new Array();
-    if(this.menu.selectedRoad){
-      pushIds = [0, 2];
-    }
-    else
-      pushIds = [0, 3, 5, 6, 7];
-
     return this.createColumnHeaders(
       this.basic.pickup_shear_force,
-      pushIds,
+      [0, 3, 5, 6, 7],
       "Vd"
     );
   }
 
   public getColumnHeaders3(): any {
-    let pushIds = new Array();
-    if(this.menu.selectedRoad){
-      pushIds = [0, 2];
-    }
-    else
-      pushIds = [0, 5, 6, 7];
-
     return this.createColumnHeaders(
       this.basic.pickup_torsional_moment,
-      pushIds,
+      [0, 5, 6, 7],
       "Mt"
     );
-  }
-  public handleTitle(inputString: string, number?: number){
-    //// split input string and return [a, b] => ex: "This words" => ["This", "words"]
-    inputString = this.translate.instant(inputString);
-    const words: string[] = inputString.split(' ');
-    let mainTitle, subTitle;
-    
-    //Set specification case title Japanese
-    if(words.length <=3)
-    {
-      //get number words from Array
-      const firstTemp = words.slice(0, 1);
-      mainTitle = firstTemp.join(' ')
-
-      const remainTemp = words.slice(1);
-      subTitle = remainTemp.join(' ')
-      return [mainTitle, subTitle]
-    }
-    else
-    {
-      //get number words from Array
-      if (number == null || number > words.length) {
-        mainTitle = words[0];
-        subTitle = " ";
-      }
-      else {
-        const firstTemp = words.slice(0, number);
-        mainTitle = firstTemp.join(' ')
-
-        const remainTemp = words.slice(number);
-        subTitle = remainTemp.join(' ')
-      }
-      return [mainTitle, subTitle]
-    }
   }
 
   private createColumnHeaders(
@@ -124,41 +63,22 @@ export class InputSectionForcesService {
       nodrag: true,
     };
 
-    let crrLang = this.translate.currentLang ?? "ja";
     const result: object[] = [baseColumn];
     let currentHead: any = null;
 
-    if(this.menu.selectedRoad)
-    {
-      //Customer title table for Road
-      for (const data of dataArray) {
-        const [mainTitle, subTitle] = this.handleTitle(data.title, data.id < 2? 1 : 3);
-        if (pushIds.includes(data.id)) {
-          if (currentHead) {
-            result.push(currentHead);
-          }
-          currentHead = this.createNewHeader(mainTitle);
+    for (const data of dataArray) {
+      //If it cannot be translated, it will still return itself
+      // const [mainTitle, subTitle] = data.title.split(" ");
+      const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
+      if (pushIds.includes(data.id)) {
+        if (currentHead) {
+          result.push(currentHead);
         }
-        const key = keyPrefix + data.id;
-        currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
+        currentHead = this.createNewHeader(mainTitle);
       }
-    }
-    else
-    {
-      for (const data of dataArray) {
-        //If it cannot be translated, it will still return itself
-        // const [mainTitle, subTitle] = data.title.split(" ");
-        const [mainTitle, subTitle] = this.translate.instant(data.title).split(" ");
-        if (pushIds.includes(data.id)) {
-          if (currentHead) {
-            result.push(currentHead);
-          }
-          currentHead = this.createNewHeader(mainTitle);
-        }
-  
-        const key = keyPrefix + data.id;
-        currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
-      }
+
+      const key = keyPrefix + data.id;
+      currentHead.colModel.push(this.createSubColumn(subTitle, key, keyPrefix));
     }
 
     if (currentHead) {
@@ -361,9 +281,9 @@ export class InputSectionForcesService {
       if (flg === true) {
         this.force.push(new_colum);
       }
-      // ????
-      // const position = this.points.getCalcData(new_colum.index);
-      // position.p_name =  data.p_name;
+      //
+      const position = this.points.getCalcData(new_colum.index);
+      position.p_name = data.p_name;
       // position.La = data.La;
     }
   }
