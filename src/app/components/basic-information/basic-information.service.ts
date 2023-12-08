@@ -229,13 +229,13 @@ export class InputBasicInformationService {
             title: this.translate.instant("basic-information-road.bs_lcc12"),
             no: null,
           },
-          {
-            id: 9,
-            title: this.translate.instant(
-              "basic-information-road.bs_min_rebar_amount"
-            ),
-            no: null,
-          },
+          // {
+          //   id: 8,
+          //   title: this.translate.instant(
+          //     "basic-information-road.bs_min_rebar_amount"
+          //   ),
+          //   no: null,
+          // },
         ];
         // case 2: // 道
         //   result = [
@@ -818,6 +818,7 @@ export class InputBasicInformationService {
     this.pickup_moment = this.default_pickup_moment(sp1, sp2);
     for (let i = 0; i < basic.pickup_moment.length; i++) {
       const e = this.pickup_moment[i];
+      if(e === undefined ||e === null ) continue
       const t = basic.pickup_moment[i];
       if (t == null) {
         continue;
