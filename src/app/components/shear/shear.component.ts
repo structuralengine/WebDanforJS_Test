@@ -32,12 +32,15 @@ export class ShearComponent implements OnInit {
     background:
       "linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)",
   };
+  public prop={edit: false}
 
   // タブのヘッダ名
   public styleShead = {
     L: { ...this.style },
   };
-
+  public propShaded1:any =   { 
+    L : { ...this.prop},
+  }
   public groupe_name: string[];
 
   // public isSubstructure: boolean = false;
@@ -91,6 +94,7 @@ export class ShearComponent implements OnInit {
       this.table_datas[i].forEach((data: any, index: any) => {
         if (data.L === null) {
           data.pq_cellstyle = this.styleShead;
+          data.pq_cellprop=this.propShaded1
         }
       });
 
@@ -146,16 +150,22 @@ export class ShearComponent implements OnInit {
               "white-space": "nowrap",
               "overflow": "hidden",
           };
+          const prop={edit: false}
 
           // タブのヘッダ名
           const styleShead = {
             L: { ...style },
+            
           };
+          const propShaded1:any =   { 
+            L : { ...prop},
+          }
 
           if (ui.updateList[0].newRow.fixed_end === false 
             // && ui.updateList[0].rowData.L === null 
             ) {
             ui.updateList[0].rowData.pq_cellstyle = styleShead;
+            ui.updateList[0].rowData.pq_cellprop= propShaded1;
             
           } else {
             ui.updateList[0].rowData.pq_cellstyle = null;
@@ -269,8 +279,6 @@ export class ShearComponent implements OnInit {
             title: this.translate.instant("shear-strength.m_len"),
             dataType: "float",
             dataIndx: "L",
-            sortable: false,
-            editable: false,
             frozen: true,
             width: 150,
             nodrag: true,
