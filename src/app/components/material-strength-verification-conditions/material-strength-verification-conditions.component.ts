@@ -20,7 +20,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public activeTab: string = 'rsb_con';
   private current_index: number;
   private groupe_list: any[];
- 
+  public fck: any;
 
   public groupMem: any;
   @ViewChild('grid1') grid1: SheetComponent;
@@ -114,8 +114,8 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
       this.option4_list.push(verification);     
 
       this.option1_list.push({
-        width: 550,
-        height: 200,
+        width: 650,
+        height: 180,
         showTop: false,
         reactive: true,
         sortable: false,
@@ -202,6 +202,9 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
             }
           ]
         },
+        change: (evt, ui) => {
+        this.fck= this.table2_datas[0][0].value;
+        }
       });
 
     }
@@ -212,13 +215,17 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.component_select_id = this.getComponentSelectId();
     this.options4 = this.option4_list[0];
     this.options5 = this.other_list[0];
+    this.fck = this.table2_datas.length>0?this.table2_datas[0][0].value: 0;
+   
   }
   ngOnDestroy(): void {
     //throw new Error('Method not implemented.');
     this.saveData();
   }
   public setActiveTab(tab: string) {
-    this.activeTab = tab;    
+    this.activeTab = tab;  
+    const i = this.current_index;    
+    this.fck = this.table2_datas.length>0?this.table2_datas[i][0].value: 0;
   }
   public saveData(): void {    
     const material_bar = {};
@@ -229,9 +236,19 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     for (let i = 0; i < this.groupe_list.length; i++) {
       const groupe = this.groupe_list[i];
       const first = groupe[0];
-      const id = first.g_id;   
-     
-      component[id] = this.component_list[i];    
+      const id = first.g_id;        
+      component[id] = this.component_list[i];   
+      const bar = this.table1_datas[i]; 
+      material_bar[id] = [{
+        tensionBar: { fsy: bar[0].fsy1, fsu: bar[0].fsu1 },
+        sidebar: { fsy: bar[1].fsy1, fsu: bar[1].fsu1 },
+        stirrup: { fsy: bar[2].fsy1, fsu: bar[2].fsu1 }
+      },
+      {
+        tensionBar: { fsy: bar[0].fsy2, fsu: bar[0].fsu2 },
+        sidebar: { fsy: bar[1].fsy2, fsu: bar[1].fsu2 },
+        stirrup: { fsy: bar[2].fsy2, fsu: bar[2].fsu2 }
+      }];
 
       const conc = this.table2_datas[i];
       material_concrete[id] = {
@@ -262,11 +279,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         align: 'center', colModel: [
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d25"),
-            dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsy1', sortable: false, width: 90, nodrag: true,
           },
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d29"),
-            dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsy2', sortable: false, width: 100, nodrag: true,
           }
         ],
         nodrag: true,
@@ -276,11 +293,11 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
         align: 'center', colModel: [
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d25"),
-            dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsu1', sortable: false, width: 90, nodrag: true,
           },
           {
             title: this.translate.instant("material-strength-verifiaction-condition.d29"),
-            dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'fsu2', sortable: false, width: 100, nodrag: true,
           }
         ],
         nodrag: true,
@@ -302,7 +319,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
   public setCheckboxPlastic(j: number): void {
     const i = this.current_index;
     const plastic = this.option4_list[i];
-    const element = plastic[j];  
+    const element = plastic[j];     
     element.selected = !element.selected
   }
   private getComponentSelectId(): string {
@@ -314,13 +331,28 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
    }
     return result.id;
   }
-  handleCheck(event:any,item:any){
+  handleCheck(event:any,item:any, type){
     const id = this.current_index
-   this.other_list[id].forEach((data:any)=>{
-    if(data.id === item.id){
-      data.selected = event.target.checked
+    if(type==="component"){
+      this.component_list[id].forEach((data:any)=>{
+        if(data.id === item.id){
+          data.selected = event.target.checked
+        }
+       })
     }
-   })
+    if(type==="other"){
+      this.other_list[id].forEach((data:any)=>{
+        if(data.id === item.id){
+          data.selected = event.target.checked
+        }
+       })
+    }
+  }
+  setLevel(j: number, event: any){
+    const i = this.current_index;
+    const plastic = this.option4_list[i];
+    const element = plastic[j];  
+    element.type = event.target.value;
   }
   public activePageChenge(id: number, group: any): void {
     this.groupMem = group;
@@ -341,7 +373,7 @@ export class MaterialStrengthVerificationConditionComponent implements OnInit {
     this.options5= this.other_list[id]
 
     this.options4 = this.option4_list[id]
-
+    this.fck = this.table2_datas[id][0].value;  
   }
   private activeButtons(id: number) {
     for (let i = 0; i <= this.groupe_name.length; i++) {

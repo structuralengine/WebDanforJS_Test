@@ -174,14 +174,14 @@ export class InputMaterialStrengthVerificationConditionService {
           {
             id: 0,
             title: this.translate.instant("material-strength-verifiaction-condition.var_st"),
-            selected: true,
-            type: 0
+            selected: false,
+            type: null
           },
           {
             id: 1,
             title: this.translate.instant("material-strength-verifiaction-condition.acc_st"),
-            selected: true,
-            type: 1
+            selected: false,
+            type: null
           },
         ]
         break;
@@ -211,6 +211,11 @@ export class InputMaterialStrengthVerificationConditionService {
             title: this.translate.instant("material-strength-verifiaction-condition.sub"),
             selected: true           
           },
+          {
+            id: 11,
+            title: this.translate.instant("material-strength-verifiaction-condition.co"),
+            selected: true           
+          },
         ]
         break;
     }
@@ -227,7 +232,12 @@ export class InputMaterialStrengthVerificationConditionService {
             id: 0,
             title: this.translate.instant("material-strength-verifiaction-condition.sep"),
             selected: false           
-          }          
+          },
+          {
+            id: 1,
+            title: this.translate.instant("material-strength-verifiaction-condition.do_not"),
+            selected: false           
+          }            
         ]
         break;
     }
@@ -237,9 +247,9 @@ export class InputMaterialStrengthVerificationConditionService {
   public setSaveData(material: any) {  
     this.material_bar = material.material_bar,  
     this.material_concrete = material.material_concrete 
-    this.component = material.component
-    this.verification = material.verification
-    this.other = material.other
+    this.component = material.component ?? {}
+    this.verification = material.verification ?? {}
+    this.other = material.other??{}
   }
   public clear(): void {
     this.material_bar = {}; 

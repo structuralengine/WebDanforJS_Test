@@ -54,6 +54,7 @@ h5 {
 .safety-factors,
 .material-strength {
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .safety-factors,
@@ -62,8 +63,19 @@ h5 {
 
   table {
     margin: 15px;
+   
   }
-
+  .hideTab{
+    color: gray;
+    pointer-events: none;
+    input{
+      color: gray;
+    }
+  }
+  .dottedLine{
+    border: 10px dotted red;
+    display: table-cell;
+  }
   th {
     border: 1px solid var(--table_border);
     font-weight: normal;
@@ -71,7 +83,7 @@ h5 {
     text-align: center;
     padding: 0;
     line-height: 1.5;
-    background: var(--table_row_even_bg);
+    background: var(--table_row_even_bg);   
   }
 
   td {
@@ -97,25 +109,27 @@ h5 {
     vertical-align: middle;
 
     input[type="checkbox"]:checked {
-      accent-color: red;
+      accent-color: #00C95F;
       background-color: opacify($color: #000000, $amount: 0);
     }
   } 
   .diagonalRising {
-    border: solid #0000003d 0.11px;
-    transform: rotate(-15deg);
+    background: linear-gradient(to left top, transparent 0%, transparent 50.5%, gray 52.5%, transparent 54.5%, transparent 100%)
   }
   .levelType{
     background: transparent;
     border: none;
     color: white;
     text-align: center;
-    max-width: 20px;
+    max-width: 80px;
    
   }
   input:focus-visible {
     outline: -webkit-focus-ring-color auto 0px !important;
   }
+  .hideCol{
+    display: none;
+  }  
 }
 
 //#00C95F
@@ -128,7 +142,10 @@ h5 {
   float: right;
   // margin-left: 15px;
 }
-
+.hideSei{
+  color: gray !important;
+  pointer-events: none;
+}
 .tab-select {
   &-items {
     display: flex;
