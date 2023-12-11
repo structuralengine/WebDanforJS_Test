@@ -281,8 +281,6 @@ export class MenuComponent implements OnInit {
 
   }
 
-
-
   private open_done(modalRef, error = null) {
     // 後処理
     if (error === null) {
@@ -418,7 +416,9 @@ export class MenuComponent implements OnInit {
     ///temporary set default spe_2.2: "partial coefficient method"
     if(i === 2)
     {
-      basic.specification2_list.map(obj => obj.selected = (obj.id === 6) ? true : false);
+      basic.specification2_list.map(obj => 
+        obj.selected = (obj.id === 6) ? true : false);
+        this.specification2_select_id = 6;
     }
 
     this.specification2_list = basic.specification2_list; // 仕様
