@@ -176,11 +176,12 @@ export class ShearComponent implements OnInit {
             ui.updateList[0].rowData.pq_cellstyle = styleShead;
             ui.updateList[0].rowData.pq_cellprop= propShaded1;
             
-          } else {
+          } else if(ui.updateList[0].newRow.fixed_end === true ){
             ui.updateList[0].rowData.pq_cellstyle = null;
             ui.updateList[0].rowData.pq_cellprop= propShaded2;
 
           }
+          console.log(ui.updateList[0].newRow.fixed_end ,"ui.updateList[0].newRow.fixed_end");
         },
       };
       this.option_list.push(op);
