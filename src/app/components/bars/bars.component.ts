@@ -557,10 +557,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (this.menuService.selectedRoad) {
       this.grid.grid.getColModel().forEach((column, index) => {
-        if(column.dataIndx === "tan" || column.dataIndx === "stirrup_dia")
-          console.log("aaaaa")
-
-
         if (tab === "rebar_ax" && column.dataIndx === "tan")
         {
           column.hidden = false;
