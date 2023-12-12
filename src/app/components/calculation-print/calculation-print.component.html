@@ -43,8 +43,12 @@
               [value]="calculate_torsional_moment_checked"
               [(ngModel)]="calculate_torsional_moment_checked"
               [checked]="calculate_torsional_moment_checked"
+              [disabled]="selectedRoad"
             />
-            <span translate class="checkbox-parts"
+            <span
+              translate
+              class="checkbox-parts"
+              [style.color]="selectedRoad ? 'gray' : ''"
               >calculation-print.twist</span
             >
           </label>
@@ -70,7 +74,7 @@
     </div>
     <div class="button-container">
       <button
-        [disabled]="!isAnyDownloadCheckboxChecked()"
+        [disabled]="!isAnyDownloadCheckboxChecked() || selectedRoad"
         (click)="downloadSummaryFun4()"
         id="downloadButton"
         translate
@@ -103,7 +107,7 @@
             <span
               translate
               class="checkbox-parts"
-              [style.color]="selectedRoad ? 'gray' : 'inherit'"
+              [style.color]="selectedRoad ? 'gray' : ''"
               >calculation-print.s_table</span
             >
           </label>
@@ -140,7 +144,7 @@
             <span
               translate
               class="checkbox-parts"
-              [style.color]="selectedRoad ? 'gray' : 'inherit'"
+              [style.color]="selectedRoad ? 'gray' : ''"
               >calculation-print.safety_ratio</span
             >
           </label>
