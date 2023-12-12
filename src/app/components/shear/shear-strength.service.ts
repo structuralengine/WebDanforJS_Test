@@ -28,12 +28,13 @@ export class ShearStrengthService {
       p_name: null,
       La: null,
       fixed_end: null,
-      L: null
+      L: null,
+      concrete: false,
+      bar: false,
     };
   }
 
   public getTableColumns(): any[] {
-
     const table_datas: any[] = new Array();
 
     // グリッド用データの作成
@@ -96,9 +97,7 @@ export class ShearStrengthService {
   }
 
   public setTableColumns(table_datas: any[]) {
-
     this.shear_list = new Array();
-
     for (const column of table_datas) {
       const b = this.default_shear(column.index);
       b.m_no =      column.m_no;
@@ -107,6 +106,8 @@ export class ShearStrengthService {
       b.La =        column.La;
       b.fixed_end = column.fixed_end;
       b.L =         column.L;
+      b.bar =       column.bar;
+      b.concrete =  column.concrete;
       this.shear_list.push(b);
     }
   }
@@ -121,7 +122,6 @@ export class ShearStrengthService {
 
 
   public setSaveData(shear: any) {
-
     this.clear();
     for(const data of shear){
       const tmp = this.default_shear(data.index);
@@ -142,7 +142,6 @@ export class ShearStrengthService {
 
     // 入力行を更新
     const dummy = this.getTableColumns();
-
     // points にあるせん断スパン情報を shear の変数として登録する
     for(let i=0; i<this.shear_list.length; i++){
       const s = this.shear_list[i];

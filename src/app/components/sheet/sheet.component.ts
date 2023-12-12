@@ -240,7 +240,6 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit() {
     this.createGrid();
     this.setColsShow();
-    // console.log(this.colsShow);
   }
 
   refreshDataAndView() {
