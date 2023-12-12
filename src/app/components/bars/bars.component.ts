@@ -162,6 +162,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setTitle(isManual: boolean): void {
+    this.beamHeaders = [];
     if (isManual) {
       // 断面力手入力モードの場合
       this.beamHeaders = [
@@ -456,8 +457,6 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
       },
     );
     }
-
-    console.log(this.beamHeaders, "header");
   }
 
   public getGroupeName(i: number): string {
@@ -486,6 +485,8 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   public activePageChenge(id: number): void {
+    this.setTitle(this.save.isManual());
+    this.option_list[id].colModel = this.beamHeaders
     this.activeButtons(id);
     
     this.options = this.option_list[id];
@@ -545,16 +546,12 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         manual: { start: 17, end: 23 }
       }
     };
-    
     const mode = this.save.isManual() ? "manual" : "default";
     const tabType = cellIndexMap[tab] || cellIndexMap["default"];
     const { start, end } = tabType[mode];
     
     let startCellIndex = start;
     let endCellIndex = end;
-
-    console.log(this.grid.grid.getColModel());
-
     if (this.menuService.selectedRoad) {
       this.grid.grid.getColModel().forEach((column, index) => {
         if (tab === "rebar_ax" && column.dataIndx === "tan")
