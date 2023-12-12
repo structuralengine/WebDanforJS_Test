@@ -20,6 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PreviewExcelComponent } from '../preview-excel/preview-excel.component';
 import { merge } from 'rxjs';
 import { Guid } from 'guid-typescript';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-calculation-print',
@@ -45,7 +46,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   public table_datas: any[];
 
   public hasSummary: boolean = false;
-  public selectedRoad: boolean = true;
+  public selectedRoad: boolean ;
   private summary_data;
 
   constructor(
@@ -59,12 +60,15 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     public language: LanguagesService,
     private helper: DataHelperModule,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private menuService: MenuService,
   ) {
     // this.auth = getAuth();
   }
 
   ngOnInit() {
+    console.log("menu",this.menuService.selectedRoad);
+    this.selectedRoad=this.menuService.selectedRoad
     console.log(this.selectedRoad,"selectedRoad");
     this.print_calculate_checked = this.calc.print_selected.print_calculate_checked;
     this.print_section_force_checked = this.calc.print_selected.print_section_force_checked;
