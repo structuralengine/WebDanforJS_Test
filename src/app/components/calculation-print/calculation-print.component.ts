@@ -75,7 +75,12 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
     this.calculate_moment_checked = true;
     this.calculate_shear_force_checked = true;
-    this.calculate_torsional_moment_checked = true;
+    if(this.menuService.selectedRoad == true){
+
+      this.calculate_torsional_moment_checked = false;
+    }else {
+      this.calculate_torsional_moment_checked = true;
+    }
 
     this.consider_moment_checked = true;
 
