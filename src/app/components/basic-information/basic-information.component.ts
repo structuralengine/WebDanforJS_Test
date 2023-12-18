@@ -5,7 +5,11 @@ import { SaveDataService } from '../../providers/save-data.service';
 import { SheetComponent } from '../sheet/sheet.component';
 import pq from 'pqgrid';
 import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
+
 import { forEach } from 'jszip';
+
+import { MenuBehaviorSubject } from '../menu/menu-behavior-subject.service';
+
 
 @Component({
   selector: 'app-basic-information',
@@ -44,6 +48,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
     private basic: InputBasicInformationService,
     private save: SaveDataService,
     private translate: TranslateService,
+    private menuBehaviorSubject: MenuBehaviorSubject,
     private menuService: MenuService
   ) { }
   public imgLink ="";
@@ -79,6 +84,10 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
       this.onInitData();
     });
     this.onInitData();
+
+    this.menuBehaviorSubject.menuBehaviorSubject$.subscribe((i) =>{
+      this.onInitData();
+    } );
   }
   onInitData(){
     let basic : any = {};
