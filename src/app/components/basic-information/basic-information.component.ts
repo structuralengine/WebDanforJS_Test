@@ -207,7 +207,7 @@ export class BasicInformationComponent implements OnInit, OnDestroy {
         ]
       },
     };
-    console.log(this.menuService.selectedRoad)
+    
     this.options3 = {
       height: 340,
       showTop: false,
