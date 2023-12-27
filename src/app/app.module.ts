@@ -82,12 +82,20 @@ function initializeKeycloak(keycloak: KeycloakService) {
         config: {
             url: 'https://auth.malme.app',
             realm: 'structural-engine',
-            clientId: 'structural-engine'
+            clientId: 'malme-mypage'
         },
         initOptions: {
             onLoad: 'check-sso',
         }
-    }).catch(error => window.alert("自動ログインに失敗しました。"));
+    })
+    .catch((error) => {
+      const elVer = window?.process?.versions["electron"];
+      if (elVer) {
+        return;
+      } else {
+        window.alert("自動ログインに失敗しました。");
+      }
+    });
 }
 
 @NgModule({
