@@ -13,18 +13,17 @@ export class LanguagesService {
     en: "English",
   };
 
-  // private readonly default_lang: string = "en";
+  //  private readonly default_lang: string = "en";
 
   constructor(
     public translate: TranslateService,
     public helper: DataHelperModule,
     public electronService: ElectronService,
   ) {
-
-    // if(translate.getBrowserLang() in this.languageIndex)
-    //   this.browserLang = translate.getBrowserLang();
-    // else
-    //   this.browserLang = this.default_lang;
+    if(translate.getBrowserLang() in this.languageIndex)
+      this.browserLang = translate.getBrowserLang();
+    else
+      this.browserLang = this.translate.currentLang;
 
     // console.log("BROWSER LANG: ", this.browserLang);
     // translate.use(this.browserLang);

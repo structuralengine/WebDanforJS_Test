@@ -308,7 +308,16 @@
             <div class="d-flex service-life">
               <p translate>fatigues.durable</p>
               <input
-                placeholder="input"
+                *ngIf="translate.currentLang=== 'en'"
+                placeholder="Example: 100"
+                id="T"
+                name="T"
+                type="text"
+                [(ngModel)]="service_life"
+              />
+              <input
+                *ngIf="translate.currentLang=== 'ja'"
+                placeholder="例: 100"
                 id="T"
                 name="T"
                 type="text"
