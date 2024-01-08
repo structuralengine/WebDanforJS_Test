@@ -362,9 +362,10 @@ export class InputSectionForcesService {
       if (flg === true) {
         this.force.push(new_colum);
       }
-      // ????
-      // const position = this.points.getCalcData(new_colum.index);
-      // position.p_name =  data.p_name;
+
+      let position = this.points.getCalcData(new_colum.index);
+      if(position)
+        position.p_name =  data.p_name;
       // position.La = data.La;
     }
   }
