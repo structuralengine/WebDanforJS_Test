@@ -46,8 +46,9 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   public table_datas: any[];
 
   public hasSummary: boolean = false;
-  public selectedRoad: boolean ;
+  public selectedRoad: boolean;
   private summary_data;
+  public isChecked: boolean = false;
 
   constructor(
     private calc: InputCalclationPrintService,
@@ -67,7 +68,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.selectedRoad=this.menuService.selectedRoad
+    this.selectedRoad = this.menuService.selectedRoad
     this.print_calculate_checked = this.calc.print_selected.print_calculate_checked;
     this.print_section_force_checked = this.calc.print_selected.print_section_force_checked;
     this.print_summary_table_checked = this.calc.print_selected.print_summary_table_checked;
@@ -75,10 +76,10 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
 
     this.calculate_moment_checked = true;
     this.calculate_shear_force_checked = true;
-    if(this.menuService.selectedRoad == true){
+    if (this.menuService.selectedRoad == true) {
 
       this.calculate_torsional_moment_checked = false;
-    }else {
+    } else {
       this.calculate_torsional_moment_checked = true;
     }
 
@@ -91,8 +92,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
         'g_name': data.g_name
       });
     }
-
-
+    this.handleCheck()
   }
 
   ngOnDestroy() {
@@ -141,7 +141,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     ui_data["member_group_selection"] = column_data;
 
     console.log(JSON.stringify(ui_data));
-    
+
     const url = environment.calcURL; // サーバ側で集計もPDF生成もするバージョンのAzureFunction
 
     this.http
@@ -408,8 +408,8 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     //const out_filename = "out_" + filename;
     //
     //// 保存する
-    if(this.electronService.isElectron)
-     this.electronService.ipcRenderer.sendSync('saveFileExcel', filename, this.summary_data);
+    if (this.electronService.isElectron)
+      this.electronService.ipcRenderer.sendSync('saveFileExcel', filename, this.summary_data);
     else {
       window.open(fileURL, "_blank");
     }
@@ -464,5 +464,20 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
   }
   public isManual(): boolean {
     return this.save.isManual();
+  }
+  handleCheckAll() {
+    this.table_datas.forEach(item => {
+      item.calc_checked = this.isChecked
+    })
+  }
+  handleCheck() {
+    for (const data of this.table_datas) {
+      if (data.calc_checked) {
+        this.isChecked = true;
+      } else {
+        this.isChecked = false;
+        break;
+      }
+    }
   }
 }
