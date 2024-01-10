@@ -238,7 +238,7 @@ export class MenuComponent implements OnInit {
   open(evt) {
     const modalRef = this.modalService.open(WaitDialogComponent);
     const file = evt.target.files[0];
-    this.fileName = file.name;
+    this.fileName = this.shortenFilename(file.name);
     evt.target.value = "";
 
     this.router.navigate(["/blank-page"]);
@@ -281,6 +281,10 @@ export class MenuComponent implements OnInit {
     }
     this.showMenu = false;
 
+  }
+
+  private shortenFilename(filename, maxLength = 25) {
+    return filename.length <= maxLength ? filename : `${filename.slice(0, maxLength - 10)}...${filename.slice(-10)}`;
   }
 
   private open_done(modalRef, error = null) {
