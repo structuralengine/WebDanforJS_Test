@@ -192,7 +192,6 @@ export class MenuComponent implements OnInit {
   private _renew(): void {
     this.app.deactiveButtons();
 
-    // this.fileName = "";
     this.fileName = "";
     this.pickup_file_name = "";
 
@@ -238,7 +237,7 @@ export class MenuComponent implements OnInit {
   open(evt) {
     const modalRef = this.modalService.open(WaitDialogComponent);
     const file = evt.target.files[0];
-    this.fileName = this.shortenFilename(file.name);
+    this.fileName = file.name;
     evt.target.value = "";
 
     this.router.navigate(["/blank-page"]);
@@ -283,8 +282,9 @@ export class MenuComponent implements OnInit {
 
   }
 
-  private shortenFilename(filename, maxLength = 25) {
-    return filename.length <= maxLength ? filename : `${filename.slice(0, maxLength - 10)}...${filename.slice(-10)}`;
+  public shortenFilename(filename, maxLength = 25) {
+    let tempName = filename;
+    return tempName.length <= maxLength ? tempName : `${tempName.slice(0, maxLength - 10)}...${tempName.slice(-10)}`;
   }
 
   private open_done(modalRef, error = null) {
