@@ -282,9 +282,14 @@ export class MenuComponent implements OnInit {
 
   }
 
-  public shortenFilename(filename, maxLength = 25) {
+  public getFileNameFromUrl(url) {
+    return url.replace(/^.*[\\/]/, '')
+  }
+
+  public shortenFilename(filename, maxLength = 30) {
     let tempName = filename;
-    return tempName.length <= maxLength ? tempName : `${tempName.slice(0, maxLength - 10)}...${tempName.slice(-10)}`;
+    tempName = this.getFileNameFromUrl(tempName);
+    return tempName.length <= maxLength ? tempName : '...'+ tempName.slice(tempName.length - maxLength);
   }
 
   private open_done(modalRef, error = null) {
