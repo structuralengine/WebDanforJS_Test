@@ -314,6 +314,7 @@
                 name="T"
                 type="text"
                 [(ngModel)]="service_life"
+                (change)="changeInput()"
               />
               <input
                 *ngIf="translate.currentLang=== 'ja'"
@@ -322,6 +323,7 @@
                 name="T"
                 type="text"
                 [(ngModel)]="service_life"
+                (change)="changeInput()"
               />
             </div>
             <div class="d-flex jA-jB">
@@ -334,6 +336,7 @@
                   name="jA"
                   type="text"
                   [(ngModel)]="train_A_count"
+                  (change)="changeInput()"
                 />
               </div>
               <div class="d-flex service-life">
@@ -345,6 +348,7 @@
                   name="jB"
                   type="text"
                   [(ngModel)]="train_B_count"
+                  (change)="changeInput()"
                 />
               </div>
             </div>
