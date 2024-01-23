@@ -279,7 +279,7 @@
           <ng-container *ngFor="let item of conditions_list; index as i">
             <!--  -->
             <div
-              *ngIf="!(hideDCJ3_J5 && (i === 1 || i === 2))"
+              *ngIf="item.id != 'JR-001' && !(hideDCJ3_J5 && (i === 1 || i === 2))"
               class="d-flex"
               [ngClass]="{
                 'cond-chk-active': item.selected,
