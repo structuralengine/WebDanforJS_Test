@@ -194,9 +194,10 @@ body {
         contain: none;
     }
     .pq-title-span {
-        display: flex;
+        display: flex !important;
         justify-content: center;
         align-items: center;
+        word-wrap: break-word;
     }
     .pq-col-sort-count,
     .pq-col-sort-icon {
@@ -204,6 +205,9 @@ body {
     }
     .pq-grid-cell input[type="checkbox"] {
         accent-color: #00C95F;
+    }
+    .pq-td-div{
+        white-space: unset !important;
     }
 }
 .col-disabled{

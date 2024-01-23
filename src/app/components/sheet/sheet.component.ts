@@ -50,7 +50,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private createGrid() {
+  private createGrid() {   
     this.options.beforeCellKeyDown = (evt, ui) => {
       const mov = 1;
       // Enterで下に移動
@@ -182,7 +182,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
       }
       //key tab
       if (evt.keyCode === 9) {
-        if (evt.shiftKey){
+        if (evt.shiftKey) {
           if (!(ui.rowIndx === 0 && ui.colIndx === 0)) {
             const indexCrr = this.colsShow.indexOf(ui.colIndx);
             let colPre = this.colsShow[indexCrr - 1];
@@ -203,8 +203,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
             }
           }
         }
-        else
-        {
+        else {
           const indexCrr = this.colsShow.indexOf(ui.colIndx);
           let colNext = this.colsShow[indexCrr + 1];
           if (indexCrr === this.colsShow.length - 1) {
@@ -227,6 +226,9 @@ export class SheetComponent implements AfterViewInit, OnChanges {
       return true;
     }
     this.grid = pq.grid(this.div.nativeElement, this.options);
+    this.grid.Columns().alter(() => {
+      this.grid.option('rowSpanHead', true)
+    })
   }
 
   ngOnChanges(obj: SimpleChanges) {
