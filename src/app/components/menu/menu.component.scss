@@ -256,7 +256,11 @@ $md-radio-ripple-size: 12px;
 
 .file-layout {
     display: flex;
-    gap: 4px
+    gap: 4px;
+    width: 70%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .hr {

@@ -192,7 +192,6 @@ export class MenuComponent implements OnInit {
   private _renew(): void {
     this.app.deactiveButtons();
 
-    // this.fileName = "";
     this.fileName = "";
     this.pickup_file_name = "";
 
@@ -281,6 +280,16 @@ export class MenuComponent implements OnInit {
     }
     this.showMenu = false;
 
+  }
+
+  public getFileNameFromUrl(url) {
+    return url.replace(/^.*[\\/]/, '')
+  }
+
+  public shortenFilename(filename, maxLength = 30) {
+    let tempName = filename;
+    tempName = this.getFileNameFromUrl(tempName);
+    return tempName.length <= maxLength ? tempName : '...'+ tempName.slice(tempName.length - maxLength);
   }
 
   private open_done(modalRef, error = null) {
