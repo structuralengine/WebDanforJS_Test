@@ -228,11 +228,11 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           },
           {
             title: this.translate.instant("bars.number"),
-            dataType: 'float', dataIndx: 'rebar_n', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_n', sortable: false, width: 60, nodrag: true,
           },
           {
             title: this.translate.instant("bars.cover"),
-            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 55, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 65, nodrag: true,
           },
           {
             title: this.translate.instant("bars.lines"),
@@ -362,11 +362,11 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
           },
           {
             title: this.translate.instant("bars.number"),
-            dataType: 'float', dataIndx: 'rebar_n', sortable: false, width: 70, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_n', sortable: false, width: 60, nodrag: true,
           },
           {
             title: this.translate.instant("bars.cover"),
-            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 55, nodrag: true,
+            dataType: 'float', dataIndx: 'rebar_cover', sortable: false, width: 65, nodrag: true,
           },
           {
             title: this.translate.instant("bars.lines"),
