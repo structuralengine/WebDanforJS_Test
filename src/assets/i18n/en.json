@@ -15,7 +15,8 @@
         "fail":"Failed to open the file. status:",
         "open":"Please open",
         "acceptedFile":"Please choose pik or csv file format",
-        "NewWindow":"New window"
+        "NewWindow":"New window",
+        "contact":"Contact"
     },
     "login-dialog":{
         "createAccount":"Creat account",

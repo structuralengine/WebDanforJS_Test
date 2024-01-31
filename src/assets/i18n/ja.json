@@ -14,7 +14,8 @@
         "login":"ログイン",
         "fail":"ファイルを開くことに失敗しました, status:",
         "open":"を開いてください！",
-        "NewWindow":"新しいウィンドウ"
+        "NewWindow":"新しいウィンドウ",
+        "contact":"お問い合わせ"
     },
     "login-dialog":{
         "createAccount":"ユーザー登録がお済みでない方はこちらから",

@@ -263,12 +263,17 @@ $md-radio-ripple-size: 12px;
     justify-content: center;
 }
 
-.hr {
+.hr-1, .hr-2 {
     height: 28px;
     width: 1px;
     margin-left: 16px;
-    background: #535353;
+    // background: #535353;
     z-index: 2;
+}
+.hr-2{
+    background: #535353;
+    margin-right: 16px;
+    margin-left: 0px 
 }
 
 .spec-layout {
@@ -281,8 +286,8 @@ $md-radio-ripple-size: 12px;
     padding-right: 0;
 }
 
-.mr-16 {
-    margin-right: 16px;
+.ml-16 {
+    margin-left: 70px;
 }
 
 p {
@@ -321,7 +326,7 @@ p {
     font-size: 12px;
     gap: 57px;
     display: flex;
-    right: 106px;
+    left: 238px;
     label {
         margin: 0;
     }

@@ -213,3 +213,7 @@ body {
 .col-disabled{
     color: gray !important;
 }
+
+#chatplusview.chatplusview-basic.closed #outline{
+    display: none;
+  }
