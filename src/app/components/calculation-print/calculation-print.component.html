@@ -55,7 +55,16 @@
         </div>
       </div>
       <div class="download-item">
-        <legend translate>calculation-print.member</legend>
+          <!-- *ngIf="table_datas.length > 0" -->
+          <legend class="title" translate> 
+            <input
+            type="checkbox"
+            class="checkbox-all"
+            [value]="isChecked"
+            [checked]="isChecked"
+            [(ngModel)]="isChecked"
+            (change)="handleCheckAll()" /> 
+            calculation-print.member</legend>
         <div class="hot">
           <ng-container *ngFor="let item of table_datas; index as j">
             <label class="checkbox-container">
@@ -65,6 +74,7 @@
                 [value]="item.calc_checked"
                 [(ngModel)]="item.calc_checked"
                 [checked]="item.calc_checked"
+                (change)="handleCheck()"
               />
               <span class="checkbox-parts">{{ item.g_name }}</span>
             </label>

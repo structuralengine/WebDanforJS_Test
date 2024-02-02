@@ -14,7 +14,8 @@
         "login":"ログイン",
         "fail":"ファイルを開くことに失敗しました, status:",
         "open":"を開いてください！",
-        "NewWindow":"新しいウィンドウ"
+        "NewWindow":"新しいウィンドウ",
+        "contact":"お問い合わせ"
     },
     "login-dialog":{
         "createAccount":"ユーザー登録がお済みでない方はこちらから",
@@ -180,9 +181,9 @@
         "rebar_ax":"軸方向鉄筋",
         "dia":"鉄筋径",
         "number":"本数",
-        "cover":"かぶり\n1段目",
+        "cover":"芯かぶり\n1段目",
         "lines":"ならび\n本数",
-        "space":"アキ",
+        "space":"段間隔",
         "ss":"間隔",
         "rebar_la":"側方鉄筋",
         "pieces":"本数片",
@@ -192,7 +193,7 @@
         "angle":"角度",
         "process":"処理",
         "tp":"上端位置",
-        "tp_side":"上端位置\n/側かぶり"
+        "tp_side":"上端位置\n/側芯かぶり"
     },
     "steels":{
         "m_no":"部材\n番号",

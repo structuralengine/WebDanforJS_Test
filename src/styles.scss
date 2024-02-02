@@ -5,7 +5,7 @@
 
 @import url("https://unpkg.com/jquery-ui-pack@1.12.3/jquery-ui.theme.css");
 
-@import url("https://unpkg.com/pqgrid@7.5.0/pqgrid.min.css");
+@import url("https://unpkg.com/pqgrid@9.0.1/pqgrid.min.css");
 @import "~pqgrid/pqgrid.ui.min.css";
 @import "~pqgrid/themes/bootstrap/pqgrid.css";
 
@@ -139,7 +139,8 @@ body {
         color: var(--text_main);
     }
     div.pq-editor-outer {
-        background: transparent !important;
+        // background: transparent !important;
+        background: var(--table_empty_bg) !important;
     }
     div.pq-theme {
         color: var(--primary);
@@ -193,9 +194,10 @@ body {
         contain: none;
     }
     .pq-title-span {
-        display: flex;
+        display: flex !important;
         justify-content: center;
         align-items: center;
+        word-wrap: break-word;
     }
     .pq-col-sort-count,
     .pq-col-sort-icon {
@@ -204,7 +206,14 @@ body {
     .pq-grid-cell input[type="checkbox"] {
         accent-color: #00C95F;
     }
+    .pq-td-div{
+        white-space: unset !important;
+    }
 }
 .col-disabled{
     color: gray !important;
 }
+
+#chatplusview.chatplusview-basic.closed #outline{
+    display: none;
+  }
