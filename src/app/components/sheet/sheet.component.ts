@@ -249,7 +249,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   }
   // ctrl+Shift,and mouse wheel
   onKeyDown(event: KeyboardEvent) {
-    if (event.ctrlKey && event.shiftKey) {
+    if (event.shiftKey) {
       this.isCtrlShiftPressed = true;
       event.preventDefault(); // Prevent the default behavior of the mouse wheel
     }
