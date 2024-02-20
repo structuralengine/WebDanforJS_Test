@@ -15,7 +15,8 @@
         "fail":"Failed to open the file. status:",
         "open":"Please open",
         "acceptedFile":"Please choose pik or csv file format",
-        "NewWindow":"New window"
+        "NewWindow":"New window",
+        "contact":"Contact"
     },
     "login-dialog":{
         "createAccount":"Creat account",
@@ -137,9 +138,9 @@
         "shape":"Shape",
         "rectangle":"Rectangle",
         "t_shape":"T shape",
-        "r_shape":"Round,Circle",
+        "r_shape":"Circle, Ring",
         "oval":"oval",
-        "circle":"Round/Circle",
+        "circle":"Circle/Ring",
         "m_no":"Member\nNo",
         "m_len":"Distance",
         "g_no":"Group No",
