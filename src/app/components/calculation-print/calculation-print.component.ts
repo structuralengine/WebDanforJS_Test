@@ -74,13 +74,13 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.print_summary_table_checked = this.calc.print_selected.print_summary_table_checked;
     this.print_safety_ratio_checked = this.calc.print_selected.print_safety_ratio_checked;
 
-    this.calculate_moment_checked = true;
-    this.calculate_shear_force_checked = true;
+    this.calculate_moment_checked = this.calc.print_selected.calculate_moment_checked;
+    this.calculate_shear_force_checked = this.calc.print_selected.calculate_shear_force;
     if (this.menuService.selectedRoad == true) {
 
       this.calculate_torsional_moment_checked = false;
     } else {
-      this.calculate_torsional_moment_checked = true;
+      this.calculate_torsional_moment_checked = this.calc.print_selected.calculate_torsional_moment;
     }
 
     this.consider_moment_checked = true;
