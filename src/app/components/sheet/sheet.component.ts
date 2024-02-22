@@ -21,6 +21,7 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   isCrackQuestionActive = false;
   isSafetyQuestionActive = false;
   public colsShow: any[] = new Array();
+  isCtrlShiftPressed = false; // Flag to track Ctrl + Shift key combination
 
   @HostListener('document:mouseover', ['$event'])
   toggleActive(event: Event) {
@@ -244,8 +245,61 @@ export class SheetComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit() {
     this.createGrid();
     this.setColsShow();
+    this.div.nativeElement.addEventListener('wheel', this.onMouseWheel.bind(this));
+    this.div.nativeElement.addEventListener('keydown', this.onKeyDown.bind(this));
+    this.div.nativeElement.addEventListener('keyup', this.onKeyUp.bind(this));
+  }
+  // ctrl+Shift,and mouse wheel
+  onKeyDown(event: KeyboardEvent) {
+    if (event.ctrlKey && event.shiftKey) {
+      this.isCtrlShiftPressed = true;
+      event.preventDefault(); // Prevent the default behavior of the mouse wheel
+    }
   }
 
+  onKeyUp(event: KeyboardEvent) {
+    if (!event.ctrlKey || !event.shiftKey) {
+      this.isCtrlShiftPressed = false;
+    }
+  }
+
+  onMouseWheel(event: WheelEvent) {
+    if (event.ctrlKey ) {
+      event.preventDefault(); // Prevent the default behavior of the mouse wheel
+      if(event.shiftKey){
+        // debugger
+        event.preventDefault();
+        const scrollAmount = 20; // Adjust the scroll amount as per your requirement
+        let elementChildren = this.div.nativeElement;
+        let element = document.getElementsByClassName("pq-cont-right")
+  
+        if (event.deltaY > 0) {
+             for (let i = 0; i < element.length; i++) {
+            let elemento = element[i];
+            elemento.scrollLeft += scrollAmount;
+        }
+          
+            elementChildren.scrollLeft += scrollAmount;
+
+        } else if (event.deltaY < 0) {
+         // Scroll up
+         for (let i = 0; i < element.length; i++) {
+          let elemento = element[i];
+          elemento.scrollLeft -= scrollAmount;
+        }
+        }
+      }
+
+    }
+  }
+
+  scrollLeft() {
+    // Implement logic to scroll left within your table
+  }
+
+  scrollRight() {
+    // Implement logic to scroll right within your table
+  }
   refreshDataAndView() {
     if (this.grid === null) {
       return;
