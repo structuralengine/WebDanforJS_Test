@@ -86,10 +86,10 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.consider_moment_checked = true;
 
     this.table_datas = new Array();
-    for (const data of this.calc.getColumnData()) {
+    for (const data of this.calc.print_selected.member_group_selection) {
       this.table_datas.push({
-        'calc_checked': data.checked,
-        'g_name': data.g_name
+        'calc_checked': data.Checked,
+        'g_name': data.GroupName
       });
     }
     this.handleCheck()
@@ -109,6 +109,14 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.calc.print_selected.calculate_torsional_moment = this.calculate_torsional_moment_checked;
 
     this.calc.setColumnData(this.table_datas);
+
+    //clear and set again
+    this.calc.print_selected.member_group_selection = new Array();
+    for (var i = 0; this.table_datas.length > i; i++)
+    this.calc.print_selected.member_group_selection.push({
+      GroupName: this.table_datas[i].g_name,
+      Checked: this.table_datas[i].calc_checked
+    });
   }
 
   // 計算開始
