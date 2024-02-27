@@ -103,6 +103,7 @@ export class CalculationPrintComponent implements OnInit, OnDestroy {
     this.calc.print_selected.print_calculate_checked = this.print_calculate_checked;
     this.calc.print_selected.print_section_force_checked = this.print_section_force_checked;
     this.calc.print_selected.print_summary_table_checked = this.print_summary_table_checked;
+    this.calc.print_selected.print_safety_ratio_checked = this.print_safety_ratio_checked;
 
     this.calc.print_selected.calculate_moment_checked = this.calculate_moment_checked;
     this.calc.print_selected.calculate_shear_force = this.calculate_shear_force_checked;
