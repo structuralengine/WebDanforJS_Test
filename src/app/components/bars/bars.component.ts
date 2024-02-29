@@ -216,7 +216,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         nodrag: true,
       },
       {
-        title: this.translate.instant("bars.position"),
+        title: this.translate.instant("bars.position_"),
         align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, nodrag: true,
       },
       {
@@ -350,7 +350,7 @@ export class BarsComponent implements OnInit, OnDestroy, AfterViewInit {
         nodrag: true,
       },
       {
-        title: this.translate.instant("bars.position"),
+        title: this.translate.instant("bars.position_"),
         align: 'center', dataType: 'string', dataIndx: 'design_point_id', frozen: true, editable: true, sortable: false, width: 40, nodrag: true,
       },
       {
