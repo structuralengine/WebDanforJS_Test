@@ -1,5 +1,5 @@
 {
-  "productName": "web-dan-for-js",
+  "productName": "web-dan-for-js-test",
   "directories": {
     "output": "release/"
   },
@@ -30,7 +30,7 @@
   ],
   "win": {
     "icon": "dist/assets/icons",
-    "publisherName": "MALME INC.",
+    "verifyUpdateCodeSignature": false,
     "target": "nsis",
     "asar": false
   },

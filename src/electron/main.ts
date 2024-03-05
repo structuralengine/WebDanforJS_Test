@@ -3,11 +3,12 @@ import { autoUpdater } from 'electron-updater';
 import * as fs from 'fs';
 import log from 'electron-log';
 import isDev from 'electron-is-dev';
+import path from 'path'
 // 起動 --------------------------------------------------------------
 
 let mainWindow: BrowserWindow;
 let locale = 'ja';
-
+log.transports.file.resolvePath = () => path.join('E:/Le Tuan Anh/WebDanforJS_Test/src/logs/main.logs')
 async function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
