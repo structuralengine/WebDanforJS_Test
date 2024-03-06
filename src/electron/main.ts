@@ -37,17 +37,14 @@ async function createWindow() {
 
 app.whenReady().then(async () => {
   await createWindow();
-
   if (!isDev) {
     // 起動時に1回だけ
     log.info(`アップデートがあるか確認します。${app.name} ${app.getVersion()}`);
-
     await autoUpdater.checkForUpdates();
   }
 });
-
 // アップデート --------------------------------------------------
-autoUpdater.checkForUpdatesAndNotify();
+//autoUpdater.checkForUpdatesAndNotify();
 
 // Angular -> Electron --------------------------------------------------
 ipcMain.on("newWindow", async() => await createWindow())
