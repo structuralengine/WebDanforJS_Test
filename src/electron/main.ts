@@ -8,8 +8,11 @@ import path from 'path'
 
 let mainWindow: BrowserWindow;
 let locale = 'ja';
+let check = -1;
 log.transports.file.resolvePath = () => path.join('E:/Le Tuan Anh/WebDanforJS_Test/src/logs/main.logs')
 async function createWindow() {
+  check = -1;
+  log.info("check install k", check);
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
@@ -20,17 +23,19 @@ async function createWindow() {
   mainWindow.setMenuBarVisibility(false);
   //mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {
-    let langText = require(`../assets/i18n/${locale}.json`)
-    let choice = dialog.showMessageBoxSync(this,
-      {
-        type: 'question',
-        buttons: ['Yes', 'No'],
-        title: langText.window.closeTitle,
-        message: langText.window.closeMessage,
-      });
-    if (choice==1) {
-      e.preventDefault();
-    }
+    if(check == -1){
+      let langText = require(`../assets/i18n/${locale}.json`)
+      let choice = dialog.showMessageBoxSync(this,
+        {
+          type: 'question',
+          buttons: ['Yes', 'No'],
+          title: langText.window.closeTitle,
+          message: langText.window.closeMessage,
+        });
+      if (choice == 1) {
+        e.preventDefault();
+      }
+    }  
   });
   await mainWindow.loadFile('index.html');
 }
@@ -45,7 +50,43 @@ app.whenReady().then(async () => {
 });
 // アップデート --------------------------------------------------
 //autoUpdater.checkForUpdatesAndNotify();
-
+autoUpdater.on('update-available', (info) => {
+  log.info('update-available', info)
+  autoUpdater.downloadUpdate();  
+});
+autoUpdater.on('error', (err) => {
+  log.info('Error in auto-updater:', err);
+});
+autoUpdater.on('download-progress', (progressObj) => {
+  log.info('Download progress:', progressObj);
+});
+//when update downloaded, reboot to install
+autoUpdater.on('update-downloaded', (info) => {
+  log.info('Update-downloaded', info)
+  let langText = require(`../assets/i18n/${locale}.json`)
+  let choice = dialog.showMessageBoxSync(mainWindow,
+    {
+      type: 'question',
+      buttons: ["Ok", "Cancel"],
+      message: langText.modal.updateMessage,
+    });
+  if (choice == 0) {
+    let langText = require(`../assets/i18n/${locale}.json`)
+    let choice1 = dialog.showMessageBoxSync(mainWindow,
+      {
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: langText.window.closeTitle,
+        message: langText.window.closeMessage,
+      });
+    if (choice1 == 0) {   
+      check = 0;
+      log.info("check install", check);
+      autoUpdater.quitAndInstall();
+    }       
+  }
+  
+});
 // Angular -> Electron --------------------------------------------------
 ipcMain.on("newWindow", async() => await createWindow())
 // ファイルを開く

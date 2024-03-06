@@ -567,7 +567,10 @@
     "modal": {
         "close": "Close",
         "cancel": "Cancel",
-        "ok": "OK"
+        "ok": "OK",
+        "reboot": "Reboot",
+        "updateMessage": "Update is available.\nDo you want to reboot to perform the update?\nIf you choose to cancel, the application will be automatically updated after it is closed.",
+        "updateTitle": "Application update"
     },
     "window": {
         "closeTitle": "Confirm",
