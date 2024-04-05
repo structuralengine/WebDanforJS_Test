@@ -9,6 +9,7 @@ import path from 'path'
 let mainWindow: BrowserWindow;
 let locale = 'ja';
 let check = -1;
+autoUpdater.autoDownload = false
 log.transports.file.resolvePath = () => path.join('E:/Le Tuan Anh/WebDanforJS_Test/src/logs/main.logs')
 async function createWindow() {
   check = -1;
