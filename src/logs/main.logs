@@ -1,1 +1,4612 @@
-[2024-03-05 14:47:43.506] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.5
+[2024-04-05 14:46:14.046] [info]  check install k -1
+[2024-04-05 14:46:15.836] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.7
+[2024-04-05 14:46:18.708] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 14:46:21.771] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 10006
+}
+[2024-04-05 14:46:21.773] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 9987
+}
+[2024-04-05 14:46:22.614] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 18072
+}
+[2024-04-05 14:46:22.696] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 17464
+}
+[2024-04-05 14:46:23.535] [info]  Download progress: {
+  total: 9108757,
+  delta: 58628,
+  transferred: 58628,
+  percent: 0.6436443523523572,
+  bytesPerSecond: 17723
+}
+[2024-04-05 14:46:23.578] [info]  Download progress: {
+  total: 9108757,
+  delta: 43214,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 30392
+}
+[2024-04-05 14:46:23.606] [info]  Download progress: {
+  total: 9108757,
+  delta: 58628,
+  transferred: 58628,
+  percent: 0.6436443523523572,
+  bytesPerSecond: 17346
+}
+[2024-04-05 14:46:23.612] [info]  Download progress: {
+  total: 9108757,
+  delta: 43214,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 30077
+}
+[2024-04-05 14:46:24.501] [info]  Download progress: {
+  total: 9108757,
+  delta: 61504,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 28108
+}
+[2024-04-05 14:46:24.523] [info]  Download progress: {
+  total: 9108757,
+  delta: 61504,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 27957
+}
+[2024-04-05 14:46:25.454] [info]  Download progress: {
+  total: 9108757,
+  delta: 105129,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 31323
+}
+[2024-04-05 14:46:25.478] [info]  Download progress: {
+  total: 9108757,
+  delta: 105129,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 31186
+}
+[2024-04-05 14:46:26.362] [info]  Download progress: {
+  total: 9108757,
+  delta: 148754,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 33798
+}
+[2024-04-05 14:46:26.407] [info]  Download progress: {
+  total: 9108757,
+  delta: 148754,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 33557
+}
+[2024-04-05 14:46:27.307] [info]  Download progress: {
+  total: 9108757,
+  delta: 229776,
+  transferred: 288404,
+  percent: 3.166227839868821,
+  bytesPerSecond: 40729
+}
+[2024-04-05 14:46:27.310] [info]  Download progress: {
+  total: 9108757,
+  delta: 7888,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 41826
+}
+[2024-04-05 14:46:27.322] [info]  Download progress: {
+  total: 9108757,
+  delta: 222545,
+  transferred: 281173,
+  percent: 3.0868426943434764,
+  bytesPerSecond: 39630
+}
+[2024-04-05 14:46:27.323] [info]  Download progress: {
+  total: 9108757,
+  delta: 15119,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 41755
+}
+[2024-04-05 14:46:28.308] [info]  Download progress: {
+  total: 9108757,
+  delta: 542948,
+  transferred: 831352,
+  percent: 9.12695332634299,
+  bytesPerSecond: 102865
+}
+[2024-04-05 14:46:28.323] [info]  Download progress: {
+  total: 9108757,
+  delta: 1309347,
+  transferred: 1590520,
+  percent: 17.461438481672086,
+  bytesPerSecond: 196458
+}
+[2024-04-05 14:46:28.367] [info]  Download progress: {
+  total: 9108757,
+  delta: 150945,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 213939
+}
+[2024-04-05 14:46:28.376] [info]  Download progress: {
+  total: 9108757,
+  delta: 910113,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 213677
+}
+[2024-04-05 14:46:29.304] [info]  Download progress: {
+  total: 9108757,
+  delta: 239855,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 201650
+}
+[2024-04-05 14:46:29.313] [info]  Download progress: {
+  total: 9108757,
+  delta: 974724,
+  transferred: 1806076,
+  percent: 19.827908462153506,
+  bytesPerSecond: 198754
+}
+[2024-04-05 14:46:29.318] [info]  Download progress: {
+  total: 9108757,
+  delta: 24299,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 201317
+}
+[2024-04-05 14:46:30.289] [info]  Download progress: {
+  total: 9108757,
+  delta: 256230,
+  transferred: 1846750,
+  percent: 20.27444578881619,
+  bytesPerSecond: 183537
+}
+[2024-04-05 14:46:30.315] [info]  Download progress: {
+  total: 9108757,
+  delta: 1219323,
+  transferred: 3025399,
+  percent: 33.21418059566196,
+  bytesPerSecond: 299871
+}
+[2024-04-05 14:46:30.396] [info]  Download progress: {
+  total: 9108757,
+  delta: 251627,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 322225
+}
+[2024-04-05 14:46:30.485] [info]  Download progress: {
+  total: 9108757,
+  delta: 1430276,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 319461
+}
+[2024-04-05 14:46:31.480] [info]  Download progress: {
+  total: 9108757,
+  delta: 284377,
+  transferred: 3309776,
+  percent: 36.33619823209687,
+  bytesPerSecond: 294098
+}
+[2024-04-05 14:46:31.491] [info]  Download progress: {
+  total: 9108757,
+  delta: 81893,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 301080
+}
+[2024-04-05 14:46:31.510] [info]  Download progress: {
+  total: 9108757,
+  delta: 1453970,
+  transferred: 3300720,
+  percent: 36.23677742199073,
+  bytesPerSecond: 292539
+}
+[2024-04-05 14:46:31.521] [info]  Download progress: {
+  total: 9108757,
+  delta: 90949,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 300307
+}
+[2024-04-05 14:46:32.419] [info]  Download progress: {
+  total: 9108757,
+  delta: 142199,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 282392
+}
+[2024-04-05 14:46:32.429] [info]  Download progress: {
+  total: 9108757,
+  delta: 133143,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 282137
+}
+[2024-04-05 14:46:33.333] [info]  Download progress: {
+  total: 9108757,
+  delta: 198679,
+  transferred: 3508455,
+  percent: 38.51738497360287,
+  bytesPerSecond: 267678
+}
+[2024-04-05 14:46:33.368] [info]  Download progress: {
+  total: 9108757,
+  delta: 207735,
+  transferred: 3508455,
+  percent: 38.51738497360287,
+  bytesPerSecond: 266985
+}
+[2024-04-05 14:46:33.369] [info]  Download progress: {
+  total: 9108757,
+  delta: 167677,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 279703
+}
+[2024-04-05 14:46:33.397] [info]  Download progress: {
+  total: 9108757,
+  delta: 167677,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 279129
+}
+[2024-04-05 14:46:34.333] [info]  Download progress: {
+  total: 9108757,
+  delta: 380642,
+  transferred: 3889097,
+  percent: 42.69624274750111,
+  bytesPerSecond: 275686
+}
+[2024-04-05 14:46:34.405] [info]  Download progress: {
+  total: 9108757,
+  delta: 371519,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 300488
+}
+[2024-04-05 14:46:34.409] [info]  Download progress: {
+  total: 9108757,
+  delta: 184052,
+  transferred: 3692507,
+  percent: 40.53798998041116,
+  bytesPerSecond: 260366
+}
+[2024-04-05 14:46:34.513] [info]  Download progress: {
+  total: 9108757,
+  delta: 568109,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 298237
+}
+[2024-04-05 14:46:35.385] [info]  Download progress: {
+  total: 9108757,
+  delta: 404269,
+  transferred: 4293366,
+  percent: 47.13448827320786,
+  bytesPerSecond: 283222
+}
+[2024-04-05 14:46:35.400] [info]  Download progress: {
+  total: 9108757,
+  delta: 75621,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 287926
+}
+[2024-04-05 14:46:35.432] [info]  Download progress: {
+  total: 9108757,
+  delta: 583593,
+  transferred: 4276100,
+  percent: 46.94493441860399,
+  bytesPerSecond: 281230
+}
+[2024-04-05 14:46:35.448] [info]  Download progress: {
+  total: 9108757,
+  delta: 92887,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 287037
+}
+[2024-04-05 14:46:36.386] [info]  Download progress: {
+  total: 9108757,
+  delta: 230387,
+  transferred: 4523753,
+  percent: 49.66377959144151,
+  bytesPerSecond: 279935
+}
+[2024-04-05 14:46:36.393] [info]  Download progress: {
+  total: 9108757,
+  delta: 56488,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 283308
+}
+[2024-04-05 14:46:36.427] [info]  Download progress: {
+  total: 9108757,
+  delta: 304141,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 282731
+}
+[2024-04-05 14:46:37.352] [info]  Download progress: {
+  total: 9108757,
+  delta: 486561,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 292556
+}
+[2024-04-05 14:46:37.360] [info]  Download progress: {
+  total: 9108757,
+  delta: 385161,
+  transferred: 4661261,
+  percent: 51.173403791538185,
+  bytesPerSecond: 272063
+}
+[2024-04-05 14:46:37.414] [info]  Download progress: {
+  total: 9108757,
+  delta: 349053,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 291518
+}
+[2024-04-05 14:46:38.268] [info]  Download progress: {
+  total: 9108757,
+  delta: 519311,
+  transferred: 5043064,
+  percent: 55.36500754164372,
+  bytesPerSecond: 279518
+}
+[2024-04-05 14:46:38.396] [info]  Download progress: {
+  total: 9108757,
+  delta: 670518,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 314451
+}
+[2024-04-05 14:46:38.401] [info]  Download progress: {
+  total: 9108757,
+  delta: 364537,
+  transferred: 5025798,
+  percent: 55.17545368703984,
+  bytesPerSecond: 276538
+}
+[2024-04-05 14:46:38.528] [info]  Download progress: {
+  total: 9108757,
+  delta: 687784,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 312201
+}
+[2024-04-05 14:46:39.267] [info]  Download progress: {
+  total: 9108757,
+  delta: 712439,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 302269
+}
+[2024-04-05 14:46:39.401] [info]  Download progress: {
+  total: 9108757,
+  delta: 729705,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 300172
+}
+[2024-04-05 14:46:40.163] [info]  Download progress: {
+  total: 9108757,
+  delta: 760674,
+  transferred: 5803738,
+  percent: 63.71602623716935,
+  bytesPerSecond: 291118
+}
+[2024-04-05 14:46:40.167] [info]  Download progress: {
+  total: 9108757,
+  delta: 32909,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 292696
+}
+[2024-04-05 14:46:40.270] [info]  Download progress: {
+  total: 9108757,
+  delta: 746080,
+  transferred: 5771878,
+  percent: 63.366252936597164,
+  bytesPerSecond: 287975
+}
+[2024-04-05 14:46:40.280] [info]  Download progress: {
+  total: 9108757,
+  delta: 64769,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 291061
+}
+[2024-04-05 14:46:41.056] [info]  Download progress: {
+  total: 9108757,
+  delta: 60917,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 281548
+}
+[2024-04-05 14:46:41.212] [info]  Download progress: {
+  total: 9108757,
+  delta: 92777,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 279469
+}
+[2024-04-05 14:46:42.214] [info]  Download progress: {
+  total: 9108757,
+  delta: 109151,
+  transferred: 5912889,
+  percent: 64.91433463424264,
+  bytesPerSecond: 268914
+}
+[2024-04-05 14:46:42.256] [info]  Download progress: {
+  total: 9108757,
+  delta: 310114,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 282479
+}
+[2024-04-05 14:46:42.259] [info]  Download progress: {
+  total: 9108757,
+  delta: 125527,
+  transferred: 5897405,
+  percent: 64.7443443710267,
+  bytesPerSecond: 267675
+}
+[2024-04-05 14:46:42.321] [info]  Download progress: {
+  total: 9108757,
+  delta: 325598,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 281660
+}
+[2024-04-05 14:46:43.170] [info]  Download progress: {
+  total: 9108757,
+  delta: 660992,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 286519
+}
+[2024-04-05 14:46:43.244] [info]  Download progress: {
+  total: 9108757,
+  delta: 676476,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 285610
+}
+[2024-04-05 14:46:44.053] [info]  Download progress: {
+  total: 9108757,
+  delta: 718581,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 278317
+}
+[2024-04-05 14:46:44.116] [info]  Download progress: {
+  total: 9108757,
+  delta: 709226,
+  transferred: 6606631,
+  percent: 72.53054395896169,
+  bytesPerSecond: 276555
+}
+[2024-04-05 14:46:44.119] [info]  Download progress: {
+  total: 9108757,
+  delta: 24839,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 277560
+}
+[2024-04-05 14:46:44.936] [info]  Download progress: {
+  total: 9108757,
+  delta: 734956,
+  transferred: 6647845,
+  percent: 72.98300964665103,
+  bytesPerSecond: 269035
+}
+[2024-04-05 14:46:45.016] [info]  Download progress: {
+  total: 9108757,
+  delta: 525938,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 289382
+}
+[2024-04-05 14:46:45.092] [info]  Download progress: {
+  total: 9108757,
+  delta: 567152,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 288509
+}
+[2024-04-05 14:46:45.909] [info]  Download progress: {
+  total: 9108757,
+  delta: 630929,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 283408
+}
+[2024-04-05 14:46:46.012] [info]  Download progress: {
+  total: 9108757,
+  delta: 632688,
+  transferred: 7239319,
+  percent: 79.47647522049385,
+  bytesPerSecond: 280757
+}
+[2024-04-05 14:46:46.017] [info]  Download progress: {
+  total: 9108757,
+  delta: 39455,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 282232
+}
+[2024-04-05 14:46:46.841] [info]  Download progress: {
+  total: 9108757,
+  delta: 648602,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 274148
+}
+[2024-04-05 14:46:46.894] [info]  Download progress: {
+  total: 9108757,
+  delta: 57128,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 273613
+}
+[2024-04-05 14:46:47.833] [info]  Download progress: {
+  total: 9108757,
+  delta: 64444,
+  transferred: 7303763,
+  percent: 80.18397021679247,
+  bytesPerSecond: 264572
+}
+[2024-04-05 14:46:48.030] [info]  Download progress: {
+  total: 9108757,
+  delta: 1089627,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 301888
+}
+[2024-04-05 14:46:48.094] [info]  Download progress: {
+  total: 9108757,
+  delta: 664977,
+  transferred: 7312822,
+  percent: 80.28342396223765,
+  bytesPerSecond: 262409
+}
+[2024-04-05 14:46:48.287] [info]  Download progress: {
+  total: 9108757,
+  delta: 1080568,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 299112
+}
+[2024-04-05 14:46:49.142] [info]  Download progress: {
+  total: 9108757,
+  delta: 1106002,
+  transferred: 8409765,
+  percent: 92.32615383196632,
+  bytesPerSecond: 290844
+}
+[2024-04-05 14:46:49.146] [info]  Download progress: {
+  total: 9108757,
+  delta: 10462,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 291166
+}
+[2024-04-05 14:46:49.352] [info]  Download progress: {
+  total: 9108757,
+  delta: 1107405,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 289097
+}
+[2024-04-05 14:46:50.051] [info]  Download progress: {
+  total: 9108757,
+  delta: 163497,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 287462
+}
+[2024-04-05 14:46:50.237] [info]  Download progress: {
+  total: 9108757,
+  delta: 1140155,
+  transferred: 8452977,
+  percent: 92.80055445545425,
+  bytesPerSecond: 281663
+}
+[2024-04-05 14:46:50.281] [info]  Download progress: {
+  total: 9108757,
+  delta: 120285,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 285252
+}
+[2024-04-05 14:46:50.982] [info]  Download progress: {
+  total: 9108757,
+  delta: 179872,
+  transferred: 8589637,
+  percent: 94.30086893304981,
+  bytesPerSecond: 279292
+}
+[2024-04-05 14:46:51.069] [info]  Download progress: {
+  total: 9108757,
+  delta: 365092,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 290342
+}
+[2024-04-05 14:46:51.240] [info]  Download progress: {
+  total: 9108757,
+  delta: 284107,
+  transferred: 8737084,
+  percent: 95.91960791137583,
+  bytesPerSecond: 281714
+}
+[2024-04-05 14:46:51.288] [info]  Download progress: {
+  total: 9108757,
+  delta: 217645,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 288286
+}
+[2024-04-05 14:46:51.983] [info]  Download progress: {
+  total: 9108757,
+  delta: 430628,
+  transferred: 9020265,
+  percent: 99.02849532598135,
+  bytesPerSecond: 284049
+}
+[2024-04-05 14:46:52.004] [info]  Download progress: {
+  total: 9108757,
+  delta: 88492,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 286646
+}
+[2024-04-05 14:46:52.212] [info]  Download progress: {
+  total: 9108757,
+  delta: 371673,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 284773
+}
+[2024-04-05 14:46:54.123] [info]  Download progress: {
+  total: 149446943,
+  delta: 3472541,
+  transferred: 3472541,
+  percent: 2.3235945348176177,
+  bytesPerSecond: 3465610
+}
+[2024-04-05 14:46:54.337] [info]  Download progress: {
+  total: 149446943,
+  delta: 1817767,
+  transferred: 1817767,
+  percent: 1.2163293296671849,
+  bytesPerSecond: 1815951
+}
+[2024-04-05 14:46:55.369] [info]  Download progress: {
+  total: 149446943,
+  delta: 458644,
+  transferred: 2276411,
+  percent: 1.523223529570625,
+  bytesPerSecond: 1119730
+}
+[2024-04-05 14:46:55.408] [info]  Download progress: {
+  total: 149446943,
+  delta: 1753097,
+  transferred: 5225638,
+  percent: 3.4966509820143994,
+  bytesPerSecond: 2284931
+}
+[2024-04-05 14:46:57.827] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 4635707,
+  percent: 3.101908213672862,
+  bytesPerSecond: 1032222
+}
+[2024-04-05 14:46:57.956] [info]  Download progress: {
+  total: 149446943,
+  delta: 4702217,
+  transferred: 9927855,
+  percent: 6.643063284338978,
+  bytesPerSecond: 2053331
+}
+[2024-04-05 14:47:00.285] [info]  Download progress: {
+  total: 149446943,
+  delta: 4243429,
+  transferred: 14171284,
+  percent: 9.482485031493752,
+  bytesPerSecond: 1978125
+}
+[2024-04-05 14:47:00.305] [info]  Download progress: {
+  total: 149446943,
+  delta: 2097260,
+  transferred: 6732967,
+  percent: 4.505255754880178,
+  bytesPerSecond: 966131
+}
+[2024-04-05 14:47:02.050] [info]  Download progress: {
+  total: 149446943,
+  delta: 4703084,
+  transferred: 18874368,
+  percent: 12.629477472817896,
+  bytesPerSecond: 2113828
+}
+[2024-04-05 14:47:02.052] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 9092263,
+  percent: 6.083940438982415,
+  bytesPerSecond: 1043169
+}
+[2024-04-05 14:47:03.051] [info]  Download progress: {
+  total: 149446943,
+  delta: 2997414,
+  transferred: 21871782,
+  percent: 14.635148475402405,
+  bytesPerSecond: 2202596
+}
+[2024-04-05 14:47:03.062] [info]  Download progress: {
+  total: 149446943,
+  delta: 1507328,
+  transferred: 10599591,
+  percent: 7.092544542714401,
+  bytesPerSecond: 1089820
+}
+[2024-04-05 14:47:04.051] [info]  Download progress: {
+  total: 149446943,
+  delta: 2801673,
+  transferred: 24673455,
+  percent: 16.509842559977958,
+  bytesPerSecond: 2257407
+}
+[2024-04-05 14:47:04.065] [info]  Download progress: {
+  total: 149446943,
+  delta: 1408970,
+  transferred: 12008561,
+  percent: 8.035333984717239,
+  bytesPerSecond: 1119262
+}
+[2024-04-05 14:47:05.053] [info]  Download progress: {
+  total: 149446943,
+  delta: 2949120,
+  transferred: 27622575,
+  percent: 18.483198415105754,
+  bytesPerSecond: 2315000
+}
+[2024-04-05 14:47:05.079] [info]  Download progress: {
+  total: 149446943,
+  delta: 1490953,
+  transferred: 13499514,
+  percent: 9.032981022569327,
+  bytesPerSecond: 1149580
+}
+[2024-04-05 14:47:06.057] [info]  Download progress: {
+  total: 149446943,
+  delta: 327680,
+  transferred: 27950255,
+  percent: 18.70246017678662,
+  bytesPerSecond: 2160657
+}
+[2024-04-05 14:47:06.079] [info]  Download progress: {
+  total: 149446943,
+  delta: 163822,
+  transferred: 13663336,
+  percent: 9.142599859001466,
+  bytesPerSecond: 1072223
+}
+[2024-04-05 14:47:08.770] [info]  Download progress: {
+  total: 149446943,
+  delta: 4554734,
+  transferred: 32504989,
+  percent: 21.750186619742365,
+  bytesPerSecond: 2077129
+}
+[2024-04-05 14:47:08.789] [info]  Download progress: {
+  total: 149446943,
+  delta: 2244671,
+  transferred: 15908007,
+  percent: 10.644585081944433,
+  bytesPerSecond: 1029445
+}
+[2024-04-05 14:47:09.773] [info]  Download progress: {
+  total: 149446943,
+  delta: 2195474,
+  transferred: 34700463,
+  percent: 23.219252467412467,
+  bytesPerSecond: 2083862
+}
+[2024-04-05 14:47:09.818] [info]  Download progress: {
+  total: 149446943,
+  delta: 1130451,
+  transferred: 17038458,
+  percent: 11.401008048722684,
+  bytesPerSecond: 1033762
+}
+[2024-04-05 14:47:10.775] [info]  Download progress: {
+  total: 149446943,
+  delta: 2113527,
+  transferred: 36813990,
+  percent: 24.633484808049904,
+  bytesPerSecond: 2085306
+}
+[2024-04-05 14:47:10.818] [info]  Download progress: {
+  total: 149446943,
+  delta: 1081326,
+  transferred: 18119784,
+  percent: 12.124559817861245,
+  bytesPerSecond: 1036482
+}
+[2024-04-05 14:47:12.001] [info]  Download progress: {
+  total: 149446943,
+  delta: 2146313,
+  transferred: 38960303,
+  percent: 26.069655369263728,
+  bytesPerSecond: 2063575
+}
+[2024-04-05 14:47:12.044] [info]  Download progress: {
+  total: 149446943,
+  delta: 1015826,
+  transferred: 19135610,
+  percent: 12.804283323480226,
+  bytesPerSecond: 1022857
+}
+[2024-04-05 14:47:14.402] [info]  Download progress: {
+  total: 149446943,
+  delta: 4636681,
+  transferred: 43596984,
+  percent: 29.172215319252132,
+  bytesPerSecond: 2048730
+}
+[2024-04-05 14:47:14.402] [info]  Download progress: {
+  total: 149446943,
+  delta: 2342957,
+  transferred: 21478567,
+  percent: 14.372035030519159,
+  bytesPerSecond: 1019584
+}
+[2024-04-05 14:47:16.032] [info]  Download progress: {
+  total: 149446943,
+  delta: 2392010,
+  transferred: 23870577,
+  percent: 15.972609757564596,
+  bytesPerSecond: 1051753
+}
+[2024-04-05 14:47:16.082] [info]  Download progress: {
+  total: 149446943,
+  delta: 4805424,
+  transferred: 48402408,
+  percent: 32.38768691307389,
+  bytesPerSecond: 2108027
+}
+[2024-04-05 14:47:17.037] [info]  Download progress: {
+  total: 149446943,
+  delta: 1736650,
+  transferred: 25607227,
+  percent: 17.1346609612483,
+  bytesPerSecond: 1080428
+}
+[2024-04-05 14:47:17.085] [info]  Download progress: {
+  total: 149446943,
+  delta: 3588105,
+  transferred: 51990513,
+  percent: 34.78860922568352,
+  bytesPerSecond: 2169526
+}
+[2024-04-05 14:47:18.106] [info]  Download progress: {
+  total: 149446943,
+  delta: 622574,
+  transferred: 52613087,
+  percent: 35.20519452846887,
+  bytesPerSecond: 2105787
+}
+[2024-04-05 14:47:18.126] [info]  Download progress: {
+  total: 149446943,
+  delta: 393324,
+  transferred: 26000551,
+  percent: 17.397847341715114,
+  bytesPerSecond: 1048832
+}
+[2024-04-05 14:47:20.574] [info]  Download progress: {
+  total: 149446943,
+  delta: 4685842,
+  transferred: 57298929,
+  percent: 38.34064976491356,
+  bytesPerSecond: 2087165
+}
+[2024-04-05 14:47:20.656] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 28359847,
+  percent: 18.97653202581735,
+  bytesPerSecond: 1038062
+}
+[2024-04-05 14:47:22.660] [info]  Download progress: {
+  total: 149446943,
+  delta: 2162688,
+  transferred: 30522535,
+  percent: 20.423659652911066,
+  bytesPerSecond: 1040872
+}
+[2024-04-05 14:47:22.664] [info]  Download progress: {
+  total: 149446943,
+  delta: 4628255,
+  transferred: 61927184,
+  percent: 41.4375715935521,
+  bytesPerSecond: 2096171
+}
+[2024-04-05 14:47:24.180] [info]  Download progress: {
+  total: 149446943,
+  delta: 4612330,
+  transferred: 66539514,
+  percent: 44.52383746651813,
+  bytesPerSecond: 2142359
+}
+[2024-04-05 14:47:24.184] [info]  Download progress: {
+  total: 149446943,
+  delta: 2490368,
+  transferred: 33012903,
+  percent: 22.09004904168565,
+  bytesPerSecond: 1070180
+}
+[2024-04-05 14:47:25.181] [info]  Download progress: {
+  total: 149446943,
+  delta: 2375671,
+  transferred: 68915185,
+  percent: 46.11347921650027,
+  bytesPerSecond: 2149569
+}
+[2024-04-05 14:47:25.200] [info]  Download progress: {
+  total: 149446943,
+  delta: 1195987,
+  transferred: 34208890,
+  percent: 22.890324360800072,
+  bytesPerSecond: 1073591
+}
+[2024-04-05 14:47:26.184] [info]  Download progress: {
+  total: 149446943,
+  delta: 2375671,
+  transferred: 71290856,
+  percent: 47.7031209664824,
+  bytesPerSecond: 2156213
+}
+[2024-04-05 14:47:26.201] [info]  Download progress: {
+  total: 149446943,
+  delta: 1196023,
+  transferred: 35404913,
+  percent: 23.690623768731086,
+  bytesPerSecond: 1077283
+}
+[2024-04-05 14:47:27.204] [info]  Download progress: {
+  total: 149446943,
+  delta: 2408457,
+  transferred: 73699313,
+  percent: 49.31470093704091,
+  bytesPerSecond: 2162348
+}
+[2024-04-05 14:47:27.218] [info]  Download progress: {
+  total: 149446943,
+  delta: 1212470,
+  transferred: 36617383,
+  percent: 24.50192842017518,
+  bytesPerSecond: 1080733
+}
+[2024-04-05 14:47:28.311] [info]  Download progress: {
+  total: 149446943,
+  delta: 1884169,
+  transferred: 75583482,
+  percent: 50.57546208891004,
+  bytesPerSecond: 2147868
+}
+[2024-04-05 14:47:28.535] [info]  Download progress: {
+  total: 149446943,
+  delta: 1114004,
+  transferred: 37731387,
+  percent: 25.247346143440353,
+  bytesPerSecond: 1071945
+}
+[2024-04-05 14:47:29.313] [info]  Download progress: {
+  total: 149446943,
+  delta: 2998245,
+  transferred: 78581727,
+  percent: 52.58168914167752,
+  bytesPerSecond: 2171246
+}
+[2024-04-05 14:47:29.536] [info]  Download progress: {
+  total: 149446943,
+  delta: 1736758,
+  transferred: 39468145,
+  percent: 26.409469613573826,
+  bytesPerSecond: 1090280
+}
+[2024-04-05 14:47:30.616] [info]  Download progress: {
+  total: 149446943,
+  delta: 1736722,
+  transferred: 80318449,
+  percent: 53.74378852299441,
+  bytesPerSecond: 2142111
+}
+[2024-04-05 14:47:30.661] [info]  Download progress: {
+  total: 149446943,
+  delta: 442377,
+  transferred: 39910522,
+  percent: 26.705479014047146,
+  bytesPerSecond: 1069271
+}
+[2024-04-05 14:47:31.619] [info]  Download progress: {
+  total: 149446943,
+  delta: 3833838,
+  transferred: 84152287,
+  percent: 56.309139090252245,
+  bytesPerSecond: 2185887
+}
+[2024-04-05 14:47:31.662] [info]  Download progress: {
+  total: 149446943,
+  delta: 2015169,
+  transferred: 41925691,
+  percent: 28.053896692955437,
+  bytesPerSecond: 1093923
+}
+[2024-04-05 14:47:32.620] [info]  Download progress: {
+  total: 149446943,
+  delta: 671735,
+  transferred: 84824022,
+  percent: 56.75861967949388,
+  bytesPerSecond: 2147498
+}
+[2024-04-05 14:47:32.662] [info]  Download progress: {
+  total: 149446943,
+  delta: 294966,
+  transferred: 42220657,
+  percent: 28.251268411693104,
+  bytesPerSecond: 1073607
+}
+[2024-04-05 14:47:35.306] [info]  Download progress: {
+  total: 149446943,
+  delta: 4587556,
+  transferred: 89411578,
+  percent: 59.82830843184259,
+  bytesPerSecond: 2119511
+}
+[2024-04-05 14:47:35.307] [info]  Download progress: {
+  total: 149446943,
+  delta: 2211849,
+  transferred: 44432506,
+  percent: 29.7312913252431,
+  bytesPerSecond: 1058648
+}
+[2024-04-05 14:47:36.310] [info]  Download progress: {
+  total: 149446943,
+  delta: 2293760,
+  transferred: 91705338,
+  percent: 61.36314076360866,
+  bytesPerSecond: 2123349
+}
+[2024-04-05 14:47:36.311] [info]  Download progress: {
+  total: 149446943,
+  delta: 1163309,
+  transferred: 45595815,
+  percent: 30.50970069023091,
+  bytesPerSecond: 1060985
+}
+[2024-04-05 14:47:37.316] [info]  Download progress: {
+  total: 149446943,
+  delta: 2277349,
+  transferred: 93982687,
+  percent: 62.886991940678236,
+  bytesPerSecond: 2126546
+}
+[2024-04-05 14:47:37.324] [info]  Download progress: {
+  total: 149446943,
+  delta: 1130451,
+  transferred: 46726266,
+  percent: 31.266123657009164,
+  bytesPerSecond: 1062250
+}
+[2024-04-05 14:47:38.318] [info]  Download progress: {
+  total: 149446943,
+  delta: 2588690,
+  transferred: 96571377,
+  percent: 64.61917190236538,
+  bytesPerSecond: 2136677
+}
+[2024-04-05 14:47:38.334] [info]  Download progress: {
+  total: 149446943,
+  delta: 1310720,
+  transferred: 48036986,
+  percent: 32.14317070373263,
+  bytesPerSecond: 1067536
+}
+[2024-04-05 14:47:39.318] [info]  Download progress: {
+  total: 149446943,
+  delta: 1654775,
+  transferred: 98226152,
+  percent: 65.7264377766496,
+  bytesPerSecond: 2126245
+}
+[2024-04-05 14:47:39.338] [info]  Download progress: {
+  total: 149446943,
+  delta: 851968,
+  transferred: 48888954,
+  percent: 32.71325128410288,
+  bytesPerSecond: 1062757
+}
+[2024-04-05 14:47:40.324] [info]  Download progress: {
+  total: 149446943,
+  delta: 2899959,
+  transferred: 101126111,
+  percent: 67.66689834532113,
+  bytesPerSecond: 2142366
+}
+[2024-04-05 14:47:40.351] [info]  Download progress: {
+  total: 149446943,
+  delta: 1441792,
+  transferred: 50330746,
+  percent: 33.67800303549869,
+  bytesPerSecond: 1070525
+}
+[2024-04-05 14:47:41.325] [info]  Download progress: {
+  total: 149446943,
+  delta: 1900544,
+  transferred: 103026655,
+  percent: 68.93861656307014,
+  bytesPerSecond: 2137305
+}
+[2024-04-05 14:47:41.366] [info]  Download progress: {
+  total: 149446943,
+  delta: 966701,
+  transferred: 51297447,
+  percent: 34.324855343477985,
+  bytesPerSecond: 1068029
+}
+[2024-04-05 14:47:42.327] [info]  Download progress: {
+  total: 149446943,
+  delta: 2310171,
+  transferred: 105336826,
+  percent: 70.4844300495327,
+  bytesPerSecond: 2140731
+}
+[2024-04-05 14:47:42.376] [info]  Download progress: {
+  total: 149446943,
+  delta: 1179648,
+  transferred: 52477095,
+  percent: 35.114197685529106,
+  bytesPerSecond: 1070088
+}
+[2024-04-05 14:47:43.328] [info]  Download progress: {
+  total: 149446943,
+  delta: 1572864,
+  transferred: 106909690,
+  percent: 71.53688650560085,
+  bytesPerSecond: 2129378
+}
+[2024-04-05 14:47:43.391] [info]  Download progress: {
+  total: 149446943,
+  delta: 802771,
+  transferred: 53279866,
+  percent: 35.65135889062649,
+  bytesPerSecond: 1064426
+}
+[2024-04-05 14:47:45.915] [info]  Download progress: {
+  total: 149446943,
+  delta: 4440037,
+  transferred: 111349727,
+  percent: 74.50786530976414,
+  bytesPerSecond: 2109136
+}
+[2024-04-05 14:47:45.937] [info]  Download progress: {
+  total: 149446943,
+  delta: 2146349,
+  transferred: 55426215,
+  percent: 37.0875535406569,
+  bytesPerSecond: 1053710
+}
+[2024-04-05 14:47:46.924] [info]  Download progress: {
+  total: 149446943,
+  delta: 1966080,
+  transferred: 113315807,
+  percent: 75.82343587984934,
+  bytesPerSecond: 2106124
+}
+[2024-04-05 14:47:46.966] [info]  Download progress: {
+  total: 149446943,
+  delta: 1015754,
+  transferred: 56441969,
+  percent: 37.7672288686427,
+  bytesPerSecond: 1052433
+}
+[2024-04-05 14:47:47.924] [info]  Download progress: {
+  total: 149446943,
+  delta: 1474578,
+  transferred: 114790385,
+  percent: 76.81012585182154,
+  bytesPerSecond: 2094600
+}
+[2024-04-05 14:47:47.984] [info]  Download progress: {
+  total: 149446943,
+  delta: 753718,
+  transferred: 57195687,
+  percent: 38.27156705373358,
+  bytesPerSecond: 1046620
+}
+[2024-04-05 14:47:48.930] [info]  Download progress: {
+  total: 149446943,
+  delta: 1851383,
+  transferred: 116641768,
+  percent: 78.04894878311428,
+  bytesPerSecond: 2090017
+}
+[2024-04-05 14:47:48.998] [info]  Download progress: {
+  total: 149446943,
+  delta: 933843,
+  transferred: 58129530,
+  percent: 38.89643296350331,
+  bytesPerSecond: 1044331
+}
+[2024-04-05 14:47:49.935] [info]  Download progress: {
+  total: 149446943,
+  delta: 2375671,
+  transferred: 119017439,
+  percent: 79.63859053309642,
+  bytesPerSecond: 2094898
+}
+[2024-04-05 14:47:50.002] [info]  Download progress: {
+  total: 149446943,
+  delta: 1228737,
+  transferred: 59358267,
+  percent: 39.71862241437753,
+  bytesPerSecond: 1047511
+}
+[2024-04-05 14:47:50.936] [info]  Download progress: {
+  total: 149446943,
+  delta: 2473993,
+  transferred: 121491432,
+  percent: 81.29402285599112,
+  bytesPerSecond: 2101383
+}
+[2024-04-05 14:47:51.113] [info]  Download progress: {
+  total: 149446943,
+  delta: 1146934,
+  transferred: 60505201,
+  percent: 40.48607471348544,
+  bytesPerSecond: 1047219
+}
+[2024-04-05 14:47:51.936] [info]  Download progress: {
+  total: 149446943,
+  delta: 1310720,
+  transferred: 122802152,
+  percent: 82.17106990271456,
+  bytesPerSecond: 2087939
+}
+[2024-04-05 14:47:52.115] [info]  Download progress: {
+  total: 149446943,
+  delta: 802807,
+  transferred: 61308008,
+  percent: 41.023260007399415,
+  bytesPerSecond: 1043026
+}
+[2024-04-05 14:47:52.938] [info]  Download progress: {
+  total: 149446943,
+  delta: 2392082,
+  transferred: 125194234,
+  percent: 83.7716928073932,
+  bytesPerSecond: 2092954
+}
+[2024-04-05 14:47:53.126] [info]  Download progress: {
+  total: 149446943,
+  delta: 1327167,
+  transferred: 62635175,
+  percent: 41.91131229763595,
+  bytesPerSecond: 1047586
+}
+[2024-04-05 14:47:53.949] [info]  Download progress: {
+  total: 149446943,
+  delta: 3424247,
+  transferred: 128618481,
+  percent: 86.0629721947541,
+  bytesPerSecond: 2114462
+}
+[2024-04-05 14:47:54.131] [info]  Download progress: {
+  total: 149446943,
+  delta: 1654739,
+  transferred: 64289914,
+  percent: 43.018554083103595,
+  bytesPerSecond: 1057487
+}
+[2024-04-05 14:47:55.433] [info]  Download progress: {
+  total: 149446943,
+  delta: 1556453,
+  transferred: 130174934,
+  percent: 87.10444749612577,
+  bytesPerSecond: 2089083
+}
+[2024-04-05 14:47:55.452] [info]  Download progress: {
+  total: 149446943,
+  delta: 524288,
+  transferred: 64814202,
+  percent: 43.36937290179298,
+  bytesPerSecond: 1043438
+}
+[2024-04-05 14:47:56.449] [info]  Download progress: {
+  total: 149446943,
+  delta: 3162139,
+  transferred: 133337073,
+  percent: 89.22034156295857,
+  bytesPerSecond: 2105500
+}
+[2024-04-05 14:47:56.456] [info]  Download progress: {
+  total: 149446943,
+  delta: 1622061,
+  transferred: 66436263,
+  percent: 44.45474873313401,
+  bytesPerSecond: 1052539
+}
+[2024-04-05 14:47:57.543] [info]  Download progress: {
+  total: 149446943,
+  delta: 507841,
+  transferred: 66944104,
+  percent: 44.79456230831032,
+  bytesPerSecond: 1042629
+}
+[2024-04-05 14:47:57.581] [info]  Download progress: {
+  total: 149446943,
+  delta: 1048576,
+  transferred: 134385649,
+  percent: 89.92197920033735,
+  bytesPerSecond: 2084791
+}
+[2024-04-05 14:48:00.073] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 69303400,
+  percent: 46.373246992412554,
+  bytesPerSecond: 1038455
+}
+[2024-04-05 14:48:00.111] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 139104241,
+  percent: 93.0793485685418,
+  bytesPerSecond: 2076493
+}
+[2024-04-05 14:48:01.079] [info]  Download progress: {
+  total: 149446943,
+  delta: 1835008,
+  transferred: 71138408,
+  percent: 47.6011128578254,
+  bytesPerSecond: 1050122
+}
+[2024-04-05 14:48:01.114] [info]  Download progress: {
+  total: 149446943,
+  delta: 3784677,
+  transferred: 142888918,
+  percent: 95.61180384934337,
+  bytesPerSecond: 2101524
+}
+[2024-04-05 14:48:02.122] [info]  Download progress: {
+  total: 149446943,
+  delta: 2490404,
+  transferred: 145379322,
+  percent: 97.27821732693455,
+  bytesPerSecond: 2106916
+}
+[2024-04-05 14:48:02.122] [info]  Download progress: {
+  total: 149446943,
+  delta: 1277970,
+  transferred: 72416378,
+  percent: 48.456245772789075,
+  bytesPerSecond: 1052778
+}
+[2024-04-05 14:48:03.128] [info]  Download progress: {
+  total: 149446943,
+  delta: 540663,
+  transferred: 72957041,
+  percent: 48.81802165735836,
+  bytesPerSecond: 1045350
+}
+[2024-04-05 14:48:03.155] [info]  Download progress: {
+  total: 149446943,
+  delta: 1064951,
+  transferred: 146444273,
+  percent: 97.99081203019323,
+  bytesPerSecond: 2091045
+}
+[2024-04-05 14:48:04.139] [info]  Download progress: {
+  total: 149446943,
+  delta: 884790,
+  transferred: 73841831,
+  percent: 49.410064547121586,
+  bytesPerSecond: 1042920
+}
+[2024-04-05 14:48:04.157] [info]  Download progress: {
+  total: 149446943,
+  delta: 1818597,
+  transferred: 148262870,
+  percent: 99.20769674090958,
+  bytesPerSecond: 2087151
+}
+[2024-04-05 14:48:04.625] [info]  Download progress: {
+  total: 149446943,
+  delta: 1184073,
+  transferred: 149446943,
+  percent: 100,
+  bytesPerSecond: 2090050
+}
+[2024-04-05 14:48:04.630] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 14:48:20.635] [info]  check install 0
+[2024-04-05 14:48:20.636] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at m.quitAndInstall (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120254)
+    at m.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250746)
+    at m.emit (node:events:513:28)
+    at m.dispatchUpdateDownloaded (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116957)
+    at Object.done (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120483)
+    at g (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119346)
+    at async m.executeDownload (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119851)
+[2024-04-05 14:48:20.637] [info]  Download progress: {
+  total: 149446943,
+  delta: 1655641,
+  transferred: 75497472,
+  percent: 50.517909891271586,
+  bytesPerSecond: 864795
+}
+[2024-04-05 14:48:21.642] [info]  Download progress: {
+  total: 149446943,
+  delta: 9101211,
+  transferred: 84598683,
+  percent: 56.60783773944442,
+  bytesPerSecond: 958017
+}
+[2024-04-05 14:48:22.645] [info]  Download progress: {
+  total: 149446943,
+  delta: 3653605,
+  transferred: 88252288,
+  percent: 59.05258831557364,
+  bytesPerSecond: 988168
+}
+[2024-04-05 14:48:23.647] [info]  Download progress: {
+  total: 149446943,
+  delta: 3751963,
+  transferred: 92004251,
+  percent: 61.563153553432,
+  bytesPerSecond: 1018749
+}
+[2024-04-05 14:48:24.651] [info]  Download progress: {
+  total: 149446943,
+  delta: 2621440,
+  transferred: 94625691,
+  percent: 63.31724764687894,
+  bytesPerSecond: 1036256
+}
+[2024-04-05 14:48:26.259] [info]  Download progress: {
+  total: 149446943,
+  delta: 5128183,
+  transferred: 99753874,
+  percent: 66.74868819498035,
+  bytesPerSecond: 1073511
+}
+[2024-04-05 14:48:28.864] [info]  Download progress: {
+  total: 149446943,
+  delta: 6340617,
+  transferred: 106094491,
+  percent: 70.99140930570925,
+  bytesPerSecond: 1110611
+}
+[2024-04-05 14:48:29.870] [info]  Download progress: {
+  total: 149446943,
+  delta: 4587520,
+  transferred: 110682011,
+  percent: 74.06107396924138,
+  bytesPerSecond: 1146560
+}
+[2024-04-05 14:48:30.873] [info]  Download progress: {
+  total: 149446943,
+  delta: 4095982,
+  transferred: 114777993,
+  percent: 76.80183394584391,
+  bytesPerSecond: 1176764
+}
+[2024-04-05 14:48:31.873] [info]  Download progress: {
+  total: 149446943,
+  delta: 3670016,
+  transferred: 118448009,
+  percent: 79.25756567666961,
+  bytesPerSecond: 1202066
+}
+[2024-04-05 14:48:32.877] [info]  Download progress: {
+  total: 149446943,
+  delta: 2834423,
+  transferred: 121282432,
+  percent: 81.15417389300495,
+  bytesPerSecond: 1218417
+}
+[2024-04-05 14:48:35.081] [info]  Download progress: {
+  total: 149446943,
+  delta: 4292617,
+  transferred: 125575049,
+  percent: 84.02650899322846,
+  bytesPerSecond: 1234213
+}
+[2024-04-05 14:48:36.787] [info]  Download progress: {
+  total: 149446943,
+  delta: 7077888,
+  transferred: 132652937,
+  percent: 88.76256304553516,
+  bytesPerSecond: 1282278
+}
+[2024-04-05 14:48:37.794] [info]  Download progress: {
+  total: 149446943,
+  delta: 147447,
+  transferred: 132800384,
+  percent: 88.8612248160874,
+  bytesPerSecond: 1271328
+}
+[2024-04-05 14:48:38.800] [info]  Download progress: {
+  total: 149446943,
+  delta: 540699,
+  transferred: 133341083,
+  percent: 89.22302478947329,
+  bytesPerSecond: 1264328
+}
+[2024-04-05 14:48:39.802] [info]  Download progress: {
+  total: 149446943,
+  delta: 2162688,
+  transferred: 135503771,
+  percent: 90.67015241656699,
+  bytesPerSecond: 1272742
+}
+[2024-04-05 14:48:40.805] [info]  Download progress: {
+  total: 149446943,
+  delta: 2949120,
+  transferred: 138452891,
+  percent: 92.6435082716948,
+  bytesPerSecond: 1288305
+}
+[2024-04-05 14:48:41.805] [info]  Download progress: {
+  total: 149446943,
+  delta: 4587520,
+  transferred: 143040411,
+  percent: 95.71317293522692,
+  bytesPerSecond: 1318722
+}
+[2024-04-05 14:48:42.816] [info]  Download progress: {
+  total: 149446943,
+  delta: 1900535,
+  transferred: 144940946,
+  percent: 96.98488513077179,
+  bytesPerSecond: 1323903
+}
+[2024-04-05 14:48:43.818] [info]  Download progress: {
+  total: 149446943,
+  delta: 4390912,
+  transferred: 149331858,
+  percent: 99.9229927372954,
+  bytesPerSecond: 1351640
+}
+[2024-04-05 14:48:43.843] [info]  Download progress: {
+  total: 149446943,
+  delta: 115085,
+  transferred: 149446943,
+  percent: 100,
+  bytesPerSecond: 1352375
+}
+[2024-04-05 14:48:43.866] [info]  Error in auto-updater: Error: ENOENT: no such file or directory, rename 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\temp-web-dan-for-js-test-Setup-2.2.10.exe' -> 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\web-dan-for-js-test-Setup-2.2.10.exe'
+[2024-04-05 14:48:58.170] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:121473
+    at App.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:127288)
+    at Object.onceWrapper (node:events:628:26)
+    at App.emit (node:events:525:35)
+    at App.<anonymous> (node:electron/js2c/browser_init:2:115896)
+    at App.emit (node:events:513:28)
+[2024-04-05 15:00:02.210] [info]  check install k -1
+[2024-04-05 15:00:04.214] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.7
+[2024-04-05 15:00:07.127] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 15:00:09.741] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 12612
+}
+[2024-04-05 15:00:09.764] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 12360
+}
+[2024-04-05 15:00:10.611] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 20590
+}
+[2024-04-05 15:00:10.661] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 20092
+}
+[2024-04-05 15:00:11.515] [info]  Download progress: {
+  total: 9108757,
+  delta: 101842,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 33959
+}
+[2024-04-05 15:00:11.524] [info]  Download progress: {
+  total: 9108757,
+  delta: 101842,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 33835
+}
+[2024-04-05 15:00:12.454] [info]  Download progress: {
+  total: 9108757,
+  delta: 120132,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 30506
+}
+[2024-04-05 15:00:12.458] [info]  Download progress: {
+  total: 9108757,
+  delta: 120132,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 30459
+}
+[2024-04-05 15:00:13.451] [info]  Download progress: {
+  total: 9108757,
+  delta: 163757,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 33183
+}
+[2024-04-05 15:00:13.470] [info]  Download progress: {
+  total: 9108757,
+  delta: 163757,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 33042
+}
+[2024-04-05 15:00:14.351] [info]  Download progress: {
+  total: 9108757,
+  delta: 207382,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 35541
+}
+[2024-04-05 15:00:14.386] [info]  Download progress: {
+  total: 9108757,
+  delta: 207382,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 35317
+}
+[2024-04-05 15:00:15.246] [info]  Download progress: {
+  total: 9108757,
+  delta: 289302,
+  transferred: 289302,
+  percent: 3.176086484687208,
+  bytesPerSecond: 42987
+}
+[2024-04-05 15:00:15.247] [info]  Download progress: {
+  total: 9108757,
+  delta: 6990,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 44019
+}
+[2024-04-05 15:00:15.344] [info]  Download progress: {
+  total: 9108757,
+  delta: 272918,
+  transferred: 272918,
+  percent: 2.9962156197601937,
+  bytesPerSecond: 39959
+}
+[2024-04-05 15:00:15.345] [info]  Download progress: {
+  total: 9108757,
+  delta: 23374,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 43375
+}
+[2024-04-05 15:00:16.163] [info]  Download progress: {
+  total: 9108757,
+  delta: 1452163,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 227732
+}
+[2024-04-05 15:00:16.258] [info]  Download progress: {
+  total: 9108757,
+  delta: 1468547,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 224879
+}
+[2024-04-05 15:00:17.079] [info]  Download progress: {
+  total: 9108757,
+  delta: 1541073,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 213754
+}
+[2024-04-05 15:00:17.212] [info]  Download progress: {
+  total: 9108757,
+  delta: 1557457,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 210436
+}
+[2024-04-05 15:00:17.984] [info]  Download progress: {
+  total: 9108757,
+  delta: 1611871,
+  transferred: 1901173,
+  percent: 20.87192577428512,
+  bytesPerSecond: 200800
+}
+[2024-04-05 15:00:18.004] [info]  Download progress: {
+  total: 9108757,
+  delta: 1375853,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 345386
+}
+[2024-04-05 15:00:18.126] [info]  Download progress: {
+  total: 9108757,
+  delta: 1622993,
+  transferred: 1895911,
+  percent: 20.814157189614345,
+  bytesPerSecond: 197244
+}
+[2024-04-05 15:00:18.148] [info]  Download progress: {
+  total: 9108757,
+  delta: 1381115,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 340152
+}
+[2024-04-05 15:00:19.026] [info]  Download progress: {
+  total: 9108757,
+  delta: 1441389,
+  transferred: 3342562,
+  percent: 36.69613757398512,
+  bytesPerSecond: 318036
+}
+[2024-04-05 15:00:19.028] [info]  Download progress: {
+  total: 9108757,
+  delta: 49107,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 322647
+}
+[2024-04-05 15:00:19.133] [info]  Download progress: {
+  total: 9108757,
+  delta: 1446651,
+  transferred: 3342562,
+  percent: 36.69613757398512,
+  bytesPerSecond: 314772
+}
+[2024-04-05 15:00:19.135] [info]  Download progress: {
+  total: 9108757,
+  delta: 49107,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 319336
+}
+[2024-04-05 15:00:19.923] [info]  Download progress: {
+  total: 9108757,
+  delta: 100357,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 301825
+}
+[2024-04-05 15:00:20.022] [info]  Download progress: {
+  total: 9108757,
+  delta: 100357,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 299176
+}
+[2024-04-05 15:00:20.825] [info]  Download progress: {
+  total: 9108757,
+  delta: 165893,
+  transferred: 3508455,
+  percent: 38.51738497360287,
+  bytesPerSecond: 285032
+}
+[2024-04-05 15:00:20.832] [info]  Download progress: {
+  total: 9108757,
+  delta: 167677,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 298484
+}
+[2024-04-05 15:00:20.904] [info]  Download progress: {
+  total: 9108757,
+  delta: 182268,
+  transferred: 3524830,
+  percent: 38.69715703251278,
+  bytesPerSecond: 284490
+}
+[2024-04-05 15:00:20.909] [info]  Download progress: {
+  total: 9108757,
+  delta: 151302,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 296582
+}
+[2024-04-05 15:00:21.779] [info]  Download progress: {
+  total: 9108757,
+  delta: 752161,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 321241
+}
+[2024-04-05 15:00:21.828] [info]  Download progress: {
+  total: 9108757,
+  delta: 735786,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 320010
+}
+[2024-04-05 15:00:22.728] [info]  Download progress: {
+  total: 9108757,
+  delta: 831065,
+  transferred: 4339520,
+  percent: 47.64118748584467,
+  bytesPerSecond: 305342
+}
+[2024-04-05 15:00:22.736] [info]  Download progress: {
+  total: 9108757,
+  delta: 29467,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 307242
+}
+[2024-04-05 15:00:22.741] [info]  Download progress: {
+  total: 9108757,
+  delta: 844157,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 307091
+}
+[2024-04-05 15:00:23.708] [info]  Download progress: {
+  total: 9108757,
+  delta: 903751,
+  transferred: 4428581,
+  percent: 48.61893889583398,
+  bytesPerSecond: 291469
+}
+[2024-04-05 15:00:23.719] [info]  Download progress: {
+  total: 9108757,
+  delta: 151660,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 301233
+}
+[2024-04-05 15:00:23.746] [info]  Download progress: {
+  total: 9108757,
+  delta: 45842,
+  transferred: 4385362,
+  percent: 48.14446142322163,
+  bytesPerSecond: 287942
+}
+[2024-04-05 15:00:23.760] [info]  Download progress: {
+  total: 9108757,
+  delta: 194879,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 300462
+}
+[2024-04-05 15:00:24.674] [info]  Download progress: {
+  total: 9108757,
+  delta: 581733,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 310044
+}
+[2024-04-05 15:00:24.722] [info]  Download progress: {
+  total: 9108757,
+  delta: 624952,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 309164
+}
+[2024-04-05 15:00:25.588] [info]  Download progress: {
+  total: 9108757,
+  delta: 600086,
+  transferred: 5028667,
+  percent: 55.2069508496055,
+  bytesPerSecond: 294522
+}
+[2024-04-05 15:00:25.659] [info]  Download progress: {
+  total: 9108757,
+  delta: 684915,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 333251
+}
+[2024-04-05 15:00:25.660] [info]  Download progress: {
+  total: 9108757,
+  delta: 648646,
+  transferred: 5034008,
+  percent: 55.265586731537574,
+  bytesPerSecond: 293631
+}
+[2024-04-05 15:00:25.720] [info]  Download progress: {
+  total: 9108757,
+  delta: 679574,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 332108
+}
+[2024-04-05 15:00:26.543] [info]  Download progress: {
+  total: 9108757,
+  delta: 726836,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 319236
+}
+[2024-04-05 15:00:26.636] [info]  Download progress: {
+  total: 9108757,
+  delta: 721495,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 317633
+}
+[2024-04-05 15:00:27.457] [info]  Download progress: {
+  total: 9108757,
+  delta: 735784,
+  transferred: 5764451,
+  percent: 63.284716015588074,
+  bytesPerSecond: 304305
+}
+[2024-04-05 15:00:27.462] [info]  Download progress: {
+  total: 9108757,
+  delta: 72196,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 308035
+}
+[2024-04-05 15:00:27.570] [info]  Download progress: {
+  total: 9108757,
+  delta: 787031,
+  transferred: 5821039,
+  percent: 63.905964337395325,
+  bytesPerSecond: 305502
+}
+[2024-04-05 15:00:27.575] [info]  Download progress: {
+  total: 9108757,
+  delta: 15608,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 306241
+}
+[2024-04-05 15:00:28.369] [info]  Download progress: {
+  total: 9108757,
+  delta: 100204,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 295374
+}
+[2024-04-05 15:00:28.493] [info]  Download progress: {
+  total: 9108757,
+  delta: 43616,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 293570
+}
+[2024-04-05 15:00:29.434] [info]  Download progress: {
+  total: 9108757,
+  delta: 174688,
+  transferred: 5939139,
+  percent: 65.20251885081576,
+  bytesPerSecond: 283898
+}
+[2024-04-05 15:00:29.455] [info]  Download progress: {
+  total: 9108757,
+  delta: 283864,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 297168
+}
+[2024-04-05 15:00:29.546] [info]  Download progress: {
+  total: 9108757,
+  delta: 113679,
+  transferred: 5934718,
+  percent: 65.15398313952167,
+  bytesPerSecond: 282202
+}
+[2024-04-05 15:00:29.567] [info]  Download progress: {
+  total: 9108757,
+  delta: 288285,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 295616
+}
+[2024-04-05 15:00:30.397] [info]  Download progress: {
+  total: 9108757,
+  delta: 634742,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 300410
+}
+[2024-04-05 15:00:30.481] [info]  Download progress: {
+  total: 9108757,
+  delta: 639163,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 299289
+}
+[2024-04-05 15:00:31.303] [info]  Download progress: {
+  total: 9108757,
+  delta: 667492,
+  transferred: 6606631,
+  percent: 72.53054395896169,
+  bytesPerSecond: 289904
+}
+[2024-04-05 15:00:31.306] [info]  Download progress: {
+  total: 9108757,
+  delta: 24839,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 290956
+}
+[2024-04-05 15:00:31.398] [info]  Download progress: {
+  total: 9108757,
+  delta: 696752,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 289812
+}
+[2024-04-05 15:00:32.263] [info]  Download progress: {
+  total: 9108757,
+  delta: 567152,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 302067
+}
+[2024-04-05 15:00:32.286] [info]  Download progress: {
+  total: 9108757,
+  delta: 745877,
+  transferred: 6680595,
+  percent: 73.34255376447084,
+  bytesPerSecond: 281052
+}
+[2024-04-05 15:00:32.331] [info]  Download progress: {
+  total: 9108757,
+  delta: 493188,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 301242
+}
+[2024-04-05 15:00:33.180] [info]  Download progress: {
+  total: 9108757,
+  delta: 643121,
+  transferred: 7249752,
+  percent: 79.59101335121795,
+  bytesPerSecond: 293917
+}
+[2024-04-05 15:00:33.182] [info]  Download progress: {
+  total: 9108757,
+  delta: 29022,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 295069
+}
+[2024-04-05 15:00:33.249] [info]  Download progress: {
+  total: 9108757,
+  delta: 598179,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 294294
+}
+[2024-04-05 15:00:34.042] [info]  Download progress: {
+  total: 9108757,
+  delta: 46695,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 285821
+}
+[2024-04-05 15:00:34.213] [info]  Download progress: {
+  total: 9108757,
+  delta: 615852,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 283942
+}
+[2024-04-05 15:00:35.049] [info]  Download progress: {
+  total: 9108757,
+  delta: 112231,
+  transferred: 7361983,
+  percent: 80.82313536303582,
+  bytesPerSecond: 277444
+}
+[2024-04-05 15:00:35.151] [info]  Download progress: {
+  total: 9108757,
+  delta: 1031407,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 315103
+}
+[2024-04-05 15:00:35.158] [info]  Download progress: {
+  total: 9108757,
+  delta: 648602,
+  transferred: 7329197,
+  percent: 80.46319602114757,
+  bytesPerSecond: 275099
+}
+[2024-04-05 15:00:35.253] [info]  Download progress: {
+  total: 9108757,
+  delta: 1064193,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 313924
+}
+[2024-04-05 15:00:36.317] [info]  Download progress: {
+  total: 9108757,
+  delta: 1058244,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 302853
+}
+[2024-04-05 15:00:36.400] [info]  Download progress: {
+  total: 9108757,
+  delta: 1091030,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 301973
+}
+[2024-04-05 15:00:37.215] [info]  Download progress: {
+  total: 9108757,
+  delta: 1067192,
+  transferred: 8429175,
+  percent: 92.53924547553525,
+  bytesPerSecond: 293689
+}
+[2024-04-05 15:00:37.225] [info]  Download progress: {
+  total: 9108757,
+  delta: 144087,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 298605
+}
+[2024-04-05 15:00:37.286] [info]  Download progress: {
+  total: 9108757,
+  delta: 1168419,
+  transferred: 8497616,
+  percent: 93.2906213218774,
+  bytesPerSecond: 295364
+}
+[2024-04-05 15:00:37.292] [info]  Download progress: {
+  total: 9108757,
+  delta: 75646,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 297931
+}
+[2024-04-05 15:00:38.205] [info]  Download progress: {
+  total: 9108757,
+  delta: 525554,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 301597
+}
+[2024-04-05 15:00:38.260] [info]  Download progress: {
+  total: 9108757,
+  delta: 457113,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 301060
+}
+[2024-04-05 15:00:39.100] [info]  Download progress: {
+  total: 9108757,
+  delta: 592575,
+  transferred: 9021750,
+  percent: 99.04479831880464,
+  bytesPerSecond: 294963
+}
+[2024-04-05 15:00:39.110] [info]  Download progress: {
+  total: 9108757,
+  delta: 87007,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 297711
+}
+[2024-04-05 15:00:39.166] [info]  Download progress: {
+  total: 9108757,
+  delta: 472594,
+  transferred: 8970210,
+  percent: 98.4789691941502,
+  bytesPerSecond: 292666
+}
+[2024-04-05 15:00:39.180] [info]  Download progress: {
+  total: 9108757,
+  delta: 138547,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 297051
+}
+[2024-04-05 15:00:40.850] [info]  Error in auto-updater: Error: EBUSY: resource busy or locked, open 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\temp-web-dan-for-js-test-Setup-2.2.10.exe'
+[2024-04-05 15:00:40.851] [info]  Error in auto-updater: Error: EBUSY: resource busy or locked, open 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\temp-web-dan-for-js-test-Setup-2.2.10.exe'
+[2024-04-05 15:02:25.404] [info]  check install k -1
+[2024-04-05 15:02:27.463] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.7
+[2024-04-05 15:02:30.057] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 15:02:32.656] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 12360
+}
+[2024-04-05 15:02:32.670] [info]  Download progress: {
+  total: 9108757,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.16961699604018418,
+  bytesPerSecond: 12213
+}
+[2024-04-05 15:02:33.549] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 20120
+}
+[2024-04-05 15:02:33.552] [info]  Download progress: {
+  total: 9108757,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47357724001200163,
+  bytesPerSecond: 20101
+}
+[2024-04-05 15:02:34.398] [info]  Download progress: {
+  total: 9108757,
+  delta: 101842,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 34027
+}
+[2024-04-05 15:02:34.484] [info]  Download progress: {
+  total: 9108757,
+  delta: 101842,
+  transferred: 101842,
+  percent: 1.1180669327329733,
+  bytesPerSecond: 33087
+}
+[2024-04-05 15:02:35.309] [info]  Download progress: {
+  total: 9108757,
+  delta: 120132,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 30772
+}
+[2024-04-05 15:02:35.356] [info]  Download progress: {
+  total: 9108757,
+  delta: 120132,
+  transferred: 120132,
+  percent: 1.3188627163947837,
+  bytesPerSecond: 30413
+}
+[2024-04-05 15:02:36.359] [info]  Download progress: {
+  total: 9108757,
+  delta: 163757,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 33062
+}
+[2024-04-05 15:02:36.377] [info]  Download progress: {
+  total: 9108757,
+  delta: 163757,
+  transferred: 163757,
+  percent: 1.7977974382234592,
+  bytesPerSecond: 32936
+}
+[2024-04-05 15:02:37.232] [info]  Download progress: {
+  total: 9108757,
+  delta: 207382,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 35596
+}
+[2024-04-05 15:02:37.234] [info]  Download progress: {
+  total: 9108757,
+  delta: 207382,
+  transferred: 207382,
+  percent: 2.2767321600521346,
+  bytesPerSecond: 35578
+}
+[2024-04-05 15:02:38.125] [info]  Download progress: {
+  total: 9108757,
+  delta: 272918,
+  transferred: 272918,
+  percent: 2.9962156197601937,
+  bytesPerSecond: 40613
+}
+[2024-04-05 15:02:38.127] [info]  Download progress: {
+  total: 9108757,
+  delta: 23374,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 44078
+}
+[2024-04-05 15:02:38.153] [info]  Download progress: {
+  total: 9108757,
+  delta: 272918,
+  transferred: 272918,
+  percent: 2.9962156197601937,
+  bytesPerSecond: 40450
+}
+[2024-04-05 15:02:38.154] [info]  Download progress: {
+  total: 9108757,
+  delta: 23374,
+  transferred: 296292,
+  percent: 3.2528258246432524,
+  bytesPerSecond: 43908
+}
+[2024-04-05 15:02:39.014] [info]  Download progress: {
+  total: 9108757,
+  delta: 1468547,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 228869
+}
+[2024-04-05 15:02:39.063] [info]  Download progress: {
+  total: 9108757,
+  delta: 1468547,
+  transferred: 1741465,
+  percent: 19.118580065315168,
+  bytesPerSecond: 227434
+}
+[2024-04-05 15:02:39.908] [info]  Download progress: {
+  total: 9108757,
+  delta: 1534083,
+  transferred: 1807001,
+  percent: 19.838063525023227,
+  bytesPerSecond: 212513
+}
+[2024-04-05 15:02:39.910] [info]  Download progress: {
+  total: 9108757,
+  delta: 23374,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 215212
+}
+[2024-04-05 15:02:39.964] [info]  Download progress: {
+  total: 9108757,
+  delta: 1550422,
+  transferred: 1823340,
+  percent: 20.01744035986469,
+  bytesPerSecond: 213057
+}
+[2024-04-05 15:02:39.968] [info]  Download progress: {
+  total: 9108757,
+  delta: 7035,
+  transferred: 1830375,
+  percent: 20.094673729906287,
+  bytesPerSecond: 213779
+}
+[2024-04-05 15:02:40.819] [info]  Download progress: {
+  total: 9108757,
+  delta: 1470025,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 348101
+}
+[2024-04-05 15:02:40.878] [info]  Download progress: {
+  total: 9108757,
+  delta: 1453686,
+  transferred: 3277026,
+  percent: 35.97665411427706,
+  bytesPerSecond: 345970
+}
+[2024-04-05 15:02:41.873] [info]  Download progress: {
+  total: 9108757,
+  delta: 1535561,
+  transferred: 3342562,
+  percent: 36.69613757398512,
+  bytesPerSecond: 319312
+}
+[2024-04-05 15:02:41.875] [info]  Download progress: {
+  total: 9108757,
+  delta: 49107,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 323942
+}
+[2024-04-05 15:02:41.915] [info]  Download progress: {
+  total: 9108757,
+  delta: 1519222,
+  transferred: 3342562,
+  percent: 36.69613757398512,
+  bytesPerSecond: 318067
+}
+[2024-04-05 15:02:41.916] [info]  Download progress: {
+  total: 9108757,
+  delta: 49107,
+  transferred: 3391669,
+  percent: 37.23525613868061,
+  bytesPerSecond: 322709
+}
+[2024-04-05 15:02:42.782] [info]  Download progress: {
+  total: 9108757,
+  delta: 100357,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 302621
+}
+[2024-04-05 15:02:42.810] [info]  Download progress: {
+  total: 9108757,
+  delta: 100357,
+  transferred: 3442919,
+  percent: 37.797901513894814,
+  bytesPerSecond: 301905
+}
+[2024-04-05 15:02:43.654] [info]  Download progress: {
+  total: 9108757,
+  delta: 165893,
+  transferred: 3508455,
+  percent: 38.51738497360287,
+  bytesPerSecond: 286428
+}
+[2024-04-05 15:02:43.690] [info]  Download progress: {
+  total: 9108757,
+  delta: 167677,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 299237
+}
+[2024-04-05 15:02:43.730] [info]  Download progress: {
+  total: 9108757,
+  delta: 165893,
+  transferred: 3508455,
+  percent: 38.51738497360287,
+  bytesPerSecond: 284685
+}
+[2024-04-05 15:02:43.734] [info]  Download progress: {
+  total: 9108757,
+  delta: 167677,
+  transferred: 3676132,
+  percent: 40.35821792150126,
+  bytesPerSecond: 298194
+}
+[2024-04-05 15:02:44.619] [info]  Download progress: {
+  total: 9108757,
+  delta: 752161,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 322432
+}
+[2024-04-05 15:02:44.655] [info]  Download progress: {
+  total: 9108757,
+  delta: 752161,
+  transferred: 4260616,
+  percent: 46.774944155388056,
+  bytesPerSecond: 321580
+}
+[2024-04-05 15:02:45.549] [info]  Download progress: {
+  total: 9108757,
+  delta: 817697,
+  transferred: 4326152,
+  percent: 47.49442761509611,
+  bytesPerSecond: 305865
+}
+[2024-04-05 15:02:45.552] [info]  Download progress: {
+  total: 9108757,
+  delta: 42835,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 308828
+}
+[2024-04-05 15:02:45.589] [info]  Download progress: {
+  total: 9108757,
+  delta: 817697,
+  transferred: 4326152,
+  percent: 47.49442761509611,
+  bytesPerSecond: 305024
+}
+[2024-04-05 15:02:45.590] [info]  Download progress: {
+  total: 9108757,
+  delta: 42835,
+  transferred: 4368987,
+  percent: 47.96468936431173,
+  bytesPerSecond: 308022
+}
+[2024-04-05 15:02:46.519] [info]  Download progress: {
+  total: 9108757,
+  delta: 254089,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 303046
+}
+[2024-04-05 15:02:46.564] [info]  Download progress: {
+  total: 9108757,
+  delta: 254089,
+  transferred: 4580241,
+  percent: 50.28393006861419,
+  bytesPerSecond: 302167
+}
+[2024-04-05 15:02:47.375] [info]  Download progress: {
+  total: 9108757,
+  delta: 319625,
+  transferred: 4645777,
+  percent: 51.00341352832225,
+  bytesPerSecond: 290907
+}
+[2024-04-05 15:02:47.395] [info]  Download progress: {
+  total: 9108757,
+  delta: 364537,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 313340
+}
+[2024-04-05 15:02:47.453] [info]  Download progress: {
+  total: 9108757,
+  delta: 335108,
+  transferred: 4661260,
+  percent: 51.173392813091844,
+  bytesPerSecond: 290475
+}
+[2024-04-05 15:02:47.463] [info]  Download progress: {
+  total: 9108757,
+  delta: 349054,
+  transferred: 5010314,
+  percent: 55.00546342382391,
+  bytesPerSecond: 312033
+}
+[2024-04-05 15:02:48.293] [info]  Download progress: {
+  total: 9108757,
+  delta: 1067805,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 338322
+}
+[2024-04-05 15:02:48.362] [info]  Download progress: {
+  total: 9108757,
+  delta: 1052322,
+  transferred: 5713582,
+  percent: 62.72625342843157,
+  bytesPerSecond: 336965
+}
+[2024-04-05 15:02:49.149] [info]  Download progress: {
+  total: 9108757,
+  delta: 1109726,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 324363
+}
+[2024-04-05 15:02:49.263] [info]  Download progress: {
+  total: 9108757,
+  delta: 1094243,
+  transferred: 5755503,
+  percent: 63.186480877687266,
+  bytesPerSecond: 322311
+}
+[2024-04-05 15:02:50.017] [info]  Download progress: {
+  total: 9108757,
+  delta: 1175262,
+  transferred: 5821039,
+  percent: 63.905964337395325,
+  bytesPerSecond: 312757
+}
+[2024-04-05 15:02:50.019] [info]  Download progress: {
+  total: 9108757,
+  delta: 15608,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 313562
+}
+[2024-04-05 15:02:50.180] [info]  Download progress: {
+  total: 9108757,
+  delta: 1159779,
+  transferred: 5821039,
+  percent: 63.905964337395325,
+  bytesPerSecond: 310059
+}
+[2024-04-05 15:02:50.183] [info]  Download progress: {
+  total: 9108757,
+  delta: 15608,
+  transferred: 5836647,
+  percent: 64.07731592795813,
+  bytesPerSecond: 310840
+}
+[2024-04-05 15:02:50.886] [info]  Download progress: {
+  total: 9108757,
+  delta: 43616,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 301045
+}
+[2024-04-05 15:02:51.071] [info]  Download progress: {
+  total: 9108757,
+  delta: 43616,
+  transferred: 5864655,
+  percent: 64.38480025320689,
+  bytesPerSecond: 298228
+}
+[2024-04-05 15:02:51.908] [info]  Download progress: {
+  total: 9108757,
+  delta: 109152,
+  transferred: 5930191,
+  percent: 65.10428371291495,
+  bytesPerSecond: 289235
+}
+[2024-04-05 15:02:51.913] [info]  Download progress: {
+  total: 9108757,
+  delta: 292812,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 303443
+}
+[2024-04-05 15:02:52.078] [info]  Download progress: {
+  total: 9108757,
+  delta: 109152,
+  transferred: 5930191,
+  percent: 65.10428371291495,
+  bytesPerSecond: 286871
+}
+[2024-04-05 15:02:52.084] [info]  Download progress: {
+  total: 9108757,
+  delta: 292812,
+  transferred: 6223003,
+  percent: 68.31890454427536,
+  bytesPerSecond: 300948
+}
+[2024-04-05 15:02:52.838] [info]  Download progress: {
+  total: 9108757,
+  delta: 643690,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 306718
+}
+[2024-04-05 15:02:53.005] [info]  Download progress: {
+  total: 9108757,
+  delta: 643690,
+  transferred: 6573881,
+  percent: 72.17099984114188,
+  bytesPerSecond: 304360
+}
+[2024-04-05 15:02:53.736] [info]  Download progress: {
+  total: 9108757,
+  delta: 701279,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 296963
+}
+[2024-04-05 15:02:53.919] [info]  Download progress: {
+  total: 9108757,
+  delta: 701279,
+  transferred: 6631470,
+  percent: 72.80323758774112,
+  bytesPerSecond: 294562
+}
+[2024-04-05 15:02:54.634] [info]  Download progress: {
+  total: 9108757,
+  delta: 782298,
+  transferred: 6712489,
+  percent: 73.69270033221876,
+  bytesPerSecond: 288970
+}
+[2024-04-05 15:02:54.673] [info]  Download progress: {
+  total: 9108757,
+  delta: 461294,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 308311
+}
+[2024-04-05 15:02:54.832] [info]  Download progress: {
+  total: 9108757,
+  delta: 791337,
+  transferred: 6721528,
+  percent: 73.79193450873703,
+  bytesPerSecond: 286926
+}
+[2024-04-05 15:02:54.855] [info]  Download progress: {
+  total: 9108757,
+  delta: 452255,
+  transferred: 7173783,
+  percent: 78.7569917607858,
+  bytesPerSecond: 305931
+}
+[2024-04-05 15:02:55.562] [info]  Download progress: {
+  total: 9108757,
+  delta: 566285,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 301311
+}
+[2024-04-05 15:02:55.799] [info]  Download progress: {
+  total: 9108757,
+  delta: 557246,
+  transferred: 7278774,
+  percent: 79.9096298210612,
+  bytesPerSecond: 298396
+}
+[2024-04-05 15:02:56.447] [info]  Download progress: {
+  total: 9108757,
+  delta: 583958,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 291368
+}
+[2024-04-05 15:02:56.726] [info]  Download progress: {
+  total: 9108757,
+  delta: 574919,
+  transferred: 7296447,
+  percent: 80.10365190332776,
+  bytesPerSecond: 288169
+}
+[2024-04-05 15:02:57.495] [info]  Download progress: {
+  total: 9108757,
+  delta: 646594,
+  transferred: 7359083,
+  percent: 80.79129786863345,
+  bytesPerSecond: 282065
+}
+[2024-04-05 15:02:57.636] [info]  Download progress: {
+  total: 9108757,
+  delta: 1034307,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 319980
+}
+[2024-04-05 15:02:57.782] [info]  Download progress: {
+  total: 9108757,
+  delta: 664145,
+  transferred: 7385673,
+  percent: 81.0832147569641,
+  bytesPerSecond: 280015
+}
+[2024-04-05 15:02:57.826] [info]  Download progress: {
+  total: 9108757,
+  delta: 1007717,
+  transferred: 8393390,
+  percent: 92.1463817730564,
+  bytesPerSecond: 317691
+}
+[2024-04-05 15:02:58.714] [info]  Download progress: {
+  total: 9108757,
+  delta: 1061144,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 308332
+}
+[2024-04-05 15:02:58.897] [info]  Download progress: {
+  total: 9108757,
+  delta: 1034554,
+  transferred: 8420227,
+  percent: 92.44101033763444,
+  bytesPerSecond: 306290
+}
+[2024-04-05 15:02:59.601] [info]  Download progress: {
+  total: 9108757,
+  delta: 1142161,
+  transferred: 8501244,
+  percent: 93.3304511252194,
+  bytesPerSecond: 301505
+}
+[2024-04-05 15:02:59.607] [info]  Download progress: {
+  total: 9108757,
+  delta: 72018,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 303995
+}
+[2024-04-05 15:02:59.781] [info]  Download progress: {
+  total: 9108757,
+  delta: 1100090,
+  transferred: 8485763,
+  percent: 93.1604937973425,
+  bytesPerSecond: 299058
+}
+[2024-04-05 15:02:59.784] [info]  Download progress: {
+  total: 9108757,
+  delta: 87499,
+  transferred: 8573262,
+  percent: 94.12109687413991,
+  bytesPerSecond: 302109
+}
+[2024-04-05 15:03:00.583] [info]  Download progress: {
+  total: 9108757,
+  delta: 453485,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 306900
+}
+[2024-04-05 15:03:00.715] [info]  Download progress: {
+  total: 9108757,
+  delta: 468966,
+  transferred: 8954729,
+  percent: 98.3090118662733,
+  bytesPerSecond: 305528
+}
+[2024-04-05 15:03:01.470] [info]  Download progress: {
+  total: 9108757,
+  delta: 519021,
+  transferred: 9020265,
+  percent: 99.02849532598135,
+  bytesPerSecond: 300025
+}
+[2024-04-05 15:03:01.480] [info]  Download progress: {
+  total: 9108757,
+  delta: 88492,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 302868
+}
+[2024-04-05 15:03:01.621] [info]  Download progress: {
+  total: 9108757,
+  delta: 549982,
+  transferred: 9035745,
+  percent: 99.19844167541191,
+  bytesPerSecond: 299048
+}
+[2024-04-05 15:03:01.624] [info]  Download progress: {
+  total: 9108757,
+  delta: 73012,
+  transferred: 9108757,
+  percent: 100,
+  bytesPerSecond: 301435
+}
+[2024-04-05 15:03:06.440] [info]  Download progress: {
+  total: 149446943,
+  delta: 1376148,
+  transferred: 1376148,
+  percent: 0.9208271326098654,
+  bytesPerSecond: 367561
+}
+[2024-04-05 15:03:06.480] [info]  Download progress: {
+  total: 149446943,
+  delta: 9049428,
+  transferred: 9049428,
+  percent: 6.055278092908197,
+  bytesPerSecond: 2230571
+}
+[2024-04-05 15:03:08.865] [info]  Download progress: {
+  total: 149446943,
+  delta: 6602761,
+  transferred: 15652189,
+  percent: 10.4734086129818,
+  bytesPerSecond: 2429710
+}
+[2024-04-05 15:03:08.925] [info]  Download progress: {
+  total: 149446943,
+  delta: 3293247,
+  transferred: 4669395,
+  percent: 3.124449992931605,
+  bytesPerSecond: 749622
+}
+[2024-04-05 15:03:09.866] [info]  Download progress: {
+  total: 149446943,
+  delta: 4653056,
+  transferred: 20305245,
+  percent: 13.5869256288501,
+  bytesPerSecond: 2728100
+}
+[2024-04-05 15:03:11.611] [info]  Download progress: {
+  total: 149446943,
+  delta: 65536,
+  transferred: 20370781,
+  percent: 13.630777981186274,
+  bytesPerSecond: 2217107
+}
+[2024-04-05 15:03:11.673] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 7028691,
+  percent: 4.703134677033842,
+  bytesPerSecond: 782967
+}
+[2024-04-05 15:03:12.614] [info]  Download progress: {
+  total: 149446943,
+  delta: 3981321,
+  transferred: 24352102,
+  percent: 16.294814407812947,
+  bytesPerSecond: 2389569
+}
+[2024-04-05 15:03:12.673] [info]  Download progress: {
+  total: 149446943,
+  delta: 2080813,
+  transferred: 9109504,
+  percent: 6.095476974728081,
+  bytesPerSecond: 913050
+}
+[2024-04-05 15:03:13.623] [info]  Download progress: {
+  total: 149446943,
+  delta: 3817463,
+  transferred: 28169565,
+  percent: 18.84920790919089,
+  bytesPerSecond: 2515140
+}
+[2024-04-05 15:03:13.675] [info]  Download progress: {
+  total: 149446943,
+  delta: 1900544,
+  transferred: 11010048,
+  percent: 7.367195192477105,
+  bytesPerSecond: 1002828
+}
+[2024-04-05 15:03:15.798] [info]  Download progress: {
+  total: 149446943,
+  delta: 1376256,
+  transferred: 29545821,
+  percent: 19.77010730825053,
+  bytesPerSecond: 2209033
+}
+[2024-04-05 15:03:15.841] [info]  Download progress: {
+  total: 149446943,
+  delta: 606163,
+  transferred: 11616211,
+  percent: 7.772799340565969,
+  bytesPerSecond: 883698
+}
+[2024-04-05 15:03:17.395] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 34264413,
+  percent: 22.927476676455,
+  bytesPerSecond: 2288566
+}
+[2024-04-05 15:03:17.435] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 13975507,
+  percent: 9.351484024668206,
+  bytesPerSecond: 948199
+}
+[2024-04-05 15:03:19.774] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 38983005,
+  percent: 26.084846044659475,
+  bytesPerSecond: 2246730
+}
+[2024-04-05 15:03:19.826] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 16334803,
+  percent: 10.930168708770443,
+  bytesPerSecond: 953579
+}
+[2024-04-05 15:03:21.245] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 43701597,
+  percent: 29.24221541286395,
+  bytesPerSecond: 2321836
+}
+[2024-04-05 15:03:21.304] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 18694099,
+  percent: 12.508853392872679,
+  bytesPerSecond: 1004627
+}
+[2024-04-05 15:03:23.670] [info]  Download progress: {
+  total: 149446943,
+  delta: 4620270,
+  transferred: 48321867,
+  percent: 32.33379420815587,
+  bytesPerSecond: 2274291
+}
+[2024-04-05 15:03:23.712] [info]  Download progress: {
+  total: 149446943,
+  delta: 2326510,
+  transferred: 21020609,
+  percent: 14.065599856398533,
+  bytesPerSecond: 1000219
+}
+[2024-04-05 15:03:24.673] [info]  Download progress: {
+  total: 149446943,
+  delta: 2621440,
+  transferred: 50943307,
+  percent: 34.087888301602796,
+  bytesPerSecond: 2289587
+}
+[2024-04-05 15:03:24.722] [info]  Download progress: {
+  total: 149446943,
+  delta: 1343506,
+  transferred: 22364115,
+  percent: 14.964585123698381,
+  bytesPerSecond: 1015351
+}
+[2024-04-05 15:03:25.674] [info]  Download progress: {
+  total: 149446943,
+  delta: 3391497,
+  transferred: 54334804,
+  percent: 36.35725355720391,
+  bytesPerSecond: 2336880
+}
+[2024-04-05 15:03:25.732] [info]  Download progress: {
+  total: 149446943,
+  delta: 1753133,
+  transferred: 24117248,
+  percent: 16.137665659711757,
+  bytesPerSecond: 1046937
+}
+[2024-04-05 15:03:28.152] [info]  Download progress: {
+  total: 149446943,
+  delta: 2965495,
+  transferred: 57300299,
+  percent: 38.341566478211604,
+  bytesPerSecond: 2227071
+}
+[2024-04-05 15:03:28.173] [info]  Download progress: {
+  total: 149446943,
+  delta: 1376256,
+  transferred: 25493504,
+  percent: 17.058565058771393,
+  bytesPerSecond: 1000648
+}
+[2024-04-05 15:03:29.154] [info]  Download progress: {
+  total: 149446943,
+  delta: 2572279,
+  transferred: 59872578,
+  percent: 40.06276528520225,
+  bytesPerSecond: 2239818
+}
+[2024-04-05 15:03:29.180] [info]  Download progress: {
+  total: 149446943,
+  delta: 1310720,
+  transferred: 26804224,
+  percent: 17.935612105494858,
+  bytesPerSecond: 1012091
+}
+[2024-04-05 15:03:30.157] [info]  Download progress: {
+  total: 149446943,
+  delta: 2998281,
+  transferred: 62870859,
+  percent: 42.06901642678633,
+  bytesPerSecond: 2266924
+}
+[2024-04-05 15:03:30.180] [info]  Download progress: {
+  total: 149446943,
+  delta: 1507220,
+  transferred: 28311444,
+  percent: 18.94414394277707,
+  bytesPerSecond: 1030106
+}
+[2024-04-05 15:03:31.169] [info]  Download progress: {
+  total: 149446943,
+  delta: 2129938,
+  transferred: 65000797,
+  percent: 43.494229922120255,
+  bytesPerSecond: 2261212
+}
+[2024-04-05 15:03:31.186] [info]  Download progress: {
+  total: 149446943,
+  delta: 1048684,
+  transferred: 29360128,
+  percent: 19.645853846605615,
+  bytesPerSecond: 1030542
+}
+[2024-04-05 15:03:32.181] [info]  Download progress: {
+  total: 149446943,
+  delta: 1032165,
+  transferred: 66032962,
+  percent: 44.18488640480254,
+  bytesPerSecond: 2218999
+}
+[2024-04-05 15:03:32.189] [info]  Download progress: {
+  total: 149446943,
+  delta: 475091,
+  transferred: 29835219,
+  percent: 19.963753290022133,
+  bytesPerSecond: 1011603
+}
+[2024-04-05 15:03:33.194] [info]  Download progress: {
+  total: 149446943,
+  delta: 2162724,
+  transferred: 68195686,
+  percent: 45.63203812071285,
+  bytesPerSecond: 2216232
+}
+[2024-04-05 15:03:33.195] [info]  Download progress: {
+  total: 149446943,
+  delta: 1097773,
+  transferred: 30932992,
+  percent: 20.69831030267377,
+  bytesPerSecond: 1014230
+}
+[2024-04-05 15:03:34.196] [info]  Download progress: {
+  total: 149446943,
+  delta: 3211264,
+  transferred: 71406950,
+  percent: 47.78080338518534,
+  bytesPerSecond: 2247410
+}
+[2024-04-05 15:03:34.197] [info]  Download progress: {
+  total: 149446943,
+  delta: 1589203,
+  transferred: 32522195,
+  percent: 21.761699735805234,
+  bytesPerSecond: 1032418
+}
+[2024-04-05 15:03:35.625] [info]  Download progress: {
+  total: 149446943,
+  delta: 1032129,
+  transferred: 33554324,
+  percent: 22.45233212967093,
+  bytesPerSecond: 1018990
+}
+[2024-04-05 15:03:35.665] [info]  Download progress: {
+  total: 149446943,
+  delta: 1982455,
+  transferred: 73389405,
+  percent: 49.10733102115043,
+  bytesPerSecond: 2207731
+}
+[2024-04-05 15:03:36.629] [info]  Download progress: {
+  total: 149446943,
+  delta: 1638400,
+  transferred: 35192724,
+  percent: 23.54864093807526,
+  bytesPerSecond: 1037124
+}
+[2024-04-05 15:03:36.667] [info]  Download progress: {
+  total: 149446943,
+  delta: 3440622,
+  transferred: 76830027,
+  percent: 51.409567474391224,
+  bytesPerSecond: 2243606
+}
+[2024-04-05 15:03:37.846] [info]  Download progress: {
+  total: 149446943,
+  delta: 720896,
+  transferred: 35913620,
+  percent: 24.031016813773164,
+  bytesPerSecond: 1021725
+}
+[2024-04-05 15:03:37.866] [info]  Download progress: {
+  total: 149446943,
+  delta: 1277970,
+  transferred: 78107997,
+  percent: 52.2647003893549,
+  bytesPerSecond: 2203826
+}
+[2024-04-05 15:03:40.330] [info]  Download progress: {
+  total: 149446943,
+  delta: 2228224,
+  transferred: 38141844,
+  percent: 25.521996793203055,
+  bytesPerSecond: 1013494
+}
+[2024-04-05 15:03:40.373] [info]  Download progress: {
+  total: 149446943,
+  delta: 4456448,
+  transferred: 82564445,
+  percent: 55.24666034821468,
+  bytesPerSecond: 2175611
+}
+[2024-04-05 15:03:41.340] [info]  Download progress: {
+  total: 149446943,
+  delta: 1835116,
+  transferred: 39976960,
+  percent: 26.749934925065684,
+  bytesPerSecond: 1034493
+}
+[2024-04-05 15:03:41.373] [info]  Download progress: {
+  total: 149446943,
+  delta: 3801088,
+  transferred: 86365533,
+  percent: 57.79009678371273,
+  bytesPerSecond: 2217344
+}
+[2024-04-05 15:03:42.340] [info]  Download progress: {
+  total: 149446943,
+  delta: 1572864,
+  transferred: 41549824,
+  percent: 27.80239138113384,
+  bytesPerSecond: 1048073
+}
+[2024-04-05 15:03:42.376] [info]  Download progress: {
+  total: 149446943,
+  delta: 3211264,
+  transferred: 89576797,
+  percent: 59.93886204818523,
+  bytesPerSecond: 2242054
+}
+[2024-04-05 15:03:43.794] [info]  Download progress: {
+  total: 149446943,
+  delta: 2277349,
+  transferred: 91854146,
+  percent: 61.462713225254795,
+  bytesPerSecond: 2220254
+}
+[2024-04-05 15:03:43.814] [info]  Download progress: {
+  total: 149446943,
+  delta: 1195987,
+  transferred: 42745811,
+  percent: 28.602666700248264,
+  bytesPerSecond: 1039589
+}
+[2024-04-05 15:03:44.797] [info]  Download progress: {
+  total: 149446943,
+  delta: 4358162,
+  transferred: 96212308,
+  percent: 64.37890670001862,
+  bytesPerSecond: 2270551
+}
+[2024-04-05 15:03:44.814] [info]  Download progress: {
+  total: 149446943,
+  delta: 2228224,
+  transferred: 44974035,
+  percent: 30.093646679678155,
+  bytesPerSecond: 1067810
+}
+[2024-04-05 15:03:46.585] [info]  Download progress: {
+  total: 149446943,
+  delta: 16375,
+  transferred: 44990410,
+  percent: 30.104603745558045,
+  bytesPerSecond: 1025095
+}
+[2024-04-05 15:03:46.633] [info]  Download progress: {
+  total: 149446943,
+  delta: 114697,
+  transferred: 96327005,
+  percent: 64.45565433881106,
+  bytesPerSecond: 2178851
+}
+[2024-04-05 15:03:47.590] [info]  Download progress: {
+  total: 149446943,
+  delta: 1474614,
+  transferred: 46465024,
+  percent: 31.09131780634683,
+  bytesPerSecond: 1034994
+}
+[2024-04-05 15:03:47.637] [info]  Download progress: {
+  total: 149446943,
+  delta: 3014656,
+  transferred: 99341661,
+  percent: 66.47286254627504,
+  bytesPerSecond: 2197144
+}
+[2024-04-05 15:03:48.597] [info]  Download progress: {
+  total: 149446943,
+  delta: 1458131,
+  transferred: 47923155,
+  percent: 32.06700253480595,
+  bytesPerSecond: 1044055
+}
+[2024-04-05 15:03:48.648] [info]  Download progress: {
+  total: 149446943,
+  delta: 3014656,
+  transferred: 102356317,
+  percent: 68.490070753739,
+  bytesPerSecond: 2214306
+}
+[2024-04-05 15:03:50.062] [info]  Download progress: {
+  total: 149446943,
+  delta: 1212398,
+  transferred: 49135553,
+  percent: 32.87825900861686,
+  bytesPerSecond: 1037359
+}
+[2024-04-05 15:03:50.103] [info]  Download progress: {
+  total: 149446943,
+  delta: 2228224,
+  transferred: 104584541,
+  percent: 69.9810507331689,
+  bytesPerSecond: 2193468
+}
+[2024-04-05 15:03:51.063] [info]  Download progress: {
+  total: 149446943,
+  delta: 1294345,
+  transferred: 50429898,
+  percent: 33.74434898946043,
+  bytesPerSecond: 1042651
+}
+[2024-04-05 15:03:51.116] [info]  Download progress: {
+  total: 149446943,
+  delta: 2768887,
+  transferred: 107353428,
+  percent: 71.83380659716806,
+  bytesPerSecond: 2204699
+}
+[2024-04-05 15:03:52.144] [info]  Download progress: {
+  total: 149446943,
+  delta: 1015754,
+  transferred: 51445652,
+  percent: 34.424024317446225,
+  bytesPerSecond: 1040399
+}
+[2024-04-05 15:03:52.183] [info]  Download progress: {
+  total: 149446943,
+  delta: 1818633,
+  transferred: 109172061,
+  percent: 73.05071539670102,
+  bytesPerSecond: 2193972
+}
+[2024-04-05 15:03:53.150] [info]  Download progress: {
+  total: 149446943,
+  delta: 1114220,
+  transferred: 52559872,
+  percent: 35.16958657361094,
+  bytesPerSecond: 1041738
+}
+[2024-04-05 15:03:53.186] [info]  Download progress: {
+  total: 149446943,
+  delta: 2342921,
+  transferred: 111514982,
+  percent: 74.61844301492336,
+  bytesPerSecond: 2196777
+}
+[2024-04-05 15:03:54.153] [info]  Download progress: {
+  total: 149446943,
+  delta: 1310612,
+  transferred: 53870484,
+  percent: 36.046561353884634,
+  bytesPerSecond: 1046903
+}
+[2024-04-05 15:03:54.196] [info]  Download progress: {
+  total: 149446943,
+  delta: 2637815,
+  transferred: 114152797,
+  percent: 76.38349417425019,
+  bytesPerSecond: 2204914
+}
+[2024-04-05 15:03:55.165] [info]  Download progress: {
+  total: 149446943,
+  delta: 1572972,
+  transferred: 55443456,
+  percent: 37.09909007640257,
+  bytesPerSecond: 1056690
+}
+[2024-04-05 15:03:55.215] [info]  Download progress: {
+  total: 149446943,
+  delta: 3145728,
+  transferred: 117298525,
+  percent: 78.4884070863865,
+  bytesPerSecond: 2221900
+}
+[2024-04-05 15:03:56.235] [info]  Download progress: {
+  total: 149446943,
+  delta: 1097737,
+  transferred: 118396262,
+  percent: 79.22294001022155,
+  bytesPerSecond: 2200183
+}
+[2024-04-05 15:03:56.236] [info]  Download progress: {
+  total: 149446943,
+  delta: 589824,
+  transferred: 56033280,
+  percent: 37.493761247428125,
+  bytesPerSecond: 1046569
+}
+[2024-04-05 15:03:57.235] [info]  Download progress: {
+  total: 149446943,
+  delta: 1392631,
+  transferred: 119788893,
+  percent: 80.15479647516108,
+  bytesPerSecond: 2185450
+}
+[2024-04-05 15:03:57.252] [info]  Download progress: {
+  total: 149446943,
+  delta: 720896,
+  transferred: 56754176,
+  percent: 37.97613712312603,
+  bytesPerSecond: 1040292
+}
+[2024-04-05 15:03:58.238] [info]  Download progress: {
+  total: 149446943,
+  delta: 1392631,
+  transferred: 121181524,
+  percent: 81.08665294010062,
+  bytesPerSecond: 2171128
+}
+[2024-04-05 15:03:58.262] [info]  Download progress: {
+  total: 149446943,
+  delta: 671699,
+  transferred: 57425875,
+  percent: 38.425593623551066,
+  bytesPerSecond: 1033471
+}
+[2024-04-05 15:03:59.243] [info]  Download progress: {
+  total: 149446943,
+  delta: 1736686,
+  transferred: 122918210,
+  percent: 82.24872823260093,
+  bytesPerSecond: 2163291
+}
+[2024-04-05 15:03:59.278] [info]  Download progress: {
+  total: 149446943,
+  delta: 901165,
+  transferred: 58327040,
+  percent: 39.02859357919419,
+  bytesPerSecond: 1030841
+}
+[2024-04-05 15:04:00.246] [info]  Download progress: {
+  total: 149446943,
+  delta: 2637851,
+  transferred: 125556061,
+  percent: 84.01380348074433,
+  bytesPerSecond: 2171386
+}
+[2024-04-05 15:04:00.278] [info]  Download progress: {
+  total: 149446943,
+  delta: 1343434,
+  transferred: 59670474,
+  percent: 39.927530668860854,
+  bytesPerSecond: 1036270
+}
+[2024-04-05 15:04:01.246] [info]  Download progress: {
+  total: 149446943,
+  delta: 2998245,
+  transferred: 128554306,
+  percent: 86.02003053351181,
+  bytesPerSecond: 2185443
+}
+[2024-04-05 15:04:01.288] [info]  Download progress: {
+  total: 149446943,
+  delta: 1490953,
+  transferred: 61161427,
+  percent: 40.925177706712944,
+  bytesPerSecond: 1043853
+}
+[2024-04-05 15:04:02.531] [info]  Download progress: {
+  total: 149446943,
+  delta: 1245220,
+  transferred: 129799526,
+  percent: 86.8532493167157,
+  bytesPerSecond: 2159438
+}
+[2024-04-05 15:04:02.535] [info]  Download progress: {
+  total: 149446943,
+  delta: 573485,
+  transferred: 61734912,
+  percent: 41.308915900675196,
+  bytesPerSecond: 1031684
+}
+[2024-04-05 15:04:05.146] [info]  Download progress: {
+  total: 149446943,
+  delta: 4456448,
+  transferred: 134255974,
+  percent: 89.83520927557548,
+  bytesPerSecond: 2140458
+}
+[2024-04-05 15:04:05.147] [info]  Download progress: {
+  total: 149446943,
+  delta: 2228224,
+  transferred: 63963136,
+  percent: 42.79989588010509,
+  bytesPerSecond: 1024213
+}
+[2024-04-05 15:04:06.696] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 138974566,
+  percent: 92.99257864377995,
+  bytesPerSecond: 2162254
+}
+[2024-04-05 15:04:06.697] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 66322432,
+  percent: 44.378580564207326,
+  bytesPerSecond: 1036272
+}
+[2024-04-05 15:04:09.128] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 143693158,
+  percent: 96.14994801198443,
+  bytesPerSecond: 2154159
+}
+[2024-04-05 15:04:09.129] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 68681728,
+  percent: 45.95726524830957,
+  bytesPerSecond: 1033850
+}
+[2024-04-05 15:04:11.543] [info]  Download progress: {
+  total: 149446943,
+  delta: 4718592,
+  transferred: 148411750,
+  percent: 99.30731738018889,
+  bytesPerSecond: 2147161
+}
+[2024-04-05 15:04:11.544] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 71041024,
+  percent: 47.535949932411796,
+  bytesPerSecond: 1031853
+}
+[2024-04-05 15:04:11.816] [info]  Download progress: {
+  total: 149446943,
+  delta: 1035193,
+  transferred: 149446943,
+  percent: 100,
+  bytesPerSecond: 2153631
+}
+[2024-04-05 15:04:11.819] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 15:04:26.260] [info]  check install 0
+[2024-04-05 15:04:26.261] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at m.quitAndInstall (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120254)
+    at m.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250746)
+    at m.emit (node:events:513:28)
+    at m.dispatchUpdateDownloaded (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116957)
+    at Object.done (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120483)
+    at g (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119346)
+    at async m.executeDownload (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119851)
+[2024-04-05 15:04:26.263] [info]  Download progress: {
+  total: 149446943,
+  delta: 2359296,
+  transferred: 73400320,
+  percent: 49.11463461651404,
+  bytesPerSecond: 878341
+}
+[2024-04-05 15:04:27.264] [info]  Download progress: {
+  total: 149446943,
+  delta: 10668571,
+  transferred: 84068891,
+  percent: 56.25333600835181,
+  bytesPerSecond: 994098
+}
+[2024-04-05 15:04:28.266] [info]  Download progress: {
+  total: 149446943,
+  delta: 2621440,
+  transferred: 86690331,
+  percent: 58.00743010179874,
+  bytesPerSecond: 1013093
+}
+[2024-04-05 15:04:30.422] [info]  Download progress: {
+  total: 149446943,
+  delta: 5373880,
+  transferred: 92064211,
+  percent: 61.60327481573176,
+  bytesPerSecond: 1049452
+}
+[2024-04-05 15:04:32.791] [info]  Download progress: {
+  total: 149446943,
+  delta: 7372854,
+  transferred: 99437065,
+  percent: 66.53670058677615,
+  bytesPerSecond: 1103691
+}
+[2024-04-05 15:04:36.949] [info]  Download progress: {
+  total: 149446943,
+  delta: 7077888,
+  transferred: 106514953,
+  percent: 71.27275463908285,
+  bytesPerSecond: 1130096
+}
+[2024-04-05 15:04:38.013] [info]  Download progress: {
+  total: 149446943,
+  delta: 638985,
+  transferred: 107153938,
+  percent: 71.70032109656469,
+  bytesPerSecond: 1124185
+}
+[2024-04-05 15:04:39.013] [info]  Download progress: {
+  total: 149446943,
+  delta: 4063214,
+  transferred: 111217152,
+  percent: 74.41915489699913,
+  bytesPerSecond: 1154699
+}
+[2024-04-05 15:04:41.309] [info]  Download progress: {
+  total: 149446943,
+  delta: 3653641,
+  transferred: 114870793,
+  percent: 76.86392956194493,
+  bytesPerSecond: 1164865
+}
+[2024-04-05 15:04:42.311] [info]  Download progress: {
+  total: 149446943,
+  delta: 4882450,
+  transferred: 119753243,
+  percent: 80.13094185539813,
+  bytesPerSecond: 1202161
+}
+[2024-04-05 15:04:43.314] [info]  Download progress: {
+  total: 149446943,
+  delta: 4063232,
+  transferred: 123816475,
+  percent: 82.84978770024088,
+  bytesPerSecond: 1230560
+}
+[2024-04-05 15:04:44.317] [info]  Download progress: {
+  total: 149446943,
+  delta: 3456997,
+  transferred: 127273472,
+  percent: 85.16298121936158,
+  bytesPerSecond: 1252433
+}
+[2024-04-05 15:04:45.319] [info]  Download progress: {
+  total: 149446943,
+  delta: 2998281,
+  transferred: 130271753,
+  percent: 87.16923236094564,
+  bytesPerSecond: 1269421
+}
+[2024-04-05 15:04:46.707] [info]  Download progress: {
+  total: 149446943,
+  delta: 4456448,
+  transferred: 134728201,
+  percent: 90.15119231980543,
+  bytesPerSecond: 1295326
+}
+[2024-04-05 15:04:47.714] [info]  Download progress: {
+  total: 149446943,
+  delta: 3276800,
+  transferred: 138005001,
+  percent: 92.3438099366141,
+  bytesPerSecond: 1314108
+}
+[2024-04-05 15:04:48.715] [info]  Download progress: {
+  total: 149446943,
+  delta: 3211264,
+  transferred: 141216265,
+  percent: 94.49257520108658,
+  bytesPerSecond: 1331990
+}
+[2024-04-05 15:04:49.715] [info]  Download progress: {
+  total: 149446943,
+  delta: 3735552,
+  transferred: 144951817,
+  percent: 96.99215928424846,
+  bytesPerSecond: 1354449
+}
+[2024-04-05 15:04:50.741] [info]  Download progress: {
+  total: 149446943,
+  delta: 2752512,
+  transferred: 147704329,
+  percent: 98.83395808236773,
+  bytesPerSecond: 1367063
+}
+[2024-04-05 15:04:51.148] [info]  Download progress: {
+  total: 149446943,
+  delta: 1742614,
+  transferred: 149446943,
+  percent: 100,
+  bytesPerSecond: 1378001
+}
+[2024-04-05 15:04:51.171] [info]  Error in auto-updater: Error: ENOENT: no such file or directory, rename 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\temp-web-dan-for-js-test-Setup-2.2.10.exe' -> 'C:\Users\letua\AppData\Local\web-dan-for-js-test-updater\pending\web-dan-for-js-test-Setup-2.2.10.exe'
+[2024-04-05 15:07:17.312] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:121473
+    at App.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:127288)
+    at Object.onceWrapper (node:events:628:26)
+    at App.emit (node:events:525:35)
+    at App.<anonymous> (node:electron/js2c/browser_init:2:115896)
+    at App.emit (node:events:513:28)
+[2024-04-05 15:16:44.239] [error] Error in auto-updater: Error: Please check update first
+    at m.downloadUpdate (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116210)
+    at 9066 (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250856)
+    at r (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:286830)
+    at C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:287153
+    at Object.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:287166)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1296:10)
+    at Module.load (node:internal/modules/cjs/loader:1096:32)
+    at Module._load (node:internal/modules/cjs/loader:937:12)
+    at f._load (node:electron/js2c/asar_bundle:2:13377)
+[2024-04-05 15:16:44.243] [error] Error: Please check update first
+    at m.downloadUpdate (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116210)
+    at 9066 (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250856)
+    at r (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:286830)
+    at C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:287153
+    at Object.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:287166)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1296:10)
+    at Module.load (node:internal/modules/cjs/loader:1096:32)
+    at Module._load (node:internal/modules/cjs/loader:937:12)
+    at f._load (node:electron/js2c/asar_bundle:2:13377)
+[2024-04-05 15:16:44.298] [info]  check install k -1
+[2024-04-05 15:16:49.700] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.9
+[2024-04-05 15:16:52.436] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 15:16:55.396] [info]  Download progress: {
+  total: 9028125,
+  delta: 15450,
+  transferred: 15450,
+  percent: 0.1711318795430945,
+  bytesPerSecond: 11986
+}
+[2024-04-05 15:16:56.266] [info]  Download progress: {
+  total: 9028125,
+  delta: 43137,
+  transferred: 43137,
+  percent: 0.47780685358255454,
+  bytesPerSecond: 19980
+}
+[2024-04-05 15:16:57.192] [info]  Download progress: {
+  total: 9028125,
+  delta: 88124,
+  transferred: 88124,
+  percent: 0.9761052267220491,
+  bytesPerSecond: 28565
+}
+[2024-04-05 15:16:58.090] [info]  Download progress: {
+  total: 9028125,
+  delta: 106414,
+  transferred: 106414,
+  percent: 1.1786943579093112,
+  bytesPerSecond: 26717
+}
+[2024-04-05 15:16:59.085] [info]  Download progress: {
+  total: 9028125,
+  delta: 155548,
+  transferred: 155548,
+  percent: 1.7229269643475251,
+  bytesPerSecond: 31247
+}
+[2024-04-05 15:16:59.087] [info]  Download progress: {
+  total: 9028125,
+  delta: 2087,
+  transferred: 157635,
+  percent: 1.746043613707165,
+  bytesPerSecond: 31654
+}
+[2024-04-05 15:16:59.976] [info]  Download progress: {
+  total: 9028125,
+  delta: 60692,
+  transferred: 216240,
+  percent: 2.3951817237798547,
+  bytesPerSecond: 36844
+}
+[2024-04-05 15:17:00.881] [info]  Download progress: {
+  total: 9028125,
+  delta: 135158,
+  transferred: 290706,
+  percent: 3.220004153686397,
+  bytesPerSecond: 42915
+}
+[2024-04-05 15:17:01.085] [info]  Download progress: {
+  total: 9028125,
+  delta: 1370707,
+  transferred: 1661413,
+  percent: 18.402636206299757,
+  bytesPerSecond: 238093
+}
+[2024-04-05 15:17:02.015] [info]  Download progress: {
+  total: 9028125,
+  delta: 1379655,
+  transferred: 1670361,
+  percent: 18.501748701973,
+  bytesPerSecond: 211224
+}
+[2024-04-05 15:17:02.034] [info]  Download progress: {
+  total: 9028125,
+  delta: 42273,
+  transferred: 1712634,
+  percent: 18.96998546209761,
+  bytesPerSecond: 216051
+}
+[2024-04-05 15:17:02.918] [info]  Download progress: {
+  total: 9028125,
+  delta: 100878,
+  transferred: 1771239,
+  percent: 19.619123572170302,
+  bytesPerSecond: 201026
+}
+[2024-04-05 15:17:03.816] [info]  Download progress: {
+  total: 9028125,
+  delta: 182771,
+  transferred: 1853132,
+  percent: 20.526211145725163,
+  bytesPerSecond: 190867
+}
+[2024-04-05 15:17:03.913] [info]  Download progress: {
+  total: 9028125,
+  delta: 1364758,
+  transferred: 3217890,
+  percent: 35.64294911734164,
+  bytesPerSecond: 328155
+}
+[2024-04-05 15:17:04.951] [info]  Download progress: {
+  total: 9028125,
+  delta: 1436342,
+  transferred: 3289474,
+  percent: 36.435849082727586,
+  bytesPerSecond: 303345
+}
+[2024-04-05 15:17:04.956] [info]  Download progress: {
+  total: 9028125,
+  delta: 43059,
+  transferred: 3332533,
+  percent: 36.91279196953963,
+  bytesPerSecond: 307174
+}
+[2024-04-05 15:17:05.832] [info]  Download progress: {
+  total: 9028125,
+  delta: 94309,
+  transferred: 3383783,
+  percent: 37.48046244375217,
+  bytesPerSecond: 288596
+}
+[2024-04-05 15:17:06.719] [info]  Download progress: {
+  total: 9028125,
+  delta: 163148,
+  transferred: 3452622,
+  percent: 38.24295742471443,
+  bytesPerSecond: 273757
+}
+[2024-04-05 15:17:06.758] [info]  Download progress: {
+  total: 9028125,
+  delta: 164374,
+  transferred: 3616996,
+  percent: 40.06364555209415,
+  bytesPerSecond: 285906
+}
+[2024-04-05 15:17:07.672] [info]  Download progress: {
+  total: 9028125,
+  delta: 748858,
+  transferred: 4201480,
+  percent: 46.53768085842852,
+  bytesPerSecond: 309729
+}
+[2024-04-05 15:17:08.584] [info]  Download progress: {
+  total: 9028125,
+  delta: 814394,
+  transferred: 4267016,
+  percent: 47.26359016960886,
+  bytesPerSecond: 294744
+}
+[2024-04-05 15:17:08.587] [info]  Download progress: {
+  total: 9028125,
+  delta: 42835,
+  transferred: 4309851,
+  percent: 47.73805192107996,
+  bytesPerSecond: 297642
+}
+[2024-04-05 15:17:09.579] [info]  Download progress: {
+  total: 9028125,
+  delta: 254089,
+  transferred: 4521105,
+  percent: 50.078006230529596,
+  bytesPerSecond: 292212
+}
+[2024-04-05 15:17:10.473] [info]  Download progress: {
+  total: 9028125,
+  delta: 319625,
+  transferred: 4586641,
+  percent: 50.803915541709934,
+  bytesPerSecond: 280254
+}
+[2024-04-05 15:17:10.513] [info]  Download progress: {
+  total: 9028125,
+  delta: 364537,
+  transferred: 4951178,
+  percent: 54.84170854967117,
+  bytesPerSecond: 301791
+}
+[2024-04-05 15:17:11.475] [info]  Download progress: {
+  total: 9028125,
+  delta: 747390,
+  transferred: 5334031,
+  percent: 59.082378677743165,
+  bytesPerSecond: 307118
+}
+[2024-04-05 15:17:11.507] [info]  Download progress: {
+  total: 9028125,
+  delta: 320415,
+  transferred: 5654446,
+  percent: 62.6314544825199,
+  bytesPerSecond: 324968
+}
+[2024-04-05 15:17:12.387] [info]  Download progress: {
+  total: 9028125,
+  delta: 362336,
+  transferred: 5696367,
+  percent: 63.095792315680164,
+  bytesPerSecond: 311617
+}
+[2024-04-05 15:17:13.297] [info]  Download progress: {
+  total: 9028125,
+  delta: 421930,
+  transferred: 5755961,
+  percent: 63.755885081343024,
+  bytesPerSecond: 299946
+}
+[2024-04-05 15:17:13.300] [info]  Download progress: {
+  total: 9028125,
+  delta: 21550,
+  transferred: 5777511,
+  percent: 63.99458359293874,
+  bytesPerSecond: 301022
+}
+[2024-04-05 15:17:14.168] [info]  Download progress: {
+  total: 9028125,
+  delta: 49558,
+  transferred: 5805519,
+  percent: 64.30481412253374,
+  bytesPerSecond: 289393
+}
+[2024-04-05 15:17:15.250] [info]  Download progress: {
+  total: 9028125,
+  delta: 101734,
+  transferred: 5857695,
+  percent: 64.8827414330218,
+  bytesPerSecond: 277051
+}
+[2024-04-05 15:17:15.284] [info]  Download progress: {
+  total: 9028125,
+  delta: 306172,
+  transferred: 6163867,
+  percent: 68.27405469020422,
+  bytesPerSecond: 291064
+}
+[2024-04-05 15:17:16.178] [info]  Download progress: {
+  total: 9028125,
+  delta: 657050,
+  transferred: 6514745,
+  percent: 72.1605538248529,
+  bytesPerSecond: 295172
+}
+[2024-04-05 15:17:17.080] [info]  Download progress: {
+  total: 9028125,
+  delta: 698757,
+  transferred: 6556452,
+  percent: 72.62252128764278,
+  bytesPerSecond: 285398
+}
+[2024-04-05 15:17:17.081] [info]  Download progress: {
+  total: 9028125,
+  delta: 15882,
+  transferred: 6572334,
+  percent: 72.79843821391485,
+  bytesPerSecond: 286077
+}
+[2024-04-05 15:17:18.035] [info]  Download progress: {
+  total: 9028125,
+  delta: 558195,
+  transferred: 7114647,
+  percent: 78.8053665628245,
+  bytesPerSecond: 297336
+}
+[2024-04-05 15:17:18.962] [info]  Download progress: {
+  total: 9028125,
+  delta: 640115,
+  transferred: 7196567,
+  percent: 79.71275320179994,
+  bytesPerSecond: 289542
+}
+[2024-04-05 15:17:18.964] [info]  Download progress: {
+  total: 9028125,
+  delta: 23071,
+  transferred: 7219638,
+  percent: 79.96829906542055,
+  bytesPerSecond: 290447
+}
+[2024-04-05 15:17:19.830] [info]  Download progress: {
+  total: 9028125,
+  delta: 40744,
+  transferred: 7237311,
+  percent: 80.16405399792316,
+  bytesPerSecond: 281356
+}
+[2024-04-05 15:17:20.811] [info]  Download progress: {
+  total: 9028125,
+  delta: 119755,
+  transferred: 7316322,
+  percent: 81.03921910695743,
+  bytesPerSecond: 273979
+}
+[2024-04-05 15:17:20.908] [info]  Download progress: {
+  total: 9028125,
+  delta: 1017932,
+  transferred: 8334254,
+  percent: 92.31433991000347,
+  bytesPerSecond: 310968
+}
+[2024-04-05 15:17:21.994] [info]  Download progress: {
+  total: 9028125,
+  delta: 1044769,
+  transferred: 8361091,
+  percent: 92.6115998615438,
+  bytesPerSecond: 299820
+}
+[2024-04-05 15:17:22.904] [info]  Download progress: {
+  total: 9028125,
+  delta: 1120747,
+  transferred: 8437069,
+  percent: 93.45316995500174,
+  bytesPerSecond: 292984
+}
+[2024-04-05 15:17:22.908] [info]  Download progress: {
+  total: 9028125,
+  delta: 55561,
+  transferred: 8492630,
+  percent: 94.06859120803045,
+  bytesPerSecond: 294873
+}
+[2024-04-05 15:17:23.827] [info]  Download progress: {
+  total: 9028125,
+  delta: 437028,
+  transferred: 8874097,
+  percent: 98.29390931118034,
+  bytesPerSecond: 298590
+}
+[2024-04-05 15:17:24.758] [info]  Download progress: {
+  total: 9028125,
+  delta: 505570,
+  transferred: 8942639,
+  percent: 99.05311457251645,
+  bytesPerSecond: 291757
+}
+[2024-04-05 15:17:24.765] [info]  Download progress: {
+  total: 9028125,
+  delta: 85486,
+  transferred: 9028125,
+  percent: 100,
+  bytesPerSecond: 294479
+}
+[2024-04-05 15:17:26.895] [info]  Download progress: {
+  total: 149446943,
+  delta: 9168959,
+  transferred: 9168959,
+  percent: 6.135260324461772,
+  bytesPerSecond: 9168959
+}
+[2024-04-05 15:17:29.133] [info]  Download progress: {
+  total: 149446943,
+  delta: 4046857,
+  transferred: 13215816,
+  percent: 8.843149103424617,
+  bytesPerSecond: 4082736
+}
+[2024-04-05 15:17:31.512] [info]  Download progress: {
+  total: 149446943,
+  delta: 7077888,
+  transferred: 20293704,
+  percent: 13.579203155731328,
+  bytesPerSecond: 3612908
+}
+[2024-04-05 15:17:32.769] [info]  Download progress: {
+  total: 149446943,
+  delta: 6471689,
+  transferred: 26765393,
+  percent: 17.909628971132584,
+  bytesPerSecond: 3893714
+}
+[2024-04-05 15:17:33.770] [info]  Download progress: {
+  total: 149446943,
+  delta: 5112821,
+  transferred: 31878214,
+  percent: 21.330790285887613,
+  bytesPerSecond: 4048027
+}
+[2024-04-05 15:17:34.910] [info]  Download progress: {
+  total: 149446943,
+  delta: 1949669,
+  transferred: 33827883,
+  percent: 22.635379701276324,
+  bytesPerSecond: 3752400
+}
+[2024-04-05 15:17:35.910] [info]  Download progress: {
+  total: 149446943,
+  delta: 5521435,
+  transferred: 39349318,
+  percent: 26.329958452211365,
+  bytesPerSecond: 3929038
+}
+[2024-04-05 15:17:36.910] [info]  Download progress: {
+  total: 149446943,
+  delta: 819182,
+  transferred: 40168500,
+  percent: 26.878100812005236,
+  bytesPerSecond: 3646709
+}
+[2024-04-05 15:17:37.910] [info]  Download progress: {
+  total: 149446943,
+  delta: 6144009,
+  transferred: 46312509,
+  percent: 30.989264865725623,
+  bytesPerSecond: 3854558
+}
+[2024-04-05 15:17:38.940] [info]  Download progress: {
+  total: 149446943,
+  delta: 983040,
+  transferred: 47295549,
+  percent: 31.647050150768223,
+  bytesPerSecond: 3625569
+}
+[2024-04-05 15:17:39.944] [info]  Download progress: {
+  total: 149446943,
+  delta: 1540078,
+  transferred: 48835627,
+  percent: 32.67756838626,
+  bytesPerSecond: 3476093
+}
+[2024-04-05 15:17:40.948] [info]  Download progress: {
+  total: 149446943,
+  delta: 2113563,
+  transferred: 50949190,
+  percent: 34.09182481571403,
+  bytesPerSecond: 3384654
+}
+[2024-04-05 15:17:41.952] [info]  Download progress: {
+  total: 149446943,
+  delta: 3473408,
+  transferred: 54422598,
+  percent: 36.41599948953121,
+  bytesPerSecond: 3389338
+}
+[2024-04-05 15:17:42.962] [info]  Download progress: {
+  total: 149446943,
+  delta: 2686976,
+  transferred: 57109574,
+  percent: 38.213945935314314,
+  bytesPerSecond: 3346199
+}
+[2024-04-05 15:17:43.963] [info]  Download progress: {
+  total: 149446943,
+  delta: 2736101,
+  transferred: 59845675,
+  percent: 40.044763578737104,
+  bytesPerSecond: 3312247
+}
+[2024-04-05 15:17:44.967] [info]  Download progress: {
+  total: 149446943,
+  delta: 3407872,
+  transferred: 63253547,
+  percent: 42.32508590021811,
+  bytesPerSecond: 3316566
+}
+[2024-04-05 15:17:45.969] [info]  Download progress: {
+  total: 149446943,
+  delta: 4997147,
+  transferred: 68250694,
+  percent: 45.66884583246377,
+  bytesPerSecond: 3399955
+}
+[2024-04-05 15:17:47.027] [info]  Download progress: {
+  total: 149446943,
+  delta: 955322,
+  transferred: 69206016,
+  percent: 46.30808406699895,
+  bytesPerSecond: 3274939
+}
+[2024-04-05 15:17:49.512] [info]  Download progress: {
+  total: 149446943,
+  delta: 7089195,
+  transferred: 76295211,
+  percent: 51.051704015116584,
+  bytesPerSecond: 3230521
+}
+[2024-04-05 15:17:51.166] [info]  Download progress: {
+  total: 149446943,
+  delta: 6406153,
+  transferred: 82701364,
+  percent: 55.33827747818167,
+  bytesPerSecond: 3272580
+}
+[2024-04-05 15:17:53.629] [info]  Download progress: {
+  total: 149446943,
+  delta: 7077888,
+  transferred: 89779252,
+  percent: 60.07433153048838,
+  bytesPerSecond: 3237155
+}
+[2024-04-05 15:17:55.841] [info]  Download progress: {
+  total: 149446943,
+  delta: 7094263,
+  transferred: 96873515,
+  percent: 64.82134264867499,
+  bytesPerSecond: 3234940
+}
+[2024-04-05 15:17:58.030] [info]  Download progress: {
+  total: 149446943,
+  delta: 6340635,
+  transferred: 103214150,
+  percent: 69.0640758038122,
+  bytesPerSecond: 3211892
+}
+[2024-04-05 15:17:59.681] [info]  Download progress: {
+  total: 149446943,
+  delta: 7077888,
+  transferred: 110292038,
+  percent: 73.8001298561189,
+  bytesPerSecond: 3264430
+}
+[2024-04-05 15:18:00.681] [info]  Download progress: {
+  total: 149446943,
+  delta: 5423077,
+  transferred: 115715115,
+  percent: 77.4288939453248,
+  bytesPerSecond: 3326485
+}
+[2024-04-05 15:18:01.783] [info]  Download progress: {
+  total: 149446943,
+  delta: 1114112,
+  transferred: 116829227,
+  percent: 78.17438393503974,
+  bytesPerSecond: 3255384
+}
+[2024-04-05 15:18:02.784] [info]  Download progress: {
+  total: 149446943,
+  delta: 3620891,
+  transferred: 120450118,
+  percent: 80.59724446822575,
+  bytesPerSecond: 3265204
+}
+[2024-04-05 15:18:03.785] [info]  Download progress: {
+  total: 149446943,
+  delta: 1851383,
+  transferred: 122301501,
+  percent: 81.83606739951851,
+  bytesPerSecond: 3227804
+}
+[2024-04-05 15:18:06.094] [info]  Download progress: {
+  total: 149446943,
+  delta: 5849079,
+  transferred: 128150580,
+  percent: 85.74988382331782,
+  bytesPerSecond: 3187905
+}
+[2024-04-05 15:18:08.329] [info]  Download progress: {
+  total: 149446943,
+  delta: 6225884,
+  transferred: 134376464,
+  percent: 89.9158332064377,
+  bytesPerSecond: 3166717
+}
+[2024-04-05 15:18:09.336] [info]  Download progress: {
+  total: 149446943,
+  delta: 5865526,
+  transferred: 140241990,
+  percent: 93.84065487375007,
+  bytesPerSecond: 3228332
+}
+[2024-04-05 15:18:10.338] [info]  Download progress: {
+  total: 149446943,
+  delta: 3276800,
+  transferred: 143518790,
+  percent: 96.03327249055874,
+  bytesPerSecond: 3229278
+}
+[2024-04-05 15:18:12.069] [info]  Download progress: {
+  total: 149446943,
+  delta: 4456448,
+  transferred: 147975238,
+  percent: 99.01523244941852,
+  bytesPerSecond: 3204731
+}
+[2024-04-05 15:18:12.418] [info]  Download progress: {
+  total: 149446943,
+  delta: 1471705,
+  transferred: 149446943,
+  percent: 100,
+  bytesPerSecond: 3212324
+}
+[2024-04-05 15:18:12.422] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 15:18:26.734] [info]  check install 0
+[2024-04-05 15:22:38.585] [info]  check install k -1
+[2024-04-05 15:22:41.049] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.10
+[2024-04-05 15:28:25.515] [info]  check install k -1
+[2024-04-05 15:28:29.187] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.9
+[2024-04-05 15:28:32.250] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 15:28:33.414] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 15:30:44.287] [info]  check install 0
+[2024-04-05 15:30:44.290] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at m.quitAndInstall (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120254)
+    at m.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250784)
+    at m.emit (node:events:513:28)
+    at m.dispatchUpdateDownloaded (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116957)
+    at Object.done (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120483)
+    at g (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119346)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async m.executeDownload (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119474)
+[2024-04-05 15:30:44.298] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 15:30:46.416] [info]  check install 0
+[2024-04-05 15:35:47.182] [info]  check install k -1
+[2024-04-05 15:35:52.078] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.10
+[2024-04-05 16:40:54.545] [info]  check install k -1
+[2024-04-05 16:40:57.253] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.7
+[2024-04-05 16:40:59.862] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 16:41:00.574] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 16:41:04.524] [info]  check install 0
+[2024-04-05 16:41:04.529] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at m.quitAndInstall (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120254)
+    at m.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250746)
+    at m.emit (node:events:513:28)
+    at m.dispatchUpdateDownloaded (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116957)
+    at Object.done (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120483)
+    at g (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119346)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async m.executeDownload (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119474)
+[2024-04-05 16:41:04.532] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 16:41:06.381] [info]  check install 0
+[2024-04-05 16:41:37.008] [info]  check install k -1
+[2024-04-05 16:41:38.846] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.7
+[2024-04-05 16:41:40.755] [info]  update-available {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: ''
+}
+[2024-04-05 16:41:41.433] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 16:41:45.390] [info]  check install 0
+[2024-04-05 16:41:45.392] [info]  Error in auto-updater: Error: No valid update available, can't quit and install
+    at m.install (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120831)
+    at m.quitAndInstall (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120254)
+    at m.<anonymous> (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:250746)
+    at m.emit (node:events:513:28)
+    at m.dispatchUpdateDownloaded (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:116957)
+    at Object.done (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:120483)
+    at g (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119346)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async m.executeDownload (C:\Users\letua\AppData\Local\Programs\web-dan-for-js-test\resources\app\index.js:2:119474)
+[2024-04-05 16:41:45.394] [info]  Update-downloaded {
+  tag: 'v2.2.10',
+  version: '2.2.10',
+  files: [
+    {
+      url: 'web-dan-for-js-test-Setup-2.2.10.exe',
+      sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+      size: 149446943
+    }
+  ],
+  path: 'web-dan-for-js-test-Setup-2.2.10.exe',
+  sha512: 'wZ0BOUIqxXDLLjJ1SOGlcWEcsHTffrIEtYZdShSfAT0MLn3Qy1NYfk9Vhmr7v1IJz/TEwiak8Gv3tUk0tHf6jA==',
+  releaseDate: '2024-04-05T07:45:10.354Z',
+  releaseName: '2.2.10',
+  releaseNotes: '',
+  downloadedFile: 'C:\\Users\\letua\\AppData\\Local\\web-dan-for-js-test-updater\\pending\\web-dan-for-js-test-Setup-2.2.10.exe'
+}
+[2024-04-05 16:41:47.485] [info]  check install 0
+[2024-04-05 16:46:01.991] [info]  check install k -1
+[2024-04-05 16:46:04.380] [info]  アップデートがあるか確認します。web-dan-for-js-test 2.2.10

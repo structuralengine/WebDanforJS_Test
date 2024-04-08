@@ -29,9 +29,9 @@
     }
   ],
   "win": {
-    "icon": "dist/assets/icons",
-    "verifyUpdateCodeSignature": false,
+    "icon": "dist/assets/icons",    
     "target": "nsis",
+    "publisherName": "MALME INC.",
     "asar": false
   },
   "mac": {
