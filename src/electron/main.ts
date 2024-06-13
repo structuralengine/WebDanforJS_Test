@@ -3,11 +3,14 @@ import { autoUpdater } from 'electron-updater';
 import * as fs from 'fs';
 import log from 'electron-log';
 import isDev from 'electron-is-dev';
+import path from 'path'
 // 起動 --------------------------------------------------------------
 
 let mainWindow: BrowserWindow;
 let locale = 'ja';
-
+let check = -1;
+autoUpdater.autoDownload = false
+log.transports.file.resolvePath = () => path.join('D:/logs/main.logs')
 async function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
@@ -27,7 +30,7 @@ async function createWindow() {
         title: langText.window.closeTitle,
         message: langText.window.closeMessage,
       });
-    if (choice==1) {
+    if (choice == 1) {
       e.preventDefault();
     }
   });
@@ -46,10 +49,47 @@ app.whenReady().then(async () => {
 });
 
 // アップデート --------------------------------------------------
-autoUpdater.checkForUpdatesAndNotify();
+//autoUpdater.checkForUpdatesAndNotify();
+autoUpdater.on('update-available', (info) => {
+  log.info('update-available', info)
+  autoUpdater.downloadUpdate();
+});
+autoUpdater.on('error', (err) => {
+  log.info('Error in auto-updater:', err);
+});
+autoUpdater.on('download-progress', (progressObj) => {
+  log.info('Download progress:', progressObj);
+});
+//when update downloaded, reboot to install
+autoUpdater.on('update-downloaded', (info) => {
+  log.info('Update-downloaded', info)
+  let langText = require(`../assets/i18n/${locale}.json`)
+  let choice = dialog.showMessageBoxSync(mainWindow,
+    {
+      type: 'question',
+      buttons: ["Ok", "Cancel"],
+      message: langText.modal.updateMessage,
+    });
+  if (choice == 0) {
+    let langText = require(`../assets/i18n/${locale}.json`)
+    let choice1 = dialog.showMessageBoxSync(mainWindow,
+      {
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: langText.window.closeTitle,
+        message: langText.window.closeMessage,
+      });
+    if (choice1 == 0) {
+      check = 0;
+      log.info("check install", check);
+      autoUpdater.quitAndInstall();
+    }
+  }
+
+});
 
 // Angular -> Electron --------------------------------------------------
-ipcMain.on("newWindow", async() => await createWindow())
+ipcMain.on("newWindow", async () => await createWindow())
 // ファイルを開く
 ipcMain.on('open', (event: Electron.IpcMainEvent) => {
   // ファイルを選択
@@ -73,7 +113,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     const path = paths[0];
     const buff = fs.readFileSync(path);
     // ファイルを読み込む
-    let text = null;   
+    let text = null;
     switch (path.split('.').pop()) {
       case "dsd":
         text = buff;
@@ -87,7 +127,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
       status: true,
       path: path,
       textB: buff,
-      text     
+      text
     };
   } catch (error) {
     event.returnValue = { status: false, message: error.message };
@@ -177,5 +217,5 @@ ipcMain.on(
 
 ipcMain.on(
   'change-lang', (event, lang) => {
-  locale = lang;
-})
+    locale = lang;
+  })
