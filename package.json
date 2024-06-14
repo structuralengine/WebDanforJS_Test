@@ -1,6 +1,6 @@
 {
   "name": "web-dan-for-js-test",
-  "version": "2.2.14",
+  "version": "2.2.18",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=127.0.0.1",
