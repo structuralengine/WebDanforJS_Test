@@ -10,7 +10,8 @@ let mainWindow: BrowserWindow;
 let locale = 'ja';
 let check = -1;
 autoUpdater.autoDownload = false
-log.transports.file.resolvePath = () => path.join('E:/Le Tuan Anh/WebDanforJS_Test/src/logs/main.logs')
+log.transports.file.resolvePath = () => path.join('D:/DuongTuanAnh/Companys/WebDanforJS_Test/src/logs/main.logs')
+
 async function createWindow() {
   check = -1;
   log.info("check install k", check);
@@ -24,7 +25,7 @@ async function createWindow() {
   mainWindow.setMenuBarVisibility(false);
   //mainWindow.webContents.openDevTools();
   mainWindow.on('close', function (e) {
-    if(check == -1){
+    if (check == -1) {
       let langText = require(`../assets/i18n/${locale}.json`)
       let choice = dialog.showMessageBoxSync(this,
         {
@@ -36,7 +37,7 @@ async function createWindow() {
       if (choice == 1) {
         e.preventDefault();
       }
-    }  
+    }
   });
   await mainWindow.loadFile('index.html');
 }
@@ -53,7 +54,7 @@ app.whenReady().then(async () => {
 //autoUpdater.checkForUpdatesAndNotify();
 autoUpdater.on('update-available', (info) => {
   log.info('update-available', info)
-  autoUpdater.downloadUpdate();  
+  autoUpdater.downloadUpdate();
 });
 autoUpdater.on('error', (err) => {
   log.info('Error in auto-updater:', err);
@@ -80,16 +81,16 @@ autoUpdater.on('update-downloaded', (info) => {
         title: langText.window.closeTitle,
         message: langText.window.closeMessage,
       });
-    if (choice1 == 0) {   
+    if (choice1 == 0) {
       check = 0;
       log.info("check install", check);
       autoUpdater.quitAndInstall();
-    }       
+    }
   }
-  
+
 });
 // Angular -> Electron --------------------------------------------------
-ipcMain.on("newWindow", async() => await createWindow())
+ipcMain.on("newWindow", async () => await createWindow())
 // ファイルを開く
 ipcMain.on('open', (event: Electron.IpcMainEvent) => {
   // ファイルを選択
@@ -113,7 +114,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
     const path = paths[0];
     const buff = fs.readFileSync(path);
     // ファイルを読み込む
-    let text = null;   
+    let text = null;
     switch (path.split('.').pop()) {
       case "dsd":
         text = buff;
@@ -127,7 +128,7 @@ ipcMain.on('open', (event: Electron.IpcMainEvent) => {
       status: true,
       path: path,
       textB: buff,
-      text     
+      text
     };
   } catch (error) {
     event.returnValue = { status: false, message: error.message };
@@ -217,5 +218,5 @@ ipcMain.on(
 
 ipcMain.on(
   'change-lang', (event, lang) => {
-  locale = lang;
-})
+    locale = lang;
+  })
